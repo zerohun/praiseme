@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
-gem 'sqlite3'
+gem 'mysql2'
+gem 'devise', :git => "git@github.com:zerohun/devise.git"
+gem 'omniauth-facebook'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
