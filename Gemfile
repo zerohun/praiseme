@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.beta1'
 
 gem 'mysql2'
-gem 'devise', :path => "/Users/choi0hun/Project/devise"
+gem 'devise', :git => "git://github.com/zerohun/devise.git"
 gem 'omniauth-facebook'
 gem 'pry'
 

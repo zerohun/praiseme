@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/choi0hun/Project/devise
+GIT
+  remote: git://github.com/zerohun/devise.git
+  revision: 7e90dc3d40bf7262316a7935591e3eee31508263
   specs:
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
