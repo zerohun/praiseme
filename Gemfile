@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.beta1'
 
 gem 'mysql2'
-gem 'devise', :git => "git@github.com:zerohun/devise.git"
+gem 'devise', :path => "/Users/choi0hun/Project/devise"
 gem 'omniauth-facebook'
+gem 'pry'
 
 
 # Gems used only for assets and not required

@@ -1,6 +1,5 @@
-GIT
-  remote: git@github.com:zerohun/devise.git
-  revision: 463f631dbcb2e8c0f6a14bc837ff4533f8a97822
+PATH
+  remote: /Users/choi0hun/Project/devise
   specs:
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
@@ -45,6 +44,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    coderay (1.0.9)
     coffee-rails (4.0.0.beta1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -75,6 +75,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.21)
     minitest (4.6.1)
     multi_json (1.6.1)
@@ -103,6 +104,10 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    pry (0.9.12)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -130,6 +135,7 @@ GEM
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0.rc0)
       tilt (~> 1.3)
+    slop (3.4.3)
     sprockets (2.9.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -170,6 +176,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   omniauth-facebook
+  pry
   rails (= 4.0.0.beta1)
   sass-rails (~> 4.0.0.beta1)
   turbolinks
