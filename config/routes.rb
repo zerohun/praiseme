@@ -1,6 +1,6 @@
 Praiseme::Application.routes.draw do
   get "main/index"
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", user_registration: "users"}
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "users"}
   
   resources :main, :only => [:index]
   # The priority is based upon order of creation: first created -> highest priority.

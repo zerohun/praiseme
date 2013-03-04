@@ -9,6 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect user, notice: "Signed in!"
     else
       session["devise.user_attributes"] = sns_connection.attributes
+      session["sns_connection_id"] = sns_connection.id
       redirect_to new_user_registration_url
     end
   end
