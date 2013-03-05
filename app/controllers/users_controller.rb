@@ -1,8 +1,7 @@
 class UsersController < Devise::RegistrationsController
   def new
     super
-    
-    
+    resource.sns_connected = false if session[:sns_connection_id].present?
   end
   def create
     super

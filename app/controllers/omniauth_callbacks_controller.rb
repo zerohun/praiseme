@@ -1,6 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
-    sns_connection = SnsConnection.from_omniauth(request.env["omniauth.auth"])
+    auth = request.env["omniauth.auth"]
+    sns_connection = SnsConnection.from_omniauth(auth)
     user = sns_connection.user
     if sns_connection.persisted? && user.present?
       if user.username != auth.info.nickname
