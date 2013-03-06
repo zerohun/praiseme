@@ -8,6 +8,13 @@ GIT
       railties (~> 4.0.0.beta1)
       warden (~> 1.2.1)
 
+GIT
+  remote: git@github.com:freerange/mocha.git
+  revision: 2b3148c02a9545b6e3c004142e901438a73e6129
+  specs:
+    mocha (0.13.2)
+      metaclass (~> 0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,6 +83,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.21)
     minitest (4.6.1)
@@ -175,6 +183,7 @@ DEPENDENCIES
   devise!
   jbuilder (~> 1.0.1)
   jquery-rails
+  mocha!
   mysql2
   omniauth-facebook
   pry

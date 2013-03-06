@@ -8,6 +8,10 @@ gem 'devise', :git => "git://github.com/zerohun/devise.git"
 gem 'omniauth-facebook'
 gem 'pry'
 
+# test
+#
+gem 'mocha', :git => "git@github.com:freerange/mocha.git", :require => false
+
 
 # Gems used only for assets and not required
 # in production environments by default.
