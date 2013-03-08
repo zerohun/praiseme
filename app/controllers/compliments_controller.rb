@@ -14,7 +14,7 @@ class ComplimentsController < ApplicationController
 
   # GET /compliments/new
   def new
-    @compliment = Compliment.new(:sender_id => params[:sender_id], :receiver_id => params[:receiver_id])
+    @compliment = Compliment.new(compliment_params)
   end
 
   # GET /compliments/1/edit
@@ -69,6 +69,6 @@ class ComplimentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compliment_params
-      params.require(:compliment).permit(:sender_id_id, :receiver_id_id, :stamp_id, :description)
+      params.require(:compliment).permit(:sender_id, :receiver_id, :stamp_id, :description)
     end
 end

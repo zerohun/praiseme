@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :sender_id %><br />
-    <%= f.text_field :sender_id %>
+    <%= f.object.sender.username %>
+    <%= f.hidden_field :sender_id %>
   </div>
   <div class="field">
-    <%= f.label :receiver_id %><br />
-    <%= f.text_field :receiver_id %>
+    <%= f.object.receiver.username %>
+    <%= f.hidden_field :receiver_id %>
   </div>
   <div class="field">
-    <%= f.label :stamp %><br />
-    <%= f.text_field :stamp %>
+    <%= f.object.stamp.title %>
+    <%= f.hidden_field :stamp_id %>    
   </div>
   <div class="field">
     <%= f.label :description %><br />

@@ -1,8 +1,10 @@
 require 'test_helper'
+require 'controller_test_helper'
 
 class StampsControllerTest < ActionController::TestCase
   setup do
     @stamp = stamps(:one)
+    sign_in users(:zerohun)
   end
 
   test "should get index" do
