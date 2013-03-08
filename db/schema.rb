@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130302085220) do
+ActiveRecord::Schema.define(version: 20130307233644) do
 
   create_table "sns_connections", force: true do |t|
     t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stamps", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "used_count"
+    t.boolean  "is_blocked"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

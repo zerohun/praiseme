@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :sns_connections
+  validates_presence_of :email
 
 
   # Setup accessible (or protected) attributes for your model
@@ -25,6 +26,5 @@ class User < ActiveRecord::Base
       super
     end
   end
-
 
 end

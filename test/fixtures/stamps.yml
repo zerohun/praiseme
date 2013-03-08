@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: "Amazing Programmer"
+  description: "he has outstanding gift"
+  used_count: 20
+  is_blocked: false
+
+two:
+  title: "Amazing Artist"
+  description: "she is great artist because blah blah blah...."
+  used_count: 20
+  is_blocked: false
