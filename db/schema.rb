@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130307233644) do
+ActiveRecord::Schema.define(version: 20130308001458) do
+
+  create_table "compliments", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "stamp_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id"
 
   create_table "sns_connections", force: true do |t|
     t.string   "provider"

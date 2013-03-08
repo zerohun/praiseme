@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @compliment.sender_id %>
+</p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @compliment.receiver_id %>
+</p>
+
+<p>
+  <strong>Stamp:</strong>
+  <%= @compliment.stamp %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @compliment.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_compliment_path(@compliment) %> |
+<%= link_to 'Back', compliments_path %>

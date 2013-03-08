@@ -1,4 +1,6 @@
 Praiseme::Application.routes.draw do
+  resources :compliments
+
   resources :stamps
 
   get "main/index"

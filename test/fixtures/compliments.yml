@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sender_id_id: 1
+  receiver_id_id: 2
+  stamp_id: 
+  description: MyText
