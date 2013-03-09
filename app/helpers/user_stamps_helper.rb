@@ -1,0 +1,2 @@
+module UserStampsHelper
+end

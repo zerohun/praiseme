@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130308001458) do
+ActiveRecord::Schema.define(version: 20130309010803) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20130308001458) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_stamps", force: true do |t|
+    t.integer  "stamp_id"
+    t.integer  "user_id"
+    t.integer  "score"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_stamps", ["stamp_id"], name: "index_user_stamps_on_stamp_id"
+  add_index "user_stamps", ["user_id"], name: "index_user_stamps_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

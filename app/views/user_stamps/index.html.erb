@@ -1,0 +1,33 @@
+<h1>Listing user_stamps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stamp</th>
+      <th>User</th>
+      <th>Score</th>
+      <th>Level</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_stamps.each do |user_stamp| %>
+    <tr>
+      <td><%= user_stamp.stamp %></td>
+      <td><%= user_stamp.user %></td>
+      <td><%= user_stamp.score %></td>
+      <td><%= user_stamp.level %></td>
+      <td><%= link_to 'Show', user_stamp %></td>
+      <td><%= link_to 'Edit', edit_user_stamp_path(user_stamp) %></td>
+      <td><%= link_to 'Destroy', user_stamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New User stamp', new_user_stamp_path %>

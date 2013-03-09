@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Stamp:</strong>
+  <%= @user_stamp.stamp %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_stamp.user %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @user_stamp.score %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @user_stamp.level %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_stamp_path(@user_stamp) %> |
+<%= link_to 'Back', user_stamps_path %>

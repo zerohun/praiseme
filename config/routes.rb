@@ -1,4 +1,6 @@
 Praiseme::Application.routes.draw do
+  resources :user_stamps
+
   resources :compliments
 
   resources :stamps
