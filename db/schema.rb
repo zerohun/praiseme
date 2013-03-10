@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130309010803) do
+ActiveRecord::Schema.define(version: 20130309023106) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20130309010803) do
   end
 
   add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id"
+
+  create_table "news_feeds", force: true do |t|
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_feeds", ["notifiable_id"], name: "index_news_feeds_on_notifiable_id"
 
   create_table "sns_connections", force: true do |t|
     t.string   "provider"
@@ -40,6 +50,17 @@ ActiveRecord::Schema.define(version: 20130309010803) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_news_feeds", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "news_feed_id"
+    t.boolean  "is_read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_news_feeds", ["news_feed_id"], name: "index_user_news_feeds_on_news_feed_id"
+  add_index "user_news_feeds", ["user_id"], name: "index_user_news_feeds_on_user_id"
 
   create_table "user_stamps", force: true do |t|
     t.integer  "stamp_id"

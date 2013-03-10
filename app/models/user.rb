@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :sns_connections
+  
+  has_many :user_news_feeds
+  has_many :news_feeds, :as => :notifiable,  :through => :user_news_feeds
+
   validates_presence_of :email
 
 

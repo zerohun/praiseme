@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  notifiable_id: 1
+  notifiable_type: Compliment
+  action: 1
+
+two:
+  id: 2
+  notifiable_id: 2
+  notifiable_type: Compliment
+  action: 2

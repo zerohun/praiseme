@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Notifiable:</strong>
+  <%= @news_feed.notifiable %>
+</p>
+
+<p>
+  <strong>Notifiable type:</strong>
+  <%= @news_feed.notifiable_type %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @news_feed.action %>
+</p>
+
+
+<%= link_to 'Edit', edit_news_feed_path(@news_feed) %> |
+<%= link_to 'Back', news_feeds_path %>

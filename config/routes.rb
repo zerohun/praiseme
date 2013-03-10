@@ -1,4 +1,6 @@
 Praiseme::Application.routes.draw do
+  resources :news_feeds
+
   resources :user_stamps
 
   resources :compliments
