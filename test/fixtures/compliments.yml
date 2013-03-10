@@ -1,7 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
+  sender_id: 2
+  receiver_id: 1
+  stamp_id: 1
+  description: good
+
+two:
+  id: 2
   sender_id: 1
   receiver_id: 2
-  stamp_id: 1
-  description: she have painted my nude, it was amazing
+  stamp_id: 2
+  description: good
+
