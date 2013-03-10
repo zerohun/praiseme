@@ -4,7 +4,6 @@ class CreateNewsFeeds < ActiveRecord::Migration
       t.references :notifiable, index: true
       t.string :notifiable_type
       t.integer :action
-
       t.timestamps
     end
   end

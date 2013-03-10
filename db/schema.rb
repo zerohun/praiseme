@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130309023106) do
     t.text     "description"
     t.integer  "used_count"
     t.boolean  "is_blocked"
+    t.string   "image_file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
