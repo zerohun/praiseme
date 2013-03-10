@@ -8,6 +8,8 @@ gem 'devise', :git => "git://github.com/zerohun/devise.git"
 gem 'omniauth-facebook'
 gem 'pry'
 gem 'carrierwave'
+gem "kaminari"
+gem "hirb"
 
 # test
 #
