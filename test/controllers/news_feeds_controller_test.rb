@@ -11,10 +11,7 @@ class NewsFeedsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:news_feeds)
-  end
+    assert user_news_feeds(:one).is_read == true
 
-  test "should show news_feed" do
-    get :show, id: @news_feed
-    assert_response :success
   end
 end

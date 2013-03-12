@@ -14,5 +14,9 @@ class NewsFeed < ActiveRecord::Base
     if self.notifiable_type == "Compliment" && self.action_type == :create
       "#{self.notifiable.sender.username} gave stamp of #{self.notifiable.stamp.title} to #{self.notifiable.receiver.username}"
     end
+
+    if self.notifiable_type == "User" && self.action_type == :create
+      "#{self.notifiable.username} has joined"
+    end
   end
 end

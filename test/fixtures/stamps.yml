@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+parogramming:
   id: 1
   title: "Amazing Programmer"
   description: "he has outstanding gift"
@@ -8,7 +8,7 @@ one:
   is_blocked: false
   image_file: <%= Rails.root %>/public/images_for_test/stamp1.png
 
-two:
+art:
   id: 2
   title: "Amazing Artist"
   description: "she is great artist because blah blah blah...."

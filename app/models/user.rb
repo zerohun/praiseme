@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   
   attr_accessor :sns_connected
 
+  after_create do |user|
+    NewsFeed.create :notifiable => user, :action => NewsFeed[:create]
+  end
+
   def password_required?
     super && self.sns_connected
   end

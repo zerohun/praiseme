@@ -15,12 +15,7 @@
   <tbody>
     <% @news_feeds.each do |news_feed| %>
     <tr>
-      <td><%= news_feed.notifiable %></td>
-      <td><%= news_feed.notifiable_type %></td>
-      <td><%= news_feed.action %></td>
-      <td><%= link_to 'Show', news_feed %></td>
-      <td><%= link_to 'Edit', edit_news_feed_path(news_feed) %></td>
-      <td><%= link_to 'Destroy', news_feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= news_feed %></td>
     </tr>
     <% end %>
   </tbody>
@@ -28,4 +23,3 @@
 
 <br />
 
-<%= link_to 'New News feed', new_news_feed_path %>

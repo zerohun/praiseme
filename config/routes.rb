@@ -1,5 +1,5 @@
 Praiseme::Application.routes.draw do
-  resources :news_feeds
+  resources :news_feeds, :only => [:index]
 
   resources :user_stamps
 
