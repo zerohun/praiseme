@@ -1,4 +1,6 @@
 Praiseme::Application.routes.draw do
+  resources :followings, :only => [:index, :create, :destroy]
+
   resources :news_feeds, :only => [:index]
 
   resources :user_stamps
@@ -6,6 +8,8 @@ Praiseme::Application.routes.draw do
   resources :compliments
 
   resources :stamps
+  
+  resources :users, :only => [:show, :edit, :update, :destroy]
 
   get "main/index"
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "users"}

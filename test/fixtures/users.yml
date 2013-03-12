@@ -13,3 +13,13 @@ sarah:
   id: 2
   email: sosolin@meca.edu
   username: Sarah
+
+sheldon:
+  id: 3
+  email: sheldon@bigbang.com
+  username: sheldon
+
+penny:
+  id: 4
+  email: penny@bigbang.com
+  username: penny

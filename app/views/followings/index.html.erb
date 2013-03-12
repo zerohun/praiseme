@@ -1,0 +1,17 @@
+<h1>Listing followings</h1>
+
+<h3>Following</h3>
+<ul>
+  <% current_user.followees.each do |followee| %>
+    <li><%= link_to followee.username, followee %></li>
+  <% end %>
+</ul>
+
+<h3>Following me</h3>
+  <% current_user.followers.each do |follower| %>
+    <li><%= link_to follower.username, follower %></li>
+  <% end %>
+</ul>
+
+
+<br />

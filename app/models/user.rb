@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   has_many :user_news_feeds
   has_many :news_feeds, :as => :notifiable,  :through => :user_news_feeds
 
+  has_many :followings, :foreign_key => :follower_id
+  has_many :followees, :through => :followings, :foreign_key => :followee_id
+
+  has_many :being_followed, :foreign_key => :followee_id, :class_name => "Following"
+  has_many :followers, :through => :being_followed, :foreign_key => :follower_id
+
   validates_presence_of :email
 
 

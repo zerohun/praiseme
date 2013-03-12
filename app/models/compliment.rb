@@ -4,6 +4,6 @@ class Compliment < ActiveRecord::Base
   belongs_to :stamp
 
   after_create do |compliment|
-    NewsFeed.create :notifiable => compliment, :action => NewsFeed[:create]
+    NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
   end
 end

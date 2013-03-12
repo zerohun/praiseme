@@ -3,7 +3,7 @@ require 'controller_test_helper'
 
 class StampsControllerTest < ActionController::TestCase
   setup do
-    @stamp = stamps(:one)
+    @stamp = stamps(:parogramming)
     sign_in users(:zerohun)
   end
 

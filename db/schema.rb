@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130309023106) do
+ActiveRecord::Schema.define(version: 20130312143823) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20130309023106) do
   end
 
   add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id"
+
+  create_table "followings", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["followee_id"], name: "index_followings_on_followee_id"
+  add_index "followings", ["follower_id"], name: "index_followings_on_follower_id"
 
   create_table "news_feeds", force: true do |t|
     t.integer  "notifiable_id"
