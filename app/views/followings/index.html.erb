@@ -3,13 +3,13 @@
 <h3>Following</h3>
 <ul>
   <% current_user.followees.each do |followee| %>
-    <li><%= link_to followee.username, followee %></li>
+    <li><%= link_to followee.username, user_profile_path(followee) %></li>
   <% end %>
 </ul>
 
 <h3>Following me</h3>
   <% current_user.followers.each do |follower| %>
-    <li><%= link_to follower.username, follower %></li>
+    <li><%= link_to follower.username, user_profile_path(follower) %></li>
   <% end %>
 </ul>
 

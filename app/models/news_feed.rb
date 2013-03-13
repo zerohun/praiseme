@@ -6,13 +6,12 @@ class NewsFeed < ActiveRecord::Base
     :destroy => 3
   }
 
-  after_create do |new_feed|
-    if new_feed.notifiable_type == "Compliment" && new_feed.action_type == :create
-      new_feed.followers.each do |follower|
-        follower.user_news_feeds.create :new_feed => new_feed
+  after_create do |news_feed|
+    if news_feed.notifiable_type == "Compliment" && news_feed.action_type == :create
+      news_feed.notifiable.sender.followers.each do |follower|
+        follower.user_news_feeds.create :news_feed => news_feed
       end
     end
-
   end
 
   def action_type

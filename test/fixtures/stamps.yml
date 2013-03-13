@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-parogramming:
+programming:
   id: 1
   title: "Amazing Programmer"
   description: "he has outstanding gift"

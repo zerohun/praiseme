@@ -18,7 +18,7 @@ class ComplimentsControllerTest < ActionController::TestCase
 
   test "should create compliment" do
     assert_difference('Compliment.count') do
-      post :create, compliment: { description: @compliment.description, receiver_id: @compliment.receiver_id, sender_id: @compliment.sender_id, stamp_id: @compliment.stamp_id }
+      post :create, compliment: { description: @compliment.description, receiver_id: users(:sheldon).id, sender_id: users(:penny).id, stamp_id: @compliment.stamp_id }
     end
 
     assert_redirected_to compliment_path(assigns(:compliment))
