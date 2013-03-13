@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :being_followed, :foreign_key => :followee_id, :class_name => "Following"
   has_many :followers, :through => :being_followed, :foreign_key => :follower_id
 
+  has_many :received_compliments, :foreign_key => :receiver_id, :class_name => "Compliment"
+  has_many :sent_compliments, :foreign_key => :sender_id, :class_name => "Compliment"
+
   validates_presence_of :email
 
 

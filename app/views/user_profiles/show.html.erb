@@ -1,3 +1,28 @@
-<h3><%= @user.username %></h3>
+<h2><%= @user.username %></h2>
 <%= @user.email  %> <br>
-user's informations
+
+
+<h3>stamps received</h3>
+
+<% @user.received_compliments.each do |compliment| %>
+  <%= link_to "#{compliment.stamp.title} by #{compliment.sender.username}", compliment %>
+<% end %>
+
+
+<h3>stamps sent</h3>
+
+<% @user.sent_compliments.each do |compliment| %>
+  <%= link_to "#{compliment.stamp.title} to #{compliment.receiver.username}", compliment %>
+<% end %>
+
+<h3>Following</h3>
+
+<% @user.followees.each do |followee| %>
+  <%= link_to followee.username, user_profile_path(followee) %>
+<% end %>
+
+<h3>Followed by</h3>
+
+<% @user.followers.each do |follower| %>
+  <%= link_to follower.username, user_profile_path(follower) %>
+<% end %>
