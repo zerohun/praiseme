@@ -1,0 +1,6 @@
+<h3>explore users</h3>
+<ul>
+  <% @users.all.each do |user| %>
+    <li><%= link_to user.username, user_profile_path(user) %></li>
+  <% end %>
+</ul>
