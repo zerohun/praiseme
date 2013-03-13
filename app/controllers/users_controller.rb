@@ -10,4 +10,11 @@ class UsersController < Devise::RegistrationsController
       SnsConnection.find(id).update_attribute :user_id, resource.id
     end
   end
+  def edit
+    super
+  end
+
+  def show
+    super
+  end
 end

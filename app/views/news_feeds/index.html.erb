@@ -1,25 +1,10 @@
 <h1>Listing news_feeds</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Notifiable</th>
-      <th>Notifiable type</th>
-      <th>Action</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @news_feeds.each do |news_feed| %>
-    <tr>
-      <td><%= news_feed %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul>
+  <% @news_feeds.each do |news_feed| %>
+    <li><%= link_to news_feed, news_feed.notifiable %></li>
+  <% end %>
+</ul>
 
 <br />
 

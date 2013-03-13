@@ -9,13 +9,13 @@ Praiseme::Application.routes.draw do
 
   resources :stamps
   
-  resources :users, :only => [:show, :edit, :update, :destroy]
 
   get "main/index"
+
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "users"}
   
   resources :main, :only => [:index]
-  root :to => "main#index"
+  root :to => "news_feeds#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

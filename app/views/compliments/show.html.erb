@@ -2,17 +2,18 @@
 
 <p>
   <strong>Sender:</strong>
-  <%= @compliment.sender_id %>
+  <%= @compliment.sender.username %>
 </p>
 
 <p>
   <strong>Receiver:</strong>
-  <%= @compliment.receiver_id %>
+  <%= @compliment.receiver.username %>
 </p>
 
 <p>
   <strong>Stamp:</strong>
-  <%= @compliment.stamp %>
+  <%= @compliment.stamp.title %>
+  <%= image_tag @compliment.stamp.image_file if @compliment.stamp.image_file.present? %>
 </p>
 
 <p>
