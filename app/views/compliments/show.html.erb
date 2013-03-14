@@ -2,18 +2,20 @@
 
 <p>
   <strong>Sender:</strong>
-  <%= @compliment.sender.username %>
+  <%= link_to @compliment.sender.username, user_profile_path(@compliment.sender) %>
 </p>
 
 <p>
   <strong>Receiver:</strong>
-  <%= @compliment.receiver.username %>
+  <%= link_to @compliment.receiver.username, user_profile_path(@compliment.receiver) %>
 </p>
 
 <p>
   <strong>Stamp:</strong>
-  <%= @compliment.stamp.title %>
-  <%= image_tag @compliment.stamp.image_file if @compliment.stamp.image_file.present? %>
+  <%= link_to @compliment.stamp do %>
+    <%= @compliment.stamp.title %>
+    <%= image_tag @compliment.stamp.image_file if @compliment.stamp.image_file.present? %>
+  <% end %>
 </p>
 
 <p>
