@@ -23,6 +23,15 @@
     <%= f.label :image_file %><br />
     <%= f.file_field :image_file %>
   </div>
+
+  <% if params[:compliment].present? %>
+    <h4>why he/she deserve this stamp?</h4>
+    <%= f.fields_for :compliments, f.object.compliments.new(params[:compliment].permit((:receiver_id))) do |compliment_form| %>
+      <%= compliment_form.hidden_field :receiver_id %>
+      <%= compliment_form.text_area :description %>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

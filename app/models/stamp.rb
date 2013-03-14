@@ -1,5 +1,8 @@
 class Stamp < ActiveRecord::Base
   validates_presence_of :title
-  mount_uploader :image_file, ImageFileUploader
 
+  has_many :compliments
+  accepts_nested_attributes_for :compliments
+
+  mount_uploader :image_file, ImageFileUploader
 end

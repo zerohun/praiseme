@@ -1,8 +1,10 @@
 require 'test_helper'
+require 'controller_test_helper'
 
 class ComplimentsControllerTest < ActionController::TestCase
   setup do
     @compliment = compliments(:one)
+    sign_in users(:zerohun)
   end
 
   test "should get index" do

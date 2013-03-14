@@ -26,8 +26,11 @@ class StampsController < ApplicationController
   # POST /stamps
   # POST /stamps.json
   def create
+    if params["stamp"]["compliments_attributes"].present? 
+      params["stamp"]["compliments_attributes"]["0"]["sender_id"] = current_user.id
+    end
+    
     @stamp = Stamp.new(stamp_params)
-
     respond_to do |format|
       if @stamp.save
         format.html { redirect_to @stamp, notice: 'Stamp was successfully created.' }
@@ -71,6 +74,6 @@ class StampsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stamp_params
-      params.require(:stamp).permit(:title, :description, :used_count, :is_blocked)
+      params.require(:stamp).permit(:title, :description, :used_count, :is_blocked, :compliments_attributes => [:receiver_id, :sender_id, :description])
     end
 end

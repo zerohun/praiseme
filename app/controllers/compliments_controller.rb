@@ -14,7 +14,8 @@ class ComplimentsController < ApplicationController
 
   # GET /compliments/new
   def new
-    @compliment = Compliment.new(compliment_params)
+    params.require(:compliment).permit!
+    @compliment = Compliment.new(params[:compliment])
   end
 
   # GET /compliments/1/edit
@@ -27,6 +28,7 @@ class ComplimentsController < ApplicationController
     @compliment = Compliment.new(compliment_params)
 
     respond_to do |format|
+      @compliment.sender = current_user
       if @compliment.save
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @compliment }
@@ -69,6 +71,6 @@ class ComplimentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compliment_params
-      params.require(:compliment).permit(:sender_id, :receiver_id, :stamp_id, :description)
+      params.require(:compliment).permit(:receiver_id, :stamp_id, :description)
     end
 end

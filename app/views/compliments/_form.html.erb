@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.object.sender.username %>
-    <%= f.hidden_field :sender_id %>
-  </div>
-  <div class="field">
     <%= f.object.receiver.username %>
     <%= f.hidden_field :receiver_id %>
   </div>
   <div class="field">
-    <%= f.object.stamp.title %>
-    <%= f.hidden_field :stamp_id %>    
+    <%= f.collection_select :stamp_id, Stamp.all, :id, :title %>
+    <%= link_to "I can't find stamp I want", new_stamp_path(:compliment => {:receiver_id => f.object.receiver_id}) %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
