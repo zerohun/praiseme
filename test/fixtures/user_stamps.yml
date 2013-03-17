@@ -1,13 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   stamp_id: 1
   user_id: 1
-  score: 1
+  exp: 1
   level: 1
 
 two:
+  id: 2
   stamp_id: 2
-  user_id: 2
-  score: 1
+  user_id: 1
+  exp: 1
+  level: 1
+
+three:
+  id: 3
+  stamp_id: 1
+  user_id: 5
+  exp: 1
   level: 1

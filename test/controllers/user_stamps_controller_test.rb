@@ -12,13 +12,13 @@ class UserStampsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new, user_stamp: { level: @user_stamp.level, score: @user_stamp.score, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
+    get :new, user_stamp: { level: @user_stamp.level, exp: @user_stamp.exp, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
     assert_response :success
   end
 
   test "should create user_stamp" do
     assert_difference('UserStamp.count') do
-      post :create, user_stamp: { level: @user_stamp.level, score: @user_stamp.score, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
+      post :create, user_stamp: { level: @user_stamp.level, exp: @user_stamp.exp, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
     end
 
     assert_redirected_to user_stamp_path(assigns(:user_stamp))
@@ -35,7 +35,7 @@ class UserStampsControllerTest < ActionController::TestCase
   end
 
   test "should update user_stamp" do
-    patch :update, id: @user_stamp, user_stamp: { level: @user_stamp.level, score: @user_stamp.score, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
+    patch :update, id: @user_stamp, user_stamp: { level: @user_stamp.level, exp: @user_stamp.exp, stamp_id: @user_stamp.stamp_id, user_id: @user_stamp.user_id }
     assert_redirected_to user_stamp_path(assigns(:user_stamp))
   end
 

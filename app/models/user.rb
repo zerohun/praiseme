@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :received_compliments, :foreign_key => :receiver_id, :class_name => "Compliment"
   has_many :sent_compliments, :foreign_key => :sender_id, :class_name => "Compliment"
 
+  has_many :user_stamps
+
   validates_presence_of :email
 
 

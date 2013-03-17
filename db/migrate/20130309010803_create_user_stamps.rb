@@ -3,8 +3,8 @@ class CreateUserStamps < ActiveRecord::Migration
     create_table :user_stamps do |t|
       t.references :stamp, index: true
       t.references :user, index: true
-      t.integer :score
-      t.integer :level
+      t.integer :exp, :default => 0
+      t.integer :level, :default => 1
 
       t.timestamps
     end

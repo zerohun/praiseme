@@ -3,7 +3,8 @@ class CreateUserNewsFeeds < ActiveRecord::Migration
     create_table :user_news_feeds do |t|
       t.references :user, index: true
       t.references :news_feed, index: true
-      t.boolean :is_read
+      t.boolean :is_read, :default => false
+      t.boolean :score_taken, :default => false
 
       t.timestamps
     end

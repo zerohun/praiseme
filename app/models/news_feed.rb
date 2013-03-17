@@ -3,15 +3,19 @@ class NewsFeed < ActiveRecord::Base
   ACTION_TYPE = {
     :create => 1,
     :update => 2,
-    :destroy => 3
+    :destroy => 3,
+    :level_up => 4
   }
 
   after_create do |news_feed|
-    if news_feed.notifiable_type == "Compliment" && news_feed.action_type == :create
-      news_feed.notifiable.sender.followers.each do |follower|
-        follower.user_news_feeds.create :news_feed => news_feed
-      end
-    end
+
+    #if news_feed.notifiable_type == "UserStamp" && news_feed.action_type == :level_up
+      #user_stamp = news_feed.notifiable
+      #compliment_user_ids = user_stamp.user.received_compliments.map {|compliment| compliment.sender_id}
+      #user_stamp.user.followers.where("users.id not in (?)", compliment_user_ids).each do |follower|
+        #follower.user_news_feeds.create :new_feed => news_feed
+      #end
+    #end
   end
 
   def action_type
@@ -25,6 +29,12 @@ class NewsFeed < ActiveRecord::Base
 
     if self.notifiable_type == "User" && self.action_type == :create
       return "#{self.notifiable.username} has joined"
+    end
+  end
+
+  def notify_to_followers_of(user)
+    user.followers.each do |follower|
+      follower.user_news_feeds.create :news_feed => news_feed
     end
   end
 end

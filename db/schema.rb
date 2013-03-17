@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20130312143823) do
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
     t.integer  "action"
+    t.integer  "score",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,7 +66,8 @@ ActiveRecord::Schema.define(version: 20130312143823) do
   create_table "user_news_feeds", force: true do |t|
     t.integer  "user_id"
     t.integer  "news_feed_id"
-    t.boolean  "is_read"
+    t.boolean  "is_read",      default: false
+    t.boolean  "score_taken",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,8 +78,8 @@ ActiveRecord::Schema.define(version: 20130312143823) do
   create_table "user_stamps", force: true do |t|
     t.integer  "stamp_id"
     t.integer  "user_id"
-    t.integer  "score"
-    t.integer  "level"
+    t.integer  "exp",        default: 0
+    t.integer  "level",      default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

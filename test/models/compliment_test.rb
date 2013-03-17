@@ -9,7 +9,7 @@ class ComplimentTest < ActiveSupport::TestCase
    end
 
    test "should create with news feed" do
-     assert_difference "NewsFeed.count" do
+     assert_difference "NewsFeed.count", 2 do
        compliment = Compliment.new :sender_id => users(:penny).id, :receiver_id => users(:sheldon).id, :stamp_id => stamps(:programming).id
        compliment.save
      end

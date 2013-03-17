@@ -23,3 +23,8 @@ penny:
   id: 4
   email: penny@bigbang.com
   username: penny
+
+jacob:
+  id: 5
+  email: jacob@goodoc.co.kr
+  username: jacob
