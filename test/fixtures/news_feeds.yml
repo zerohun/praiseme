@@ -11,3 +11,11 @@ two:
   notifiable_id: 1
   notifiable_type: Compliment
   action: 2
+
+three:
+  id: 3
+  notifiable_id: 1
+  notifiable_type: UserStamp
+  action: 4
+  score: 20
+  

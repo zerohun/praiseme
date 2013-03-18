@@ -5,9 +5,18 @@ one:
   user_id: 1
   news_feed_id: 1
   is_read: false
+  score_taken: false
 
 two:
   id: 2
   user_id: 2
   news_feed_id: 1
   is_read: false
+  score_taken: false
+
+three:
+  id: 3
+  user_id: 1
+  news_feed_id: 3
+  is_read: false
+  score_taken: false
