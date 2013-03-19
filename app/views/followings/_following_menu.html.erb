@@ -1,0 +1,11 @@
+<% if current_user != user %>
+  <%= link_to "Compliment", new_compliment_path(:compliment => {:receiver_id => user.id}) %>
+<% end %>
+<% if current_user.followees.where(:id => user.id).present? %>
+  Following
+<% elsif current_user != @user %>
+  <%= form_for Following.new(:followee_id => user.id), :method => :post, :remote => true do |f| %>
+    <%= f.hidden_field :followee_id %>
+    <%= f.submit "Follow" %>
+  <% end %>
+<% end %>
