@@ -10,6 +10,8 @@ gem 'pry'
 gem 'carrierwave'
 gem "kaminari"
 gem "hirb"
+gem 'bootstrap-sass', '~> 2.3.1.0'
+gem 'font-awesome-sass-rails'
 
 # test
 #
