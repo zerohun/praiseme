@@ -1,4 +1,5 @@
 class UsersController < Devise::RegistrationsController
+  layout false
   def new
     super
     resource.sns_connected = false if session[:sns_connection_id].present?

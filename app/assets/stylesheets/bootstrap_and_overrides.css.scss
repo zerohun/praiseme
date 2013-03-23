@@ -2,21 +2,37 @@
 $iconSpritePath: image-path('glyphicons-halflings.png');
 $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 
-$navbarBackground: #555;
-$navbarBackgroundHighlight: #888;
-$navbarText: #eee;
-$navbarLinkColor: #eee;
+$navbarBackground: #fafafa;
+$navbarBackgroundHighlight: #efefef;
+$navbarText: #fff;
+$navbarLinkColor: #888;
 
 @import "bootstrap";
 
-body { padding-top: 60px; }
+
 
 @import "bootstrap-responsive";
 
 .navbar .brand {
-  color: #FAFFB8;
+  color: #55F;
+  margin: 0 0 0 20px;
+  font-weight: 800;
+  font-size: 30px;
+}
+.navbar{
+  margin-right: 5px;
 }
 @import 'font-awesome';
+
+body { 
+  padding-top: 60px;
+  .navbar{
+    .container:after{
+      clear:none;
+    }
+  }
+      
+}
 
 // Glyphicons
 //@import "twitter/bootstrap/sprites.less";

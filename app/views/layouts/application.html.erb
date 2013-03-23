@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Praiseme</title>
+  <title>BravoWho</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
+  <div id="bottom-bar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "BravoWho", root_path, :class => "brand pull-left" %>
+        <ul class="nav pull-right">
+          <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
+            <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
+              <i class=icon-envelope></i>
+            <% end %>
+          </li>
+          <li class=<%= "active" if params[:controller] == 'followings' %>>
+            <%= link_to followings_path, :class => "btn btn-navbar" do %>
+              <i class=icon-user></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
+              <span class="icon-list"></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-collapse collapse">
+
+        <ul class="nav">
+          <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
+            <%= link_to news_feeds_path do %>
+              <i class=icon-envelope></i>
+              News Feed
+            <% end %>
+          </li>
+          <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'followings' %>">
+            <%= link_to followings_path do %>
+              <i class=icon-user></i>
+              People
+            <% end %>
+          </li>
+          <li class=<%= "active" if params[:controller] == 'stamps' %>>
+            <%= link_to stamps_path do %>
+              <i class="icon-certificate"></i>
+              Stamps
+            <% end %>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+
+  </div>
 <div id="user_nav">
-  <h1>Praiseme</h1>
+
   <% if user_signed_in? %>
     Logged in as <strong><%= current_user.username %></strong>.
     <%= link_to 'Edit profile', edit_user_registration_path %> |
@@ -21,6 +74,5 @@
 </div>
 
 <%= yield %>
-
 </body>
 </html>
