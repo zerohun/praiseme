@@ -16,3 +16,22 @@
 #= require turbolinks
 #= require_tree .
 
+adjustDeviceSize = ->
+  if $(window).width() < 767
+    $("#title-menu-bar").removeClass("navbar-fixed-top").addClass("navbar-fixed-bottom")
+    $("body").css("padding-top", "10px")
+  else
+    $("#title-menu-bar").removeClass("navbar-fixed-bottom").addClass("navbar-fixed-top")
+    $("body").css("padding-top", "60px")
+
+
+$(window).resize ->
+  adjustDeviceSize()
+
+ready = ->
+  adjustDeviceSize()
+
+
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

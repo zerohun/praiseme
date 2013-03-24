@@ -8,9 +8,6 @@ $navbarText: #fff;
 $navbarLinkColor: #888;
 
 @import "bootstrap";
-
-
-
 @import "bootstrap-responsive";
 
 .navbar .brand {
@@ -25,7 +22,7 @@ $navbarLinkColor: #888;
 @import 'font-awesome';
 
 body { 
-  padding-top: 60px;
+  padding-top: 10px;
   .navbar{
     .container:after{
       clear:none;

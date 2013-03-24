@@ -1,5 +1,7 @@
 class ComplimentsController < ApplicationController
   before_action :set_compliment, only: [:show, :edit, :update, :destroy]
+  skip_filter :authenticate_user!, only: [:show]
+  before_filter :bofre_login_renderable, :only => [:show]
 
   # GET /compliments
   # GET /compliments.json

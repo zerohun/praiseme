@@ -14,7 +14,7 @@ Praiseme::Application.routes.draw do
 
   get "main/index"
 
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "users"}
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks", registrations: "users", sessions: "sessions"}
   
   resources :main, :only => [:index]
   root :to => "news_feeds#index"

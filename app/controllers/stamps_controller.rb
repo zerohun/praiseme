@@ -1,6 +1,5 @@
 class StampsController < ApplicationController
   before_action :set_stamp, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, except: [:index, :show]
 
 
   # GET /stamps

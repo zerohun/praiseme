@@ -1,4 +1,7 @@
 class Compliment < ActiveRecord::Base
+
+  default_scope {includes(:sender, :receiver, :stamp)}
+
   belongs_to :sender , :foreign_key => :sender_id, :class_name => "User"
   belongs_to :receiver, :foreign_key => :receiver_id, :class_name => "User"
   belongs_to :stamp

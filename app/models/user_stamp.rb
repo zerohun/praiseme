@@ -1,11 +1,14 @@
 class UserStamp < ActiveRecord::Base
 
+  default_scope {includes(:user, :stamp)}
+
   belongs_to :stamp
   belongs_to :user
 
   GROWTH_RATE = 1.2
   EXP_MULTIPLE_NUMBER = 100
   IMPACT_MULTIPLE_NUMBER = 10
+
 
   before_save do |user_stamp|
     if self.exp >= self.exp_to_level_up

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BravoWho</title>
+  <title>BravoYou</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -10,11 +10,18 @@
 </head>
 <body>
 
-  <div id="bottom-bar" class="navbar navbar-fixed-top">
+  <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
     <div class="navbar-inner">
       <div class="container">
-        <%= link_to "BravoWho", root_path, :class => "brand pull-left" %>
+        <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
         <ul class="nav pull-right">
+
+          <li class="dropdown">
+            <%= link_to "#", :class => "btn btn-navbar", :data => {:toggle => "dropdown"} do %>
+              <%= image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/369636_1027557496_269698703_q.jpg", :style => "width:25px" %>
+            <% end %>
+          </li>
+
           <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
             <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
               <i class=icon-envelope></i>
@@ -60,7 +67,7 @@
 
 
   </div>
-<div id="user_nav">
+<div id="user_nav", class="hidden-phone">
 
   <% if user_signed_in? %>
     Logged in as <strong><%= current_user.username %></strong>.

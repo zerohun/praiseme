@@ -1,4 +1,7 @@
 class NewsFeed < ActiveRecord::Base
+  
+  default_scope {includes(:notifiable)}
+
   belongs_to :notifiable, :polymorphic => true
   ACTION_TYPE = {
     :create => 1,

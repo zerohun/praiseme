@@ -1,16 +1,18 @@
 <h2><%= @user.username %></h2>
-<%= @user.email  %> <br>
+<%= @user.email %> <br>
 
-<div id=following_menu>
-  <%= render :partial => '/followings/following_menu', :locals => {:user => @user} %>
-</div>
+<% if current_user.present? %>
+  <div id=following_menu>
+    <%= render :partial => '/followings/following_menu', :locals => {:user => @user} %>
+  </div>
+<% end %>
 
 
 <h3>stamps received</h3>
 
 <% @user.received_compliments.each do |compliment| %>
   <%= link_to "#{compliment.stamp.title} by #{compliment.sender.username}", compliment %> 
-  <% if compliment.sender != current_user %>
+  <% if current_user.present? && compliment.sender != current_user %>
     | <%= link_to "I agree", new_compliment_path(:compliment => {:receiver_id => @user.id, :stamp_id => compliment.stamp_id}) %>
   <% end %>
 <% end %>
