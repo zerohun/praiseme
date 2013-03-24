@@ -16,8 +16,8 @@
         <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
         <ul class="nav pull-right">
 
-          <li class="dropdown">
-            <%= link_to "#", :class => "btn btn-navbar", :data => {:toggle => "dropdown"} do %>
+          <li class="<%= "active" if params[:controller] == "mypage" %>">
+            <%= link_to mypage_index_path, :class => "btn btn-navbar" do %>
               <%= image_tag current_user.image_url, :style => "width:25px" %>
             <% end %>
           </li>

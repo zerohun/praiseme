@@ -1,5 +1,8 @@
 Praiseme::Application.routes.draw do
-  resources :user_profiles, :only => [:index, :show]
+  
+  resources :mypage, :only => :index
+
+  resources :user_profiles, :only => [:index, :edit, :update, :show]
 
   resources :followings, :only => [:index, :create, :destroy]
 

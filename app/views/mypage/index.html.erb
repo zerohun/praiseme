@@ -1,0 +1,12 @@
+<div class="text-center">
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-large" %>
+  <br>
+  <br>
+  <%= link_to "Edit User Profile", edit_user_profile_path(current_user), :class => "btn btn-large" %>
+  <br>
+  <br>
+  <%= link_to "My profile page", user_profile_path(current_user), :class => "btn btn-large" %>
+  <br>
+  <br>
+  <%= link_to "Invite Friends", "", :class => "btn btn-large" %>
+</div>
