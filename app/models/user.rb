@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   attr_accessor :sns_connected
 
   after_create do |user|
-    NewsFeed.create :notifiable => user, :action => NewsFeed[:create]
+    NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
   end
 
   def password_required?
@@ -47,4 +47,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def facebook
+    sns_connections.where(:provider => "facebook")
+    if self.sns_connections.present?
+      @facebook ||= Koala::Facebook::API.new(sns_connections.first.oauth_token)
+    end
+  end
+
+  def from_omniauth(auth)
+    self.email = auth.info.email
+    self.first_name = auth.info.first_name
+    self.last_name = auth.info.last_name
+
+    require 'open-uri'
+
+    res = open(auth.info.image)
+    file_extension = res.content_type.split('/').last
+    file_name = "profile_picture_#{self.id}.#{file_extension}"
+    file = File.new("#{Rails.root}/public/upload/#{file_name}", "wb")
+    file.write res.read
+
+    profile_image_file = ActionDispatch::Http::UploadedFile.new :filename => file_name,
+                                           :type => res.content_type,
+                                           :tempfile => file
+
+    self.profile_image = profile_image_file
+  end
 end

@@ -12,11 +12,11 @@ gem "kaminari"
 gem "hirb"
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'font-awesome-sass-rails'
+gem 'koala'
 
 # test
 #
 gem 'mocha', :git => "git@github.com:freerange/mocha.git", :require => false
-
 
 # Gems used only for assets and not required
 # in production environments by default.

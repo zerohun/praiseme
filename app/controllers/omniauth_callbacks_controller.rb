@@ -9,9 +9,18 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       sign_in_and_redirect user, notice: "Signed in!"
     else
-      session["devise.user_attributes"] = sns_connection.attributes
-      session["sns_connection_id"] = sns_connection.id
-      redirect_to new_user_registration_url
+      if sns_connection.provider == "facebook"
+        user = User.new
+        user.from_omniauth(auth)
+        user.save
+        sns_connection.update_attribute :user_id, user.id
+        sign_in user
+        redirect_to root_url
+      else
+        session["devise.user_attributes"] = sns_connection.attributes
+        session["sns_connection_id"] = sns_connection.id
+        redirect_to new_user_registration_url
+      end
     end
   end
   alias_method :facebook, :all

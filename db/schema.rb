@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130312143823) do
+ActiveRecord::Schema.define(version: 20130324045059) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(version: 20130312143823) do
   create_table "sns_connections", force: true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "url"
+    t.string   "first_name"
+    t.string   "last_name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,9 +103,12 @@ ActiveRecord::Schema.define(version: 20130312143823) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "profile_image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
