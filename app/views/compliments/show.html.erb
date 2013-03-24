@@ -14,7 +14,7 @@
   <strong>Stamp:</strong>
   <%= link_to @compliment.stamp do %>
     <%= @compliment.stamp.title %>
-    <%= image_tag @compliment.stamp.image_file if @compliment.stamp.image_file.present? %>
+    <%= image_tag @compliment.stamp.image_file if @compliment.stamp.image.present? %>
   <% end %>
 </p>
 

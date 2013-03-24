@@ -6,7 +6,7 @@ class CreateStamps < ActiveRecord::Migration
       t.integer :used_count
       t.boolean :is_blocked
 
-      t.string :image_file
+      t.string :image
 
       t.timestamps
     end

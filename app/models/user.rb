@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
 
-  mount_uploader :profile_image, ImageFileUploader
+  mount_uploader :image, ImageFileUploader
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -71,6 +71,6 @@ class User < ActiveRecord::Base
                                            :type => res.content_type,
                                            :tempfile => file
 
-    self.profile_image = profile_image_file
+    self.image = profile_image_file
   end
 end

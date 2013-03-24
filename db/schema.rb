@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.text     "description"
     t.integer  "used_count"
     t.boolean  "is_blocked"
-    t.string   "image_file"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
-    t.string   "profile_image"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

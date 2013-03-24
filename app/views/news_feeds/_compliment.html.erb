@@ -1,8 +1,8 @@
 <% compliment = news_feed.notifiable %>
-<%= image_tag compliment.sender.profile_image_url :class => "img-circle" %>
+<%= image_tag compliment.sender.image_url, :class => "img-circle" %>
 <i class="icon-arrow-right"></i>
-<%= image_tag compliment.stamp.image_file_url, :class => "img-polaroid" %>
+<%= image_tag compliment.stamp.image_url, :class => "img-polaroid" %>
 <i class="icon-arrow-right"></i>
-<%= image_tag compliment.receiver.profile_image_url :class => "img-circle" %>
+<%= image_tag compliment.receiver.image_url, :class => "img-circle" %>
 <br>
 <%= news_feed.to_s %>

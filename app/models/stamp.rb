@@ -4,5 +4,5 @@ class Stamp < ActiveRecord::Base
   has_many :compliments
   accepts_nested_attributes_for :compliments
 
-  mount_uploader :image_file, ImageFileUploader
+  mount_uploader :image, ImageFileUploader
 end

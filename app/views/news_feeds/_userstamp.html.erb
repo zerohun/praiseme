@@ -1,6 +1,7 @@
 <% user_stamp = news_feed.notifiable %>
-<%= image_tag user_stamp.user.profile_image_url, :class => "img-circle" %>
-<%= image_tag user_stamp.stamp.image_file_url, :class => "img-polaroid" %>
+<%= image_tag user_stamp.user.image_url, :class => "img-circle" %>
+<%= image_tag user_stamp.stamp.image_url, :class => "img-polaroid" %>
 Level UP <i class="icon-arrow-up"></i> 
+(Level : <%= user_stamp.level %>)
 <br>
 <%= news_feed.to_s %>
