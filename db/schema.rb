@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
+    t.string   "introduce"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"

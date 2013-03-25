@@ -2,7 +2,10 @@ Praiseme::Application.routes.draw do
   
   resources :mypage, :only => :index
 
-  resources :user_profiles, :only => [:index, :edit, :update, :show]
+  resources :user_profiles, :only => [:index, :show] do
+    get :edit, :on => :collection
+    get :update, :on => :collection
+  end
 
   resources :followings, :only => [:index, :create, :destroy]
 
