@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+
+  <h3>To</h3>
+  <%= image_tag f.object.receiver.image_url, :class => "img-small" %>
+
   <div class="field">
     <%= f.object.receiver.username %>
     <%= f.hidden_field :receiver_id %>

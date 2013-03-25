@@ -1,44 +1,112 @@
-<h2><%= @user.username %></h2>
-<%= @user.email %> <br>
+<div class="text-center">
+  <%= image_tag @user.image_url, :class => "img-normal" %>
+  <h3><%= @user.username %></h3>
 
-<% if current_user.present? %>
-  <div id=following_menu>
-    <%= render :partial => '/followings/following_menu', :locals => {:user => @user} %>
-  </div>
-<% end %>
-
-
-<h3>stamps received</h3>
-
-<% @user.received_compliments.each do |compliment| %>
-  <%= link_to "#{compliment.stamp.title} by #{compliment.sender.username}", compliment %> 
-  <% if current_user.present? && compliment.sender != current_user %>
-    | <%= link_to "I agree", new_compliment_path(:compliment => {:receiver_id => @user.id, :stamp_id => compliment.stamp_id}) %>
+  <% if current_user.present? %>
+    <div id=following_menu>
+      <%= render :partial => '/followings/following_menu', :locals => {:user => @user} %>
+    </div>
   <% end %>
-<% end %>
+
+  <h4>stamps</h4>
+  <ul>
+    <% @user.user_stamps.each do |user_stamp| %>
+      <li>
+        <%= link_to render(user_stamp.stamp), user_stamp.stamp %>
+        Level: <%= user_stamp.level %>
+      </li>
+    
+      </tr>
+    <% end %>
+  </ul>
 
 
-<h3>stamps sent</h3>
+  <h4>compliments received</h4>
 
-<% @user.sent_compliments.each do |compliment| %>
-  <%= link_to "#{compliment.stamp.title} to #{compliment.receiver.username}", compliment %>
-<% end %>
+  <table class="table">
+    <% @user.received_compliments.each do |compliment| %>
+      <tr>
+        <td>
+          <%= link_to compliment.stamp do %>
+            <%= render compliment.stamp %>
+          <% end %>
+        </td>
+        <td>
+          From
+        </td>
+        <td>
+          <%= link_to user_profile_path(compliment.sender) do %>
+            <%= image_tag compliment.sender.image_url, :class => "img-small" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          <%= compliment.description %>
+        </td>
+        <% if current_user.present? && compliment.sender != current_user %>
+          <td>
+            <%= link_to "I agree", new_compliment_path(:compliment => {:receiver_id => @user.id, :stamp_id => compliment.stamp_id}), :class => "btn btn-success" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 
-<h3>Following</h3>
+  <h3>compliments sent</h3>
 
-<% @user.followees.each do |followee| %>
-  <%= link_to followee.username, user_profile_path(followee) %>
-<% end %>
+  <table class="table">
+    <% @user.sent_compliments.each do |compliment| %>
+      <tr>
+        <td>
+          <%= link_to compliment.stamp do %>
+            <%= render compliment.stamp %>
+          <% end %>
+        </td>
+        <td>
+          To
+        </td>
+        <td>
+          <%= link_to user_profile_path(compliment.receiver) do %>
+            <%= image_tag compliment.receiver.image_url, :class => "img-small" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          <%= compliment.description %>
+        </td>
+        <% if current_user.present? && compliment.receiver != current_user %>
+          <td>
+            <%= link_to "I agree", new_compliment_path(:compliment => {:receiver_id => compliment.receiver.id, :stamp_id => compliment.stamp_id}), :class => "btn btn-success" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td colspan=3><%= "#{compliment.stamp.title} to #{compliment.receiver.username}" %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<h3>Followed by</h3>
 
-<% @user.followers.each do |follower| %>
-  <%= link_to follower.username, user_profile_path(follower) %>
-<% end %>
 
-<% if current_user.present? && @user != current_user %>
-  <h3>Stamps I gave <%= @user.username %></h3>
-  <% @user.received_compliments.where(:sender_id => current_user.id).each do |compliment| %>
-    <%= link_to compliment.stamp.title, compliment %>
+
+  <h3>Following</h3>
+
+  <% @user.followees.each do |followee| %>
+    <%= link_to followee.username, user_profile_path(followee) %>
   <% end %>
-<% end %>
+
+  <h3>Followed by</h3>
+
+  <% @user.followers.each do |follower| %>
+    <%= link_to follower.username, user_profile_path(follower) %>
+  <% end %>
+
+  <% if current_user.present? && @user != current_user %>
+    <h3>Stamps I gave <%= @user.username %></h3>
+    <% @user.received_compliments.where(:sender_id => current_user.id).each do |compliment| %>
+      <%= link_to compliment.stamp.title, compliment %>
+    <% end %>
+  <% end %>
+</div>

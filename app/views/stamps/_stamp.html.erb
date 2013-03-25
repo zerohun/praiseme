@@ -1,0 +1,10 @@
+<% if stamp.image_url.present? %>
+  <div>
+    <%= image_tag stamp.image_url, :class => "img-small" %>
+  </div>
+<% else %>
+  <div>
+    <%= image_tag "default_stamp.gif", :class => "img-small" %><br>
+    <%= stamp.title %>
+  </div>
+<% end %>

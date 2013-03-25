@@ -1,33 +1,16 @@
-<h1>Listing stamps</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Used count</th>
-      <th>Is blocked</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<table class="table">
   <tbody>
     <% @stamps.each do |stamp| %>
     <tr>
-      <td><%= stamp.title %></td>
-      <td><%= stamp.description %></td>
-      <td><%= stamp.used_count %></td>
-      <td><%= stamp.is_blocked %></td>
-      <td><%= link_to 'Show', stamp %></td>
-      <td><%= link_to 'Edit', edit_stamp_path(stamp) %></td>
-      <td><%= link_to 'Destroy', stamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <%= link_to stamp do %>
+          <%= render stamp %>
+        <% end %>
+    </td>
+      <td><%= stamp.used_count %>times used</td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 <br />
-
-<%= link_to 'New Stamp', new_stamp_path %>
