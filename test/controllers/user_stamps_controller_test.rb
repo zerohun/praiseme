@@ -3,6 +3,7 @@ require 'test_helper'
 class UserStampsControllerTest < ActionController::TestCase
   setup do
     @user_stamp = user_stamps(:one)
+    sign_in users(:zerohun)
   end
 
   test "should get index" do
