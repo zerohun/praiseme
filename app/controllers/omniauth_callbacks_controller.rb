@@ -4,9 +4,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     sns_connection = SnsConnection.from_omniauth(auth)
     user = sns_connection.user
     if sns_connection.persisted? && user.present?
-      if user.username != auth.info.nickname
-        user.update_attribute :username, auth.info.nickname 
-      end
+      user.from_omniauth(auth)
+      user.save if user.chagned?
       sign_in_and_redirect user, notice: "Signed in!"
     else
       if sns_connection.provider == "facebook"
