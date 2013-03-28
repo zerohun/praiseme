@@ -1,2 +1,13 @@
-<h1>SnsConnections#find_friends</h1>
-<p>Find me in app/views/sns_connections/find_friends.html.erb</p>
+<table class="table">
+  <% current_user.facebook.get_connection("me","friends").each do |friend| %>
+    <tr>
+      <td>
+        <%= link_to "" do %>
+        <%= image_tag "https://graph.facebook.com/#{friend["id"]}/picture?type=small" %>
+        <% end %>
+      </td>
+      <td><%= friend["name"] %></td>
+      <td><%= link_to 'invite', "", :class => "btn" %></td>
+    </tr>
+  <% end %>
+</table>
