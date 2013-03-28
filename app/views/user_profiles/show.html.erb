@@ -13,7 +13,12 @@
     <% @user.user_stamps.each do |user_stamp| %>
       <li>
         <%= link_to render(user_stamp.stamp), user_stamp.stamp %>
-        Level: <%= user_stamp.level %>
+        Level: <%= user_stamp.level %><br>
+        <div class="progress">
+          <div class="bar" style="width: <%= (user_stamp.exp.to_f / user_stamp.exp_to_level_up.to_f * 100.0).round(0) %>%">
+          </div>
+        </div>
+
       </li>
     
       </tr>
