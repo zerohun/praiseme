@@ -7,8 +7,7 @@ class NewsFeed < ActiveRecord::Base
   ACTION_TYPE = {
     :create => 1,
     :update => 2,
-    :destroy => 3,
-    :level_up => 4
+    :destroy => 3
   }
 
   def action_type

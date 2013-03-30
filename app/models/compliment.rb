@@ -11,19 +11,12 @@ class Compliment < ActiveRecord::Base
 
   after_create do |compliment|
     news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
-    news_feed.notifiable.sender.followers.where("users.id != ?", news_feed.notifiable.receiver.id).each do |follower|
+    news_feed.notifiable.sender.followers.find_each do |follower|
       follower.user_news_feeds.create :news_feed => news_feed
     end
-    user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => compliment.stamp.id)
-    stamp_id = user_stamp.stamp_id
-    user_stamp = compliment.sender.user_stamps.find_by(:stamp_id => stamp_id)
-    if user_stamp.present?
-      getting_score = user_stamp.impact
-    else
-      getting_score = 10
-    end
-    news_feed_for_receiver = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create], :score => getting_score
-    compliment.receiver.user_news_feeds.create :news_feed => news_feed_for_receiver
+    receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => compliment.stamp.id)
+    sender_user_stamp = compliment.sender.user_stamps.find_by(:stamp_id => stamp_id)
+    receiver_user_stamp.get_score_from sender_user_stamp
   end
   def shoundnt_compliment_himself
     if self.sender_id == self.receiver_id

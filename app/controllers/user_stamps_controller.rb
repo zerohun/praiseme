@@ -69,6 +69,6 @@ class UserStampsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_stamp_params
-      params.require(:user_stamp).permit(:stamp_id, :user_id, :score, :level)
+      params.require(:user_stamp).permit(:stamp_id, :user_id, :score)
     end
 end

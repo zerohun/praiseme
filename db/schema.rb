@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
     t.integer  "action"
-    t.integer  "score",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,7 +71,6 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.integer  "user_id"
     t.integer  "news_feed_id"
     t.boolean  "is_read",      default: false
-    t.boolean  "score_taken",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,8 +81,7 @@ ActiveRecord::Schema.define(version: 20130324045059) do
   create_table "user_stamps", force: true do |t|
     t.integer  "stamp_id"
     t.integer  "user_id"
-    t.integer  "exp",        default: 0
-    t.integer  "level",      default: 1
+    t.integer  "score",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -111,6 +108,7 @@ ActiveRecord::Schema.define(version: 20130324045059) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "image"
+    t.string   "facebook_image_url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

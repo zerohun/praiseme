@@ -4,7 +4,6 @@ class CreateUserNewsFeeds < ActiveRecord::Migration
       t.references :user, index: true
       t.references :news_feed, index: true
       t.boolean :is_read, :default => false
-      t.boolean :score_taken, :default => false
 
       t.timestamps
     end
