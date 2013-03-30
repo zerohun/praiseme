@@ -10,13 +10,8 @@ class Compliment < ActiveRecord::Base
   validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
 
   after_create do |compliment|
-    news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
-    news_feed.notifiable.sender.followers.find_each do |follower|
-      follower.user_news_feeds.create :news_feed => news_feed
-    end
-    receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => compliment.stamp.id)
-    sender_user_stamp = compliment.sender.user_stamps.find_by(:stamp_id => stamp_id)
-    receiver_user_stamp.get_score_from sender_user_stamp
+    NewsFeed.create_for_compliment compliment
+    UserStamp.add_up_score_from_compliment compliment
   end
   def shoundnt_compliment_himself
     if self.sender_id == self.receiver_id

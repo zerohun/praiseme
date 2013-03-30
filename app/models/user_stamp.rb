@@ -12,6 +12,13 @@ class UserStamp < ActiveRecord::Base
     end
   end
 
+  def self.add_up_score_from_compliment(compliment)
+    stamp_id = compliment.stamp_id
+    receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => stamp_id)
+    sender_user_stamp = compliment.sender.user_stamps.find_by(:stamp_id => stamp_id)
+    receiver_user_stamp.get_score_from sender_user_stamp
+  end
+
   def complimeted_stamps
     compliments = Compliment.where :sender_id => self.user_id, :stamp_id => self.stamp_id
     receiver_ids = compliments.map {|compliment|

@@ -10,6 +10,17 @@ class NewsFeed < ActiveRecord::Base
     :destroy => 3
   }
 
+  def self.create_for_compliment(compliment)
+    news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
+    sender = news_feed.notifiable.sender
+    receiver = news_feed.notifiable.receiver
+    news_feed.notify_to sender
+    news_feed.notify_to receiver
+    news_feed.notify_to sender.followers.where.not(:id => receiver.id)
+    news_feed.notify_to receiver.followers.where.not(:id => sender.id)
+    news_feed
+  end
+
   def action_type
     ACTION_TYPE.key(self.action)
   end
@@ -30,9 +41,14 @@ class NewsFeed < ActiveRecord::Base
     end
   end
 
-  def notify_to_followers_of(user)
-    user.followers.each do |follower|
-      follower.user_news_feeds.create :news_feed => news_feed
+  def notify_to(users)
+    if users.class == User
+      one_user = users
+      one_user.user_news_feeds.create :news_feed => self
+    elsif users == ActiveRecord::Relation::ActiveRecord_Relation_User
+      users.each do |user|
+        user.ser_news_feeds.create :news_feed => self
+      end
     end
   end
 end
