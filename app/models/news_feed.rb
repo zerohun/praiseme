@@ -7,7 +7,8 @@ class NewsFeed < ActiveRecord::Base
   ACTION_TYPE = {
     :create => 1,
     :update => 2,
-    :destroy => 3
+    :destroy => 3,
+    :score_up => 4
   }
 
   def self.create_for_compliment(compliment)
@@ -19,6 +20,16 @@ class NewsFeed < ActiveRecord::Base
     news_feed.notify_to sender.followers.where.not(:id => receiver.id)
     news_feed.notify_to receiver.followers.where.not(:id => sender.id)
     news_feed
+  end
+
+  def self.create_for_jumping_score(user_stamp)
+    news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:score_up]
+    user_ids = user_stamp.complimented_stamps.map {|us| us.user_id }.uniq
+    user_ids.each do |user_id|
+      UserNewsFeed.create :user_id => user_id, :news_feed => news_feed
+    end
+
+
   end
 
   def action_type
@@ -46,7 +57,7 @@ class NewsFeed < ActiveRecord::Base
       one_user = users
       one_user.user_news_feeds.create :news_feed => self
     elsif users == ActiveRecord::Relation::ActiveRecord_Relation_User
-      users.each do |user|
+      users.find_each do |user|
         user.ser_news_feeds.create :news_feed => self
       end
     end

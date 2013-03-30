@@ -6,9 +6,10 @@ class UserStamp < ActiveRecord::Base
   belongs_to :user
 
   before_save do |user_stamp|
-    if self.changed_attributes.include?(:score) && (self.changed_attributes[:score]/ 100) < (self.score / 100)
-      adding_point = (self.changed_attributes[:score] - self. score) / 10
-      self.complimented_stamps.update_all("user_stamps.score = user_stamps.score + ?", adding_point)
+    if self.changed_attributes.has_key?("score") && (self.changed_attributes["score"]/ 100) < (self.score / 100)
+      adding_point = (self.score - self.changed_attributes["score"]) / 10
+      user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
+      NewsFeed.create_for_jumping_score user_stamp
     end
   end
 
@@ -19,7 +20,7 @@ class UserStamp < ActiveRecord::Base
     receiver_user_stamp.get_score_from sender_user_stamp
   end
 
-  def complimeted_stamps
+  def complimented_stamps
     compliments = Compliment.where :sender_id => self.user_id, :stamp_id => self.stamp_id
     receiver_ids = compliments.map {|compliment|
       compliment.receiver_id
