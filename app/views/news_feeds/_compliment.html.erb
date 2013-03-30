@@ -8,6 +8,7 @@
 
 <%= news_feed.to_s %>
 <br>
-<% if news_feed.user_news_feeds.where(:user => current_user, :score_taken => false).present? %>
-  <%= link_to "Get score", [:get_score, news_feed], :id => news_feed.id ,:class => "btn btn-danger news-feed" %>
+<% user_news_feeds = news_feed.user_news_feeds.where(:user => current_user, :score_taken => false) %>
+<% if user_news_feeds.present? %>
+  <%= link_to "Get score", [:get_score, news_feed], :id => news_feed.id, :class => "btn btn-danger news-feed", :data => {:exp_to_percent => "#{UserStamp.where(:user_id => current_user.id, :stamp_id => news_feed.notifiable.stamp.id).first.exp_to_percent}"}  %>
 <% end %>

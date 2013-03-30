@@ -11,7 +11,8 @@ class NewsFeedsController < ApplicationController
   def get_score
     @news_feed = NewsFeed.find(params[:id])
     user_news_feed = @news_feed.user_news_feeds.where(:user_id => current_user.id).first
-    after_score = user_news_feed.take_score_from_news_feed
-    render :json => {:score => after_score}
+    user_news_feed.take_score_from_news_feed
+    exp_to_percent = user_news_feed.user.user_stamps.where(:stamp_id => @news_feed.notifiable.stamp.id).first.exp_to_percent
+    render :json => {:exp_to_percent => exp_to_percent}
   end
-end
+end 

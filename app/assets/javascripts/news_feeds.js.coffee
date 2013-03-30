@@ -5,12 +5,13 @@
 ready = ->
   $(".news-feed").click (event)->
     event.preventDefault()
-    score = $(this).data("current_score")
-    $("#score-gauge").find(".bar").css("width", "#{0}%")
+    score = $(this).data("exp-to-percent")
+    $("#score-gauge").find(".bar").css("width", "#{score}%")
     $("#score-gauge").modal()
     $.getJSON "/news_feeds/#{$(this).attr('id')}/get_score", (data)->
-      afterScore = data["score"]
-      $("#score-gauge").find(".bar").animate({width: "100%"})
+      exp_percent = data["exp_to_percent"]
+      $("#score-gauge").find(".bar").animate({width: "#{exp_percent}%"})
+
 
 
 

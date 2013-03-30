@@ -52,6 +52,10 @@ class UserStamp < ActiveRecord::Base
     impact - previous_impact
   end
 
+  def exp_to_percent
+    (self.exp.to_f / self.exp_to_level_up.to_f * 100.0).round(0)
+  end
+
   private
 
   def formular(level)
