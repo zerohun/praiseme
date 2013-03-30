@@ -10,7 +10,9 @@ Praiseme::Application.routes.draw do
 
   resources :followings, :only => [:index, :create, :destroy]
 
-  resources :news_feeds, :only => [:index]
+  resources :news_feeds, :only => [:index] do
+    get :get_score, :on => :member
+  end
 
   resources :user_stamps
 

@@ -5,4 +5,9 @@
 <i class="icon-arrow-right"></i>
 <%= image_tag compliment.receiver.image_url, :class => "img-circle img-small" %>
 <br>
+
 <%= news_feed.to_s %>
+<br>
+<% if news_feed.user_news_feeds.where(:user => current_user, :score_taken => false).present? %>
+  <%= link_to "Get score", [:get_score, news_feed], :id => news_feed.id ,:class => "btn btn-danger news-feed" %>
+<% end %>
