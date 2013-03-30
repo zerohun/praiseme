@@ -8,7 +8,8 @@ class NewsFeed < ActiveRecord::Base
     :create => 1,
     :update => 2,
     :destroy => 3,
-    :score_up => 4
+    :score_up => 4,
+    :rank_up => 5
   }
 
   def self.create_for_compliment(compliment)
@@ -45,10 +46,10 @@ class NewsFeed < ActiveRecord::Base
       return "#{self.notifiable.username} has joined"
     end
 
-    if self.notifiable_type == "UserStamp" && self.action_type == :level_up
+    if self.notifiable_type == "UserStamp" && self.action_type == :score_up
       user = self.notifiable.user
       stamp = self.notifiable.stamp
-      return "#{user.username}'s #{stamp.title} level up"
+      return "#{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too. (+10)"
     end
   end
 

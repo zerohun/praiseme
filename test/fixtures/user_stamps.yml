@@ -17,3 +17,9 @@ three:
   stamp_id: 1
   user_id: 5
   score: 1
+
+three:
+  id: 4
+  stamp_id: 1
+  user_id: 5
+  score: 1

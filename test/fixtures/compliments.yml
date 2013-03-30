@@ -21,3 +21,11 @@ three:
   receiver_id: 5
   stamp_id: 1
   description: nice
+
+four:
+  id: 4
+  sender_id: 3
+  receiver_id: 1
+  stamp_id: 1
+  description: nice
+  

@@ -1,0 +1,5 @@
+<% user_stamp =  news_feed.notifiable %>
+<%= image_tag user_stamp.user.image_url, :class => "img-circle img-small" %>
+<%= render user_stamp.stamp %>
+<br>
+<%= news_feed.to_s %>

@@ -12,3 +12,8 @@ two:
   notifiable_type: Compliment
   action: 2
 
+three:
+  id: 3
+  notifiable_id: 4
+  notifiable_type: UserStamp
+  action: 4

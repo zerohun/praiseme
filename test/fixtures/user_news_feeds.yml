@@ -12,3 +12,7 @@ two:
   news_feed_id: 1
   is_read: false
 
+three:
+  id: 3
+  user_id: 1
+  news_feed_id: 3
