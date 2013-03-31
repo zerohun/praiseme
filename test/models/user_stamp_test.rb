@@ -14,5 +14,12 @@ class UserStampTest < ActiveSupport::TestCase
     end
   end
 
-
+  test "notitfy when a user gaiend rank" do
+    user_stamp = user_stamps(:one)
+    user_stamp.update_attributes :rank => 2, :score => 0
+    assert_difference "NewsFeed.count"  do
+      user_stamp.score = 10000
+      user_stamp.save
+    end
+  end
 end

@@ -34,8 +34,8 @@ class NewsFeed < ActiveRecord::Base
   end
 
   def self.create_for_gainig_rank(user_stamp)
-    NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:rank_up]
-    notify_to user_stamp.user
+    news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:rank_up]
+    news_feed.notify_to user_stamp.user
   end
 
   def action_type
