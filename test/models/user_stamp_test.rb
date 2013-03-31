@@ -25,7 +25,7 @@ class UserStampTest < ActiveSupport::TestCase
 
   test "create_user_stamp with news_feed" do
     assert_difference "NewsFeed.count"  do
-      UserStamp.create :user_id => 1, :stamp_id => 2
+      UserStamp.create :user_id => 1, :stamp_id => 3
     end
   end
 end

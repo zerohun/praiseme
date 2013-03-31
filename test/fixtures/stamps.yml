@@ -15,3 +15,11 @@ art:
   used_count: 20
   is_blocked: false
   image: artist_stamp.png
+
+design:
+  id: 3
+  title: "Amazing Designer"
+  used_count: 20
+  is_blocked: false
+  image: artist_stamp.png
+

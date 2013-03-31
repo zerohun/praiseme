@@ -6,7 +6,10 @@ class UserStamp < ActiveRecord::Base
   belongs_to :user
 
   after_create do |user_stamp|
-    NewsFeed.create_for_new_user_stamp user_stamp
+    if UserStamp.where(:stamp_id => user_stamp.stamp_id).count == 1
+      NewsFeed.create_for_new_user_stamp user_stamp
+    end
+    user_stamp.update_attribute :score, user_stamp.score + 1
   end
 
   before_save do |user_stamp|
