@@ -16,3 +16,8 @@ three:
   id: 3
   user_id: 1
   news_feed_id: 3
+
+four:
+  id: 4
+  user_id: 1
+  news_feed_id: 4

@@ -6,6 +6,14 @@ class UserStamp < ActiveRecord::Base
   belongs_to :user
 
   before_save do |user_stamp|
+    new_rank = UserStamp.where("user_stamps.score > ?", self.score).count
+    if self.rank.present? & (self.rank != new_rank)
+      if new_rank > self.rank
+        NewsFeed.create_for_gainig_rank self
+      end
+      self.previous_rank = self.rank
+      self.rank = new_rank
+    end
     if self.changed_attributes.has_key?("score") && (self.changed_attributes["score"]/ 100) < (self.score / 100)
       adding_point = (self.score - self.changed_attributes["score"]) / 10
       user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")

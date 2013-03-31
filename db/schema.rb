@@ -81,7 +81,9 @@ ActiveRecord::Schema.define(version: 20130324045059) do
   create_table "user_stamps", force: true do |t|
     t.integer  "stamp_id"
     t.integer  "user_id"
-    t.integer  "score",      default: 0
+    t.integer  "score",         default: 0
+    t.integer  "rank"
+    t.integer  "previous_rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

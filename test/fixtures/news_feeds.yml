@@ -17,3 +17,9 @@ three:
   notifiable_id: 4
   notifiable_type: UserStamp
   action: 4
+
+four:
+  id: 4
+  notifiable_id: 1
+  notifiable_type: UserStamp
+  action: 5

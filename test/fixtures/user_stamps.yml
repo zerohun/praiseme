@@ -5,6 +5,8 @@ one:
   stamp_id: 1
   user_id: 1
   score: 1
+  rank: 1
+  previous_rank: 2
 
 two:
   id: 2
@@ -18,8 +20,14 @@ three:
   user_id: 5
   score: 1
 
-three:
+four:
   id: 4
   stamp_id: 1
-  user_id: 5
+  user_id: 3
   score: 1
+
+five:
+  id: 5
+  stamp_id: 1
+  user_id: 5
+  score: 10

@@ -33,6 +33,11 @@ class NewsFeed < ActiveRecord::Base
 
   end
 
+  def self.create_for_gainig_rank(user_stamp)
+    NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:rank_up]
+    notify_to user_stamp.user
+  end
+
   def action_type
     ACTION_TYPE.key(self.action)
   end
@@ -50,6 +55,11 @@ class NewsFeed < ActiveRecord::Base
       user = self.notifiable.user
       stamp = self.notifiable.stamp
       return "#{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too. (+10)"
+    end
+    if self.notifiable_type == "UserStamp" && self.action_type == :rank_up
+      user_stamp = self.notifiable
+      stamp = self.notifiable.stamp
+      return "Your #{stamp.title}'s rank is #{user_stamp.rank} now (up #{ user_stamp.previous_rank - user_stamp.rank})"
     end
   end
 
