@@ -5,17 +5,21 @@ class UserStamp < ActiveRecord::Base
   belongs_to :stamp
   belongs_to :user
 
+  after_create do |user_stamp|
+    NewsFeed.create_for_new_user_stamp user_stamp
+  end
+
   before_save do |user_stamp|
-    new_rank = UserStamp.where("user_stamps.score > ?", self.score).count
-    if self.rank.present? & (self.rank != new_rank)
+    new_rank = UserStamp.where("user_stamps.score > ?", user_stamp.score).count
+    if user_stamp.rank.present? & (user_stamp.rank != new_rank)
       if new_rank > self.rank
-        NewsFeed.create_for_gainig_rank self
+        NewsFeed.create_for_gainig_rank user_stamp
       end
-      self.previous_rank = self.rank
-      self.rank = new_rank
+      user_stamp.previous_rank = user_stamp.rank
+      user_stamp.rank = new_rank
     end
-    if self.changed_attributes.has_key?("score") && (self.changed_attributes["score"]/ 100) < (self.score / 100)
-      adding_point = (self.score - self.changed_attributes["score"]) / 10
+    if user_stamp.changed_attributes.has_key?("score") && (user_stamp.changed_attributes["score"]/ 100) < (user_stamp.score / 100)
+      adding_point = (user_stamp.score - user_stamp.changed_attributes["score"]) / 10
       user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
       NewsFeed.create_for_jumping_score user_stamp
     end

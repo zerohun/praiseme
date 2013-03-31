@@ -38,6 +38,12 @@ class NewsFeed < ActiveRecord::Base
     news_feed.notify_to user_stamp.user
   end
 
+
+  def self.create_for_new_user_stamp(user_stamp)
+    news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:create]
+    news_feed.notify_to user_stamp.user.followers
+  end
+
   def action_type
     ACTION_TYPE.key(self.action)
   end
@@ -51,16 +57,25 @@ class NewsFeed < ActiveRecord::Base
       return "#{self.notifiable.username} has joined"
     end
 
-    if self.notifiable_type == "UserStamp" && self.action_type == :score_up
-      user = self.notifiable.user
-      stamp = self.notifiable.stamp
-      return "#{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too. (+10)"
+    if self.notifiable_type == "UserStamp"
+      if self.action_type == :score_up
+        user = self.notifiable.user
+        stamp = self.notifiable.stamp
+        return "#{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too. (+10)"
+      elsif self.action_type == :rank_up
+        user_stamp = self.notifiable
+        stamp = self.notifiable.stamp
+        return "Your #{stamp.title}'s rank is #{user_stamp.rank} now (up #{ user_stamp.previous_rank - user_stamp.rank})"
+      elsif self.action_type == :create
+        user = self.notifiable.user
+        stamp = self.notifiable.stamp
+        return "#{user.username} got #{stamp.title} for first time!!"
+      end
+
     end
-    if self.notifiable_type == "UserStamp" && self.action_type == :rank_up
-      user_stamp = self.notifiable
-      stamp = self.notifiable.stamp
-      return "Your #{stamp.title}'s rank is #{user_stamp.rank} now (up #{ user_stamp.previous_rank - user_stamp.rank})"
-    end
+
+
+
   end
 
   def notify_to(users)

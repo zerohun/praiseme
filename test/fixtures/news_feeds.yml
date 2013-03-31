@@ -23,3 +23,10 @@ four:
   notifiable_id: 1
   notifiable_type: UserStamp
   action: 5
+
+five:
+  id: 5
+  notifiable_id: 1
+  notifiable_type: UserStamp
+  action: 1
+
