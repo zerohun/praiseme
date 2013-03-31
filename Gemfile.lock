@@ -74,6 +74,7 @@ GEM
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    geocoder (1.1.6)
     hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
@@ -202,6 +203,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0.beta1)
   devise!
   font-awesome-sass-rails
+  geocoder
   hirb
   jbuilder (~> 1.0.1)
   jquery-rails

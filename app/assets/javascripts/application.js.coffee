@@ -14,7 +14,21 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require turbolinks
+#= require jquery.cookie
 #= require_tree .
+
+updateLocation = (position)->
+  latitude = position.coords.latitude
+  longitude = position.coords.longitude
+  $.ajax {
+         url: "/locations/update",
+         type: "POST",
+         data: { latitude: latitude, longitude: longitude},
+         success: ->
+           $.cookie('need_to_check_location', 'false')
+  }
+
+
 
 adjustDeviceSize = ->
   if $(window).width() < 767
@@ -28,8 +42,12 @@ adjustDeviceSize = ->
 $(window).resize ->
   adjustDeviceSize()
 
+
+
 ready = ->
   adjustDeviceSize()
+  if $.cookie('need_to_check_location') == 'true'
+    navigator.geolocation.getCurrentPosition(updateLocation)
 
 
 

@@ -19,11 +19,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      t.float :latitude, :limit => 53
+      t.float :longitude, :limit => 53
+
       t.string :first_name
       t.string :last_name
 
       t.string :phone
       t.string :introduce
+
 
       ## Confirmable
       # t.string   :confirmation_token

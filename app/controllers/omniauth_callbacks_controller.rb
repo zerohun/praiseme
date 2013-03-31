@@ -1,6 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     auth = request.env["omniauth.auth"]
+    cookies['need_to_check_location'] = true
     sns_connection = SnsConnection.from_omniauth(auth)
     user = sns_connection.user
     if sns_connection.persisted? && user.present?
