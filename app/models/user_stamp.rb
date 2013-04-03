@@ -2,6 +2,7 @@ class UserStamp < ActiveRecord::Base
 
   default_scope {includes(:user, :stamp)}
 
+
   belongs_to :stamp
   belongs_to :user
 
@@ -54,6 +55,10 @@ class UserStamp < ActiveRecord::Base
       self.score = self.score + 10
     end
     self.save
+  end
+
+  def compliments
+    Compliment.where(:receiver_id => self.user_id, :stamp_id => self.stamp_id)
   end
 
   private

@@ -1,20 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Stamp:</strong>
-  <%= @user_stamp.stamp %>
-</p>
+<div class="well well-large">
+  <div class="row-fluid">
+    <div class="span6">
+      <table class="table">
+        <tr>
+          <td><%= image_tag @user_stamp.user.image_url, :class => "img-normal img-circle" %></td>
+          <td><%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="span6 text-center">
+      <br>
+      <span class="badge badge-large badge-info">Rank : <%= UserStamp.where(:stamp_id => @user_stamp.stamp_id).where("user_stamps.score > ?", @user_stamp.score).count + 1 %></span>
+      <br>
+      <span class="label">Score : <%= @user_stamp.score %></span>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @user_stamp.user %>
-</p>
-
-<p>
-  <strong>Score:</strong>
-  <%= @user_stamp.score %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_stamp_path(@user_stamp) %> |
-<%= link_to 'Back', user_stamps_path %>
+<div id="compliments">
+  <% @user_stamp.compliments.each do |compliment| %>
+    <table>
+      <tr>
+        <td class="profile-picture">
+          <%= link_to user_profile_path(compliment.sender) do %>
+            <%= image_tag compliment.sender.image, :class => "img-circle img-small"%><br>
+            <span class="badge badge-info"><%= compliment.sender.username %></span>
+          <% end %>
+        </td>
+        <td class="desc">
+          <div class="alert alert-info">
+            <%= compliment.description[0..20] %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

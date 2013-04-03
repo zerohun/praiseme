@@ -1,3 +1,28 @@
 // Place all the styles related to the user_stamps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+span.badge.badge-large{
+  font-size: 30px;
+  padding: 10px;
+}
+
+#compliments{
+  table{
+    width: 80%;
+    td{
+      text-align: center;
+      margin: 2px;
+      padding: 10px;
+      .alert{
+        width: 100%;
+      }
+    }
+    td.profile-picture{
+      width: 30%;
+    }
+    td.desc{
+      width: 70%;
+    }
+    
+  }
+}
