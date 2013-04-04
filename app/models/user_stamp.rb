@@ -1,4 +1,5 @@
 class UserStamp < ActiveRecord::Base
+  LEVEL_CURVE = 1.5
 
   default_scope {includes(:user, :stamp)}
 
@@ -16,14 +17,14 @@ class UserStamp < ActiveRecord::Base
   before_save do |user_stamp|
     new_rank = UserStamp.where("user_stamps.score > ?", user_stamp.score).count
     if user_stamp.rank.present? & (user_stamp.rank != new_rank)
-      if new_rank > self.rank
+      if new_rank > user_stamp.rank
         NewsFeed.create_for_gainig_rank user_stamp
       end
       user_stamp.previous_rank = user_stamp.rank
       user_stamp.rank = new_rank
     end
-    if user_stamp.changed_attributes.has_key?("score") && (user_stamp.changed_attributes["score"]/ 100) < (user_stamp.score / 100)
-      adding_point = (user_stamp.score - user_stamp.changed_attributes["score"]) / 10
+    if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
+      adding_point = user_stamp.impact - user_stamp.before_impact
       user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
       NewsFeed.create_for_jumping_score user_stamp
     end
@@ -45,7 +46,17 @@ class UserStamp < ActiveRecord::Base
   end
 
   def impact
-    self.score / 10
+    (self.level ** LEVEL_CURVE).floor
+  end
+
+  def before_impact
+    (self.before_level ** LEVEL_CURVE).floor
+  end
+
+  def percentage_for_next_level
+    score_for_next_level = ((self.level + 1) ** LEVEL_CURVE).floor * 10
+    score_for_current_level = (self.level ** LEVEL_CURVE).floor * 10
+    ((self.score.to_f - score_for_current_level.to_f) / (score_for_next_level.to_f - score_for_current_level.to_f) * 100).round(0)
   end
 
   def get_score_from(user_stamp)
@@ -61,6 +72,12 @@ class UserStamp < ActiveRecord::Base
     Compliment.where(:receiver_id => self.user_id, :stamp_id => self.stamp_id)
   end
 
-  private
+  def level
+    ((score.to_f / 10.0)  ** (1.0/LEVEL_CURVE)).round(0)
+  end
+
+  def before_level
+    ((self.changed_attributes["score"].to_f / 10.0)  ** (1.0/LEVEL_CURVE)).round(0)
+  end
 
 end

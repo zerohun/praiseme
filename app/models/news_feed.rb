@@ -61,7 +61,7 @@ class NewsFeed < ActiveRecord::Base
       if self.action_type == :score_up
         user = self.notifiable.user
         stamp = self.notifiable.stamp
-        return "#{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too. (+10)"
+        return " #{user.username}'s #{stamp.title} level up to #{self.notifiable.level}  #{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too."
       elsif self.action_type == :rank_up
         user_stamp = self.notifiable
         stamp = self.notifiable.stamp
