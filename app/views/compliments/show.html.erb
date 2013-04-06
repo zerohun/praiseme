@@ -7,7 +7,7 @@
     <td><%= image_tag @compliment.receiver.image_url, :class => "img-small img-circle" %></td>
   </tr>
   <tr>
-    <td colspan=3><%= image_tag @compliment.stamp.image_url, :class => "img-normal" %></td>
+    <td colspan=3><%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %></td>
   </tr>
   <tr>
     <td colspan=3><%= @compliment.description %></td>
