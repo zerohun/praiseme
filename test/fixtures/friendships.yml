@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  is_invited_by_id: 
+  has_invited_id: 
+  status: 1
+
+two:
+  is_invited_by_id: 
+  has_invited_id: 
+  status: 1

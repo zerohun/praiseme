@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   geocoder_init Hash.new
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
-  has_many :sns_connections
+  has_many :sns_connections, :dependent => :destroy
   
   has_many :user_news_feeds
   has_many :news_feeds, :as => :notifiable,  :through => :user_news_feeds
@@ -15,14 +15,17 @@ class User < ActiveRecord::Base
   has_many :followees, :through => :followings, :foreign_key => :followee_id
 
   has_many :being_followed, :foreign_key => :followee_id, :class_name => "Following"
-  has_many :followers, :through => :being_followed, :foreign_key => :follower_id
+  has_many :followers, :through => :being_followed, :foreign_key => :follower_id 
 
   has_many :received_compliments, :foreign_key => :receiver_id, :class_name => "Compliment"
   has_many :sent_compliments, :foreign_key => :sender_id, :class_name => "Compliment"
 
   has_many :user_stamps
+  has_many :has_invited_friendships, :foreign_key => :is_invited_by_id, :class_name => "Friendship"
+  has_many :is_invited_by_friendships, :foreign_key => :has_invited_id, :class_name => "Friendship"
 
-  validates_presence_of :email
+  has_many :has_invited, :through => :has_invited_friendships, :foreign_key => :has_invited_id
+  has_many :is_invited_by, :through => :is_invited_by_friendships, :foreign_key => :is_invited_by_id
 
   mount_uploader :image, ImageFileUploader
 
@@ -36,6 +39,10 @@ class User < ActiveRecord::Base
     NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
   end
 
+  def friends
+    self.is_invited_by + self.has_invited
+  end
+
   def password_required?
     super && self.sns_connected
   end
@@ -46,12 +53,23 @@ class User < ActiveRecord::Base
     else
       super
     end
+    
   end
 
   def facebook
     sns_connections.where(:provider => "facebook")
     if self.sns_connections.present?
       @facebook ||= Koala::Facebook::API.new(sns_connections.first.oauth_token)
+    end
+  end
+
+
+  def facebook_image_url
+    sns_connections = self.sns_connections.where(:provider => "facebook")
+    if sns_connections.present?
+      return "https://graph.facebook.com/#{sns_connections.first.uid}/picture"
+    else
+      return nil
     end
   end
 

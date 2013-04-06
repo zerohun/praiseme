@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130324045059) do
+ActiveRecord::Schema.define(version: 20130406052648) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20130324045059) do
 
   add_index "followings", ["followee_id"], name: "index_followings_on_followee_id"
   add_index "followings", ["follower_id"], name: "index_followings_on_follower_id"
+
+  create_table "friendships", force: true do |t|
+    t.integer  "is_invited_by_id"
+    t.integer  "has_invited_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendships", ["has_invited_id"], name: "index_friendships_on_has_invited_id"
+  add_index "friendships", ["is_invited_by_id"], name: "index_friendships_on_is_invited_by_id"
 
   create_table "news_feeds", force: true do |t|
     t.integer  "notifiable_id"
