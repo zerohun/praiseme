@@ -1,5 +1,6 @@
 Praiseme::Application.routes.draw do
   
+  get "people/index"
   post "locations/update"
   get "sns_connections/find_friends"
   resources :mypage, :only => :index
