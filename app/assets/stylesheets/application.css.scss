@@ -14,3 +14,16 @@
 #title-menu-bar {
   position:fixed;
 }
+div.stamp-item{
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  div.stamp-label{
+    padding: 5px;
+    background-color: #EEF;
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    
+  }
+}

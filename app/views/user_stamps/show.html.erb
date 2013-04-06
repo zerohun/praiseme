@@ -8,6 +8,9 @@
           <td><%= image_tag @user_stamp.user.image_url, :class => "img-normal img-circle" %></td>
           <td><%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %></td>
         </tr>
+        <tr>
+          <td colspan=2><%= @user_stamp.stamp.description %></td>
+        </tr>
       </table>
     </div>
     <div class="span6 text-center">
