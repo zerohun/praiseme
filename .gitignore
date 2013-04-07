@@ -14,10 +14,10 @@ capybara-*.html
 /log/*
 /tmp/*
 /db/*.sqlite3
+/public/upload
 /public/system/*
 /coverage/
 /spec/tmp/*
 **.orig
 rerun.txt
 pickle-email-*.html
->>>>>>> 0a888439591ac759dd656bc75930800daf330375
