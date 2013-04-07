@@ -20,3 +20,5 @@ module Praiseme
     # config.i18n.default_locale = :de
   end
 end
+
+Hirb.enable

@@ -27,7 +27,16 @@ class User < ActiveRecord::Base
   has_many :has_invited, :through => :has_invited_friendships, :foreign_key => :has_invited_id
   has_many :is_invited_by, :through => :is_invited_by_friendships, :foreign_key => :is_invited_by_id
 
+  default_scope -> {joins(:sns_connections).select("users.*, sns_connections.uid, sns_connections.oauth_token")}
+
   mount_uploader :image, ImageFileUploader
+
+  USER_TYPE={
+    :pending => 0,
+    :joined => 1
+  
+  }
+
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -40,7 +49,12 @@ class User < ActiveRecord::Base
   end
 
   def friends
-    self.is_invited_by + self.has_invited
+    User.joins("INNER JOIN friendships ON users.id = friendships.has_invited_id or users.id = friendships.is_invited_by_id").
+      where("(friendships.has_invited_id = ? or friendships.is_invited_by_id = ?) and users.id != ? ", self.id, self.id, self.id)
+  end
+
+  def user_type
+    return User::USER_TYPE.key(self.status)
   end
 
   def password_required?
@@ -63,15 +77,10 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def facebook_image_url
-    sns_connections = self.sns_connections.where(:provider => "facebook")
-    if sns_connections.present?
-      return "https://graph.facebook.com/#{sns_connections.first.uid}/picture"
-    else
-      return nil
-    end
+  def image_url
+    "https://graph.facebook.com/#{self.uid}/picture"
   end
+
 
   def from_omniauth(auth)
     self.email = auth.info.email

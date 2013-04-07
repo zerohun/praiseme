@@ -1,10 +1,8 @@
 Praiseme::Application.routes.draw do
   
-  get "people/index"
   post "locations/update"
-  get "sns_connections/find_friends"
   resources :mypage, :only => :index
-
+  resources :people, :only => :index
   resources :user_profiles, :only => [:index, :show] do
     get :edit, :on => :collection
     get :update, :on => :collection
@@ -17,12 +15,8 @@ Praiseme::Application.routes.draw do
   end
 
   resources :user_stamps
-
   resources :compliments
-
   resources :stamps
-
-
 
   get "main/index"
 

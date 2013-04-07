@@ -1,3 +1,26 @@
 // Place all the styles related to the people controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div#friends{
+  div.friend{
+    width: 100%;
+    margin-bottom: 10px;
+    border-style: outset;
+    border-width: 1px;
+    border-color: #FFF;
+    div{
+      display:inline-block;
+    }
+    div.image{
+      width: 25%;
+    }
+
+    div.name{
+      width: 50%;
+    }
+    div.status{
+      width: 20%;
+    }
+  }
+}
