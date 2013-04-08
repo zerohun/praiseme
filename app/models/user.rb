@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   has_many :has_invited, :through => :has_invited_friendships, :foreign_key => :has_invited_id
   has_many :is_invited_by, :through => :is_invited_by_friendships, :foreign_key => :is_invited_by_id
 
+
+
   default_scope -> {joins(:sns_connections).select("users.*, sns_connections.uid, sns_connections.oauth_token")}
 
   mount_uploader :image, ImageFileUploader

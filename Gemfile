@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
-gem 'mysql2'
+gem 'mysql2',          '0.3.12b5'
+gem 'thinking-sphinx', '~> 3.0.2'
 gem 'devise', :git => "git://github.com/zerohun/devise.git"
 gem 'omniauth-facebook'
 gem 'pry'
