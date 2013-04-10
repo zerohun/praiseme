@@ -79,8 +79,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def image_url
-    "https://graph.facebook.com/#{self.uid}/picture"
+  def image_url(type: "square")
+    "https://graph.facebook.com/#{self.uid}/picture?type=#{type}"
   end
 
 

@@ -5,7 +5,16 @@ class StampsController < ApplicationController
   # GET /stamps
   # GET /stamps.json
   def index
-    @stamps = Stamp.all
+    if params[:term].present?
+      @stamps = Stamp.where("stamps.title like ?", "%#{params[:term]}%")
+    else
+      @stamps = Stamp.page(params[:page]).per(15)
+    end
+
+    respond_to do |format|
+      format.html {}
+      format.json {render :json => @stamps.map {|stamp| {:label => stamp.title, :id => stamp.id}}}
+    end
   end
 
   # GET /stamps/1
