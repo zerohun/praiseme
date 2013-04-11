@@ -48,3 +48,18 @@ ul.ui-autocomplete {
 .ui-helper-hidden-accessible{
   display: none;
 }
+
+div.create-stamp-fields{
+  color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #AAA;
+  .guide{
+    font-size: 20px;
+  }
+  padding: 5px;
+  a.btn{
+    font-size: 20px;
+    padding: 10px;
+  } 
+}

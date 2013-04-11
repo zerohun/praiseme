@@ -34,15 +34,11 @@ class StampsController < ApplicationController
   # POST /stamps
   # POST /stamps.json
   def create
-    if params["stamp"]["compliments_attributes"].present? 
-      params["stamp"]["compliments_attributes"]["0"]["sender_id"] = current_user.id
-    end
-    
     @stamp = Stamp.new(stamp_params)
     respond_to do |format|
       if @stamp.save
         format.html { redirect_to @stamp, notice: 'Stamp was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @stamp }
+        format.json { render :json => {:id => @stamp.id} }
       else
         format.html { render action: 'new' }
         format.json { render json: @stamp.errors, status: :unprocessable_entity }

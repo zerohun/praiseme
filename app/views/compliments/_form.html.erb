@@ -21,6 +21,11 @@
       <%= f.hidden_field :receiver_id %>
       <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search" %>
       <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
+      <div class="create-stamp-fields hidden">
+        <span class="guide">
+        </span>
+        <%= link_to "", stamps_path, :class => "create-stamp-button btn" %>
+      </div>
       <blockquote>
         <p><small>ex) Nice person, Great singer, Buatiful or Hansome</small></p>
       </blockquote>
