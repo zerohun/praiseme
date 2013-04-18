@@ -6,17 +6,13 @@
           <%= image_tag @user.image_url, :class => "img-small img-polaroid" %>
         </td>
         <td>
-          <span class="label label-info"><%= @user.username %></span>
+          <h3><%= @user.username %></h3>
         </td>
-      </tr>
-      <tr>
         <td>
-          Work at Goodoc.co.kr
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Studied at MJU
+          <br>
+          <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
+              <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:25px;height:25px" %>
+          <% end %>
         </td>
       </tr>
     </table>
@@ -30,21 +26,11 @@
       </tr>
 
       <tr>
-        <% if current_user.followees.where(:id => @user.id).present? %>
-          <td>
-            You are following him
-          </td>
-          <td>
-            <%= link_to "unfollow", "", :class => "btn btn-primary"%>
-          </td>
-        <% elsif current_user != @user %>
-          <td colspan=2>
-            <%= form_for Following.new(:followee_id => @user.id), :method => :post, :remote => true do |f| %>
-              <%= f.hidden_field :followee_id %>
-              <%= f.submit "Follow", :class => "btn btn-primary" %>
-            <% end %>
-          </td>
-        <% end %>
+        <td>
+          <div id="following_button">
+            <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -66,18 +52,22 @@
   <table class="table">
     <tr>
       <td>
-        <%= link_to "Followings", "", :class => "btn" %>
+        <%= link_to "Followings(#{@user.followings.count})", "", :class => "btn" %>
       </td>
+    </tr>
+    <tr>
       <td>
-        <%= link_to "Followers", "", :class => "btn" %>
+        <%= link_to "Followers(#{@user.followers.count})", "", :class => "btn" %>
       </td>
     </tr>
     <tr>
       <td>
         <%= link_to "", :class => "btn" do %>
-          Stamp<br>sent
+          Stamp sent
         <% end %>
       </td>
+    </tr>
+    <tr>
       <td>
         <%= link_to "", :class => "btn" do %>
           Stamps From<br><%= current_user.username %>

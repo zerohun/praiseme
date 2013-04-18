@@ -13,27 +13,28 @@ class FollowingsController < ApplicationController
     @following = Following.new(following_params)
     @following.follower = current_user
 
-    respond_to do |format|
-      if @following.save
-        format.html { redirect_to @following, notice: 'Following was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @following }
-        format.js { render action: 'create'}
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @following.errors, status: :unprocessable_entity }
-        format.js {render script: "alert('error');"}
-      end
-    end
+    #respond_to do |format|
+    @following.save
+        #format.html { redirect_to @following, notice: 'Following was successfully created.' }
+        #format.json { render action: 'show', status: :created, location: @following }
+        #format.js { render action: 'create'}
+      #else
+        #format.html { render action: 'new' }
+        #format.json { render json: @following.errors, status: :unprocessable_entity }
+        #format.js {render script: "alert('error');"}
+      #end
+    #end
   end
 
   # DELETE /followings/1
   # DELETE /followings/1.json
   def destroy
+    @user = @following.followee
     @following.destroy
-    respond_to do |format|
-      format.html { redirect_to followings_url }
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+      #format.html { redirect_to followings_url }
+      #format.json { head :no_content }
+    #end
   end
 
   private

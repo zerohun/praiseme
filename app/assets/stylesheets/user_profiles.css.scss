@@ -26,11 +26,16 @@ div.user-profile{
       }
     }
   }
-  table{
+  table.table{
+    margin-bottom: 0px;
+
     td{
+      vertical-align: center;
       text-align: center;
       a.btn{
         width: 95%;
+        padding: 15px;
+        font-size: 30px;
       }
       input.btn{
         width: 95%;
