@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'controller_test_helper'
 
 class FollowingsControllerTest < ActionController::TestCase
   setup do
@@ -14,15 +15,14 @@ class FollowingsControllerTest < ActionController::TestCase
 
   test "should create following" do
     assert_difference('Following.count') do
-      post :create, following: { followee_id: @following.followee_id, follower_id: @following.follower_id, format: "json" }
+      post :create, following: { followee_id: @following.followee_id, follower_id: @following.follower_id }, format: "js"
     end
 
-    assert_redirected_to following_path(assigns(:following))
   end
 
   test "should destroy following" do
     assert_difference('Following.count', -1) do
-      delete :destroy, id: @following, format: "json"
+      delete :destroy, id: @following, format: "js"
     end
   end
 end

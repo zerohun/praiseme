@@ -9,6 +9,7 @@ class UserProfilesControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
+    sign_in users(:zerohun)
     get :show, :id => users(:zerohun).id
     assert_response :success
   end

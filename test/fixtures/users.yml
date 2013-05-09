@@ -28,8 +28,3 @@ penny:
   username: penny
   image: penny.jpg
 
-jacob:
-  id: 5
-  email: irene@movie.co.kr
-  username: irene
-  image: irene.jpeg

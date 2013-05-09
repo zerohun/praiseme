@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    super && self.sns_connected
+    self.sns_connected
   end
 
   def update_with_password(params, *options)

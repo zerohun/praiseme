@@ -15,14 +15,14 @@ class UserStamp < ActiveRecord::Base
   end
 
   before_save do |user_stamp|
-    new_rank = UserStamp.where("user_stamps.score > ?", user_stamp.score).count
-    if user_stamp.rank.present? & (user_stamp.rank != new_rank)
-      if new_rank > user_stamp.rank
-        NewsFeed.create_for_gainig_rank user_stamp
-      end
-      user_stamp.previous_rank = user_stamp.rank
-      user_stamp.rank = new_rank
-    end
+    #new_rank = UserStamp.where("user_stamps.score > ?", user_stamp.score).count
+    #if user_stamp.rank.present? & (user_stamp.rank != new_rank)
+      #if new_rank > user_stamp.rank
+        #NewsFeed.create_for_gainig_rank user_stamp
+      #end
+      #user_stamp.previous_rank = user_stamp.rank
+      #user_stamp.rank = new_rank
+    #end
     if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
       adding_point = user_stamp.impact - user_stamp.before_impact
       user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")

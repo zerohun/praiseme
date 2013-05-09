@@ -9,3 +9,22 @@ zerohun_facebook:
   provider: facebook
   uid: 1027557496
   user_id: 1
+
+sarah_facebook:
+  id: 2
+  provider: facebook
+  uid: 170700251
+  user_id: 2
+
+sheldon_facebook:
+  id: 3
+  provider: facebook
+  uid: 492434404121916
+  user_id: 3
+
+penny_facebook:
+  id: 4
+  provider: facebook
+  uid: 100003619677596
+  user_id: 4
+
