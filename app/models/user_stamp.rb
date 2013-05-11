@@ -3,7 +3,6 @@ class UserStamp < ActiveRecord::Base
 
   default_scope {includes(:user, :stamp)}
 
-
   belongs_to :stamp
   belongs_to :user
 
@@ -79,5 +78,4 @@ class UserStamp < ActiveRecord::Base
   def before_level
     ((self.changed_attributes["score"].to_f / 10.0)  ** (1.0/LEVEL_CURVE)).round(0)
   end
-
 end

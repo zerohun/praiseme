@@ -7,7 +7,9 @@
   article{
     margin: 10px;
     padding: 10px;
-    border-style: solid;
-    border-width: 1px;
+    background-color: #e4faf5;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
   }
 }

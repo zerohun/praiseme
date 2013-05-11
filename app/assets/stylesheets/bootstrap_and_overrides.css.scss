@@ -2,29 +2,39 @@
 $iconSpritePath: image-path('glyphicons-halflings.png');
 $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 
-$navbarBackground: #fafafa;
-$navbarBackgroundHighlight: #efefef;
+$navbarBackground: #004b3a;
+$navbarBrandColor: white;
+$navbarBackgroundHighlight: #004b3a;
 $navbarText: #fff;
-$navbarLinkColor: #888;
+$navbarLinkColor: white;
+$navbarText: white;
 
 @import "bootstrap";
 @import "bootstrap-responsive";
 
 .navbar .brand {
-  color: #55F;
+  color: white;
   margin: 0 0 0 20px;
   font-weight: 800;
   font-size: 20px;
 }
 .navbar{
   margin-right: 5px;
+
 }
 @import 'font-awesome';
 
 body { 
   padding-top: 10px;
   padding-bottom: 50px;
+  background-color: #019875;
   .navbar{
+    .navbar-inner{
+      border-width: 0px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
     .container:after{
       clear:none;
     }
