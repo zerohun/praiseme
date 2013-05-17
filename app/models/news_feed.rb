@@ -50,7 +50,7 @@ class NewsFeed < ActiveRecord::Base
 
   def to_s
     if self.notifiable_type == "Compliment" && self.action_type == :create
-      return "#{self.notifiable.sender.username} gave stamp of #{self.notifiable.stamp.title} to #{self.notifiable.receiver.username}"
+      return "#{self.notifiable.sender.username} think #{self.notifiable.receiver.username} is #{self.notifiable.stamp.title}"
     end
 
     if self.notifiable_type == "User" && self.action_type == :create
@@ -61,7 +61,7 @@ class NewsFeed < ActiveRecord::Base
       if self.action_type == :score_up
         user = self.notifiable.user
         stamp = self.notifiable.stamp
-        return " #{user.username}'s #{stamp.title} level up to #{self.notifiable.level}  #{user.username}'s getting a good reputation on #{stamp.title} these day. #{user.username} have complimented you on #{stamp.title} before. you also deserve good reputation too."
+        return " #{user.username}'s #{stamp.title} level up to #{self.notifiable.level}"
       elsif self.action_type == :rank_up
         user_stamp = self.notifiable
         stamp = self.notifiable.stamp

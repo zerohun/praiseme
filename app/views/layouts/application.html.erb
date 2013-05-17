@@ -19,7 +19,7 @@
         <ul class="nav pull-right">
 
           <li class="<%= "active" if params[:controller] == "mypage" %>">
-            <%= link_to mypage_index_path, :class => "btn btn-navbar" do %>
+            <%= link_to user_profile_path(@current_user), :class => "btn btn-navbar" do %>
               <%= image_tag current_user.image_url, :style => "width:25px" %>
             <% end %>
           </li>

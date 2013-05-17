@@ -1,40 +1,66 @@
 <div class="user-profile">
-  <table class="table">
-    <tbody>
-      <tr>
-        <td rowspan=3>
-          <%= image_tag @user.image_url, :class => "img-small img-polaroid" %>
-        </td>
-        <td>
-          <h3><%= @user.username %></h3>
-        </td>
-        <td>
-          <br>
-          <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
-              <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:25px;height:25px" %>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    <table class="table">
-      <tr>
-        <td colspan=2>
-          <% if current_user != @user %>
-            <%= link_to "Say Bravo !", new_compliment_path(:compliment => {:receiver_id => @user.id}), :class => "btn btn-success" %>
-          <% end %>
-        </td>
-      </tr>
+  <div class="profile-row">
+    <div class="profile-picture">
+      <%= image_tag @user.image_url, :class => "img-normal img-polaroid" %>
+    </div>
 
-      <tr>
-        <td>
-          <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="profile-name">
+      <table>
+        <tr>
+          <td class="name">
+            <%= @user.username %>
+            <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
+                <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:30px;height:30px" %>
+            <% end %>
+          </td>
+        </tr>
+        <% if @user.job.present? %>
+          <tr>
+            <td>
+              <%= @user.job %>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if @user.school.present? %>
+          <tr>
+            <td>
+              <%= @user.school %>
+            </td>
+          </tr>
+        <% end %>
+
+
+        <% if @user.school.blank? && @user.job.blank? %>
+          <% if @user.sns_connections.where(:provider => "facebook").first.oauth_token.blank? %>
+            <tr>
+              <td class="invite">
+                <%= @user.username %> is not enjoying Brovo you yet. Do you want to invite her?
+                <br>
+                <%= link_to "Yes", "", :class => "btn" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="clear_float">
+    </div>
+    <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
+  </div>
+
+
+  <div class="button-group">
+    <% if current_user == @user %>
+      <%= link_to "Edit", "", :class=> "btn" %>
+      <%= link_to "Logout", "", :class => "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Say Bravo !", new_compliment_path(:compliment => {:receiver_id => @user.id}), :class => "btn btn-success btn-bravo" %>
+    <% end %>
+  </div>
 
   <ul id="stamps">
-    <% @user.user_stamps.each do |user_stamp| %>
+    <% @user.user_stamps.limit(6).each do |user_stamp| %>
       <li class="stamp">
         <%= link_to render(user_stamp.stamp), user_stamp %>
         <br>
@@ -47,30 +73,22 @@
       </li>
     <% end %>
   </ul>
-  <table class="table">
-    <tr>
-      <td>
-        <%= link_to "Followings(#{@user.followings.count})", "", :class => "btn" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to "Followers(#{@user.followers.count})", "", :class => "btn" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to "", :class => "btn" do %>
-          Stamp sent
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to "", :class => "btn" do %>
-          Stamps From<br><%= current_user.username %>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+
+  <% if @user.user_stamps.count > 6 %>
+    <%= link_to "more", "", :class => "btn btn-more" %>
+  <% end %>
+
+
+  <div class="bottom-button-group">
+    <%= link_to "Followings(#{@user.followings.count})", "", :class => "btn" %>
+    <%= link_to "Followers(#{@user.followers.count})", "", :class => "btn" %>
+    <%= link_to "", :class => "btn" do %>
+      Stamp sent
+    <% end %>
+    <% if current_user != @user %>
+      <%= link_to "", :class => "btn" do %>
+        Stamps From<br><%= current_user.username %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

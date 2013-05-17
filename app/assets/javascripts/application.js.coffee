@@ -16,6 +16,7 @@
 #= require bootstrap
 #= require turbolinks
 #= require jquery.cookie
+#= require jquery.arctext
 #= require_tree .
 
 updateLocation = (position)->

@@ -1,8 +1,13 @@
 <% compliment = news_feed.notifiable %>
-<%= image_tag compliment.sender.image_url, :class => "img-circle img-small" %>
-<i class="icon-arrow-right"></i>
-<%= render compliment.stamp %>
-<i class="icon-arrow-right"></i>
-<%= image_tag compliment.receiver.image_url, :class => "img-circle img-small" %>
-<br>
-
+<div class="compliment-item">
+  <div class="sender">
+    <%= image_tag compliment.sender.image_url, :class => "img-circle img-small" %>
+  </div>
+  <div class="stamp">
+  <%= render compliment.stamp %>
+  </div>
+  <div class="receiver">
+  <%= image_tag compliment.receiver.image_url, :class => "img-circle img-small" %>
+  </div>
+</div>
+<h5><%= news_feed.to_s %></h5>

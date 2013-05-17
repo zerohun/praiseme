@@ -1,5 +1,15 @@
-<% user_stamp =  news_feed.notifiable %>
-<%= image_tag user_stamp.user.image_url, :class => "img-circle img-small" %>
-<%= render user_stamp.stamp %>
-<br>
-<%= news_feed.to_s %>
+<div class="user-stamp-level-up">
+  <% user_stamp = news_feed.notifiable %>
+  <div class="user">
+    <%= image_tag user_stamp.user.image_url, :class => "img-circle img-small" %>
+  </div>
+  <div class="userstamp">
+    <%= render user_stamp.stamp %>
+  </div>
+  <div class="level ">
+    <h4>LEVEL UP</h4>
+    <h5><%= user_stamp.level %></h5>
+  </div>
+  <br>
+  <h5><%= news_feed.to_s %></h5>
+</div>

@@ -2,8 +2,34 @@ class SnsConnection < ActiveRecord::Base
   belongs_to :user
 
   after_save do |sns_connection|
-    if sns_connection.changed.include?('user_id') && sns_connection.user.present? && self.oauth_token.present?
+    if sns_connection.user.present? && self.oauth_token.present?
       user = self.user
+
+      user_info = user.facebook.get_object("me")
+
+      if user_info["work"].present?
+        employer = user_info["work"].first["employer"]["name"]
+        position = user_info["work"].first["position"]["name"]
+        user.job = "#{position} at #{employer}"
+      end
+
+      if user_info["education"].present?
+        school = user_info["education"].last["school"]["name"]
+
+        if user_info["education"].last["concentration"].present?
+          concentration = user_info["education"].last["concentration"].first["name"]
+          user.school = "Studied #{concentration} at #{school}"
+        else
+          user.school = "Studied at #{school}"
+        end
+      end
+
+      if user.changed?
+        user.save
+      end
+
+
+
       friends = user.facebook.get_connections("me", "friends")
       friends.each do |friend|
         if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?

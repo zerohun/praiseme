@@ -1,6 +1,6 @@
 <div id="following_button">
   <% if current_user.followees.where(:id => user.id).present? %>
-    <%= link_to "unfollow", current_user.followings.where(:followee_id => user.id).first, :method => :delete, :remote => true, :class => "btn btn-primary"%>
+    <%= link_to "Unfollow", current_user.followings.where(:followee_id => user.id).first, :method => :delete, :remote => true, :class => "btn btn-primary btn-unfollow"%>
   <% else %>
     <%= form_for Following.new(:followee_id => user.id), :method => :post, :remote => true do |f| %>
       <%= f.hidden_field :followee_id %>

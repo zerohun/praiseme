@@ -1,12 +1,12 @@
 <div class="stamp-item">
-  <% size = "small" if size.blank? %>
+  <div class="stamp-title">
+    <%= stamp.title %>
+  </div>
+  <% size = "normal" if size.blank? %>
   <% if stamp.image.present? %>
     <%= image_tag stamp.image_url, :class => "img-#{size}" %>
   <% else %>
-    <%= image_tag "default_stamp.gif", :class => "img-#{size}" %>
+    <%= image_tag "trophy.png", :class => "img-#{size}" %>
     <br>
-    <div class="stamp-label">
-      <%= stamp.title %>
-    </div>
   <% end %>
 </div>

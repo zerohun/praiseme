@@ -18,12 +18,12 @@ div.stamp-item{
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  div.stamp-label{
-    padding: 5px;
-    background-color: #EEF;
-    border-radius: 100px;
-    -moz-border-radius: 100px;
-    -webkit-border-radius: 100px;
-    
+  width: 150px;
+  .stamp-title{
+      position:relative;
+      top: 80px;
+      color: white;
+      font-weight:bold;
+      text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
   }
 }

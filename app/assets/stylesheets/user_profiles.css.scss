@@ -3,29 +3,124 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 div.user-profile{
   background-color: #e4faf5;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px #888888;
+
+  a{
+    text-decoration: none;
+  }
+
+  .bottom-button-group{
+    a{
+      width: 90%;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+  }
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  div.profile-row{
+    width: 100%;
+
+    div.profile-picture{
+      width: 40%;
+      text-align: center;
+      padding-left: 10px;
+      float:left;
+    }
+    div.profile-name{
+      width: 50%;
+      float:left;
+      margin-left: 15px;
+      text-align: center;
+      table {
+        display: inline-table;
+        td.name{
+          color: #004b3a;
+          font-size: 25px;
+          font-weight: bold;
+        }
+        td{
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+
+  div.button-group{
+    text-align: center;
+    width: 100%;
+    a.btn{
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 40%;
+      height: 30px;
+      padding-top: 10px;
+      vertical-align:middle;
+    }
+
+    a.btn-bravo{
+      width: 90%;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px;
+      padding-top: 20px;
+      padding-bottom: 15px;
+
+    }
+  }
+  div.clear_float{
+    clear:both;
+  }
 
   div#following_button{
-    input[type=submit]{
+
+    width: 40%;
+    padding-left: 5px;
+    text-align: center;
+    form{
       margin: 0px;
-      width: 100%%;
-      padding: 15px;
-      font-size: 30px;
+    }
+    input[type=submit]{
+      text-align: center;
+      width: 150px;
+
+      font-size: 15px;
+
+      margin-left: 10px;
+      height: 40px;
+      max-height: 40px;
+      padding: 0px;
+    }
+    a.btn-unfollow{
+      text-align: center;
+      width: 160px;
+      max-width: 160px;
+      font-size: 15px;
+      margin-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 0px;
+      padding-right: 0px;
     }
     a.btn{
     }
   }
 
-  ul{
-    li{
-      display: block;
-      float:left;
-      margin:10px;
+  ul#stamps{
+    li.stamp{
+      display: inline-block;
+      margin:5px;
       padding: 5px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: #AAAAAA;
       div.stamp-item{
-        width: 100px;
         text-align: center;
       }
       div.progress{

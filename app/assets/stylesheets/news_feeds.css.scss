@@ -3,13 +3,58 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #news_feeds{
+  a{
+    text-decoration: none;
+    article{
+      margin: 10px;
+      padding: 10px;
+      background-color: #e4faf5;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 3px #888888;
 
-  article{
-    margin: 10px;
-    padding: 10px;
-    background-color: #e4faf5;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+
+      .user-stamp-level-up{
+        div{
+          display: inline-block;
+        }
+        .user{
+          width: 20%;
+          text-align: center;
+        }
+        .userstamp{
+          width: 35%;
+          text-align: center;
+        }
+        .level{
+          width: 35%;
+          text-align: center;
+          margin-left: 10px;
+          color: black;
+        }
+      }
+
+      .compliment-item{
+        div{
+          display: inline-block;
+        }
+
+        .sender{
+          width: 25%;
+          text-align: center;
+        }
+        .receiver{
+          width: 25%;
+          text-align: center;
+        }
+
+        .stamp{
+          width: 45%;
+          text-align: center;
+        }
+      }
+    }
   }
+
 }
