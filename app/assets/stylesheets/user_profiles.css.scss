@@ -92,9 +92,7 @@ div.user-profile{
     input[type=submit]{
       text-align: center;
       width: 150px;
-
       font-size: 15px;
-
       margin-left: 10px;
       height: 40px;
       max-height: 40px;
@@ -102,13 +100,12 @@ div.user-profile{
     }
     a.btn-unfollow{
       text-align: center;
-      width: 160px;
-      max-width: 160px;
+      width: 150px;
       font-size: 15px;
       margin-left: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
-      padding-left: 0px;
+      padding-left: 10px;
       padding-right: 0px;
     }
     a.btn{
