@@ -35,7 +35,7 @@
           <% if @user.sns_connections.where(:provider => "facebook").first.oauth_token.blank? %>
             <tr>
               <td class="invite">
-                <%= @user.username %> is not enjoying Brovo you yet. Do you want to invite her?
+                <%= @user.username %> is not enjoying Brovo you yet. Do you want to invite him or her?
                 <br>
                 <%= link_to "Yes", "", :class => "btn" %>
               </td>
