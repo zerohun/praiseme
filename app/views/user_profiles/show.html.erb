@@ -1,7 +1,7 @@
 <div class="user-profile">
   <div class="profile-row">
     <div class="profile-picture">
-      <%= image_tag @user.image_url, :class => "img-normal img-polaroid" %>
+      <%= image_tag @user.image_url(type: "large"), :class => "img-normal img-polaroid" %>
     </div>
 
     <div class="profile-name">

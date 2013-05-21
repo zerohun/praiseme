@@ -3,13 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 div#friends{
+  a{
+    text-decoration: none;
+  }
   div.friend{
+    font-weight: bold;
+    font-size: 15px;
     width: 100%;
     margin-bottom: 10px;
     background-color: #e4faf5;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
     div{
       display:inline-block;
     }

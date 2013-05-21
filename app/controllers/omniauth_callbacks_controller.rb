@@ -10,7 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect user, notice: "Signed in!"
     else
       if sns_connection.provider == "facebook"
-        user = User.new, User::USER_TYPE[:user]
+        user = User.new(:user_type => User::USER_TYPE[:user])
         user.from_omniauth(auth)
         user.save
         sns_connection.update_attribute :user_id, user.id
