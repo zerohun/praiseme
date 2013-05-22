@@ -103,4 +103,16 @@ class User < ActiveRecord::Base
 
     self.image = profile_image_file
   end
+
+  def invites_friends_automatically
+
+    friends = self.facebook.get_connections("me", "friends")
+    friends.each do |friend|
+      if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?
+        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
+        sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
+        sns_connection.save(:validate => false)
+      end
+    end
+  end
 end

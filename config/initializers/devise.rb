@@ -215,7 +215,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, '437202949687541', '2b38344b2ef84a3a7149c2f4925e65ec',:scope => 'email, user_photos, friends_photos, publish_actions'
+  #
+  if Rails.env == "production"
+    config.omniauth :facebook, '615443998467652', '4fd19964390f6907662191d57d5da7f9',:scope => 'email, user_photos, friends_photos, publish_actions'
+  else
+    config.omniauth :facebook, '437202949687541', '2b38344b2ef84a3a7149c2f4925e65ec',:scope => 'email, user_photos, friends_photos, publish_actions'
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

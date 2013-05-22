@@ -16,6 +16,9 @@ gem 'font-awesome-sass-rails'
 gem 'koala'
 gem 'hirb'
 gem "geocoder"
+gem "sidekiq"
+gem 'sinatra', require: false
+gem 'slim'
 
 # test
 #

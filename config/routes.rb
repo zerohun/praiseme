@@ -1,4 +1,7 @@
+require 'sidekiq/web'
+
 Praiseme::Application.routes.draw do
+  mount Sidekiq::Web, at: "/sidekiq"
   
   post "locations/update"
   resources :mypage, :only => :index

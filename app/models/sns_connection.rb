@@ -27,17 +27,7 @@ class SnsConnection < ActiveRecord::Base
       if user.changed?
         user.save
       end
-
-
-
-      friends = user.facebook.get_connections("me", "friends")
-      friends.each do |friend|
-        if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?
-          invited_user = user.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
-          sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
-          sns_connection.save(:validate => false)
-        end
-      end
+      user.delay.invites_friends_automatically if user.friends.blank?
     end
   end
   def self.from_omniauth(auth)
