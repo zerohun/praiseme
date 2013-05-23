@@ -19,7 +19,7 @@ gem "geocoder"
 gem "sidekiq"
 gem 'sinatra', require: false
 gem 'slim'
-gem 'dalli'
+gem 'dalli', '~> 2.6.3'
 
 # test
 #
