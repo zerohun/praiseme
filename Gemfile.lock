@@ -69,7 +69,7 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     connection_pool (1.0.0)
-    dalli (2.6.2)
+    dalli (2.6.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -230,7 +230,7 @@ DEPENDENCIES
   capistrano
   carrierwave
   coffee-rails (~> 4.0.0.beta1)
-  dalli
+  dalli (~> 2.6.3)
   devise!
   font-awesome-sass-rails
   geocoder
