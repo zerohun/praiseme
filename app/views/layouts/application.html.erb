@@ -29,6 +29,12 @@
               <i class=icon-envelope></i>
             <% end %>
           </li>
+
+          <li class=<%= "active" if params[:controller] == 'people' %>>
+            <%= link_to people_path, :class => "btn btn-navbar" do %>
+              <i class=icon-user></i>
+            <% end %>
+          </li>
           <li>
             <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
               <span class="icon-list"></span>
@@ -57,19 +63,9 @@
               Stamps
             <% end %>
           </li>
-
-          <li class=<%= "active" if params[:controller] == 'people' %>>
-            <%= link_to people_path do %>
-              <i class="icon-user"></i>
-              People
-            <% end %>
-          </li>
         </ul>
-
       </div>
     </div>
-
-
   </div>
 <div id="user_nav", class="hidden-phone">
 

@@ -4,23 +4,7 @@
 <% end %>
 <h4>Friend list</h4>
 <div id="friends">
-  <% @friends.each do |friend| %>
-    <%= link_to user_profile_path(friend) do %>
-      <div class="friend">
-        <div class="image">
-          <%= image_tag friend.image_url, :class => "img-small img-circle" %>
-        </div>
-        <div class="name">
-          <%= friend.username %>
-        </div>
-        <div class="status">
-          <span class="label">
-            <%= friend.user_type %>
-          </span>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-  <%= paginate @friends %>
+  <%= render @friends %>
 </div>
+<%= paginate @friends %>
 

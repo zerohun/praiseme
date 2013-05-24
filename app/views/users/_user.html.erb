@@ -1,0 +1,16 @@
+<%= link_to user_profile_path(user) do %>
+  <div class="friend">
+    <div class="image">
+      <%= image_tag user.image_url, :class => "img-small img-circle" %>
+    </div>
+    <div class="name">
+      <%= user.username %>
+    </div>
+    <div class="status">
+      <span class="label <%= "label-success" if user.user_type == "Joined" %>">
+        <%= user.user_type %>
+      </span>
+    </div>
+  </div>
+<% end %>
+

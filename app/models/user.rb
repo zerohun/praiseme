@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   mount_uploader :image, ImageFileUploader
 
   USER_TYPE={
-    :pending => 0,
-    :joined => 1
+    "Comming" => 0,
+    "Joined" => 1
   
   }
 
