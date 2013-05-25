@@ -47,6 +47,14 @@ $(window).resize ->
 
 
 ready = ->
+
+  if $('.pagination').length
+    $(window).on "scroll", ->
+      if $('.pagination a[rel=next]').length
+        url = $('.pagination a[rel=next]').attr('href')
+        if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
+          $('.pagination').html('<img src="/ajax-loader.gif" /><h4>Fetching more friends...</h4>')
+          $.getScript(url)
   adjustDeviceSize()
   if $.cookie('need_to_check_location') == 'true'
     navigator.geolocation.getCurrentPosition(updateLocation)
