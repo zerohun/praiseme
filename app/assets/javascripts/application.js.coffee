@@ -47,8 +47,7 @@ $(window).resize ->
 
 
 ready = ->
-  $(".ajax-loader").hide()
-  $("#screen-container").css("opacity", 1)
+
 
   $('a').on "click", (event)->
     if $(this).attr("href")
@@ -62,6 +61,7 @@ ready = ->
         if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
           $('.pagination').html('<img src="/ajax-loader.gif" /><h4>Fetching more friends...</h4>')
           $.getScript(url)
+
   adjustDeviceSize()
   if $.cookie('need_to_check_location') == 'true'
     navigator.geolocation.getCurrentPosition(updateLocation)
@@ -70,3 +70,9 @@ ready = ->
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
+$(document).on 'page:change', ->
+  $(".ajax-loader").hide()
+  $("#screen-container").css("opacity", 1)
+
+
