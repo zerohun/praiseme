@@ -48,7 +48,6 @@ $(window).resize ->
 
 ready = ->
 
-
   $('a').on "click", (event)->
     if $(this).attr("href")
       $(".ajax-loader").fadeIn()
