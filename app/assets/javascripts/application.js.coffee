@@ -47,6 +47,13 @@ $(window).resize ->
 
 
 ready = ->
+  $(".ajax-loader").hide()
+  $("#screen-container").css("opacity", 1)
+
+  $('a').on "click", (event)->
+    if $(this).attr("href")
+      $(".ajax-loader").fadeIn()
+      $("#screen-container").css("opacity", 0.1)
 
   if $('.pagination').length
     $(window).on "scroll", ->

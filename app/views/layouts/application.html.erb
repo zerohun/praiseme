@@ -11,75 +11,79 @@
   <meta name="longitude" content="">
 </head>
 <body>
+  <div id="screen-container">
+    <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
+          <ul class="nav pull-right">
 
-  <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
-    <div class="navbar-inner">
-      <div class="container">
-        <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
-        <ul class="nav pull-right">
+            <li class="<%= "active" if params[:controller] == "mypage" %>">
+              <%= link_to user_profile_path(@current_user), :class => "btn btn-navbar" do %>
+                <%= image_tag current_user.image_url, :style => "width:25px" %>
+              <% end %>
+            </li>
 
-          <li class="<%= "active" if params[:controller] == "mypage" %>">
-            <%= link_to user_profile_path(@current_user), :class => "btn btn-navbar" do %>
-              <%= image_tag current_user.image_url, :style => "width:25px" %>
-            <% end %>
-          </li>
+            <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
+              <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
+                <i class=icon-envelope></i>
+              <% end %>
+            </li>
 
-          <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
-            <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
-              <i class=icon-envelope></i>
-            <% end %>
-          </li>
+            <li class=<%= "active" if params[:controller] == 'people' %>>
+              <%= link_to people_path, :class => "btn btn-navbar" do %>
+                <i class=icon-user></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
+                <span class="icon-list"></span>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-collapse collapse">
 
-          <li class=<%= "active" if params[:controller] == 'people' %>>
-            <%= link_to people_path, :class => "btn btn-navbar" do %>
-              <i class=icon-user></i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
-              <span class="icon-list"></span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-collapse collapse">
-
-        <ul class="nav">
-          <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
-            <%= link_to news_feeds_path do %>
-              <i class=icon-envelope></i>
-              News Feed
-            <% end %>
-          </li>
-          <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'followings' %>">
-            <%= link_to followings_path do %>
-              <i class=icon-user></i>
-              People
-            <% end %>
-          </li>
-          <li class=<%= "active" if params[:controller] == 'stamps' %>>
-            <%= link_to stamps_path do %>
-              <i class="icon-certificate"></i>
-              Stamps
-            <% end %>
-          </li>
-        </ul>
+          <ul class="nav">
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
+              <%= link_to news_feeds_path do %>
+                <i class=icon-envelope></i>
+                News Feed
+              <% end %>
+            </li>
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'followings' %>">
+              <%= link_to followings_path do %>
+                <i class=icon-user></i>
+                People
+              <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'stamps' %>>
+              <%= link_to stamps_path do %>
+                <i class="icon-certificate"></i>
+                Stamps
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+  <div id="user_nav", class="hidden-phone">
+
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.username %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> |
+      <%= link_to "Login", new_user_session_path %> |
+      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+    <% end %>
   </div>
-<div id="user_nav", class="hidden-phone">
 
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.username %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %> |
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-  <% end %>
+  <%= yield %>
 </div>
-
-<%= yield %>
+<div class="ajax-loader">
+  <%= image_tag '/ajax-loader.gif' %>&nbsp;&nbsp;LOADING
+</div>
 </body>
 </html>
