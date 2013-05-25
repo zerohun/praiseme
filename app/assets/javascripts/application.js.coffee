@@ -73,5 +73,8 @@ $(document).on('page:load', ready)
 $(document).on 'page:change', ->
   $(".ajax-loader").hide()
   $("#screen-container").css("opacity", 1)
+  $("#content-container").hide()
+  $("#content-container").show("clip")
+
 
 

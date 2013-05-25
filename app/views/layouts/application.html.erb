@@ -80,7 +80,9 @@
     <% end %>
   </div>
 
-  <%= yield %>
+  <div id='content-container'>
+    <%= yield %>
+  </div>
 </div>
 <div class="ajax-loader">
   <%= image_tag '/ajax-loader.gif' %>&nbsp;&nbsp;LOADING
