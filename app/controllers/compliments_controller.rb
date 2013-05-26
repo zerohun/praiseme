@@ -12,6 +12,7 @@ class ComplimentsController < ApplicationController
   # GET /compliments/1
   # GET /compliments/1.json
   def show
+    redirect_to UserStamp.where(:stamp_id => @compliment.stamp_id, :user_id => @compliment.receiver_id).first
   end
 
   # GET /compliments/new

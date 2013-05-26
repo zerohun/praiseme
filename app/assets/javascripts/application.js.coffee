@@ -47,11 +47,12 @@ $(window).resize ->
 
 
 ready = ->
+  $('input[type=submit]').on 'click', (event)->
+    startLoading()
 
   $('a').on "click", (event)->
     if $(this).attr("href")
-      $(".ajax-loader").fadeIn()
-      $("#screen-container").css("opacity", 0.1)
+      startLoading()
 
   if $('.pagination').length
     $(window).on "scroll", ->
@@ -71,10 +72,13 @@ $(document).ready(ready)
 $(document).on('page:load', ready)
 
 $(document).on 'page:change', ->
+  endLoading()
+
+@startLoading = ->
+  $(".ajax-loader").fadeIn()
+  $("#screen-container").css("opacity", 0.1)
+
+@endLoading = ->
   $(".ajax-loader").hide()
   $("#screen-container").css("opacity", 1)
-  $("#content-container").hide()
-  $("#content-container").show("drop")
-
-
 

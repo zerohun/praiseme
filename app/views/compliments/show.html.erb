@@ -1,16 +1,18 @@
 <p id="notice"><%= notice %></p>
-<table id="compliment-show" class="table">
-  <tbody>
-  <tr>
-    <td><%= image_tag @compliment.sender.image_url, :class => "img-small img-circle" %></td>
-    <td><i class="icon-arrow-right"></i></td>
-    <td><%= image_tag @compliment.receiver.image_url, :class => "img-small img-circle" %></td>
-  </tr>
-  <tr>
-    <td colspan=3><%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %></td>
-  </tr>
-  <tr>
-    <td colspan=3><%= @compliment.description %></td>
-  </tr>
-  </tbody>
-</table>
+<div id="compliment-show" class="round border">
+  <table class="table">
+    <tbody>
+    <tr>
+      <td><%= image_tag @compliment.sender.image_url, :class => "img-small img-circle" %></td>
+      <td><i class="icon-arrow-right"></i></td>
+      <td><%= image_tag @compliment.receiver.image_url, :class => "img-small img-circle" %></td>
+    </tr>
+    <tr>
+      <td colspan=3><%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %></td>
+    </tr>
+    <tr>
+      <td colspan=3><%= @compliment.description %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

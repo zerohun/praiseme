@@ -1,45 +1,49 @@
-<%= form_for(@compliment) do |f| %>
-  <% if @compliment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@compliment.errors.count, "error") %> prohibited this compliment from being saved:</h2>
+<div id="compliment-form", class="round border">
+  <%= form_for(@compliment) do |f| %>
+    <% if @compliment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@compliment.errors.count, "error") %> prohibited this compliment from being saved:</h2>
 
-      <ul>
-      <% @compliment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @compliment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="text-center">
+      <%= image_tag f.object.receiver.image_url(:type => "large"), :class => "img-normal img-circle image-shadow" %>
+    </div>
+    <br>
+    <div id="stamp-field">
+      <h2>What do you think of <%= @compliment.receiver.username %>? </h2>
+      <h1 class="stamp-title hidden">
+      </h1>
+      <div class="row-fluid stamp-fields">
+        <%= f.hidden_field :receiver_id %>
+        <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search" %>
+        <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
+        <div class="create-stamp-fields hidden">
+          <span class="guide">
+          </span>
+          <%= link_to "", stamps_path, :class => "create-stamp-button btn" %>
+        </div>
+        <blockquote>
+          <p><small>ex) Nice person, Great singer, Buatiful or Hansome</small></p>
+        </blockquote>
+          <!-- %= link_to "I can't find stamp I want", new_stamp_path(:compliment => {:receiver_id => f.object.receiver_id}) % -->
+      </div>
+    </div>
+
+    <div id="reason-field", class="hidden">
+      <br>
+      <h2>Any Reason?</h2>
+      <div class="row-fluid">
+        <%= f.text_area :description, :placeholder => "(optional)",:class => "span12 reason-field" %>
+      </div>
+    </div>
+    <div class="actions hidden text-center">
+      <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
     </div>
   <% end %>
-  <div class="text-center">
-    <%= image_tag f.object.receiver.image_url(:type => "large"), :class => "img-normal img-circle" %>
-  </div>
-  <br>
-  <div id="stamp-field">
-    <h1>You think <%= @compliment.receiver.username %> is </h1>
-    <br>
-    <div class="row-fluid">
-      <%= f.hidden_field :receiver_id %>
-      <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search" %>
-      <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
-      <div class="create-stamp-fields hidden">
-        <span class="guide">
-        </span>
-        <%= link_to "", stamps_path, :class => "create-stamp-button btn" %>
-      </div>
-      <blockquote>
-        <p><small>ex) Nice person, Great singer, Buatiful or Hansome</small></p>
-      </blockquote>
-        <!-- %= link_to "I can't find stamp I want", new_stamp_path(:compliment => {:receiver_id => f.object.receiver_id}) % -->
-    </div>
-  </div>
-
-  <div id="reason-field", class="hidden">
-    <h1>Any Reason?</h1>
-    <div class="row-fluid">
-      <%= f.text_area :description, :placeholder => "(optional)",:class => "span12 reason-field" %>
-    </div>
-  </div>
-  <div class="actions hidden text-center">
-    <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
-  </div>
-<% end %>
+</div>

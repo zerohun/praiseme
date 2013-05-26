@@ -1,4 +1,4 @@
-<div class="user-profile">
+<div class="user-profile round border">
   <div class="profile-row">
     <div class="profile-picture">
       <%= image_tag @user.image_url(type: "large"), :class => "img-normal img-polaroid" %>
@@ -36,8 +36,7 @@
             <tr>
               <td class="invite">
                 <%= @user.username %> is not enjoying Brovo you yet. Do you want to invite him or her?
-                <br>
-                <%= link_to "Yes", "", :class => "btn" %>
+                &nbsp;<%= link_to "Yes", "", :class => "btn" %>
               </td>
             </tr>
           <% end %>

@@ -1,27 +1,32 @@
 // Place all the styles related to the compliments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table#compliment-show{
+#compliment-show{
   margin-top: 30px;
 
+  background-color: #e4faf5;
   td{
-    background-color: #e4faf5;
     text-align :center
   }
 }
-div#stamp-field{
-  input[type=text].stamp-text-search{
-    height: 60px;
-    font-size: 30px;
-  }
-}
-div#reason-field{
-  textarea{
-    height: 80px;
-    font-size: 20px;
-    padding: 10px;
+
+#compliment-form{
+  background-color: #e4faf5;
+  padding: 10px;
+  div#stamp-field{
+    input[type=text].stamp-text-search{
+      height: 60px;
+      font-size: 30px;
+    }
   }
 
+  div#reason-field{
+    textarea{
+      height: 80px;
+      font-size: 20px;
+      padding: 10px;
+    }
+  }
 }
 ul.ui-autocomplete {
   position: absolute;
@@ -44,24 +49,25 @@ ul.ui-autocomplete {
     a.ui-state-hover, a.ui-state-active {
       background-color: #FFFCB2;
     }
-
   }
+
+  div.create-stamp-fields{
+    color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #AAA;
+    .guide{
+      font-size: 20px;
+    }
+    padding: 5px;
+    a.btn{
+      font-size: 20px;
+      padding: 10px;
+    } 
+  }
+
 }
 .ui-helper-hidden-accessible{
   display: none;
 }
 
-div.create-stamp-fields{
-  color: black;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #AAA;
-  .guide{
-    font-size: 20px;
-  }
-  padding: 5px;
-  a.btn{
-    font-size: 20px;
-    padding: 10px;
-  } 
-}

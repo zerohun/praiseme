@@ -36,14 +36,22 @@ ready = ->
     if $(this).val() == ""
       $("div.create-stamp-fields").addClass("hidden")
 
+  $("input.stamp-text-search").click ->
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+
   $("a.create-stamp-button").click (event)->
     event.preventDefault()
     stamp_title_text = $("input.stamp-text-search").val()
     url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"
     $.post url, (data)->
       stamp_id = data.id
-      $(".ajax-loader").hide()
-      $("#screen-container").css("opacity", 1)
+      endLoading()
+      $stamp_fields = $("div.stamp-fields")
+      $stamp_title = $(".stamp-title")
+      $stamp_fields.addClass "hidden"
+      $stamp_title.removeClass "hidden"
+      $stamp_title.text stamp_title_text
+      
 
       $("input[type=hidden].stamp-id").val(stamp_id)
       $("div#reason-field").hide()
