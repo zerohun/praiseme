@@ -42,6 +42,8 @@ ready = ->
     url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"
     $.post url, (data)->
       stamp_id = data.id
+      $(".ajax-loader").hide()
+      $("#screen-container").css("opacity", 1)
 
       $("input[type=hidden].stamp-id").val(stamp_id)
       $("div#reason-field").hide()

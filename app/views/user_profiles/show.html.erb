@@ -46,7 +46,9 @@
     </div>
     <div class="clear_float">
     </div>
-    <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
+    <% if current_user != @user %>
+      <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
+    <% end %>
   </div>
 
 
