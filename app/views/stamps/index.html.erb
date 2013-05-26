@@ -1,16 +1,10 @@
-<table class="table">
-  <tbody>
-    <% @stamps.each do |stamp| %>
-    <tr>
-      <td>
-        <%= link_to stamp do %>
-          <%= render stamp %>
-        <% end %>
-    </td>
-      <td><%= stamp.used_count %>times used</td>
-    </tr>
+<div id="stamp-index">
+  <% @stamps.each do |stamp| %>
+    <%= link_to stamp do %>
+      <article class="round shadow">
+        <%= render stamp %>
+        <%= stamp.user_stamps.count %>&nbsp;People have
+      </article>
     <% end %>
-  </tbody>
-</table>
-
-<br />
+  <% end %>
+</div>

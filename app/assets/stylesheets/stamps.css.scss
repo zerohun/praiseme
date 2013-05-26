@@ -2,3 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#stamp-show{
+  background-color: #e4faf5;
+  text-align: center;
+}
+
+#stamp-index{
+  text-align: center;
+  article{
+    background-color: #e4faf5;
+    margin-top: 20px;
+  }
+}

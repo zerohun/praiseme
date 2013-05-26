@@ -59,7 +59,7 @@ ready = ->
       if $('.pagination a[rel=next]').length
         url = $('.pagination a[rel=next]').attr('href')
         if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
-          $('.pagination').html('<img src="/ajax-loader.gif" /><h4>Fetching more friends...</h4>')
+          $('.pagination').html('<span class="label label-darkgreen label-page-loading round border"><img src="/ajax-loader.gif" />&nbsp;&nbsp;Fetching more informations</span>')
           $.getScript(url)
 
   adjustDeviceSize()

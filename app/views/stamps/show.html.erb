@@ -1,26 +1,4 @@
+<div id="stamp-show" class="round border">
 <p id="notice"><%= notice %></p>
-<%= image_tag @stamp.image_url %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @stamp.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @stamp.description %>
-</p>
-
-<p>
-  <strong>Used count:</strong>
-  <%= @stamp.used_count %>
-</p>
-
-<p>
-  <strong>Is blocked:</strong>
-  <%= @stamp.is_blocked %>
-</p>
-
-
-<%= link_to 'Edit', edit_stamp_path(@stamp) %> |
-<%= link_to 'Back', stamps_path %>
+<%= render @stamp %>
+<h5><%= @stamp.user_stamps.count %> people have this trophy</h5>

@@ -5,12 +5,15 @@ div.user-stamp-show{
   background-color: #e4faf5;
   text-align: center;
   padding: 10px;
+
+  .score-label{
+    color: grey;
+  }
 }
 span.badge.badge-large{
   font-size: 30px;
   padding: 10px;
 }
-
 #compliments{
   table{
     width: 80%;

@@ -6,8 +6,11 @@
   <% end %>
   <%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %><br>
   <%= @user_stamp.stamp.description %><br>
-  <span class="badge badge-info">Level : <%= @user_stamp.level %></span><br>
-  <span class="label">Score : <%= @user_stamp.score %></span>
+  <h4>Level <%= @user_stamp.level %></h4>
+  <div class="progress">
+    <div class="bar" style="width: <%= @user_stamp.percentage_for_next_level %>%;"></div>
+    <small class="pull-right score-label"><%= @user_stamp.score %>/ <%= @user_stamp.score_for_next_level %></small>
+  </div>
 </div>
 
 <div id="compliments">
@@ -22,7 +25,7 @@
         </td>
         <td class="desc">
           <div class="alert alert-info">
-            <%= compliment.description[0..20] %>
+            <%= compliment.description %>
           </div>
         </td>
       </tr>
