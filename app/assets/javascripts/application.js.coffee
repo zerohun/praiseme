@@ -75,7 +75,7 @@ $(document).on 'page:change', ->
   endLoading()
 
 @startLoading = ->
-  $(".ajax-loader").fadeIn()
+  $(".ajax-loader").show()
   $("#screen-container").css("opacity", 0.1)
 
 @endLoading = ->

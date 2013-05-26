@@ -1,25 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<div class="well well-large">
-  <div class="row-fluid">
-    <div class="span6">
-      <table class="table">
-        <tr>
-          <td><%= image_tag @user_stamp.user.image_url, :class => "img-normal img-circle" %></td>
-          <td><%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %></td>
-        </tr>
-        <tr>
-          <td colspan=2><%= @user_stamp.stamp.description %></td>
-        </tr>
-      </table>
-    </div>
-    <div class="span6 text-center">
-      <br>
-      <span class="badge badge-large badge-info">Rank : <%= UserStamp.where(:stamp_id => @user_stamp.stamp_id).where("user_stamps.score > ?", @user_stamp.score).count + 1 %></span>
-      <br>
-      <span class="label">Score : <%= @user_stamp.score %></span>
-    </div>
-  </div>
+<div class="user-stamp-show round border">
+  <%= link_to user_profile_path(@user_stamp.user) do %>
+    <%= image_tag @user_stamp.user.image_url, :class => "img-small img-circle image-shadow" %><br>
+  <% end %>
+  <%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %><br>
+  <%= @user_stamp.stamp.description %><br>
+  <span class="badge badge-info">Level : <%= @user_stamp.level %></span><br>
+  <span class="label">Score : <%= @user_stamp.score %></span>
 </div>
 
 <div id="compliments">
@@ -28,7 +16,7 @@
       <tr>
         <td class="profile-picture">
           <%= link_to user_profile_path(compliment.sender) do %>
-            <%= image_tag compliment.sender.image, :class => "img-circle img-small"%><br>
+            <%= image_tag compliment.sender.image, :class => "img-circle img-small shadow"%><br>
             <span class="badge badge-info"><%= compliment.sender.username %></span>
           <% end %>
         </td>
