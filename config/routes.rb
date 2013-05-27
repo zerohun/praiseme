@@ -9,9 +9,10 @@ Praiseme::Application.routes.draw do
   resources :user_profiles, :only => [:index, :show] do
     get :edit, :on => :collection
     get :update, :on => :collection
+    resources :followings, :only => :index
   end
 
-  resources :followings, :only => [:index, :create, :destroy]
+  resources :followings, :only => [:create, :destroy]
 
   resources :news_feeds, :only => [:index] do
     get :get_score, :on => :member

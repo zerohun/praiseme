@@ -4,7 +4,12 @@ class FollowingsController < ApplicationController
   # GET /followings
   # GET /followings.json
   def index
-    @followings = Following.all
+    user = User.find(params[:user_profile_id])
+    if params[:type] == "followees"
+      @following = user.followees.page(params[:page]).per(20)
+    elsif params[:type] == "followers"
+      @following = user.followers.page(params[:page]).per(20)
+    end
   end
 
   # POST /followings

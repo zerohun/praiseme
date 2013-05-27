@@ -1,34 +1,4 @@
-<%= form_tag "/users", :class => "form-horizontal" do %>
-  <%= text_field_tag "search" %>
-  <%= submit_tag "Search", :class=> "btn btn-primary" %>
-<% end %>
-<h4>Following</h4>
-<table class="table">
-  <% current_user.followees.each do |followee| %>
-    <tr>
-      <td>
-        <%= link_to user_profile_path(followee) do %>
-          <%= image_tag followee.image_url, :class => "img-small" %>
-        <% end %>
-      </td>
-      <td><%= link_to followee.username, user_profile_path(followee) %></td>
-    </tr>
-  <% end %>
-</table>
-
-<h4>Following me</h4>
-<table class="table">
-  <% current_user.followers.each do |follower| %>
-    <tr>
-      <td>
-        <%= link_to user_profile_path(follower) do %>
-          <%= image_tag follower.image_url, :class => "img-small" %>
-        <% end %>
-      </td>
-      <td><%= link_to follower.username, user_profile_path(follower) %></td>
-    </tr>
-  <% end %>
-</table>
-</ul>
-<br />
-<h4>Facebook friends you are not following yet</h4>
+<div id="friends">
+  <%= render @following %>
+</div>
+<%= paginate @following %>
