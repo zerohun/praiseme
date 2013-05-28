@@ -1,10 +1,4 @@
 <div id="stamp-index">
-  <% @stamps.each do |stamp| %>
-    <%= link_to stamp do %>
-      <article class="round shadow">
-        <%= render stamp %>
-        <%= stamp.user_stamps.count %>&nbsp;People have
-      </article>
-    <% end %>
-  <% end %>
+  <%= render :partial => 'stamp_list', :locals => {:stamps => @stamps} %>
 </div>
+<%= paginate @stamps %>

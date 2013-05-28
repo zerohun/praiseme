@@ -1,0 +1,8 @@
+<% stamps.each do |stamp| %>
+  <%= link_to stamp do %>
+    <article class="round shadow">
+      <%= render stamp %>
+      <%= stamp.user_stamps.count %>&nbsp;People have
+    </article>
+  <% end %>
+<% end %>

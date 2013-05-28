@@ -57,8 +57,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def percentage_for_next_level
-    score_for_current_level = (self.level ** LEVEL_CURVE).floor * 10
-    ((self.score.to_f - score_for_current_level.to_f) / (score_for_next_level.to_f - score_for_current_level.to_f) * 100).round(0)
+    (self.score.to_f / score_for_next_level.to_f * 100).round(0)
   end
 
   def get_score_from(user_stamp)

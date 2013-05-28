@@ -8,9 +8,11 @@
   <%= @user_stamp.stamp.description %><br>
   <h4>Level <%= @user_stamp.level %></h4>
   <div class="progress">
-    <div class="bar" style="width: <%= @user_stamp.percentage_for_next_level %>%;"></div>
-    <small class="pull-right score-label"><%= @user_stamp.score %>/ <%= @user_stamp.score_for_next_level %></small>
+    <div class="bar" style="width: <%= @user_stamp.percentage_for_next_level %>%;">
+    </div>
   </div>
+  <small class="score-label"><%= @user_stamp.score %> / <%= @user_stamp.score_for_next_level %></small>
+
 </div>
 
 <div id="compliments">
@@ -19,7 +21,7 @@
       <tr>
         <td class="profile-picture">
           <%= link_to user_profile_path(compliment.sender) do %>
-            <%= image_tag compliment.sender.image, :class => "img-circle img-small shadow"%><br>
+            <%= image_tag compliment.sender.image_url, :class => "img-circle img-small shadow"%><br>
             <span class="badge badge-info"><%= compliment.sender.username %></span>
           <% end %>
         </td>

@@ -7,19 +7,20 @@ class StampsController < ApplicationController
   def index
     if params[:term].present?
       @stamps = Stamp.where("stamps.title like ?", "%#{params[:term]}%")
-    else
-      @stamps = Stamp.page(params[:page]).per(15)
     end
+    @stamps = Stamp.page(params[:page]).per(15)
 
     respond_to do |format|
       format.html {}
       format.json {render :json => @stamps.map {|stamp| {:label => stamp.title, :id => stamp.id}}}
+      format.js {}
     end
   end
 
   # GET /stamps/1
   # GET /stamps/1.json
   def show
+    @users = @stamp.users.page(params[:page]).per(20)
   end
 
   # GET /stamps/new
