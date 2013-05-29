@@ -16,21 +16,7 @@
 </div>
 
 <div id="compliments">
-  <% @user_stamp.compliments.each do |compliment| %>
-    <table>
-      <tr>
-        <td class="profile-picture">
-          <%= link_to user_profile_path(compliment.sender) do %>
-            <%= image_tag compliment.sender.image_url, :class => "img-circle img-small shadow"%><br>
-            <span class="badge badge-info"><%= compliment.sender.username %></span>
-          <% end %>
-        </td>
-        <td class="desc">
-          <div class="alert alert-info">
-            <%= compliment.description %>
-          </div>
-        </td>
-      </tr>
-    </table>
-  <% end %>
+  <%= render :partial => "/user_stamps/compliment", :collection =>  @compliments %>
 </div>
+<%= paginate @compliments %>
+

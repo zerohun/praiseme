@@ -14,23 +14,55 @@ span.badge.badge-large{
   font-size: 30px;
   padding: 10px;
 }
-#compliments{
-  table{
-    width: 80%;
-    td{
-      text-align: center;
-      margin: 2px;
-      padding: 10px;
-      .alert{
-        width: 100%;
-      }
-    }
-    td.profile-picture{
-      width: 30%;
-    }
-    td.desc{
-      width: 70%;
-    }
-    
+.compliment{
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  div{
+    display: inline-block;
+    text-align: center;
   }
+  .profile-picture{
+    width: 30%;
+    height: 150px;
+    float: left;
+  }
+  .desc{
+    width: 65%;
+    background-color: #e4faf5;
+    margin-top: 2px;
+    height: 80px;
+    float: right;
+    padding-top: 10px;
+  }
+    
+}
+
+.empty-compliment{
+  display: inline-block;
+  width: 100px;
+  height: 150px;
+  text-align: center;
+  word-break: break-all;
+  line-height: 30px;
+  vertical-align: middle;
+
+  .profile-picture{
+    line-height: 20px;
+
+
+
+  }
+
+}
+
+.user-name-label{
+  display: block;
+  background-color: #003226;
+  color: white;
+  padding: 5px;
 }
