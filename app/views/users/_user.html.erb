@@ -1,16 +1,15 @@
-<%= link_to user_profile_path(user) do %>
-  <div class="friend round shadow">
+<div class="friend round shadow">
+  <%= link_to user_profile_path(user) do %>
     <div class="image">
-      <%= image_tag user.image_url, :class => "img-small img-circle" %>
+      <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
     </div>
     <div class="name">
       <%= user.username %>
     </div>
-    <div class="status">
-      <span class="label <%= "label-success" if user.user_type == "Joined" %>">
-        <%= user.user_type %>
-      </span>
-    </div>
+  <% end %>
+  <div class="button-group pull-right">
+    <%= render :partial => '/followings/following_button', :locals => {:user => user} %>
+    <%= link_to "Bravo!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
   </div>
-<% end %>
 
+</div>

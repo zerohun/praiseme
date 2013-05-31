@@ -1,55 +1,21 @@
 <div class="user-profile round border">
+    
   <div class="profile-row">
-    <div class="profile-picture">
-      <%= image_tag @user.image_url(type: "large"), :class => "img-normal img-polaroid" %>
-    </div>
 
     <div class="profile-name">
-      <table>
-        <tr>
-          <td class="name">
-            <%= @user.username %>
-            <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
-                <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:30px;height:30px" %>
-            <% end %>
-          </td>
-        </tr>
-        <% if @user.job.present? %>
-          <tr>
-            <td>
-              <%= @user.job %>
-            </td>
-          </tr>
-        <% end %>
-
-        <% if @user.school.present? %>
-          <tr>
-            <td>
-              <%= @user.school %>
-            </td>
-          </tr>
-        <% end %>
-
-
-        <% if @user.school.blank? && @user.job.blank? %>
-          <% if @user.sns_connections.where(:provider => "facebook").first.oauth_token.blank? %>
-            <tr>
-              <td class="invite">
-                <%= @user.username %> is not enjoying Bravo you yet. Do you want to invite him or her?
-                &nbsp;<%= link_to "Yes", "", :class => "btn" %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
+      <%= @user.username %>
+      <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
+          <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:30px;height:30px" %>
+      <% end %>
     </div>
-    <div class="clear_float">
+
+    <div class="profile-picture">
+      <%= image_tag @user.image_url(type: "large"), :class => "img-normal img-polaroid" %>
     </div>
     <% if current_user != @user %>
       <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
     <% end %>
   </div>
-
 
   <div class="button-group">
     <% if current_user == @user %>

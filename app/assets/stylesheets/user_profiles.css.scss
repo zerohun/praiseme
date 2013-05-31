@@ -21,29 +21,15 @@ div.user-profile{
 
   div.profile-row{
     width: 100%;
+    text-align: center;
 
     div.profile-picture{
-      width: 40%;
       text-align: center;
-      padding-left: 10px;
-      float:left;
     }
     div.profile-name{
-      width: 50%;
-      float:left;
-      margin-left: 15px;
       text-align: center;
-      table {
-        display: inline-table;
-        td.name{
-          color: #004b3a;
-          font-size: 25px;
-          font-weight: bold;
-        }
-        td{
-          padding-top: 10px;
-        }
-      }
+      font-size: 20px;
+      font-weight: bold;
     }
   }
 
@@ -73,32 +59,37 @@ div.user-profile{
     clear:both;
   }
 
-  div#following_button{
+  div.following_button{
 
-    width: 40%;
-    padding-left: 5px;
     text-align: center;
     form{
       margin: 0px;
     }
     input[type=submit]{
       text-align: center;
-      width: 150px;
-      font-size: 15px;
-      margin-left: 10px;
-      height: 40px;
-      max-height: 40px;
+      width: 130px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
       padding: 0px;
+      font-weight: bold;
     }
     a.btn-unfollow{
       text-align: center;
-      width: 150px;
-      font-size: 15px;
-      margin-left: 10px;
+      width: 130px;
       padding-top: 10px;
       padding-bottom: 10px;
-      padding-left: 10px;
-      padding-right: 0px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    a.btn-invite{
+      text-align: center;
+      width: 130px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      font-weight: bold;
     }
     a.btn{
     }

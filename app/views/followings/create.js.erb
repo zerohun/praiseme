@@ -1,2 +1,2 @@
-$("div#following_button").html("<%= j render(:partial => '/followings/following_button', :locals => {:user => @following.followee}) %>")
+$("div#<%= @following.followee_id %>.following_button").replaceWith("<%= j render(:partial => '/followings/following_button', :locals => {:user => @following.followee}) %>")
 endLoading()
