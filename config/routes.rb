@@ -28,6 +28,10 @@ Praiseme::Application.routes.draw do
   
   resources :main, :only => [:index]
   root :to => "news_feeds#index"
+  
+  namespace :admin do
+    resources :default_trophy_images
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

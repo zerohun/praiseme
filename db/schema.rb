@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130601140548) do
+ActiveRecord::Schema.define(version: 20130601172919) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20130601140548) do
   end
 
   add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id", using: :btree
+
+  create_table "default_trophy_images", force: true do |t|
+    t.string   "file"
+    t.integer  "image_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "followings", force: true do |t|
     t.integer  "follower_id"
@@ -76,7 +83,10 @@ ActiveRecord::Schema.define(version: 20130601140548) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "default_trophy_image_id"
   end
+
+  add_index "stamps", ["default_trophy_image_id"], name: "index_stamps_on_default_trophy_image_id", using: :btree
 
   create_table "user_news_feeds", force: true do |t|
     t.integer  "user_id"
