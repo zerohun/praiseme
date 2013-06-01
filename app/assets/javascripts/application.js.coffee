@@ -51,7 +51,7 @@ ready = ->
     startLoading()
 
   $('a').on "click", (event)->
-    if $(this).attr("href")
+    if $(this).attr("href") && $(this).attr("href") != "" && $(this).hasClass("no-loading") == false
       startLoading()
 
   if $('.pagination').length

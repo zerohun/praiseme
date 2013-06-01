@@ -5,8 +5,9 @@ class StampsController < ApplicationController
   # GET /stamps
   # GET /stamps.json
   def index
+    @stamps = Stamp.where("")
     if params[:term].present?
-      @stamps = Stamp.where("stamps.title like ?", "%#{params[:term]}%")
+      @stamps = @stamps.where("stamps.title like ?", "%#{params[:term]}%")
     end
     @stamps = @stamps.page(params[:page]).per(15)
 

@@ -26,7 +26,7 @@
         <div class="create-stamp-fields hidden">
           <span class="guide">
           </span>
-          <%= link_to "", stamps_path, :class => "create-stamp-button btn" %>
+          <%= link_to "", stamps_path, :class => "create-stamp-button btn no-loading" %>
         </div>
         <blockquote>
           <p><small>ex) Nice person, Great singer, Buatiful or Hansome</small></p>
@@ -46,4 +46,11 @@
       <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
     </div>
   <% end %>
+</div>
+<div id="create-stamp-popup" class="modal hide fade">
+  <div class="modal-header">
+    <h3>Select shape of trophy</h3>
+  </div>
+  <div class="modal-body">
+  </div>
 </div>

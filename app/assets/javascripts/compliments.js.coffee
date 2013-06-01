@@ -37,30 +37,30 @@ ready = ->
       $("div.create-stamp-fields").addClass("hidden")
 
   $("input.stamp-text-search").click ->
-    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow")
 
   $("a.create-stamp-button").click (event)->
     event.preventDefault()
-    stamp_title_text = $("input.stamp-text-search").val()
-    url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"
-    $.post url, (data)->
-      stamp_id = data.id
-      endLoading()
-      $stamp_fields = $("div.stamp-fields")
-      $stamp_title = $(".stamp-title")
-      $stamp_fields.addClass "hidden"
-      $stamp_title.removeClass "hidden"
-      $stamp_title.text stamp_title_text
+    $("#create-stamp-popup").modal()
+    #stamp_title_text = $("input.stamp-text-search").val()
+    #url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"
+    #$.post url, (data)->
+      #stamp_id = data.id
+      #endLoading()
+      #$stamp_fields = $("div.stamp-fields")
+      #$stamp_title = $(".stamp-title")
+      #$stamp_fields.addClass "hidden"
+      #$stamp_title.removeClass "hidden"
+      #$stamp_title.text stamp_title_text
       
-
-      $("input[type=hidden].stamp-id").val(stamp_id)
-      $("div#reason-field").hide()
-      $("div#reason-field").removeClass("hidden")
-      $("div.actions").removeClass("hidden")
-      $("div#reason-field").fadeIn()
-      $("div#reason-field").find("textarea").focus()
-      $(window).scrollTop($(window).height())
-    , "json"
+      #$("input[type=hidden].stamp-id").val(stamp_id)
+      #$("div#reason-field").hide()
+      #$("div#reason-field").removeClass("hidden")
+      #$("div.actions").removeClass("hidden")
+      #$("div#reason-field").fadeIn()
+      #$("div#reason-field").find("textarea").focus()
+      #$(window).scrollTop($(window).height())
+    #, "json"
 
 
 

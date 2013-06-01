@@ -21,6 +21,9 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'whenever'
 gem 'dalli', '~> 2.6.3'
+gem 'simple_form'
+
+
 
 # test
 #
