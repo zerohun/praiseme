@@ -51,8 +51,11 @@ class User < ActiveRecord::Base
   end
 
   def friends
-    User.joins("INNER JOIN friendships ON users.id = friendships.has_invited_id or users.id = friendships.is_invited_by_id").
-      where("(friendships.has_invited_id = ? or friendships.is_invited_by_id = ?) and users.id != ? ", self.id, self.id, self.id)
+    user_ids = User.joins("INNER JOIN friendships ON users.id = friendships.has_invited_id or users.id = friendships.is_invited_by_id").
+                    where("(friendships.has_invited_id = ? or friendships.is_invited_by_id = ?) and users.id != ? ", self.id, self.id, self.id).
+                    select("users.id").all.uniq.map {|u| u.id}
+
+    User.where(:id => user_ids)
   end
 
   def user_type
@@ -106,13 +109,22 @@ class User < ActiveRecord::Base
 
   def invites_friends_automatically
 
-    friends = self.facebook.get_connections("me", "friends")
     friends.each do |friend|
       if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?
         invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
         sns_connection.save(:validate => false)
       end
+    end
+  end
+
+
+  def introduce
+    if self[:introudce].present?
+    elsif self.job.present? || self.school.present?
+      return [self.job, self.school].compact.join("<br><br>").html_safe
+    else
+      nil
     end
   end
 end

@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 div.user-profile{
   background-color: #e4faf5;
+  text-align: center;
 
   .bottom-button-group{
     a{
@@ -131,5 +132,15 @@ div.user-profile{
         text-align: center;
       }
     }
+  }
+  .introduce{
+    background-color: white;
+    border-color: lightgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 90%;
+    font-weight: bold;
+    display: inline-block;
   }
 }

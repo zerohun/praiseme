@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130517081751) do
+ActiveRecord::Schema.define(version: 20130601140548) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20130517081751) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
-    t.string   "introduce"
+    t.text     "introduce"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"

@@ -20,6 +20,11 @@
   </div>
   <br>
   <div class="clear-both"></div>
+  <% if @user.introduce.present? %>
+    <div class="introduce border round">
+      <%= @user.introduce %>
+    </div>
+  <% end %>
 
   <div class="button-group">
     <% if current_user == @user %>
