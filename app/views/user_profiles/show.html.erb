@@ -2,20 +2,24 @@
     
   <div class="profile-row">
 
-    <div class="profile-name">
-      <%= @user.username %>
-      <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
-          <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:30px;height:30px" %>
-      <% end %>
-    </div>
-
     <div class="profile-picture">
       <%= image_tag @user.image_url(type: "large"), :class => "img-normal img-polaroid" %>
     </div>
-    <% if current_user != @user %>
-      <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
-    <% end %>
+
+    <div class="profile-name">
+      <%= @user.username %>
+    </div>
+    <div class="sns-button-group">
+      <%= link_to "http://www.facebook.com/#{@user.uid}" do %>
+          <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:50px;height:50px" %>
+      <% end %>
+      <% if current_user != @user %>
+        <%= render :partial => '/followings/following_button', :locals => {:user => @user} %>
+      <% end %>
+    </div>
   </div>
+  <br>
+  <div class="clear-both"></div>
 
   <div class="button-group">
     <% if current_user == @user %>

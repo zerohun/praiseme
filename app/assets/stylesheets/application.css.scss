@@ -158,6 +158,10 @@ a:active{
   border-color: #004b3a;
 }
 
+.clear-both{
+  clear: both;
+}
+
 .clear-float{
-  float: clear;
+  float: clear !important;
 }

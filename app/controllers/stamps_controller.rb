@@ -8,7 +8,7 @@ class StampsController < ApplicationController
     if params[:term].present?
       @stamps = Stamp.where("stamps.title like ?", "%#{params[:term]}%")
     end
-    @stamps = Stamp.page(params[:page]).per(15)
+    @stamps = @stamps.page(params[:page]).per(15)
 
     respond_to do |format|
       format.html {}
