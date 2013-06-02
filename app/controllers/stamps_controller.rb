@@ -80,6 +80,6 @@ class StampsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stamp_params
-      params.require(:stamp).permit(:title, :description, :used_count, :is_blocked, :compliments_attributes => [:receiver_id, :sender_id, :description])
+      params.require(:stamp).permit(:title, :default_trophy_image_id, :description, :used_count, :is_blocked, :compliments_attributes => [:receiver_id, :sender_id, :description])
     end
 end

@@ -3,7 +3,6 @@
     <% if @compliment.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@compliment.errors.count, "error") %> prohibited this compliment from being saved:</h2>
-
         <ul>
         <% @compliment.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -52,5 +51,10 @@
     <h3>Select shape of trophy</h3>
   </div>
   <div class="modal-body">
+    <% @stamps.each do |stamp| %>
+      <%= button_tag :id => stamp.default_trophy_image_id, :class => "default-trophy-image-select-button" do %>
+        <%= render stamp %>
+      <% end %>
+    <% end %>
   </div>
 </div>

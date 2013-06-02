@@ -18,7 +18,7 @@ capybara-*.html
 /config/database.yml
 /config/deploy.rb
 /current/*
-/public/upload
+/public/upload/*
 /public/system/*
 /coverage/
 /spec/tmp/*

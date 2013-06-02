@@ -41,7 +41,11 @@ ready = ->
 
   $("a.create-stamp-button").click (event)->
     event.preventDefault()
-    $("#create-stamp-popup").modal()
+    stamp_title_text = $("input.stamp-text-search").val()
+    $popup = $("#create-stamp-popup")
+    $popup.find(".stamp-title").text stamp_title_text 
+    $popup.modal()
+
     #stamp_title_text = $("input.stamp-text-search").val()
     #url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"
     #$.post url, (data)->
@@ -62,6 +66,29 @@ ready = ->
       #$(window).scrollTop($(window).height())
     #, "json"
 
+  $("button.default-trophy-image-select-button").click ->
+    stamp_title_text = $("input.stamp-text-search").val()
+    $popup = $("#create-stamp-popup")
+    $popup.modal("hide")
+
+    url = "/stamps.json"
+    $.post url, {"stamp[title]": stamp_title_text, "stamp[default_trophy_image_id]": $(this).attr("id") }, (data)->
+      stamp_id = data.id
+      endLoading()
+      $stamp_fields = $("div.stamp-fields")
+      $stamp_title = $(".stamp-title")
+      $stamp_fields.addClass "hidden"
+      $stamp_title.removeClass "hidden"
+      $stamp_title.text stamp_title_text
+      
+      $("input[type=hidden].stamp-id").val(stamp_id)
+      $("div#reason-field").hide()
+      $("div#reason-field").removeClass("hidden")
+      $("div.actions").removeClass("hidden")
+      $("div#reason-field").fadeIn()
+      $("div#reason-field").find("textarea").focus()
+      $(window).scrollTop($(window).height())
+    , "json"
 
 
 $(document).ready(ready)

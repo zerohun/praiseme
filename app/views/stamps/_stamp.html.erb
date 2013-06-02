@@ -5,6 +5,9 @@
   <% size = "normal" if size.blank? %>
   <% if stamp.image.present? %>
     <%= image_tag stamp.image_url, :class => "img-#{size}" %>
+  <% elsif stamp.default_trophy_image.present? %>
+    <%= image_tag stamp.default_trophy_image.file_url, :class => "img-#{size}" %>
+    <br>
   <% else %>
     <%= image_tag "trophy.png", :class => "img-#{size}" %>
     <br>
