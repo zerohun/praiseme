@@ -8,6 +8,7 @@ gem 'thinking-sphinx', '~> 3.0.2'
 gem 'devise', :git => "git://github.com/zerohun/devise.git"
 gem 'omniauth-facebook'
 gem 'pry'
+gem 'nokogiri'
 gem 'carrierwave'
 gem "kaminari"
 gem "hirb"
@@ -22,13 +23,15 @@ gem 'slim'
 gem 'whenever'
 gem 'dalli', '~> 2.6.3'
 gem 'simple_form'
-
+gem 'wordnet-defaultdb'
+gem 'stanford-core-nlp', :path => "/Users/choi0hun/Project/stanford-core-nlp"
+#gem 'open-nlp'
+#gem 'treat', :path => "/Users/choi0hun/Project/treat"
 
 
 # test
 #
 gem 'mocha', :git => "git@github.com:freerange/mocha.git", :require => false
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
 
