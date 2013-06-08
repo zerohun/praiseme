@@ -73,7 +73,6 @@ class String
            :phrase => ["PHRASE"]
           
     }
-
     pos_labels.each_pair do |pos_label, list|
       if list.include? self
         return pos_label
