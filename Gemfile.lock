@@ -15,8 +15,9 @@ GIT
     mocha (0.13.3)
       metaclass (~> 0.0.1)
 
-PATH
-  remote: /Users/choi0hun/Project/stanford-core-nlp
+GIT
+  remote: git@github.com:zerohun/stanford-core-nlp.git
+  revision: 7bfdecdef2f1e67fea89289e54b28fad3b8fc795
   specs:
     stanford-core-nlp (0.5.1)
       bind-it (~> 0.2.5)
