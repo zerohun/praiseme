@@ -34,6 +34,12 @@ end
 
 Hirb.enable
 
+module SimilarKeywordHelper
+  def self.refine_keywords(original_text, keywords)
+    uniq_keywords = keywords.uniq
+    uniq_keywords = uniq_keywords - [original_text]
+  end
+end
 
 class String
   def to_pos_tags
@@ -84,11 +90,11 @@ class String
     self.to_pos_tags.each do |pos_tag|
       if pos_tag[:pos].pos_label.present?
         if pos_tag[:pos].pos_label == :phrase
-          keywords[:phrase] = keywords[:phrase] + pos_tag[:text].synomyms
+          keywords[:phrase] = SimilarKeywordHelper.refine_keywords(self, keywords[:phrase] + pos_tag[:text].synomyms)
         else
-          keywords[pos_tag[:pos].pos_label] = keywords[pos_tag[:pos].pos_label] + pos_tag[:text].synomyms(pos_tag[:pos].pos_label.to_s)
+          keywords[pos_tag[:pos].pos_label] = SimilarKeywordHelper.refine_keywords(self, keywords[pos_tag[:pos].pos_label] + pos_tag[:text].synomyms(pos_tag[:pos].pos_label.to_s))
           if pos_tag[:pos].pos_label == :adjective
-            keywords[:adjective] = keywords[:adjective] + pos_tag[:text].synomyms("adjective satellite")
+            keywords[:adjective] = SimilarKeywordHelper.refine_keywords(self, keywords[:adjective] + pos_tag[:text].synomyms("adjective satellite").uniq)
           end
         end
       end
@@ -104,5 +110,4 @@ class String
     end
     synsets.map {|synset| synset.words.map{|word| word.to_s}}.flatten
   end
-
 end

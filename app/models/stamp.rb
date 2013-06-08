@@ -4,8 +4,28 @@ class Stamp < ActiveRecord::Base
   has_many :compliments, :dependent => :destroy
   has_many :user_stamps, :dependent => :destroy
   has_many :users, :through => :user_stamps
+  has_many :search_keywords, :as => :target
   belongs_to :default_trophy_image
   accepts_nested_attributes_for :compliments
 
   mount_uploader :image, ImageFileUploader
+
+  before_create do |stamp|
+    simliar_keywords = stamp.title.similar_keywords
+    simliar_keywords.each_pair do |key, items|
+      if key == :phrase
+        items.each do |item|
+          stamp.search_keywords.new :text => item, :priority => 10
+        end
+      elsif key == :noun
+         items.each do |item|
+          stamp.search_keywords.new :text => item, :priority => 9
+        end
+      else
+         items.each do |item|
+          stamp.search_keywords.new :text => item, :priority => 5
+        end
+      end
+    end
+  end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  text: MyString
+  priority: 1
+  target_id: 
+  target_type: MyString
+
+two:
+  text: MyString
+  priority: 1
+  target_id: 
+  target_type: MyString

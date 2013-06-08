@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130601172919) do
+ActiveRecord::Schema.define(version: 20130608042441) do
 
   create_table "compliments", force: true do |t|
     t.integer  "sender_id"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 20130601172919) do
   end
 
   add_index "news_feeds", ["notifiable_id"], name: "index_news_feeds_on_notifiable_id", using: :btree
+
+  create_table "search_keywords", force: true do |t|
+    t.string   "text"
+    t.integer  "priority"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "search_keywords", ["target_id"], name: "index_search_keywords_on_target_id", using: :btree
 
   create_table "sns_connections", force: true do |t|
     t.string   "provider"
