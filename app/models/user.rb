@@ -121,10 +121,21 @@ class User < ActiveRecord::Base
 
   def introduce
     if self[:introudce].present?
+      super
     elsif self.job.present? || self.school.present?
-      return [self.job, self.school].compact.join("<br><br>").html_safe
+      return [self.job, self.school].compact.join("\n\n").html_safe
     else
       nil
     end
   end
+
+  def introduce_html
+    if self.introduce.present?
+      self.introduce.gsub("\n","<br>").html_safe
+    else
+      nil
+    end
+  end
+
+
 end
