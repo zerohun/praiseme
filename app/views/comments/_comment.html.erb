@@ -1,0 +1,10 @@
+<div class="comment round ">
+  <div class="profile-picture">
+    <%= link_to user_profile_path(comment.user) do %>
+      <%= image_tag comment.user.image_url(width: 30, height:30), :class => "img-circle image-shadow" %>
+    <% end %>
+  </div>
+  <div class="content">
+    <%= comment.content %>
+  </div>
+</div>

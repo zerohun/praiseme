@@ -54,7 +54,7 @@ ready = ->
     if $(this).attr("href") && $(this).attr("href") != "" && $(this).hasClass("no-loading") == false
       startLoading()
 
-  if $('.pagination').length
+  if $('.pagination').length && $('.pagination').parent().attr("id") != "comment-pagination"
     $(window).on "scroll", ->
       if $('.pagination a[rel=next]').length
         url = $('.pagination a[rel=next]').attr('href')

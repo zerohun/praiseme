@@ -82,8 +82,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def image_url(type: "normal")
-    "https://graph.facebook.com/#{self.uid}/picture?type=#{type}"
+  def image_url(width: 200, height: 200)
+    "https://graph.facebook.com/#{self.uid}/picture?width=#{width}&height=#{height}"
   end
 
 

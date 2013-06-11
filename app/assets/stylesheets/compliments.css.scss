@@ -3,11 +3,40 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #compliment-show{
   margin-top: 30px;
-
   background-color: #e4faf5;
-  td{
-    text-align :center
+  padding: 10px;
+  text-align: center;
+  .receiver-name{
+    font-size: 12px;
+    font-weight: bold;
   }
+}
+
+#compliment-text{
+  margin-top: 10px;
+  background-color: #e4faf5;
+  padding: 10px;
+  .img-profile{
+    display: inline-block;
+  }
+  .text{
+    display: inline-block;
+    background-color: white;
+    width: 70%;
+    padding: 10px;
+    margin-left: 5px;
+  }
+}
+
+#new_comment{
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+  #comment_content{
+    width: 90%;
+  }
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #compliment-form{
@@ -73,4 +102,24 @@ ul.ui-autocomplete {
 #create-stamp-popup{
   text-align: center;
 }
+#comments{
+  text-align: center;
+}
+.comment{
+  background-color: #E0F8E6;
+  margin-top: 5px;
+  padding: 2px;
+  width: 90%;
+  display: inline-block;
+  text-align: left;
 
+  .profile-picture{
+    display: inline-block
+  }
+  .content{
+    display: inline-block
+  }
+}
+.btn-more-comments{
+  width: 90%;
+}

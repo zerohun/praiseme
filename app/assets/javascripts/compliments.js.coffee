@@ -89,7 +89,16 @@ ready = ->
       $("div#reason-field").find("textarea").focus()
       $(window).scrollTop($(window).height())
     , "json"
+   
+  $("#new_comment > #comment_content").keydown (e)->
+    if e.keyCode == 13
+      $("#new_comment").submit()
+      $(this).val("")
 
+  if $('#comment-pagination .pagination a[rel=next]').length > 0
+    $(".btn-more-comments").show()
+  else
+    $(".btn-more-comments").hide()
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

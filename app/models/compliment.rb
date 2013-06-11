@@ -2,6 +2,8 @@ class Compliment < ActiveRecord::Base
 
   default_scope {includes(:sender, :receiver, :stamp)}
 
+  has_many :comments, :as => :target
+
   has_one :news_feed, :dependent => :destroy
 
   belongs_to :sender , :foreign_key => :sender_id, :class_name => "User"

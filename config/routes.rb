@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Praiseme::Application.routes.draw do
+  get "comments/create"
   mount Sidekiq::Web, at: "/sidekiq"
   
   post "locations/update"
@@ -19,7 +20,9 @@ Praiseme::Application.routes.draw do
   end
 
   resources :user_stamps
-  resources :compliments
+ resources :compliments do
+    resources :comments, :only => :create
+  end
   resources :stamps
 
   get "main/index"
