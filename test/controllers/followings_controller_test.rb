@@ -8,9 +8,8 @@ class FollowingsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :index, :user_profile_id => 1
     assert_response :success
-    assert_not_nil assigns(:followings)
   end
 
   test "should create following" do

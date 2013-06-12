@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
     @comment = compliment.comments.new comment_params
     if params[:last_comment_id].present?
       @comments = compliment.comments.where("comments.id > ?", params[:last_comment_id])
+    else
+      @comments = [@comment]
     end
     @comment.user = current_user
     if @comment.save

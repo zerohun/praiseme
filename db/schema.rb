@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130609073050) do
+ActiveRecord::Schema.define(version: 20130612165646) do
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20130609073050) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_going_to_be_removed"
   end
 
   add_index "comments", ["target_id"], name: "index_comments_on_target_id", using: :btree
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130609073050) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_going_to_be_removed"
   end
 
   add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id", using: :btree

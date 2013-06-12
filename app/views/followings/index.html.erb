@@ -1,4 +1,8 @@
-<div id="friends">
-  <%= render @following %>
-</div>
-<%= paginate @following %>
+<% if @following.present? %>
+  <div id="friends">
+    <%= render @following %>
+  </div>
+  <%= paginate @following %>
+<% else %>
+  <h5>There isn't anyone</h5>
+<% end %>

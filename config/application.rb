@@ -110,3 +110,5 @@ class String
     synsets.map {|synset| synset.words.map{|word| word.to_s}}.flatten
   end
 end
+
+

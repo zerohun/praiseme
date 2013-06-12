@@ -64,7 +64,8 @@ class ComplimentsController < ApplicationController
   # DELETE /compliments/1
   # DELETE /compliments/1.json
   def destroy
-    @compliment.destroy
+    #@compliment.destroy
+    @compliment.update_attribute :is_going_to_be_removed, true
     respond_to do |format|
       format.html { redirect_to compliments_url }
       format.json { head :no_content }

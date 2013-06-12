@@ -11,5 +11,15 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
+  def json
+    ActiveSupport::JSON.decode @response.body
+  end
+
+  def blank_image
+    Rack::Test::UploadedFile.new(Rails.root.join('public/images_for_test/test.png'), 'image/png')
+  end  
+  
+  
+
   # Add more helper methods to be used by all tests here...
 end
