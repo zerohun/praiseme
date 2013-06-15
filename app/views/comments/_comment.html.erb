@@ -7,4 +7,7 @@
   <div class="content">
     <%= comment.content %>
   </div>
+  <div class="delete-button">
+    <%= link_to "x", [comment.target, comment], :method => :delete, :confirm => "Do you really want to delete this comment?", :class => "btn btn-mini no-loading round`" %>
+  </div>
 </div>

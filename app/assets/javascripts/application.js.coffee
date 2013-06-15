@@ -54,13 +54,13 @@ ready = ->
     if $(this).attr("href") && $(this).attr("href") != "" && $(this).hasClass("no-loading") == false
       startLoading()
 
-  if $('.pagination').length && $('.pagination').parent().attr("id") != "comment-pagination"
-    $(window).on "scroll", ->
-      if $('.pagination a[rel=next]').length
-        url = $('.pagination a[rel=next]').attr('href')
-        if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
-          $('.pagination').html('<span class="label label-darkgreen label-page-loading round border"><img src="/ajax-loader.gif" />&nbsp;&nbsp;Fetching more information</span>')
-          $.getScript(url)
+
+  $(window).on "scroll", ->
+    if $('.pagination').length > 0 && $('.pagination a[rel=next]').length > 0 && $('.pagination').parent().attr("id") != "comment-pagination"
+      url = $('.pagination a[rel=next]').attr('href')
+      if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
+        $('.pagination').html('<span class="label label-darkgreen label-page-loading round border"><img src="/ajax-loader.gif" />&nbsp;&nbsp;Fetching more information</span>')
+        $.getScript(url)
 
   adjustDeviceSize()
   if $.cookie('need_to_check_location') == 'true'

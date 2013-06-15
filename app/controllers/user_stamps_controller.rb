@@ -10,7 +10,7 @@ class UserStampsController < ApplicationController
   # GET /user_stamps/1
   # GET /user_stamps/1.json
   def show
-    @compliments = @user_stamp.compliments.order("compliments.description is not null desc, compliments.id desc").
+    @compliments = @user_stamp.compliments.avaliable.order("compliments.description is not null desc, compliments.id desc").
       page(params[:page]).per(20)
   end
 

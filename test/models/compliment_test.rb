@@ -30,4 +30,6 @@ class ComplimentTest < ActiveSupport::TestCase
       compliment.save
     end
   end
+
+
 end

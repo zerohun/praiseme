@@ -42,10 +42,17 @@ class ComplimentsControllerTest < ActionController::TestCase
   end
 
   test "should destroy compliment" do
-    assert_difference('Compliment.count', -1) do
+    # make sure when you compliment somebody, it's gonna create user_stamp for sender and reciver
+    receiver_user_stamps = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id)
+    sender_user_stamp = UserStamp.first_or_initialize(:user_id => @compliment.sender_id, :stamp_id => @compliment.stamp_id)
+
+    before_score = receiver_user_stamps.first.score
+    assert_difference('Compliment.where(:is_going_to_be_removed => true).count') do
       delete :destroy, id: @compliment
     end
+    assert UserStamp.find(@compliment.id).score 
 
+    assert receiver_user_stamps.first.score == (before_score - sender_user_stamp.impact)
     assert_redirected_to compliments_path
   end
 end

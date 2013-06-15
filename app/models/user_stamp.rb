@@ -32,7 +32,7 @@ class UserStamp < ActiveRecord::Base
   def self.add_up_score_from_compliment(compliment)
     stamp_id = compliment.stamp_id
     receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => stamp_id)
-    sender_user_stamp = compliment.sender.user_stamps.find_by(:stamp_id => stamp_id)
+    sender_user_stamp = compliment.sender.user_stamps.first_or_initialize(:stamp_id => stamp_id)
     receiver_user_stamp.get_score_from sender_user_stamp
   end
 
@@ -61,11 +61,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def get_score_from(user_stamp)
-    if user_stamp.present?
-      self.score = user_stamp.impact
-    else
-      self.score = self.score + 10
-    end
+    self.score = self.score + user_stamp.impact
     self.save
   end
 

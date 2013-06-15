@@ -20,8 +20,8 @@ Praiseme::Application.routes.draw do
   end
 
   resources :user_stamps
- resources :compliments do
-    resources :comments, :only => :create
+  resources :compliments do
+    resources :comments, :only => [:create, :destroy]
   end
   resources :stamps
 

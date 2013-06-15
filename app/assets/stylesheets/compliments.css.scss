@@ -114,11 +114,18 @@ ul.ui-autocomplete {
   text-align: left;
 
   .profile-picture{
-    display: inline-block
+    display: inline-block;
   }
   .content{
-    display: inline-block
+    display: inline-block;
   }
+  .delete-button{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
 }
 .btn-more-comments{
   width: 90%;
