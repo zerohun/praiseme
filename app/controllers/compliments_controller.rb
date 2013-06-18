@@ -12,8 +12,8 @@ class ComplimentsController < ApplicationController
   # GET /compliments/1
   # GET /compliments/1.json
   def show
-    @compliment = Compliment.avaliable.find(params[:id])
-    @comments = @compliment.comments.avaliable.reorder("id desc").page(params[:page]).per(5)
+    @compliment = Compliment.find(params[:id])
+    @comments = @compliment.comments.reorder("id desc").page(params[:page]).per(5)
   end
 
   # GET /compliments/new
@@ -64,14 +64,18 @@ class ComplimentsController < ApplicationController
   # DELETE /compliments/1
   # DELETE /compliments/1.json
   def destroy
-    #@compliment.destroy
-    @compliment.update_attribute :is_going_to_be_removed, true
-    receiver_user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
-    sender_user_stamp = UserStamp.first_or_initialize(:user_id => @compliment.sender_id, :stamp_id => @compliment.stamp_id)
-    receiver_user_stamp.update_attribute :score, receiver_user_stamp.score - sender_user_stamp.impact
-    respond_to do |format|
-      format.html { redirect_to compliments_url }
-      format.json { head :no_content }
+
+    if @compliment.is_destroyable_by? current_user
+      receiver_user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
+      sender_user_stamp = UserStamp.first_or_initialize(:user_id => @compliment.sender_id, :stamp_id => @compliment.stamp_id)
+      receiver_user_stamp.update_attribute :score, receiver_user_stamp.score - sender_user_stamp.impact
+      @user_stamp = UserStamp.where(:stamp_id => @compliment.stamp_id, :user_id => @compliment.receiver_id).first
+      @compliment.destroy
+
+      respond_to do |format|
+        format.html { redirect_to @user_stamp}
+        format.json { head :no_content }
+      end
     end
   end
 

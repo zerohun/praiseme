@@ -16,12 +16,15 @@
     </div>
   </div>
 </div>
-  <%= link_to_function "x", "$('#destroy-compliment-popup').modal();", :class => "btn btn-mini pull-right no-loading" %>
-<div id="compliment-text" class="round border">
-  <%= image_tag @compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile" %>
-  <span class="text round"><%= @compliment.description %></span>
-</div>
 
+<div id="compliment-text" class="round border">
+  <% if current_user.present? && @compliment.is_destroyable_by?(current_user) %>
+     <%= link_to_function "x", "$('#destroy-compliment-popup').modal();", :class => "btn btn-mini pull-right no-loading btn-compliment-delete" %>
+  <% end %>
+  <%= image_tag @compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile pull-left" %>
+  <span class="text round pull-left"><%= @compliment.description %></span>
+  <div class="clear-both"></div>
+</div>
 
 <%= link_to_function "More Comments", "$.getScript($('#comment-pagination .pagination a[rel=next]').attr('href'))", :class => "btn btn-success btn-more-comments no-loading" %>
 <div id="comments">
@@ -40,7 +43,6 @@
     <h3>Do you want to delete this compliment?</h3>
   </div>
   <div class="modal-body">
-    <%= check_box_tag "block_user", 1 %>Block this user
     <%= link_to "Yes", @compliment, :method => :delete, :class => "btn btn-primary no-loading" %>
     <%= link_to_function "No", "", :class => "btn btn-primary no-loading", :data => {:dismiss => "modal"}, :aria => {:hidden => true} %>
   </div>

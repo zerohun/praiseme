@@ -1,17 +1,16 @@
-<% if compliment.description.present? %>
-  <div class="compliment">
-    <div class="profile-picture">
-      <%= link_to user_profile_path(compliment.sender) do %>
-        <%= image_tag compliment.sender.image_url, :class => "img-circle img-small shadow"%>
-        <div class="user-name-label round"><%= compliment.sender.username %></div>
-      <% end %>
-    </div>
-    <%= link_to compliment do %>
-      <div class="desc round shadow">
-        <%= compliment.description %>
-      </div>
+<div class="compliment">
+  <div class="profile-picture">
+    <%= link_to user_profile_path(compliment.sender) do %>
+      <%= image_tag compliment.sender.image_url, :class => "img-circle img-small shadow"%>
+      <div class="user-name-label round"><%= compliment.sender.username %></div>
     <% end %>
   </div>
-  <div class="clear-float"></div>
-  <br><br>
-<% end %>
+  <%= link_to compliment do %>
+    <div class="desc round shadow">
+      <%= compliment.description %>
+    </div>
+  <% end %>
+</div>
+<div class="clear-float"></div>
+<br><br>
+

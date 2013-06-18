@@ -9,10 +9,10 @@ class StampsController < ApplicationController
     if params[:term].present?
       keywords = params[:term].split(' ')
       query_by_keywords = keywords.map { |keyword|
-        "search_keywords.text like '%#{keyword}%'"
+        "(search_keywords.text like '%#{keyword}%')"
       }.join(" or ")
-      @stamps = @stamps.joins(:search_keywords).
-                        where("stamps.title like ? or search_keywords.text like ? or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
+      @stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
+                        where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
                         group("stamps.id")
     end
     @stamps = @stamps.page(params[:page]).per(15)

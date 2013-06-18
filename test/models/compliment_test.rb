@@ -31,5 +31,18 @@ class ComplimentTest < ActiveSupport::TestCase
     end
   end
 
+  test "is_destroyable_by? should return true for sender" do
+    compliment = compliments(:one)
+    assert compliment.is_destroyable_by?(users(:zerohun))
+  end
 
+  test "is_destroyable_by? should return true for receiver" do
+    compliment = compliments(:one)
+    assert compliment.is_destroyable_by?(users(:sarah))
+  end
+
+  test "is_destroyable_by? should return true for soneone elae" do
+    compliment = compliments(:one)
+    assert compliment.is_destroyable_by?(users(:sheldon)) == false
+  end
 end

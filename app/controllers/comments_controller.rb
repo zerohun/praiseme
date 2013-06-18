@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     compliment = Compliment.find(params[:compliment_id])
     @comment = compliment.comments.new comment_params
     if params[:last_comment_id].present?
-      @comments = compliment.comments.avaliable.where("comments.id > ?", params[:last_comment_id])
+      @comments = compliment.comments.where("comments.id > ?", params[:last_comment_id])
     else
       @comments = [@comment]
     end
@@ -17,10 +17,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.update_attribute :is_going_to_be_removed, true
-    if params[:compliment_id].present?
-      compliment = Compliment.find(params[:compliment_id])
-      redirect_to compliment
+    if @comment.is_destroyable_by? current_user
+      @comment.destroy
+      if params[:compliment_id].present?
+        compliment = Compliment.find(params[:compliment_id])
+        redirect_to compliment
+      end
     end
   end
 

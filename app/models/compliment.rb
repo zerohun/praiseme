@@ -2,7 +2,7 @@ class Compliment < ActiveRecord::Base
 
   default_scope {includes(:sender, :receiver, :stamp)}
 
-  has_many :comments, :as => :target
+  has_many :comments, :as => :target, :dependent => :destroy
 
   has_one :news_feed, :as => :notifiable, :dependent => :destroy
 
@@ -14,16 +14,27 @@ class Compliment < ActiveRecord::Base
   validates_presence_of :sender_id, :stamp_id, :receiver_id
   validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
 
-  scope :avaliable, ->{where(:is_going_to_be_removed => false)}
-
   after_create do |compliment|
     NewsFeed.create_for_compliment compliment
     UserStamp.add_up_score_from_compliment compliment
   end
+
+  def is_destroyable_by?(user)
+    self.receiver == user || self.sender == user
+  end
+
   def shoundnt_compliment_himself
     if self.sender_id == self.receiver_id
       self.errors[:sender_id] = "You can't compliment youself"
       self.errors[:receiver_id] = "You can't compliment youself"
+    end
+  end
+
+  def description
+    if self[:description].blank?
+      "You deserve trophy of '#{self.stamp.title}'"
+    else
+      super
     end
   end
 end
