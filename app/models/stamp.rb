@@ -8,6 +8,9 @@ class Stamp < ActiveRecord::Base
   belongs_to :default_trophy_image
   accepts_nested_attributes_for :compliments
 
+
+  validates_length_of :title, :maximum => 80
+
   mount_uploader :image, ImageFileUploader
 
   before_create do |stamp|

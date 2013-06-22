@@ -1,15 +1,16 @@
-<div class="stamp-item">
-  <div class="stamp-title">
-    <%= stamp.title %>
+<% if stamp.image.present? %>
+  <% stamp_image_url = stamp.image_url %>
+<% elsif stamp.default_trophy_image.present? %>
+  <% stamp_image_url = stamp.default_trophy_image.file_url %>
+  <br>
+<% else %>
+  <% stamp_image_url = "/assets/trophy.png" %>
+  <br>
+<% end %>
+<div class=stamp-inline-wrapper>
+  <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
+    <div class="stamp-title circle">
+      <%= stamp.title %>
+    </div>
   </div>
-  <% size = "normal" if size.blank? %>
-  <% if stamp.image.present? %>
-    <%= image_tag stamp.image_url, :class => "img-#{size}" %>
-  <% elsif stamp.default_trophy_image.present? %>
-    <%= image_tag stamp.default_trophy_image.file_url, :class => "img-#{size}" %>
-    <br>
-  <% else %>
-    <%= image_tag "trophy.png", :class => "img-#{size}" %>
-    <br>
-  <% end %>
 </div>

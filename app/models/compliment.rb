@@ -14,6 +14,8 @@ class Compliment < ActiveRecord::Base
   validates_presence_of :sender_id, :stamp_id, :receiver_id
   validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
 
+  validates_length_of :description, :maximum => 400
+
   after_create do |compliment|
     NewsFeed.create_for_compliment compliment
     UserStamp.add_up_score_from_compliment compliment

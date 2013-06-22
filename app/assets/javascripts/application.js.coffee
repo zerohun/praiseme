@@ -19,6 +19,23 @@
 #= require jquery.arctext
 #= require_tree .
 
+
+limitTextLength = (event) ->
+  limittext = $(this).data('limit')
+  limit = parseInt(limittext)
+  length = $(this).val().length
+
+  if $(".text-length-view").length > 0
+    fieldid = $(this).attr('id')
+    viewelement = $(".text-length-view[data-field=#{fieldid}]").first()
+    viewelement.text "#{length}/#{limittext}"
+
+  if limit <= length 
+    textcontent = $(this).val()
+    $(this).val textcontent.substr(0, limit - 1)
+
+
+
 updateLocation = (position)->
   latitude = position.coords.latitude
   longitude = position.coords.longitude
@@ -67,6 +84,14 @@ ready = ->
     navigator.geolocation.getCurrentPosition(updateLocation)
 
 
+  $(".limited-text").bind "paste", limitTextLength
+
+  $(".limited-text").keydown limitTextLength
+
+
+  $(".limited-text").keydown()
+
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
@@ -81,4 +106,3 @@ $(document).on 'page:change', ->
 @endLoading = ->
   $(".ajax-loader").hide()
   $("#screen-container").css("opacity", 1)
-

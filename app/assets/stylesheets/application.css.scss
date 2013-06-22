@@ -96,17 +96,25 @@ div.friend{
 #title-menu-bar {
   position:fixed;
 }
-div.stamp-item{
+
+
+.stamp-inline-wrapper{
   display: inline-block;
-  vertical-align: middle;
+}
+div.stamp-item{
   text-align: center;
+  background-size: 100% 100%;
   width: 150px;
+  height: 150px;
+  display: table-cell !important;
+  vertical-align: middle;
+  
   .stamp-title{
-      position:relative;
-      top: 80px;
-      color: white;
-      font-weight:bold;
-      text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+
+    word-break: break-all;
+    color: white;
+    font-weight:bold;
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
   }
 }
 
@@ -135,6 +143,12 @@ div.stamp-item{
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+.circle{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }
 .shadow{
   box-shadow: 3px 3px 5px #004b3a;

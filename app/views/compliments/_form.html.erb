@@ -18,9 +18,10 @@
       <h2>What do you think of <%= @compliment.receiver.username %>? </h2>
       <h1 class="stamp-title hidden">
       </h1>
+      <span class="text-length-view" data-field="stamp_text"></span>
       <div class="row-fluid stamp-fields">
         <%= f.hidden_field :receiver_id %>
-        <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search" %>
+        <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search limited-text", :data => {:limit => 80} %>
         <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
         <div class="create-stamp-fields hidden">
           <span class="guide">
@@ -38,8 +39,9 @@
       <br>
       <h2>Any Reason?</h2>
       <div class="row-fluid">
-        <%= f.text_area :description, :placeholder => "(optional)",:class => "span12 reason-field" %>
+        <%= f.text_area :description, :placeholder => "(optional)",:class => "span12 reason-field limited-text", :data => {:limit => 400} %>
       </div>
+      <span class="text-length-view" data-field="compliment_description"></span>
     </div>
     <div class="actions hidden text-center">
       <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
