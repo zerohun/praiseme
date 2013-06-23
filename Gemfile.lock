@@ -15,13 +15,6 @@ GIT
     mocha (0.14.0)
       metaclass (~> 0.0.1)
 
-GIT
-  remote: git@github.com:zerohun/stanford-core-nlp.git
-  revision: 7bfdecdef2f1e67fea89289e54b28fad3b8fc795
-  specs:
-    stanford-core-nlp (0.5.1)
-      bind-it (~> 0.2.5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,8 +46,6 @@ GEM
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
-    bind-it (0.2.7)
-      rjb (~> 1.4.3)
     bootstrap-sass (2.3.1.3)
       sass (~> 3.2)
     builder (3.1.4)
@@ -115,7 +106,6 @@ GEM
       addressable (~> 2.2)
       faraday (~> 0.8)
       multi_json (~> 1.3)
-    loggability (0.6.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -183,7 +173,6 @@ GEM
     redis-namespace (1.3.0)
       redis (~> 3.0.0)
     riddle (1.5.6)
-    rjb (1.4.7)
     sass (3.2.9)
     sass-rails (4.0.0.rc2)
       railties (>= 4.0.0.beta, < 5.0)
@@ -192,7 +181,6 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    sequel (3.48.0)
     sidekiq (2.12.4)
       celluloid (>= 0.14.1)
       connection_pool (>= 1.0.0)
@@ -217,7 +205,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.7)
     temple (0.6.5)
     thinking-sphinx (3.0.3)
       activerecord (>= 3.1.0)
@@ -248,12 +235,6 @@ GEM
     whenever (0.8.2)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
-    wordnet (1.0.0)
-      loggability (~> 0.5)
-      sequel (~> 3.38)
-    wordnet-defaultdb (1.0.1)
-      sqlite3 (~> 1.3)
-      wordnet (~> 1.0.0.pre)
 
 PLATFORMS
   ruby
@@ -285,10 +266,8 @@ DEPENDENCIES
   simple_form
   sinatra
   slim
-  stanford-core-nlp!
   thinking-sphinx (~> 3.0.2)
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
   whenever
-  wordnet-defaultdb

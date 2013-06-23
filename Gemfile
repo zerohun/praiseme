@@ -23,8 +23,8 @@ gem 'slim'
 gem 'whenever'
 gem 'dalli', '~> 2.6.3'
 gem 'simple_form'
-gem 'wordnet-defaultdb'
-gem 'stanford-core-nlp', :git => "git@github.com:zerohun/stanford-core-nlp.git"
+#gem 'wordnet-defaultdb'
+#gem 'stanford-core-nlp', :git => "git@github.com:zerohun/stanford-core-nlp.git"
 #gem 'open-nlp'
 #gem 'treat', :path => "/Users/choi0hun/Project/treat"
 
