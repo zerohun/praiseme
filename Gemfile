@@ -41,7 +41,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'requirejs-rails', git: 'git://github.com/jwhitley/requirejs-rails.git'
 gem 'jquery-rails'
 gem "jquery-ui-rails"
 
