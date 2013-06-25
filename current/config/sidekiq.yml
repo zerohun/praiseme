@@ -1,5 +1,5 @@
 concurrency: 5
-pidfile: current/tmp/pids/sidekiq.pid
+pidfile: tmp/pids/sidekiq.pid
 
 staging:
   :concurrency: 10
