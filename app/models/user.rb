@@ -109,7 +109,8 @@ class User < ActiveRecord::Base
 
   def invites_friends_automatically
 
-    friends.each do |friend|
+    facebook_friends = self.facebook.get_connections("me", "friends")
+    facebook_friends.each do |friend|
       if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?
         invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
