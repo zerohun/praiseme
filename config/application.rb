@@ -19,6 +19,7 @@ module Praiseme
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.autoload_paths += %W(#{config.root}/lib)
 
 
 
@@ -34,12 +35,12 @@ end
 
 Hirb.enable
 
-module SimilarKeywordHelper
-  def self.refine_keywords(original_text, keywords)
-    uniq_keywords = keywords.uniq
-    uniq_keywords = uniq_keywords - [original_text]
-  end
-end
+#module SimilarKeywordHelper
+  #def self.refine_keywords(original_text, keywords)
+    #uniq_keywords = keywords.uniq
+    #uniq_keywords = uniq_keywords - [original_text]
+  #end
+#end
 
 #class String
   #def to_pos_tags

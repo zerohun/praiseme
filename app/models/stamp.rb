@@ -13,22 +13,27 @@ class Stamp < ActiveRecord::Base
 
   mount_uploader :image, ImageFileUploader
 
-  #before_create do |stamp|
-    #simliar_keywords = stamp.title.similar_keywords
-    #simliar_keywords.each_pair do |key, items|
-      #if key == :phrase
-        #items.each do |item|
-          #stamp.search_keywords.new :text => item, :priority => 10
-        #end
-      #elsif key == :noun
-         #items.each do |item|
-          #stamp.search_keywords.new :text => item, :priority => 9
-        #end
-      #else
-         #items.each do |item|
-          #stamp.search_keywords.new :text => item, :priority => 5
-        #end
-      #end
-    #end
-  #end
+  after_create do |stamp|
+    stamp.delay.create_search_keywords
+  end
+
+
+  def create_search_keywords
+    simliar_keywords = SynonymsFinderClient.find_of(self.title)
+    simliar_keywords.each_pair do |key, items|
+      if key == :phrase
+        items.each do |item|
+          self.search_keywords.create :text => item, :priority => 10
+        end
+      elsif key == :noun
+         items.each do |item|
+          self.search_keywords.create :text => item, :priority => 9
+        end
+      else
+         items.each do |item|
+          self.search_keywords.create :text => item, :priority => 5
+        end
+      end
+    end
+  end
 end
