@@ -21,7 +21,7 @@ ready = ->
           $create_stamp_fields = $("div.create-stamp-fields")
           $create_stamp_fields.removeClass("hidden")
           $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
-          $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} stamp")
+          $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} trophy")
           $create_stamp_button = $("a.create-stamp-button")
 
     change: (event, ui)->

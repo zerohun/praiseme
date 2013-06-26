@@ -13,7 +13,16 @@ class StampsController < ApplicationController
       }.join(" or ")
       @stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
                         where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
-                        group("stamps.id")
+                        group("stamps.id").
+                        reorder("
+                                case 
+                                  when stamps.title = '#{params[:term].to_s}' then 50
+                                  when stamps.title like '%#{params[:term].to_s}%' then 20
+                                  else 
+                                    search_keywords.priority
+                                end desc
+                                ")
+
     end
     @stamps = @stamps.page(params[:page]).per(15)
 
