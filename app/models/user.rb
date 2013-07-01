@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
   def update_with_password(params, *options)
     if encrypted_password.blank?
-      update_attributes(params, *options)
+      update_attributes(params.permit(:introduce), *options)
     else
       super
     end
@@ -121,8 +121,8 @@ class User < ActiveRecord::Base
 
 
   def introduce
-    if self[:introudce].present?
-      super
+    if self[:introduce].present?
+      return self[:introduce]
     elsif self.job.present? || self.school.present?
       return [self.job, self.school].compact.join("\n\n").html_safe
     else
