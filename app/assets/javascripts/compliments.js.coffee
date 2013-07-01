@@ -30,9 +30,12 @@ ready = ->
     change: (event, ui)->
       $textfield = $("input.stamp-text-search")
 
-  $("input.stamp-text-search").keydown ->
+  $("input.stamp-text-search").keydown (event)->
     if $(this).val() == ""
       $("div.create-stamp-fields").addClass("hidden")
+    if event.which== 13
+      event.preventDefault()
+
 
   $("input.stamp-text-search").click ->
     $("html, body").animate({ scrollTop: $(document).height() }, "slow")
