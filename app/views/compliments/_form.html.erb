@@ -18,16 +18,17 @@
       <h2>What do you think of <%= @compliment.receiver.username %>? </h2>
       <h1 class="stamp-title hidden">
       </h1>
+
+      <div class="create-stamp-fields hidden alert alert-success">
+        <span class="guide">
+        </span>
+        <%= link_to "", stamps_path, :class => "create-stamp-button btn no-loading btn-success" %>
+      </div>
       <span class="text-length-view" data-field="stamp_text"></span>
       <div class="row-fluid stamp-fields">
         <%= f.hidden_field :receiver_id %>
         <%= text_field_tag :stamp_text, "", :class => "span12 stamp-text-search limited-text", :data => {:limit => 80} %>
         <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
-        <div class="create-stamp-fields hidden">
-          <span class="guide">
-          </span>
-          <%= link_to "", stamps_path, :class => "create-stamp-button btn no-loading" %>
-        </div>
         <blockquote>
           <p><small>ex) Nice person, Great singer, Buatiful or Hansome</small></p>
         </blockquote>

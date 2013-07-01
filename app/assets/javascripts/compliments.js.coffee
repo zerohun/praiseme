@@ -13,24 +13,22 @@ ready = ->
       $("div#reason-field").fadeIn()
       $("div#reason-field").find("textarea").focus()
       $(window).scrollTop($(window).height())
+      $("div.create-stamp-fields").addClass("hidden")
     ,
     response: (event, ui)->
-      if ui.content.length == 0
-        text = $("input.stamp-text-search").val()
-        if text != ""
-          $create_stamp_fields = $("div.create-stamp-fields")
-          $create_stamp_fields.removeClass("hidden")
-          $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
-          $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} trophy")
-          $create_stamp_button = $("a.create-stamp-button")
+      text = $("input.stamp-text-search").val()
+      $create_stamp_fields = $("div.create-stamp-fields")
+      if ui.content.length == 0 || (ui.content[0].label != text && text != "")
+        $create_stamp_fields.removeClass("hidden")
+        $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
+        $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} trophy")
+        $create_stamp_button = $("a.create-stamp-button")
+      else
+        if ui.content[0].label == text || text == ""
+          $create_stamp_fields.addClass("hidden")
 
     change: (event, ui)->
       $textfield = $("input.stamp-text-search")
-      if $textfield.val() == ""
-        $("div.create-stamp-fields").addClass("hidden")
-    
-    open: (event, ui)->
-      $("div.create-stamp-fields").addClass("hidden")
 
   $("input.stamp-text-search").keydown ->
     if $(this).val() == ""
@@ -44,6 +42,8 @@ ready = ->
     stamp_title_text = $("input.stamp-text-search").val()
     $popup = $("#create-stamp-popup")
     $popup.find(".stamp-title").text stamp_title_text 
+    $("div.create-stamp-fields").addClass("hidden")
+    $(".text-length-view").addClass("hidden")
     $popup.modal()
 
     #stamp_title_text = $("input.stamp-text-search").val()
