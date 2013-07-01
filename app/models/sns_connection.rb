@@ -7,9 +7,18 @@ class SnsConnection < ActiveRecord::Base
 
       user_info = user.facebook.get_object("me")
 
-      if user_info["work"].present?
-        employer = user_info["work"].first["employer"]["name"]
-        position = user_info["work"].first["position"]["name"]
+      if user_info["work"].present? 
+        if user_info["work"].first["employer"].present?
+          employer = user_info["work"].first["employer"]["name"]
+        else
+          employer = ""
+        end
+
+        if user_info["work"].first["position"].present?
+          position = user_info["work"].first["position"]["name"]
+        else
+          position = "works"
+        end
         user.job = "#{position} at #{employer}"
       end
 
