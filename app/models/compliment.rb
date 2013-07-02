@@ -9,6 +9,7 @@ class Compliment < ActiveRecord::Base
   belongs_to :sender , :foreign_key => :sender_id, :class_name => "User"
   belongs_to :receiver, :foreign_key => :receiver_id, :class_name => "User"
   belongs_to :stamp
+  #belongs_to :user_stamp
 
   validate :shoundnt_compliment_himself
   validates_presence_of :sender_id, :stamp_id, :receiver_id

@@ -7,6 +7,9 @@ set :branch, "origin/master"
 set :deploy_to, "/home/pi/praiseme"
 set :user, "pi"
 set :password, "13245Choi"
+set :whenever_command, "bundle exec whenever"
+
+require "whenever/capistrano"
 
 server "27.35.39.36", :app, :web, :db, :primary => true
 
