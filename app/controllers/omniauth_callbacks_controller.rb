@@ -5,8 +5,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     sns_connection = SnsConnection.from_omniauth(auth)
     user = sns_connection.user
     if sns_connection.persisted? && user.present?
+      sns_connection.save
       user.from_omniauth(auth)
       user.save if user.changed
+      user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
       sign_in_and_redirect user, notice: "Signed in!"
     else
       if sns_connection.provider == "facebook"
@@ -15,6 +17,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.save
         sns_connection.update_attribute :user_id, user.id
         sign_in user
+        user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
         redirect_to root_url
       else
         session["devise.user_attributes"] = sns_connection.attributes

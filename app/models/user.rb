@@ -111,12 +111,18 @@ class User < ActiveRecord::Base
 
     facebook_friends = self.facebook.get_connections("me", "friends")
     facebook_friends.each do |friend|
-      if SnsConnection.where(:uid => friend["id"], :provider => "facebook").blank?
+      friend_sns_connection = SnsConnection.where(:uid => friend["id"], :provider => "facebook").first
+      if friend_sns_connection.present?
+        if self.has_invited_ids.include?(friend_sns_connection.user_id) == false
+          self.has_invited_ids = self.has_invited_ids + [friend_sns_connection.user_id]
+        end
+      else
         invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
         sns_connection.save(:validate => false)
       end
     end
+    self.sns_connections.where(:provider => "facebook").first.update_attribute :has_invited_friends, true
   end
 
 

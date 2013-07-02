@@ -36,7 +36,6 @@ class SnsConnection < ActiveRecord::Base
       if user.changed?
         user.save
       end
-      user.delay.invites_friends_automatically if user.friends.blank?
     end
   end
   def self.from_omniauth(auth)

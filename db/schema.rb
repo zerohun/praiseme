@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130609073050) do
+ActiveRecord::Schema.define(version: 20130701132329) do
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20130609073050) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "has_invited_friends", default: false
   end
 
   create_table "stamps", force: true do |t|
