@@ -20,6 +20,14 @@
 #= require_tree .
 
 
+@startLoading = ->
+  $(".ajax-loader").show()
+  $("#screen-container").css("opacity", 0.1)
+
+@endLoading = ->
+  $(".ajax-loader").hide()
+  $("#screen-container").css("opacity", 1)
+
 limitTextLength = (event) ->
   limittext = $(this).data('limit')
   limit = parseInt(limittext)
@@ -64,6 +72,7 @@ $(window).resize ->
 
 
 ready = ->
+  endLoading()
   $('input[type=submit]').on 'click', (event)->
     startLoading()
 
@@ -95,14 +104,14 @@ ready = ->
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+$(window).bind "unload", ->
+  endLoading()
+
+window.onload = ->
+  endLoading()
+
 
 $(document).on 'page:change', ->
   endLoading()
 
-@startLoading = ->
-  $(".ajax-loader").show()
-  $("#screen-container").css("opacity", 0.1)
 
-@endLoading = ->
-  $(".ajax-loader").hide()
-  $("#screen-container").css("opacity", 1)
