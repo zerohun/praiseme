@@ -51,8 +51,8 @@
                 News Feed
               <% end %>
             </li>
-            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'followings' %>">
-              <%= link_to followings_path do %>
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'people' %>">
+              <%= link_to people_path do %>
                 <i class=icon-user></i>
                 People
               <% end %>
