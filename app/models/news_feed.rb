@@ -12,6 +12,12 @@ class NewsFeed < ActiveRecord::Base
     :rank_up => 5
   }
 
+  def self.create_for_new_user(user)
+    news_feed = NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
+    news_feed.notify_to user
+    news_feed.notify_to user.friends
+  end
+
   def self.create_for_compliment(compliment)
     news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
     sender = news_feed.notifiable.sender
@@ -29,8 +35,6 @@ class NewsFeed < ActiveRecord::Base
     user_ids.each do |user_id|
       UserNewsFeed.create :user_id => user_id, :news_feed => news_feed
     end
-
-
   end
 
   def self.create_for_gainig_rank(user_stamp)
@@ -82,9 +86,9 @@ class NewsFeed < ActiveRecord::Base
     if users.class == User
       one_user = users
       one_user.user_news_feeds.create :news_feed => self
-    elsif users == ActiveRecord::Relation::ActiveRecord_Relation_User
+    elsif users.class == ActiveRecord::Relation::ActiveRecord_Relation_User
       users.find_each do |user|
-        user.ser_news_feeds.create :news_feed => self
+        user.user_news_feeds.create :news_feed => self
       end
     end
   end

@@ -27,8 +27,6 @@ class User < ActiveRecord::Base
   has_many :has_invited, :through => :has_invited_friendships, :foreign_key => :has_invited_id
   has_many :is_invited_by, :through => :is_invited_by_friendships, :foreign_key => :is_invited_by_id
 
-
-
   default_scope -> {joins(:sns_connections).select("users.*, sns_connections.uid, sns_connections.oauth_token")}
 
   mount_uploader :image, ImageFileUploader
@@ -113,8 +111,9 @@ class User < ActiveRecord::Base
     facebook_friends.each do |friend|
       friend_sns_connection = SnsConnection.where(:uid => friend["id"], :provider => "facebook").first
       if friend_sns_connection.present?
-        if self.has_invited_ids.include?(friend_sns_connection.user_id) == false
-          self.has_invited_ids = self.has_invited_ids + [friend_sns_connection.user_id]
+        friend_ids = Friendship.where(:is_invited_by_id => self.id).pluck("has_invited_id")
+        if friend_ids.include?(friend_sns_connection.user_id) == false
+          self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
         end
       else
         invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
@@ -123,6 +122,8 @@ class User < ActiveRecord::Base
       end
     end
     self.sns_connections.where(:provider => "facebook").first.update_attribute :has_invited_friends, true
+
+    NewsFeed.create_for_new_user self
   end
 
 
