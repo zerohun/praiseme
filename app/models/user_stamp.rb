@@ -6,6 +6,8 @@ class UserStamp < ActiveRecord::Base
   belongs_to :stamp
   belongs_to :user
 
+  #has_many :compliments
+
   after_create do |user_stamp|
     if UserStamp.where(:stamp_id => user_stamp.stamp_id).count == 1
       NewsFeed.create_for_new_user_stamp user_stamp

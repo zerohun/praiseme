@@ -75,12 +75,10 @@ ActiveRecord::Schema.define(version: 20130701132329) do
   add_index "news_feeds", ["notifiable_id"], name: "index_news_feeds_on_notifiable_id", using: :btree
 
   create_table "search_keywords", force: true do |t|
-    t.string   "text"
-    t.integer  "priority"
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "text"
+    t.integer "priority"
+    t.integer "target_id"
+    t.string  "target_type"
   end
 
   add_index "search_keywords", ["target_id"], name: "index_search_keywords_on_target_id", using: :btree
