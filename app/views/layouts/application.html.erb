@@ -16,6 +16,16 @@
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
+          <% 
+
+              count_compli = current_user.sent_compliments.where("created_at >= ?", Date.today.beginning_of_day).count
+          
+  
+
+
+
+            %>
+          <div style="color:white;">  <%=count_compli %>/10</div>
           <ul class="nav pull-right">
 
             <li class="<%= "active" if params[:controller] == "mypage" %>">
@@ -51,8 +61,8 @@
                 News Feed
               <% end %>
             </li>
-            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'followings' %>">
-              <%= link_to followings_path do %>
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'people' %>">
+              <%= link_to people_path do %>
                 <i class=icon-user></i>
                 People
               <% end %>
