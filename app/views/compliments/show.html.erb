@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
+<% if notice %>
+  <% remain_compliments = 10 - current_user.sent_compliments.where("created_at >= ?", Date.today.beginning_of_day).count %>
+<div class = "alert alert-success">
+  <button class="close" data-dismiss="alert" type="button">×</button>
+    Success Compliments!!! Your remain Compliments is <i class="icon-thumbs-up"></i> X <%= remain_compliments %> 
+  </div>
+<% end %>
 <div id="compliment-show" class="round border">
 
   <div class="row-fluid">

@@ -59,3 +59,42 @@
   }
 
 }
+
+
+
+
+
+
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotateZ(0deg);
+  }
+  to { -moz-transform: rotateZ(-360deg);}
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotateZ(0deg);
+  }
+  to { -webkit-transform: rotateZ(-360deg);}
+}
+
+.toast{
+  min-height: 10%;
+  min-width: 70%;
+  max-width: 80%;
+  padding-right: 10px;
+  padding-left:30px;
+  padding-top:10px;
+  background-color: rgba(4,4,4,0.8);
+  position: absolute;
+  left: 10%;
+  top:50% ;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: white;
+  box-shadow: 7px 7px 4px #888888;
+  position:fixed;
+}
+
+
