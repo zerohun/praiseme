@@ -5,6 +5,12 @@
     <%= image_tag @user_stamp.user.image_url, :class => "img-small img-circle image-shadow" %><br>
   <% end %>
   <%= render :partial => "/stamps/stamp", :locals => {:stamp => @user_stamp.stamp, :size => 'normal'} %><br>
+ 
+  <div class="row-fluid">
+    <div class="span12">
+      <%= link_to "I agree", new_compliment_path(:compliment => {:stamp_id => @user_stamp.stamp_id, :receiver_id => @user_stamp.user_id}), :class => "btn btn-success" %>
+    </div>
+  </div>
   <%= @user_stamp.stamp.description %><br>
   <h4>Level <%= @user_stamp.level %></h4>
   <div class="progress">
