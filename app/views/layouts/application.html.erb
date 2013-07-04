@@ -26,7 +26,11 @@
 
             <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
               <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
+                <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>
+                  <div class="orange-red new-icon">N</div>
+                <% end %>
                 <i class=icon-envelope></i>
+
               <% end %>
             </li>
 
@@ -47,6 +51,9 @@
           <ul class="nav">
             <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
               <%= link_to news_feeds_path do %>
+                <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>
+                  <div class="orange-red new-icon">N</div>
+                <% end %>
                 <i class=icon-envelope></i>
                 News Feed
               <% end %>

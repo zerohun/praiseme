@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #news_feeds{
+  h5{
+    text-align: center;
+  }
   a{
     text-decoration: none;
     article{
@@ -28,6 +31,9 @@
           margin-left: 10px;
           color: black;
         }
+      }
+      .user-item{
+        text-align: center;
       }
 
       .compliment-item{

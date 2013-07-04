@@ -1,6 +1,6 @@
 class NewsFeed < ActiveRecord::Base
 
-  default_scope {includes(:notifiable)}
+  default_scope {includes(:notifiable).order("id desc")}
 
   has_many :user_news_feeds, :dependent => :destroy
   belongs_to :notifiable, :polymorphic => true

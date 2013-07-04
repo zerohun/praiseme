@@ -1,4 +1,11 @@
-<%= link_to news_feed.notifiable do %>
+<% if news_feed.notifiable.class == User %>
+  <% link_path = user_profile_path(news_feed.notifiable) %>
+<% else %>
+  <% link_path = news_feed.notifiable %>
+<% end %>
+
+
+<%= link_to link_path do %>
   <article class="round shadow">
     <%= render_news_feed news_feed %>
   </article>
