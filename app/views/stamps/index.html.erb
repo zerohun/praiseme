@@ -1,4 +1,23 @@
-<div id="stamp-index">
-  <%= render :partial => 'stamp_list', :locals => {:stamps => @stamps} %>
-</div>
-<%= paginate @stamps %>
+<%= form_tag stamps_path, :method => :get, :class => "form-search" do %>
+  <%= text_field_tag :term, "", :class => "input-medium search-query" %>
+  <%= submit_tag "Search", :class => "btn btn-primary" %>
+<% end %>
+
+<% if params[:term] %>
+  <div class="search_result">
+    <% binding.pry %>
+    result about '<%=params[:term]%>'(<%=@stamps.all.count%>)
+  </div>
+<% end %>
+
+<% if @stamps.all.count == 0 %>
+  <%= render 'search/no_data' %>
+
+
+<% elsif %>
+
+  <div id="stamp-index">
+    <%= render :partial => 'stamp_list', :locals => {:stamps => @stamps} %>
+  </div>
+  <%= paginate @stamps %>
+<% end %>

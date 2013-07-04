@@ -1,17 +1,18 @@
 <% if flash[:compliment] %>
 
 
-  <div class="toast">
+  <div id="toast">
     Compliment Limit is 10 a day. 
   </div>
 
-  <script type="javascript" >
-
-$(".toast").fadeIn();
+  <script type="text/javascript" >
+$(function () {
+$('#toast').fadeIn();
    setTimeout(function(){
          // $("#toast").addClass("hidden");
-                $(".toast").fadeOut();
-                                        },1000);
+                $('#toast').fadeOut("slow");
+   },5000);
+});
   </script>
 
 <% end %>

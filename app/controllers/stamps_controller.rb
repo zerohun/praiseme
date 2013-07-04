@@ -22,7 +22,6 @@ class StampsController < ApplicationController
                                     search_keywords.priority
                                 end desc
                                 ")
-
     end
     @stamps = @stamps.page(params[:page]).per(15)
 
