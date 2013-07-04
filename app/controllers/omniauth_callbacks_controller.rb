@@ -19,7 +19,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in user
         user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
         if cookies[:last_page_url].present?
-          redirect_to cookies[:last_page_url]
+          last_page_url = cookies[:last_page_url]
+          cookies[:last_page_url] = nil
+          redirect_to last_page_url
         else
           redirect_to root_url
         end
