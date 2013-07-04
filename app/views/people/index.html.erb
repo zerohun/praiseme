@@ -2,7 +2,19 @@
   <%= text_field_tag :q, "", :class => "input-medium search-query" %>
   <%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
-<div id="friends">
-  <%= render @friends %>
+<% if params[:q] %>
+  <div class="search_result">
+    result about '<%=params[:q]%>'(<%=@friends.count%>)
 </div>
-<%= paginate @friends %>
+<% end %>
+
+<% if @friends.count == 0 %>
+
+  <%= render 'search/no_data' %>
+
+<% elsif %>
+  <div id="friends">
+    <%= render @friends %>
+  </div>
+  <%= paginate @friends %>
+<% end %>
