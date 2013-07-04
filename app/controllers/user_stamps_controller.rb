@@ -1,5 +1,6 @@
 class UserStampsController < ApplicationController
   before_action :set_user_stamp, only: [:show, :edit, :update, :destroy]
+  skip_filter :authenticate_user!, :only => [:show]
 
   # GET /user_stamps
   # GET /user_stamps.json

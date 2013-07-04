@@ -18,7 +18,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sns_connection.update_attribute :user_id, user.id
         sign_in user
         user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
-        redirect_to root_url
+        if cookies[:last_page_url].present?
+          redirect_to cookies[:last_page_url]
+        else
+          redirect_to root_url
+        end
+
       else
         session["devise.user_attributes"] = sns_connection.attributes
         session["sns_connection_id"] = sns_connection.id

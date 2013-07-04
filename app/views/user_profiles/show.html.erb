@@ -54,17 +54,8 @@
     <%= link_to "more", "", :class => "btn btn-more" %>
   <% end %>
 
-
   <div class="bottom-button-group">
     <%= link_to "Following(#{@user.followings.count})", user_profile_followings_path(@user, :type => "followees"), :class => "btn" %>
     <%= link_to "Followers(#{@user.followers.count})", user_profile_followings_path(@user, :type => "followers"), :class => "btn" %>
-    <%= link_to "", :class => "btn" do %>
-      Stamp sent
-    <% end %>
-    <% if current_user != @user %>
-      <%= link_to "", :class => "btn" do %>
-        Stamps From<br><%= current_user.username %>
-      <% end %>
-    <% end %>
   </div>
 </div>

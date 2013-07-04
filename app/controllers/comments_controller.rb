@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
     else
-      render :js => "Writing comment is failed. please try again later"
+      render :js => "alert('Writing comment is failed. please try again later')"
     end
   end
 
