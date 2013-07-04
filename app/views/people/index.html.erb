@@ -1,5 +1,5 @@
 <%= form_tag people_path, :method => :get, :class => "form-search" do %>
-  <%= text_field_tag :q, "", :class => "input-medium search-query" %>
+  <%= text_field_tag :q, "", :class => "input-medium search-query", :id => "search" %>
   <%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
 <% if params[:q] %>

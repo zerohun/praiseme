@@ -1,11 +1,10 @@
 <%= form_tag stamps_path, :method => :get, :class => "form-search" do %>
-  <%= text_field_tag :term, "", :class => "input-medium search-query" %>
+  <%= text_field_tag :term, "", :class => "input-medium search-query", :id=>"search" %>
   <%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
 
 <% if params[:term] %>
   <div class="search_result">
-    <% binding.pry %>
     result about '<%=params[:term]%>'(<%=@stamps.all.count%>)
   </div>
 <% end %>
