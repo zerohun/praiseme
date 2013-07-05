@@ -1,7 +1,7 @@
 class StampSuggestion 
   def self.name_for(prefix)
 
-  Rails.cache.fetch(["search-names",prefix]) do
+#  Rails.cache.fetch(["search-names",prefix]) do
       keywords = prefix.split(' ')
       query_keywords = keywords.map { |key| "(search_keywords.text like '%#{key}%')"}.join(" or ")
       suggestion = Stamp.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
@@ -17,7 +17,7 @@ class StampSuggestion
                                 ")
 
       suggestion.limit(5).pluck(:title)
-    end
+ #   end
   end
 
   def self.index_names

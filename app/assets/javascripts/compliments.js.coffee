@@ -4,7 +4,8 @@
 window.data = {}
 ready = ->
   $("input.stamp-text-search").autocomplete
-    source: "/stamps.json",
+  #source: "/stamps.json",
+    source: "/stamp_suggestions",
     select: (event, ui)->
       $("input[type=hidden].stamp-id").val(ui.item.id)
       $("div#reason-field").hide()

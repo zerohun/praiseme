@@ -260,6 +260,7 @@ DEPENDENCIES
   omniauth-facebook
   pry
   rails (= 4.0.0)
+  redis
   sass-rails (~> 4.0.0.rc1)
   sdoc
   sidekiq
