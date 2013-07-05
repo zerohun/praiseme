@@ -54,7 +54,7 @@ class NewsFeed < ActiveRecord::Base
 
   def to_s
     if self.notifiable_type == "Compliment" && self.action_type == :create
-      return "#{self.notifiable.sender.username} think #{self.notifiable.receiver.username} is #{self.notifiable.stamp.title}"
+      return "#{self.notifiable.sender.username} thinks #{self.notifiable.receiver.username} is #{self.notifiable.stamp.title}"
     end
 
     if self.notifiable_type == "User" && self.action_type == :create

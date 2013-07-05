@@ -90,19 +90,19 @@ class User < ActiveRecord::Base
     self.first_name = auth.info.first_name
     self.last_name = auth.info.last_name
 
-    require 'open-uri'
+    #require 'open-uri'
 
-    res = open(auth.info.image)
-    file_extension = res.content_type.split('/').last
-    file_name = "profile_picture_#{self.id}.#{file_extension}"
-    file = File.new("#{Rails.root}/public/upload/#{file_name}", "wb")
-    file.write res.read
+    #res = open(auth.info.image)
+    #file_extension = res.content_type.split('/').last
+    #file_name = "profile_picture_#{self.id}.#{file_extension}"
+    #file = File.new("#{Rails.root}/public/upload/#{file_name}", "wb")
+    #file.write res.read
 
-    profile_image_file = ActionDispatch::Http::UploadedFile.new :filename => file_name,
-                                           :type => res.content_type,
-                                           :tempfile => file
+    #profile_image_file = ActionDispatch::Http::UploadedFile.new :filename => file_name,
+                                           #:type => res.content_type,
+                                           #:tempfile => file
 
-    self.image = profile_image_file
+    #self.image = profile_image_file
   end
 
   def invites_friends_automatically
