@@ -36,6 +36,9 @@ Praiseme::Application.routes.draw do
   
   namespace :admin do
     resources :default_trophy_images
+    resources :users 
+    resources :compliments 
+    resources :stamps 
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

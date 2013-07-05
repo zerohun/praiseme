@@ -15,6 +15,12 @@ GIT
     mocha (0.14.0)
       metaclass (~> 0.0.1)
 
+GIT
+  remote: git@github.com:zerohun/nifty-generators.git
+  revision: fb216c39fde0637678c23a312556e0f1db1656ea
+  specs:
+    nifty-generators (0.4.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +274,7 @@ DEPENDENCIES
   koala
   mocha!
   mysql2 (= 0.3.12b5)
+  nifty-generators!
   nokogiri
   omniauth-facebook
   omniauth-twitter

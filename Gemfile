@@ -32,6 +32,8 @@ gem 'twitter'
 
 gem 'redis'
 
+gem "nifty-generators", :git => "git@github.com:zerohun/nifty-generators.git"
+
 # test
 #
 gem 'mocha', :git => "git@github.com:freerange/mocha.git", :require => false
