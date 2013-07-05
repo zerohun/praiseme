@@ -11,10 +11,7 @@
 
 <% if @stamps.all.count == 0 %>
   <%= render 'search/no_data' %>
-
-
 <% elsif %>
-
   <div id="stamp-index">
     <%= render :partial => 'stamp_list', :locals => {:stamps => @stamps} %>
   </div>

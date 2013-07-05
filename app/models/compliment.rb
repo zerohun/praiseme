@@ -35,7 +35,7 @@ class Compliment < ActiveRecord::Base
 
   def description
     if self[:description].blank?
-      "You deserve trophy of '#{self.stamp.title}'"
+      "I think #{self.receiver.username} is '#{self.stamp.title}'"
     else
       super
     end
