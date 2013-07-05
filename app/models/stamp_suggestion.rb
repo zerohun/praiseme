@@ -1,9 +1,22 @@
-class StampSuggestion < ActiveRecord::Base
+class StampSuggestion 
   def self.name_for(prefix)
 
  #   Rails.cache.fetch(["search-names",prefix]) do
-      suggestion = where("name like ?", "#{prefix}%")
-      suggestion.order("popularity desc").limit(5).pluck(:name)
+      keywords = prefix.split(' ')
+      query_keywords = keywords.map { |key| "(search_keywords.text like '%#{key}%')"}.join(" or ")
+      suggestion = Stamp.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
+                        where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_keywords}", "%#{prefix}%", "%#{prefix}%").
+                        group("stamps.id").
+                        reorder("
+                                case 
+                                  when stamps.title = '#{prefix.to_s}' then 50
+                                  when stamps.title like '%#{prefix.to_s}%' then 20
+                                  else 
+                                    search_keywords.priority
+                                end desc
+                                ")
+
+      suggestion.limit(5).pluck(:title)
   #  end
   end
 
