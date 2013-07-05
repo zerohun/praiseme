@@ -17,6 +17,12 @@ class Stamp < ActiveRecord::Base
     stamp.delay.create_search_keywords
   end
 
+  def self.name_for(prefix)
+ #   Rails.cache.fetch(["search-names",prefix]) do
+      suggestion = where("title like ?", "#{prefix}%")
+      suggestion.order("title asc").limit(5).pluck(:title)
+  #  end
+  end
 
   def create_search_keywords
     simliar_keywords = SynonymsFinderClient.find_of(self.title)

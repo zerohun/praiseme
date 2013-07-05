@@ -30,6 +30,7 @@ gem 'twitter'
 #gem 'open-nlp'
 #gem 'treat', :path => "/Users/choi0hun/Project/treat"
 
+gem 'redis'
 
 # test
 #

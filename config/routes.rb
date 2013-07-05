@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Praiseme::Application.routes.draw do
+  resources :stamp_suggestions
+
   get "comments/create"
   mount Sidekiq::Web, at: "/sidekiq"
   
