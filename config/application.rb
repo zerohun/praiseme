@@ -21,7 +21,7 @@ module Praiseme
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.middleware.insert_before 0, "StampSuggestions"
+  #  config.middleware.insert_before 0, "StampSuggestions"
 
   end
 
