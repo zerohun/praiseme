@@ -1,9 +1,9 @@
-class Admin::DefaultTrophyImagesController < ApplicationController
+class Admin::DefaultTrophyImagesController < Admin::ApplicationController
   before_action :set_default_trophy_image, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/default_trophy_images
   def index
-    @default_trophy_images = DefaultTrophyImage.all
+    @default_trophy_images = DefaultTrophyImage.where("").page(params[:page]).per(4)
   end
 
   # GET /admin/default_trophy_images/1
@@ -23,7 +23,7 @@ class Admin::DefaultTrophyImagesController < ApplicationController
   def create
     @default_trophy_image = DefaultTrophyImage.new(default_trophy_image_params)
     if @default_trophy_image.save
-      redirect_to [:admin, @default_trophy_image], notice: 'Default trophy image was successfully created.'
+      redirect_to admin_default_trophy_images_path, notice: 'Default trophy image was successfully created.'
     else
       render action: 'new'
     end

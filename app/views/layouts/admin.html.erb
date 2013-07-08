@@ -36,6 +36,11 @@
                 <i class=icon-edit></i>
               <% end %>
             </li>
+            <li class=<%= "active" if params[:controller] == 'admin/default_trophy_images' %>>
+              <%= link_to admin_default_trophy_images_path, :class => "btn btn-navbar" do %>
+                <i class=icon-picture></i>
+              <% end %>
+            </li>
           </ul>
         </div>
         <div class="nav-collapse collapse">
@@ -56,8 +61,15 @@
             <li class=<%= "active" if params[:controller] == 'admin/compliments' %>>
               <%= link_to admin_compliments_path do %>
                 <i class="icon-edit"></i>
-                Glories
+                Compliments
               <% end %>
+              </li>
+            <li class=<%= "active" if params[:controller] == 'admin/default_trophy_images' %>>
+              <%= link_to admin_default_trophy_images_path do %>
+                <i class="icon-picture"></i>
+                TrophyImage
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>

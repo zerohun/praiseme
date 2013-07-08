@@ -1,27 +1,4 @@
-<h1>Listing default_trophy_images</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @default_trophy_images.each do |default_trophy_image| %>
-      <tr>
-        <td><%= image_tag default_trophy_image.file %></td>
-        <td><%= link_to 'Show', [:admin, default_trophy_image] %></td>
-        <td><%= link_to 'Edit', edit_admin_default_trophy_image_path(default_trophy_image) %></td>
-        <td><%= link_to 'Destroy', [:admin, default_trophy_image], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Default trophy image', new_admin_default_trophy_image_path %>
+<%= render 'images' %>
+<%= paginate @default_trophy_images %>
+<%= link_to 'New Default trophy image', new_admin_default_trophy_image_path, :class=>'newImage' %>

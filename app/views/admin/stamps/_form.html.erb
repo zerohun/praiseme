@@ -12,7 +12,12 @@
     </div>
     <label class="control-label">Trophy_image</label>
     <div class="controls">
-      <label><%= f.text_field :default_trophy_image_id %></label>
+      <% DefaultTrophyImage.all.each do |image| %>
+        <%= f.radio_button :default_trophy_image_id , image.id , :checked => f.object.default_trophy_image_id == image.id %>
+        <%= render :partial => "trophy_image", :locals => {:image =>  image,:title =>@stamp.title, :size => "small"} %>
+        <br />
+      <% end %>
+        
     </div>
   </div>
 
