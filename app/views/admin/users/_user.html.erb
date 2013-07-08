@@ -1,0 +1,32 @@
+<table class ="table table-hover">
+  <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mail</th>
+        <th>Blocked </th>
+        <th>Point</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+          <tr>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td> 
+            <% if user.is_blocked == true %>
+              O
+            <%end%>
+          </td>
+
+          <td><%= %>300 </td>
+          <td>
+            <div class="btn-group">
+              <%= link_to "수정", [:edit, :admin, user], :class => "btn" %>
+              <%= link_to '삭제', admin_user_path(user), :confirm => '정말 삭제 하시겠습니까?', :method => :delete, :class => "btn btn-danger" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

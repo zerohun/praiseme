@@ -1,0 +1,82 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+$navbarBackground: #b8b8b8;
+$navbarBrandColor: white;
+$navbarBackgroundHighlight: #2f2f2f;
+$navbarText: #fff;
+$navbarLinkColor: white;
+$navbarText: white;
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+.navbar .brand {
+  color: white;
+  margin: 0 0 0 20px;
+  font-weight: 800;
+  font-size: 15px;
+}
+.navbar .nav > li > a{
+  padding: 10px;
+}
+.navbar{
+  margin-right: 5px;
+
+}
+
+.label-darkgreen{
+  background-color: #004b3a;
+}
+
+.label-page-loading{
+  padding: 10px;
+  font-size: 15px;
+}
+@import 'font-awesome';
+
+body { 
+  padding-top: 10px;
+  padding-bottom: 50px;
+  background-color: #8f8f8f;
+  .navbar{
+    .navbar-inner{
+      border-width: 0px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+    .container:after{
+      clear:none;
+    }
+  }
+  .img-small{
+    width:70px;
+    height:70px;
+  }
+
+  .img-normal{
+    width:150px;
+    height:150px;
+  }
+}
+
+.pagination{
+  width:100%;
+  background-color:#555;
+}
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;

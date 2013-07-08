@@ -1,0 +1,27 @@
+<table class ="table table-hover">
+  <thead>
+    <tr>
+        <th>StampTitle</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Desc</th>
+        <th></th>
+      </tr>
+    </thead>
+     <tbody>
+      <% @compliments.each do |compliment| %>
+          <tr>
+          <td><%= Stamp.find(compliment.stamp_id).title %></td>
+          <td><%= User.find(compliment.sender_id).username %></td>
+          <td><%= User.find(compliment.receiver_id).username %></td>
+          <td><%= compliment.description %></td>
+          <td>
+            <div class="btn-group">
+              <% link_to "수정", [:edit, :admin, compliment], :class => "btn" %>
+              <%= link_to '삭제', admin_compliment_path(compliment), :confirm => '정말 삭제 하시겠습니까?', :method => :delete, :class => "btn btn-danger" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

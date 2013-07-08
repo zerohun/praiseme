@@ -1,0 +1,10 @@
+<p>
+  <strong>Name:</strong>
+  <%= @stamp.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_stamp_path(@, @stamp) %> |
+  <%= link_to "Destroy", [:admin, @stamp], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_stamps_path %>
+</p>

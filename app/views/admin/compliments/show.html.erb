@@ -1,0 +1,10 @@
+<p>
+  <strong>Name:</strong>
+  <%= @compliment.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_compliment_path(@, @compliment) %> |
+  <%= link_to "Destroy", [:admin, @compliment], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_compliments_path %>
+</p>

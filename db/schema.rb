@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20130708061658) do
+=======
+ActiveRecord::Schema.define(version: 20130708053559) do
+>>>>>>> 9b49cdcf59ff65f4a32f13c31859746e8037797b
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"
@@ -135,8 +139,8 @@ ActiveRecord::Schema.define(version: 20130708061658) do
   add_index "user_stamps", ["user_id"], name: "index_user_stamps_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -160,6 +164,8 @@ ActiveRecord::Schema.define(version: 20130708061658) do
     t.string   "job"
     t.string   "school"
     t.integer  "gender"
+    t.integer  "user_admin_type",        default: 0
+    t.boolean  "is_blocked",             default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
