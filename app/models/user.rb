@@ -155,7 +155,6 @@ class User < ActiveRecord::Base
       Following.create :follower => self, :followee => invited_user
     end
     self.sns_connections.where(:provider => "facebook").first.update_attribute :has_invited_friends, true
-
     NewsFeed.create_for_new_user self
   end
 
