@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BravoYou</title>
+  <title>StartGlory</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -15,7 +15,9 @@
     <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "BravoYou", root_path, :class => "brand pull-left" %>
+          <%= link_to root_path, :class => "brand pull-left" do %>
+            StartGlory
+          <% end %>
           <ul class="nav pull-right">
 
             <li class="<%= "active" if params[:controller] == "mypage" %>">
@@ -67,7 +69,7 @@
             <li class=<%= "active" if params[:controller] == 'stamps' %>>
               <%= link_to stamps_path do %>
                 <i class="icon-certificate"></i>
-                Stamps
+                Glories
               <% end %>
             </li>
           </ul>
