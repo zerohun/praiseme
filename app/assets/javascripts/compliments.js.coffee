@@ -22,7 +22,7 @@ ready = ->
       if ui.content.length == 0 || (ui.content[0].label != text && text != "")
         $create_stamp_fields.removeClass("hidden")
         $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
-        $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} trophy")
+        $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} glory symbol")
         $create_stamp_button = $("a.create-stamp-button")
       else
         if ui.content[0].label == text || text == ""

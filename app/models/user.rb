@@ -80,8 +80,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def object_url(host_name)
+    "http://#{host_name}/user_profiles/#{self.id}"
+  end
+
   def image_url(width: 200, height: 200)
     "https://graph.facebook.com/#{self.uid}/picture?width=#{width}&height=#{height}"
+  end
+
+
+  def gender
+    if self[:gender] == 0
+      return 'male'
+    elsif self[:gender] == 1
+      return 'female'
+    else
+      return nil
+    end
   end
 
 
@@ -89,6 +104,12 @@ class User < ActiveRecord::Base
     self.email = auth.info.email
     self.first_name = auth.info.first_name
     self.last_name = auth.info.last_name
+    if auth.extra.raw_info.gender == "male"
+      self.gender = 0
+    else
+      self.gender = 1
+    end
+
 
     #require 'open-uri'
 
@@ -120,6 +141,7 @@ class User < ActiveRecord::Base
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
         sns_connection.save(:validate => false)
       end
+      Following.create :follower => self, :followee => invited_user
     end
     self.sns_connections.where(:provider => "facebook").first.update_attribute :has_invited_friends, true
 

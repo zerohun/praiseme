@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#">
   <title>StartGlory</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -9,6 +9,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="latitude" content="">
   <meta name="longitude" content="">
+
+  <meta property="fb:app_id" content="<%= $fb_app_id %>" /> 
+  <meta property="og:title" content="<%= @og_title || 'StartGlory' %>" />
+  <meta property="og:type" content="<%= @og_type || "website" %>" />
+  <meta property="og:url" content="<%= @og_url || "http://www.startglory.com" %>" />
+  <meta property="og:image" content="<%= @og_image || 'http://www.startglory.com/small_logo.jpg' %>" />
+  <meta property="og:site_name" content="<%= "StartGlory" %>" />
+  <meta property="og:description" content="<%= @og_description || "StartGlory - Get compliment from your friends" %>" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <% if @user.present? %>
+    <meta property="profile:first_name" content="<%= @user.first_name %>" />
+    <meta property="profile:last_name" content="<%= @user.last_name %>" />
+    <meta property="profile:username" content="<%= @user.username %>" />
+    <meta property="profile:gender" content="<%= @user.gender %>" />
+    <meta property="fb:profile_id" content="<%= @user.sns_connections.first.uid %>" />
+    <meta property="og:updated_time" content="<%= @user.updated_at %>" />
+  <% end %>
+
+
+
+  <meta name="keywords" content="<%= @keyword || "glory, glorify, compliment, positive, friend, skill, recruit, level, exp" %>">
+  <meta name="description" content="<%= @description || "Get compliments from your friends" %>">
+  
 </head>
 <body>
   <div id="screen-container">

@@ -6,6 +6,10 @@ class UserProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @og_type = "profile"
+    @og_title = @user.username
+    @og_image = @user.image_url
+    @og_url = "http://#{request.host}/user_profiles/#{@user.id}"
     render :layout => "before_login" if current_user.blank?
   end
 

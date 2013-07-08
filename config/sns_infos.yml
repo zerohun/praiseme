@@ -1,0 +1,14 @@
+test:
+  fb_app_id: '437202949687541'
+  fb_app_secret: '2b38344b2ef84a3a7149c2f4925e65ec'
+  fb_namespace: "praiseme"
+
+development:
+  fb_app_id: '437202949687541'
+  fb_app_secret: '2b38344b2ef84a3a7149c2f4925e65ec'
+  fb_namespace: "praiseme"
+
+production:
+  fb_app_id: '615443998467652'
+  fb_app_secret: '4fd19964390f6907662191d57d5da7f9'
+  fb_namespace: "startglory"

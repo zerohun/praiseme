@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta property="fb:app_id" content="<%= $fb_app_id %>" /> 
+  <meta property="og:title" content="<%= @og_title || 'StartGlory' %>" />
+  <meta property="og:type" content="<%= @og_type || "website" %>" />
+  <meta property="og:url" content="<%= @og_url || "http://www.startglory.com" %>" />
+  <meta property="og:image" content="<%= @og_image || 'http://www.startglory.com/small_logo.jpg' %>" />
+  <meta property="og:site_name" content="<%= @og_title || "StartGlory" %>" />
+  <meta property="og:description" content="<%= @og_description || "StartGlory - Get compliment from your friends" %>" />
+  <meta property="og:locale:alternate" content="en_US" />
   <title>StartGlory</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
