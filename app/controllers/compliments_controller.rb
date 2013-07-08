@@ -13,6 +13,11 @@ class ComplimentsController < ApplicationController
   def show
     @compliment = Compliment.find(params[:id])
     @comments = @compliment.comments.reorder("id desc").page(params[:page]).per(5)
+    @og_type = "profile"
+    user = @compliment.receiver
+    @og_title = user.username
+    @og_image = user.image_url
+    @og_url = "http://#{request.host}/compliments/#{@compliment.id}"
   end
 
   # GET /compliments/new
