@@ -1,0 +1,14 @@
+ <% if image.image.present? %>
+    <% trophy_image_url = stamp.image_url %>
+ <% else %>
+    <% trophy_image_url = "/assets/trophy.png" %>
+ <% end %>
+ <br>
+ <br>
+ <div class=stamp-inline-wrapper>
+   <div class="stamp-item" style="background-image: url('<%= trophy_image_url %>')">
+      <div class="stamp-title circle">
+        <%= title %>
+      </div>
+   </div> 
+ </div>

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20130708061658) do
-=======
-ActiveRecord::Schema.define(version: 20130708053559) do
->>>>>>> 9b49cdcf59ff65f4a32f13c31859746e8037797b
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"
@@ -67,6 +63,13 @@ ActiveRecord::Schema.define(version: 20130708053559) do
 
   add_index "friendships", ["has_invited_id"], name: "index_friendships_on_has_invited_id", using: :btree
   add_index "friendships", ["is_invited_by_id"], name: "index_friendships_on_is_invited_by_id", using: :btree
+
+  create_table "name_suggestions", force: true do |t|
+    t.string   "name"
+    t.integer  "popularity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "news_feeds", force: true do |t|
     t.integer  "notifiable_id"
@@ -163,9 +166,9 @@ ActiveRecord::Schema.define(version: 20130708053559) do
     t.integer  "status"
     t.string   "job"
     t.string   "school"
-    t.integer  "gender"
     t.integer  "user_admin_type",        default: 0
     t.boolean  "is_blocked",             default: false
+    t.integer  "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
