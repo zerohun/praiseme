@@ -40,4 +40,9 @@ class Compliment < ActiveRecord::Base
       super
     end
   end
+
+
+  def object_url(host)
+    "http://#{host_name}/compliments/#{self.id}"
+  end
 end

@@ -28,6 +28,16 @@
     <meta property="og:updated_time" content="<%= @user.updated_at %>" />
   <% end %>
 
+  <% if @compliment.present? %>
+    <% user = @compliment.receiver %>
+    <meta property="profile:first_name" content="<%= user.first_name %>" />
+    <meta property="profile:last_name" content="<%= user.last_name %>" />
+    <meta property="profile:username" content="<%= user.username %>" />
+    <meta property="profile:gender" content="<%= user.gender %>" />
+    <meta property="fb:profile_id" content="<%= user.sns_connections.first.uid %>" />
+    <meta property="og:updated_time" content="<%= user.updated_at %>" />
+  <% end %>
+
 
 
   <meta name="keywords" content="<%= @keyword || "glory, glorify, compliment, positive, friend, skill, recruit, level, exp" %>">
