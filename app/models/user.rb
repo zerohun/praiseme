@@ -138,12 +138,17 @@ class User < ActiveRecord::Base
         end
       else
         friend_info = self.facebook.get_object friend["id"]
-        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]
+
         if friend_info["gender"] == "male"
-          invited_user.gender = 0
+          gender = 0
         elsif friend_info["gender"] == "female"
-          invited_user.gender = 1
+          gender = 1
+        else
+          gender = nil
         end
+
+        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender
+
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
         sns_connection.save(:validate => false)
       end
