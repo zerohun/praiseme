@@ -1,4 +1,7 @@
 class Admin::StampsController < Admin::ApplicationController
+
+  before_filter :is_admin_login
+
   def index
 
 

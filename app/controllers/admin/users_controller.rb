@@ -1,4 +1,7 @@
 class Admin::UsersController < Admin::ApplicationController
+
+  before_filter :is_admin_login
+
   def index
     @users = User.page(params[:page]).per(20)  
   end
@@ -40,6 +43,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit(:username, :email, :is_blocked, :user_admin_type)
   end
 end

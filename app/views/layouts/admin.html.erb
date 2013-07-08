@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BravoYou</title>
+<title>StartGlory</title>
 
   <%= stylesheet_link_tag "admin/application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "admin/application", "data-turbolinks-track" => true %>
@@ -9,38 +9,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
+
   <div id="screen-container">
-    <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
+    <div id="title-menu-bar" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "BravoYou", admin_users_path, :class => "brand pull-left" %>
+          <%= link_to root_path, :class => "brand pull-left" do %>
+            StartGlory
+          <% end %>
+          <ul class="nav pull-right">
+
+            <li class="<%= "active" if params[:controller] == "admin/users" %>">
+              <%= link_to admin_users_path, :class => "btn btn-navbar" do %>
+                <i class=icon-user> </i>
+              <% end %>
+            </li>
+
+
+            <li class=<%= "active" if params[:controller] == 'admin/stamps' %>>
+              <%= link_to admin_stamps_path, :class => "btn btn-navbar" do %>
+                <i class=icon-certificate></i>
+              <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'admin/compliments' %>>
+              <%= link_to admin_compliments_path, :class => "btn btn-navbar" do %>
+                <i class=icon-edit></i>
+              <% end %>
+            </li>
+          </ul>
         </div>
         <div class="nav-collapse collapse">
 
           <ul class="nav">
-            <li class=<%= "active" if params[:controller] == 'admin/users' %>>
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'admin/users' %>">
               <%= link_to admin_users_path do %>
-                <i class="icon-user"></i>
-                Users
+                <i class=icon-user></i>
+               Users 
               <% end %>
             </li>
             <li class=<%= "active" if params[:controller] == 'admin/stamps' %>>
               <%= link_to admin_stamps_path do %>
                 <i class="icon-certificate"></i>
-                Stamps
+                Glories
               <% end %>
-            </li>
+              </li>
             <li class=<%= "active" if params[:controller] == 'admin/compliments' %>>
               <%= link_to admin_compliments_path do %>
                 <i class="icon-edit"></i>
-                Compliments
+                Glories
               <% end %>
-            </li>
           </ul>
         </div>
       </div>
     </div>
-
 
   <div id='content-container'>
     <%= yield %>
@@ -49,5 +70,7 @@
 <div class="ajax-loader">
   <%= image_tag '/ajax-loader.gif' %>&nbsp;&nbsp;LOADING
 </div>
+
+
 </body>
 </html>
