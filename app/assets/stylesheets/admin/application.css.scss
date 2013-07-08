@@ -1,0 +1,192 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+a{
+  text-decoration: none;
+}
+
+.orange-red{
+  color: #F99;
+}
+.new-icon{
+  font-size: 10px;
+  font-weight: 500px;
+  padding: 0x;
+  margin: 0px;
+  float:left;
+}
+
+div.friend{
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 10px;
+  background-color: #e4faf5;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  vertical-align: middle;
+  div{
+    display:inline-block;
+  }
+  div.image{
+    width: 25%;
+  }
+
+  div.name{
+    width: 30%;
+  }
+  div.button-group{
+    width: 40%;
+    padding-right: 5px;
+    .btn{
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top:22px;
+      padding-bottom:22px;
+    }
+    .btn-bravo{
+      width: 45%;
+
+      display: inline-block;
+    }
+
+    .following_button{
+      display: inline-block;
+      padding:0px;
+      width: 40%;
+      form{
+        width: 100%;
+        margin: 0px;
+      }
+      input[type=submit]{
+        text-align: center;
+        width: 100%;
+        font-size: 10px;
+        margin: 0px;
+      }
+      a.btn-unfollow{
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        font-size: 10px;
+      }
+
+      a.btn-invite{
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        font-size: 10px;
+      }
+      a.btn{
+      }
+
+
+
+    }
+  }
+
+
+
+  div.status{
+    width: 20%;
+  }
+}
+#title-menu-bar {
+  position:fixed;
+}
+
+
+.stamp-inline-wrapper{
+  display: inline-block;
+}
+div.stamp-item{
+  text-align: center;
+  background-size: 100% 100%;
+  width: 150px;
+  height: 150px;
+  display: table-cell !important;
+  vertical-align: middle;
+  
+  .stamp-title{
+
+    word-break: break-all;
+    color: white;
+    font-weight:bold;
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+  }
+}
+
+
+.ajax-loader{
+  background-color: #003226;
+  color: white;
+  width: 200px;
+  height: 25px;
+  position: fixed;
+  top: 200px;
+  left: 100px;
+  text-align: center;
+  vertical-align: text-middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: none;
+}
+
+
+.round{
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.circle{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.shadow{
+  box-shadow: 3px 3px 5px #004b3a;
+}
+.image-shadow{
+  box-shadow: 2px 2px 3px grey;
+}
+
+a:active{
+  .shadow{
+    box-shadow: 0px 0px 0px #004b3a;
+  }
+  .image-shadow{
+    box-shadow: 0px 0px 0px #004b3a;
+  }
+}
+
+.border{
+  border-style: solid;
+  border-width: 1px;
+  border-color: #004b3a;
+}
+
+.clear-both{
+  clear: both;
+}
+
+.clear-float{
+  float: clear !important;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BravoYou</title>
+
+  <%= stylesheet_link_tag "admin/application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "admin/application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+  <div id="screen-container">
+    <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "BravoYou", admin_users_path, :class => "brand pull-left" %>
+        </div>
+        <div class="nav-collapse collapse">
+
+          <ul class="nav">
+            <li class=<%= "active" if params[:controller] == 'admin/users' %>>
+              <%= link_to admin_users_path do %>
+                <i class="icon-user"></i>
+                Users
+              <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'admin/stamps' %>>
+              <%= link_to admin_stamps_path do %>
+                <i class="icon-certificate"></i>
+                Stamps
+              <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'admin/compliments' %>>
+              <%= link_to admin_compliments_path do %>
+                <i class="icon-edit"></i>
+                Compliments
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  <div id='content-container'>
+    <%= yield %>
+  </div>
+</div>
+<div class="ajax-loader">
+  <%= image_tag '/ajax-loader.gif' %>&nbsp;&nbsp;LOADING
+</div>
+</body>
+</html>

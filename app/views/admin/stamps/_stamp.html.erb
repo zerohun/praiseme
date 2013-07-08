@@ -1,0 +1,29 @@
+<table class ="table table-hover">
+  <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Count</th>
+        <th>Image</th>
+        <th>Trophy_Image </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stamps.each do |stamp| %>
+          <tr>
+            <td><%=stamp.title%></td>
+            <td><%=stamp.description%></td>
+            <td><%=stamp.used_count %></td>
+            <td><%=stamp.image%> </td>
+            <td><%=stamp.default_trophy_image_id%></td>
+          <td>
+            <div class="btn-group">
+              <%= link_to "수정", [:edit, :admin, stamp], :class => "btn" %>
+              <%= link_to '삭제', admin_user_path(stamp), :confirm => '정말 삭제 하시겠습니까?', :method => :delete, :class => "btn btn-danger" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

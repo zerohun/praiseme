@@ -1,0 +1,2 @@
+module Admin::StampsHelper
+end

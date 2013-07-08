@@ -1,0 +1,24 @@
+<%= form_for [:admin, @stamp], :html => { :class => "form-horizontal" } do |f| %>
+
+
+  <div class="control-group">
+    <label class="control-label">Title</label>
+    <div class="controls">
+      <label><%= f.text_field :title %></label>
+    </div>
+    <label class="control-label">Desc</label>
+    <div class="controls">
+      <label><%= f.text_field :description %></label>
+    </div>
+    <label class="control-label">Trophy_image</label>
+    <div class="controls">
+      <label><%= f.text_field :default_trophy_image_id %></label>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit (@stamp.new_record?? 'Create' : 'Update' ), :class => "btn btn-primary" %>
+    <%= link_to "cancel", admin_stamps_path, :class => "btn" %>
+  </div>
+<% end %>
