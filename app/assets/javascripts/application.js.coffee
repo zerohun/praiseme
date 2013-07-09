@@ -17,11 +17,11 @@
 #= require turbolinks
 #= require jquery.cookie
 #= require jquery.arctext
-#= require_tree .
+#= require_directory .
 
 
 @startLoading = ->
-  $(".ajax-loader").show()
+  $(".ajax-loader").shhromeㅊchrasdfow()
   $("#screen-container").css("opacity", 0.1)
 
 @endLoading = ->
