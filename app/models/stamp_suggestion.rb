@@ -16,6 +16,7 @@ class StampSuggestion
                                 end desc
                                 ")
 
+
       suggestion.limit(5).pluck(:title)
  #   end
   end
