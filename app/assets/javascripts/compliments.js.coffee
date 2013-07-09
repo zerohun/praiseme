@@ -32,6 +32,7 @@ ready = ->
       $stampTextField.val("")
       $stampTextField.val(text)
       $(".ui-autocomplete").css("max-width", $("input.stamp-text-search").css("width"))
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow")
 
       if ui.content.length == 0 || (ui.content[0].label != text && text != "")
         $create_stamp_fields.removeClass("hidden")
