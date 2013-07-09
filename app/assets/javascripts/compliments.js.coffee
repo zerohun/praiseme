@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 window.data = {}
 ready = ->
+  $("input.stamp-text-search").click ->
+    $(this).css("height", "60px")
+    $(this).css("font-size", "30px")
+
   $("input.stamp-text-search").autocomplete
   #source: "/stamps.json",
     source: "/stamp_suggestions",
@@ -17,8 +21,14 @@ ready = ->
       $("div.create-stamp-fields").addClass("hidden")
     ,
     response: (event, ui)->
-      text = $("input.stamp-text-search").val()
+      $stampTextField = $("input.stamp-text-search")
+      text = $stampTextField.val()
       $create_stamp_fields = $("div.create-stamp-fields")
+      $stampTextField.css("height", "30px")
+      $stampTextField.css("font-size", "15px")
+      $stampTextField.val("")
+      $stampTextField.val(text)
+
       if ui.content.length == 0 || (ui.content[0].label != text && text != "")
         $create_stamp_fields.removeClass("hidden")
         $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
@@ -32,6 +42,9 @@ ready = ->
       $textfield = $("input.stamp-text-search")
 
   $("input.stamp-text-search").keydown (event)->
+    $(this).css("height", "60px")
+    $(this).css("font-size", "30px")
+    $(".ui-autocomplete").hide()
     if $(this).val() == ""
       $("div.create-stamp-fields").addClass("hidden")
     if event.which== 13
