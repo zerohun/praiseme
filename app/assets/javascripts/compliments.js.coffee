@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 window.data = {}
 ready = ->
+
+
+
   $("input.stamp-text-search").click ->
     $(this).css("height", "60px")
     $(this).css("font-size", "30px")
@@ -28,6 +31,7 @@ ready = ->
       $stampTextField.css("font-size", "15px")
       $stampTextField.val("")
       $stampTextField.val(text)
+      $(".ui-autocomplete").css("max-width", $("input.stamp-text-search").css("width"))
 
       if ui.content.length == 0 || (ui.content[0].label != text && text != "")
         $create_stamp_fields.removeClass("hidden")
