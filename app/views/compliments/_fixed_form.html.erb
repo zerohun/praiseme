@@ -27,7 +27,7 @@
         <%= f.hidden_field :stamp_id, :class => "stamp-id" %>
       </div>
     </div>
-
+    <%= render :partial => 'facebook_checkbox', :locals => {:f => f} %>
     <div id="reason-field">
       <br>
       <h2>Any Reason?</h2>

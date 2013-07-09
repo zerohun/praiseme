@@ -21,7 +21,7 @@
 
 
 @startLoading = ->
-  $(".ajax-loader").shhromeㅊchrasdfow()
+  $(".ajax-loader").show()
   $("#screen-container").css("opacity", 0.1)
 
 @endLoading = ->

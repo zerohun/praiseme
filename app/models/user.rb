@@ -147,7 +147,7 @@ class User < ActiveRecord::Base
           gender = nil
         end
 
-        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender
+        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
 
         sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
         sns_connection.save(:validate => false)
