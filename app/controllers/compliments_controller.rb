@@ -51,7 +51,9 @@ class ComplimentsController < ApplicationController
     respond_to do |format|
       @compliment.sender = current_user
       if @compliment.save
-        current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
+        if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1 
+          current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
+        end
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @compliment }
       else
