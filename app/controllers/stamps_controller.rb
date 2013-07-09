@@ -23,8 +23,14 @@ class StampsController < ApplicationController
                                 end desc
                                 ")
     end
-    @stamps = @stamps.page(params[:page]).per(15)
 
+    @mine_stamp_list = UserStamp.where(:user_id =>5).pluck(:stamp_id)
+    if(@mine_stamp_list.empty?) 
+      @stamps = @stamps.order("created_at desc")
+    else
+      @stamps = @stamps.order("case when id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc, created_at desc")
+    end
+    @stamps = @stamps.page(params[:page]).per(15)
     respond_to do |format|
       format.html {}
       format.json {render :json => @stamps.map {|stamp| {:label => stamp.title, :id => stamp.id}}}
