@@ -64,7 +64,7 @@
                 <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>
                   <div class="orange-red new-icon">N</div>
                 <% end %>
-                <i class=icon-envelope></i>
+                <i class=icon-rss></i>
 
               <% end %>
             </li>
