@@ -5,7 +5,8 @@ class ComplimentsController < ApplicationController
   # GET /compliments
   # GET /compliments.on
   def index
-    @compliments = Compliment.all
+    duplicate_stamp_count = Compliment.where(:sender_id => current_user, :receiver_id => params[:receiver_id], :id => params[:stamp_id]).count
+    render :json => {:count => duplicate_stamp_count } 
   end
 
   # GET /compliments/1
@@ -27,6 +28,7 @@ class ComplimentsController < ApplicationController
     if(count_of_today_compliment >= 10)
       redirect_to news_feeds_path, :flash => {:compliment =>"Over the Today's Compliment"}
     end
+
 
     params.require(:compliment).permit!
     @compliment = Compliment.new(params[:compliment])
@@ -59,6 +61,8 @@ class ComplimentsController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @compliment.errors, status: :unprocessable_entity }
+        
+
       end
     end
   end

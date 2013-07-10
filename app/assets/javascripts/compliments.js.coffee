@@ -14,16 +14,26 @@ ready = ->
   #source: "/stamps.json",
     source: "/stamp_suggestions",
     select: (event, ui)->
-      $("input[type=hidden].stamp-id").val(ui.item.id)
-      $("div#reason-field").hide()
-      $("div#reason-field").removeClass("hidden")
-      $("div.actions").removeClass("hidden")
-      $("div#reason-field").fadeIn()
-      $("div#reason-field").find("textarea").focus()
-      $(window).scrollTop($(window).height())
-      $("div.create-stamp-fields").addClass("hidden")
+      search_words =  $("input.stamp-text-search").val()
+      con_url = "/compliments?stamp_id=#{ui.item.id}&receiver_id=#{$("#compliment_receiver_id").val()}"
+      $.get con_url,
+        (data) -> 
+          if data.count >0
+            $("input.stamp-text-search").val(search_words)
+            alert "Duplicate Glorify"
+          else  
+            $("input[type=hidden].stamp-id").val(ui.item.id)
+            $("div#reason-field").hide()
+            $("div#reason-field").removeClass("hidden")
+            $("div.actions").removeClass("hidden")
+            $("div#reason-field").fadeIn()
+            $("div#reason-field").find("textarea").focus()
+            $(window).scrollTop($(window).height())
+            $("div.create-stamp-fields").addClass("hidden")
+
     ,
     response: (event, ui)->
+      
       $stampTextField = $("input.stamp-text-search")
       text = $stampTextField.val()
       $create_stamp_fields = $("div.create-stamp-fields")

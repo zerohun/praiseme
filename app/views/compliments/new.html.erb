@@ -1,4 +1,4 @@
-<% if params[:compliment][:stamp_id] %>
+<% if params[:compliment][:stamp_id].present? %>
   <%= render 'fixed_form' %>
 <% else %>
   <%= render 'form' %>
