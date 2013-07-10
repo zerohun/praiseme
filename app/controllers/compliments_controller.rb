@@ -5,7 +5,10 @@ class ComplimentsController < ApplicationController
   # GET /compliments
   # GET /compliments.on
   def index
+    binding.pry
     @compliments = Compliment.all
+   # params
+    format.json { render :json => {:count => 0 } }
   end
 
   # GET /compliments/1
@@ -28,6 +31,7 @@ class ComplimentsController < ApplicationController
       redirect_to news_feeds_path, :flash => {:compliment =>"Over the Today's Compliment"}
     end
 
+
     params.require(:compliment).permit!
     @compliment = Compliment.new(params[:compliment])
     @stamps = []
@@ -44,10 +48,12 @@ class ComplimentsController < ApplicationController
   # POST /compliments.json
   def create
     @compliment = Compliment.new(compliment_params)
-    stamp_object=  Stamp.find_by_title(params[:stamp_text])
-    if(@compliment.stamp_id == nil && stamp_object != nil)
-      @compliment.stamp_id = stamp_object.id
-    end
+  #  stamp_object=  Stamp.find_by_title(params[:stamp_text])
+  #  if(@compliment.stamp_id == nil && stamp_object != nil)
+  #    @compliment.stamp_id = stamp_object.id
+  #  end
+
+    
     respond_to do |format|
       @compliment.sender = current_user
       if @compliment.save
@@ -59,6 +65,8 @@ class ComplimentsController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @compliment.errors, status: :unprocessable_entity }
+        
+
       end
     end
   end

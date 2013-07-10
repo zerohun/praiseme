@@ -16,8 +16,10 @@ class StampSuggestion
                                 end desc
                                 ")
 
+     suggestions = suggestion.limit(5)
 
-      suggestion.limit(5).pluck(:title)
+     suggestions.map {|sug| {:label => sug.title, :id => sug.id}}
+                        #     .pluck(:title, :id)
  #   end
   end
 

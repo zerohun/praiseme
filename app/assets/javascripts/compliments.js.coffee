@@ -22,8 +22,10 @@ ready = ->
       $("div#reason-field").find("textarea").focus()
       $(window).scrollTop($(window).height())
       $("div.create-stamp-fields").addClass("hidden")
+
     ,
     response: (event, ui)->
+      
       $stampTextField = $("input.stamp-text-search")
       text = $stampTextField.val()
       $create_stamp_fields = $("div.create-stamp-fields")
