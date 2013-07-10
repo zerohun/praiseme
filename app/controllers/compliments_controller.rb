@@ -5,10 +5,8 @@ class ComplimentsController < ApplicationController
   # GET /compliments
   # GET /compliments.on
   def index
-    binding.pry
-    @compliments = Compliment.all
-   # params
-    format.json { render :json => {:count => 0 } }
+    duplicate_stamp_count = Compliment.where(:sender_id => current_user, :receiver_id => params[:receiver_id], :id => params[:stamp_id]).count
+    render :json => {:count => duplicate_stamp_count } 
   end
 
   # GET /compliments/1
@@ -48,10 +46,6 @@ class ComplimentsController < ApplicationController
   # POST /compliments.json
   def create
     @compliment = Compliment.new(compliment_params)
-  #  stamp_object=  Stamp.find_by_title(params[:stamp_text])
-  #  if(@compliment.stamp_id == nil && stamp_object != nil)
-  #    @compliment.stamp_id = stamp_object.id
-  #  end
 
     
     respond_to do |format|
