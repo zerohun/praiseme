@@ -1,9 +1,16 @@
 <%= simple_form_for([:admin, @default_trophy_image]) do |f| %>
   <%= f.error_notification %>
-
   <div class="inputs">
     <%= f.file_field :file %>
   </div>
+
+
+  <% if params[:id].present? %>
+    <div class="trophy_image">
+    <%= image_tag DefaultTrophyImage.find(params[:id]).file %>
+  </div>
+   <% end %>
+
 
   <div class="actions">
     <%= f.button :submit %>
