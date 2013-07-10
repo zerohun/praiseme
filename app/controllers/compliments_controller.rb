@@ -44,7 +44,7 @@ class ComplimentsController < ApplicationController
   # POST /compliments.json
   def create
     @compliment = Compliment.new(compliment_params)
-    stamp_object=  Stamp.find_by_title(params[:stamp_text])
+    stamp_object = Stamp.find_by_title(params[:stamp_text])
     if(@compliment.stamp_id == nil && stamp_object != nil)
       @compliment.stamp_id = stamp_object.id
     end
