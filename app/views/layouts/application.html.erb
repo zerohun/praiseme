@@ -78,14 +78,7 @@
               <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
                 <span class="icon-list"></span>
               <% end %>
-              </li>
-              <% if current_user != nil && current_user.user_admin_type != 0 %>
-                 <li >
-                    <%= link_to admin_users_path, :class => "btn btn-navbar" do %>
-                     <i class=icon-wrench></i>
-                    <% end %>
-                </li>
-              <% end %>
+            </li>
           </ul>
         </div>
         <div class="nav-collapse collapse">
