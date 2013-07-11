@@ -269,7 +269,7 @@ ul.ui-autocomplete {
 }
 
 .toggle .slide-button i{
-color:#2f2fff;
+color:#92B2B2;
 
 }
 
@@ -285,7 +285,7 @@ color:#2f2fff;
   vertical-align: middle;
 }
 .toggle input:checked ~ .slide-button {
-  right: 50%;
+  left: 50%;
 }
 .toggle input:focus ~ .slide-button {
   outline: 1px dotted #888888;
@@ -298,11 +298,16 @@ color:#2f2fff;
   border: 2px solid #B6B6B6;
 }
 .android.toggle .slide-button {
-  background-color: #848484;
+  background-color: #E4FAF5;
   border-radius: 2px 2px 2px 2px;
+  left:0;
 }
 .android.toggle input:first-of-type:checked ~ .slide-button {
-  background-color: #279FCA;
+  /*background-color: #279FCA;*/
+}
+.android.toggle input:first-of-type:checked ~ .slide-button i {
+color:#2f2fff;
+
 }
 .android.switch input:first-of-type:checked ~ .slide-button {
   transform: skew(20deg) translateX(-10px);
