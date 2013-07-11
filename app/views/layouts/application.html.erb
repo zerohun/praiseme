@@ -22,7 +22,9 @@
     <meta property="profile:first_name" content="<%= @user.first_name %>" />
     <meta property="profile:last_name" content="<%= @user.last_name %>" />
     <meta property="profile:username" content="<%= @user.username %>" />
-    <meta property="profile:gender" content="<%= @user.gender %>" />
+    <% if @user.gender.present? %>
+      <meta property="profile:gender" content="<%= @user.gender %>" />
+    <% end %>
     <meta property="fb:profile_id" content="<%= @user.sns_connections.first.uid %>" />
     <meta property="og:updated_time" content="<%= @user.updated_at %>" />
   <% end %>
@@ -101,9 +103,15 @@
             </li>
             <li class=<%= "active" if params[:controller] == 'stamps' %>>
               <%= link_to stamps_path do %>
-                <i class="icon-certificate"></i>
+                <i class="icon-trophy"></i>
                 Glories
               <% end %>
+              </li>
+              <li>
+                <%= link_to about_path do %>
+                  <i class="icon-info-sign"></i>
+                  About
+                <% end %>
               </li>
               <% if current_user != nil && current_user.user_admin_type != 0 %>
                 <li>

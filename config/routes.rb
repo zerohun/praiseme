@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Praiseme::Application.routes.draw do
+  get "about" => "about#index"
   resources :stamp_suggestions
 
   get "comments/create"
