@@ -23,11 +23,9 @@
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="span12">
-      <%= link_to "I agree", new_compliment_path(:compliment => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id}), :class => "btn btn-success" %>
-    </div>
-  </div>
+
+  <%= render 'agree_button' %>
+
 </div>
 
 <div id="compliment-text" class="round border">
