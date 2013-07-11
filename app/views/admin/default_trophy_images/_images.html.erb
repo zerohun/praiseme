@@ -11,8 +11,8 @@
     <% @default_trophy_images.each do |default_trophy_image| %>
       <tr>
         <td><%= image_tag default_trophy_image.file %></td>
-        <td><%= link_to 'Edit', edit_admin_default_trophy_image_path(default_trophy_image) %></td>
-        <td><%= link_to 'Destroy', [:admin, default_trophy_image], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_default_trophy_image_path(default_trophy_image), :class => 'btn' %>
+        <%= link_to 'Delete', [:admin, default_trophy_image], method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-danger'  %></td>
       </tr>
     <% end %>
   </tbody>

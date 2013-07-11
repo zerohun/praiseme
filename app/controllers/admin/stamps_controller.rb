@@ -5,7 +5,7 @@ class Admin::StampsController < Admin::ApplicationController
   def index
 
 
-    @stamps = Stamp.page(params[:page]).per(20)
+    @stamps = Stamp.order('created_at desc').page(params[:page]).per(20)
     
   end
 
