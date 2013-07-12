@@ -25,7 +25,7 @@
     <% if yh.present? %>
       <div>
         <%= link_to user_profile_path(yh) do %>
-          <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle" %><br>
+          <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle image-shadow" %><br>
           <%= yh.username  %>
         <% end %>
       </div>
@@ -36,7 +36,7 @@
     <% if bs.present? %>
       <div>
         <%= link_to user_profile_path(bs) do %>
-          <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle" %><br>
+          <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle image-shadow" %><br>
           <%= bs.username  %>
         <% end %>
       </div>
