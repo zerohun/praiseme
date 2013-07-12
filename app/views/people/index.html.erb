@@ -4,11 +4,11 @@
 <% end %>
 <% if params[:q] %>
   <div class="search_result">
-    result about '<%=params[:q]%>'(<%=@friends.count%>)
+    result about '<%=params[:q]%>'(<%=@friends_count%>)
 </div>
 <% end %>
 
-<% if @friends.count == 0 %>
+<% if @friends_count == 0 %>
 
   <%= render 'search/no_data' %>
 

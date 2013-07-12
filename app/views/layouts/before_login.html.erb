@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#">
+  <title>StartGlory</title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="latitude" content="">
+  <meta name="longitude" content="">
+
   <meta property="fb:app_id" content="<%= $fb_app_id %>" /> 
   <meta property="og:title" content="<%= @og_title || 'StartGlory' %>" />
   <meta property="og:type" content="<%= @og_type || "website" %>" />
   <meta property="og:url" content="<%= @og_url || "http://www.startglory.com" %>" />
   <meta property="og:image" content="<%= @og_image || 'http://www.startglory.com/small_logo.jpg' %>" />
-  <meta property="og:site_name" content="<%= @og_title || "StartGlory" %>" />
+  <meta property="og:site_name" content="<%= "StartGlory" %>" />
   <meta property="og:description" content="<%= @og_description || "StartGlory - Get compliment from your friends" %>" />
   <meta property="og:locale:alternate" content="en_US" />
-  
-  <% if @user.present? %>
+
+  <% if @user.present? && @user.persisted? %>
     <meta property="profile:first_name" content="<%= @user.first_name %>" />
     <meta property="profile:last_name" content="<%= @user.last_name %>" />
     <meta property="profile:username" content="<%= @user.username %>" />
     <% if @user.gender.present? %>
       <meta property="profile:gender" content="<%= @user.gender %>" />
     <% end %>
-    <meta property="fb:profile_id" content="<%= @user.sns_connections.first.uid if @user.sns_connections.present? %>" />
+    <meta property="fb:profile_id" content="<%= @user.sns_connections.first.uid %>" />
     <meta property="og:updated_time" content="<%= @user.updated_at %>" />
   <% end %>
 
-  <% if @compliment.present? %>
+  <% if @compliment.present? && @compliment.persisted? %>
     <% user = @compliment.receiver %>
     <meta property="profile:first_name" content="<%= user.first_name %>" />
     <meta property="profile:last_name" content="<%= user.last_name %>" />
@@ -33,21 +41,73 @@
     <meta property="og:updated_time" content="<%= user.updated_at %>" />
   <% end %>
 
-  <title>StartGlory</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="keywords" content="<%= @keyword || "glory, glorify, compliment, positive, friend, skill, recruit, level, exp" %>">
+  <meta name="description" content="<%= @description || "Get compliments from your friends" %>">
+  
 </head>
 <body>
-  <div class="hero-unit text-center">
-    <h1>StartGlory</h1>
-    <%= link_to "Sign in with Facebook", "/users/auth/facebook", :class => "btn btn-primary btn-mini" %>
-  </div>
-  <div>
+  <div id="screen-container">
+    <div id="title-menu-bar" class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to root_path, :class => "brand pull-left" do %>
+            <%= image_tag "/startglory_small_logo.jpg" %>
+          <% end %>
+          <ul class="nav pull-right">
+
+            <li>
+              <%= link_to "/users/auth/facebook", :class => "btn btn-navbar btn-mini" do %>
+                Sign in with <i class="icon-facebook-sign"></i>acebook
+              <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'people' %>>
+              <%= link_to people_path, :class => "btn btn-navbar" do %>
+                <i class=icon-user></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to :class => "btn btn-navbar", :data => {:toggle => "collapse", :target => ".nav-collapse"} do %>
+                <span class="icon-list"></span>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-collapse collapse">
+
+          <ul class="nav">
+
+            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'people' %>">
+            <%= link_to people_path do %>
+              <i class=icon-user></i>
+              People
+            <% end %>
+            </li>
+            <li class=<%= "active" if params[:controller] == 'stamps' %>>
+            <%= link_to stamps_path do %>
+              <i class="icon-trophy"></i>
+              Glories
+            <% end %>
+            </li>
+            <li>
+              <%= link_to about_path do %>
+                <i class="icon-info-sign"></i>
+                About
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  <div id='content-container'>
     <%= yield %>
   </div>
+</div>
+<div class="ajax-loader">
+  <%= image_tag '/ajax-loader.gif' %>&nbsp;&nbsp;LOADING
+</div>
 </body>
 </html>
 
