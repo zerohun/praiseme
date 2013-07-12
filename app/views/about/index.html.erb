@@ -23,18 +23,23 @@
   <div class="paragraph">
     <% yh = User.find_by_email("choi0hun@gmail.com") %>
     <% if yh.present? %>
-      <%= link_to user_profile_path(yh) do %>
-        <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle" %><br>
-        <%= yh.username  %>
-      <% end %>
+      <div>
+        <%= link_to user_profile_path(yh) do %>
+          <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle" %><br>
+          <%= yh.username  %>
+        <% end %>
+      </div>
     <% end %>
+    <br>
 
     <% bs = User.find_by_email("pbs52@hanmail.net") %>
     <% if bs.present? %>
-      <%= link_to user_profile_path(bs) do %>
-        <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle" %><br>
-        <%= bs.username  %>
-      <% end %>
+      <div>
+        <%= link_to user_profile_path(bs) do %>
+          <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle" %><br>
+          <%= bs.username  %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -43,7 +48,7 @@
   <div class="paragraph">
     <%= link_to "startglory@gmail.com", "mailto:startglory@gmail.com", :class => "btn no-loading" %><br>
     <br>
-    <div class="label">location</div><br>
+    <div class="label">location</div><br><br>
     random desk in D-camp,
     saerom building 4th floor,
     yuksamdong 683-34, Gangnam,
