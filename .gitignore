@@ -16,7 +16,6 @@ capybara-*.html
 /public/assets
 /db/*.sqlite3
 /config/database.yml
-/config/deploy.rb
 /current/tmp/*
 /current/log/*
 /public/upload/*
