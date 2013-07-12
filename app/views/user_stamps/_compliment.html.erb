@@ -7,10 +7,10 @@
   </div>
   <%= link_to compliment do %>
     <div class="desc round shadow">
-      <%= compliment.description %>
+      <%= compliment.description %><br><br>
       <div class="comment_count">
       <i class="icon-comment"></i>
-      (<%=compliment.comments.count %>)
+      (<%= compliment.comments.count %>)
        </div>
     </div>
   <% end %>
