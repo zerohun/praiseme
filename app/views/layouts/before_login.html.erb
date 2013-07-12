@@ -14,7 +14,7 @@
     <meta property="profile:first_name" content="<%= @user.first_name %>" />
     <meta property="profile:last_name" content="<%= @user.last_name %>" />
     <meta property="profile:username" content="<%= @user.username %>" />
-    <% if @user.present? %>
+    <% if @user.gender.present? %>
       <meta property="profile:gender" content="<%= @user.gender %>" />
     <% end %>
     <meta property="fb:profile_id" content="<%= @user.sns_connections.first.uid if @user.sns_connections.present? %>" />
