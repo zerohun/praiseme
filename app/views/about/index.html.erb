@@ -1,7 +1,7 @@
 <div id="about">
   <h3>What is StartGlory?</h3>
   <div class="paragraph">
-    <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4><br><br>
+    <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4>
 
     <hr>
     <h3>Compliments without Startglory</h3>
@@ -21,25 +21,40 @@
 
   <h3>Who making tihs?</h3>
   <div class="paragraph">
+    <% yh = User.find_by_email("choi0hun@gmail.com") %>
+    <% if yh.present? %>
+      <div>
+        <%= link_to user_profile_path(yh) do %>
+          <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle image-shadow" %><br>
+          <%= yh.username  %>
+        <% end %>
+      </div>
+    <% end %>
+    <br>
+
+    <% bs = User.find_by_email("pbs52@hanmail.net") %>
+    <% if bs.present? %>
+      <div>
+        <%= link_to user_profile_path(bs) do %>
+          <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle image-shadow" %><br>
+          <%= bs.username  %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <h3>Contact</h3>
 
   <div class="paragraph">
-    
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-
-  </div>
-
-  <div class="paragraph">
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
+    <%= link_to "startglory@gmail.com", "mailto:startglory@gmail.com", :class => "btn no-loading" %><br>
+    <br>
+    <div class="label">location</div><br><br>
+    random desk in D-camp,
+    saerom building 4th floor,
+    yuksamdong 683-34, Gangnam,
+    Seoul, South Korea<br><br>
+    <%= link_to "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=%EC%84%9C%EC%9A%B8%EC%8B%9C+%EA%B0%95%EB%82%A8%EA%B5%AC+%EC%97%AD%EC%82%BC%EB%8F%99+683-34&aq=&sll=37.508568,127.046489&sspn=0.004494,0.008014&vpsrc=6&ie=UTF8&hq=&hnear=683-34+Yeoksam-dong,+Gangnam-gu,+Seoul,+South+Korea&ll=37.508722,127.046177&spn=0.008987,0.016029&t=m&z=16&iwloc=A", :class => "no-loading" do %>
+      <%= image_tag "/map.png", :class => "image-shadow" %>
+    <% end %>
   </div>
 </div>
