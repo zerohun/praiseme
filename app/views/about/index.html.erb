@@ -19,7 +19,7 @@
     <%= render Stamp.new(:title => "Beautiful girl", :default_trophy_image_id => DefaultTrophyImage.limit(3).last.id) %>
   </div>
 
-  <h3>Who making tihs?</h3>
+  <h3>Who making this?</h3>
   <div class="paragraph round">
     <% yh = User.find_by_email("choi0hun@gmail.com") %>
     <% if yh.present? %>
