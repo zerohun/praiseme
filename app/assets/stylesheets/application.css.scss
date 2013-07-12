@@ -143,9 +143,9 @@ div.stamp-item{
   color: white;
   width: 200px;
   height: 25px;
-  position: fixed;
-  top: 200px;
-  left: 100px;
+  top: 30%;
+  left: -100px;
+  position:fixed;
   text-align: center;
   vertical-align: text-middle;
   -webkit-border-radius: 10px;
@@ -154,7 +154,7 @@ div.stamp-item{
   font-size: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  display: none;
+  margin-left:50%; 
 }
 
 
