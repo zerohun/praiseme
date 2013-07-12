@@ -1,7 +1,7 @@
 <div id="about">
   <h3>What is StartGlory?</h3>
   <div class="paragraph">
-    <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4><br><br>
+    <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4>
 
     <hr>
     <h3>Compliments without Startglory</h3>
@@ -21,25 +21,26 @@
 
   <h3>Who making tihs?</h3>
   <div class="paragraph">
+    <% yh = User.find_by_email("choi0hun@gmail.com") %>
+    <% if yh.present? %>
+      <%= link_to user_profile_path(yh) do %>
+        <%=image_tag yh.image_url(width:150, height:150), :class => "img img-circle" %><br>
+        <%= yh.username  %>
+      <% end %>
+    <% end %>
+
+    <% bs = User.find_by_email("pbs52@hanmail.net") %>
+    <% if bs.present? %>
+      <%= link_to user_profile_path(bs) do %>
+        <%=image_tag bs.image_url(width:150, height:150), :class => "img img-circle" %><br>
+        <%= bs.username  %>
+      <% end %>
+    <% end %>
   </div>
 
   <h3>Contact</h3>
 
   <div class="paragraph">
-    
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-
-  </div>
-
-  <div class="paragraph">
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd
-    ajkldfnalkdfjlaksfjklajfd  ajkldfnalkdfjlaksfjklajfd
+    <%= link_to "startglory@gmail.com", "mailto:startglory@gmail.com", :class => "btn no-loading" %><br>
   </div>
 </div>
