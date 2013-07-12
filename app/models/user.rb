@@ -127,35 +127,34 @@ class User < ActiveRecord::Base
   end
 
   def invites_friends_automatically
-
-    facebook_friends = self.facebook.get_connections("me", "friends")
-    facebook_friends.each do |friend|
-      friend_sns_connection = SnsConnection.where(:uid => friend["id"], :provider => "facebook").first
-      if friend_sns_connection.present?
-        friend_ids = Friendship.where(:is_invited_by_id => self.id).pluck("has_invited_id")
-        if friend_ids.include?(friend_sns_connection.user_id) == false
-          self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
-        end
-      else
-        friend_info = self.facebook.get_object friend["id"]
-
-        if friend_info["gender"] == "male"
-          gender = 0
-        elsif friend_info["gender"] == "female"
-          gender = 1
+    sns_connection = self.sns_connections.where(:provider => "facebook").first
+    if sns_connection.has_invited_friends == false
+      sns_connection.update_attribute :has_invited_friends, true
+      facebook_friends = self.facebook.get_connections("me", "friends")
+      facebook_friends.each do |friend|
+        friend_sns_connection = SnsConnection.where(:uid => friend["id"], :provider => "facebook").first
+        if friend_sns_connection.present?
+          friend_ids = Friendship.where(:is_invited_by_id => self.id).pluck("has_invited_id")
+          if friend_ids.include?(friend_sns_connection.user_id) == false
+            self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
+          end
         else
-          gender = nil
+          friend_info = self.facebook.get_object friend["id"]
+          if friend_info["gender"] == "male"
+            gender = 0
+          elsif friend_info["gender"] == "female"
+            gender = 1
+          else
+            gender = nil
+          end
+          invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
+          sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
+          sns_connection.save(:validate => false)
         end
-
-        invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
-
-        sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
-        sns_connection.save(:validate => false)
+        Following.create :follower => self, :followee => invited_user
       end
-      Following.create :follower => self, :followee => invited_user
+      NewsFeed.create_for_new_user self
     end
-    self.sns_connections.where(:provider => "facebook").first.update_attribute :has_invited_friends, true
-    NewsFeed.create_for_new_user self
   end
 
 
