@@ -11,9 +11,10 @@
     margin-bottom: 10px;
     padding: 10px;
     text-align: center;
-  }
-  .stamp-inline-wrapper{
-    float: left;
+    align: center;
+    li{
+      list-style-type: none;
+    }
   }
   
 }
