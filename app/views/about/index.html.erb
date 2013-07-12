@@ -1,6 +1,6 @@
 <div id="about">
   <h3>What is StartGlory?</h3>
-  <div class="paragraph">
+  <div class="paragraph round">
     <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4>
 
     <hr>
@@ -20,7 +20,7 @@
   </div>
 
   <h3>Who making tihs?</h3>
-  <div class="paragraph">
+  <div class="paragraph round">
     <% yh = User.find_by_email("choi0hun@gmail.com") %>
     <% if yh.present? %>
       <div>
@@ -45,7 +45,7 @@
 
   <h3>Contact</h3>
 
-  <div class="paragraph">
+  <div class="paragraph round">
     <%= link_to "startglory@gmail.com", "mailto:startglory@gmail.com", :class => "btn no-loading" %><br>
     <br>
     <div class="label">location</div><br><br>

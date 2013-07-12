@@ -42,7 +42,9 @@ class StampsController < ApplicationController
   # GET /stamps/1
   # GET /stamps/1.json
   def show
-    @users = @stamp.users.page(params[:page]).per(20)
+    @users = @stamp.users
+    @users = @users.reorder("user_stamps.score desc")
+    @users = @users.page(params[:page]).per(20)
   end
 
   # GET /stamps/new
