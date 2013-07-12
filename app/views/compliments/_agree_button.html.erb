@@ -1,4 +1,4 @@
-<% if (current_user == nil) || (Compliment.where(:id => params[:id], :sender_id => current_user.id).count == 0) %>
+<% if (current_user == nil) || (Compliment.where(:stamp_id => params[:id], :sender_id => current_user.id).count == 0) %>
 <div class="row-fluid">
   <div class="span12">
       <%= link_to "I agree", new_compliment_path(:compliment => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id}), :class => "btn btn-success" %>

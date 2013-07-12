@@ -200,15 +200,20 @@ ul.ui-autocomplete {
 
 
 
-
+#facebook{
+  width:30%;
+  max-width:100px;
+  float:right;
+  margin-right:10px;
+}
 
 .switch .slide-button, .toggle p span {
       display: none;
 }
 .toggle {
-  width:40%;
-  max-width:150px;
-  margin-left:70%;
+/*  width:30%;
+  max-width:100px;
+  margin-left:60%;*/
   padding: 0;
   position: relative;
 }          
@@ -269,7 +274,7 @@ ul.ui-autocomplete {
 }
 
 .toggle .slide-button i{
-color:#92B2B2;
+color:#909090;
 
 }
 
