@@ -85,6 +85,7 @@ ready = ->
     if $('.pagination').length > 0 && $('.pagination a[rel=next]').length > 0 && $('.pagination').parent().attr("id") != "comment-pagination"
       url = $('.pagination a[rel=next]').attr('href')
       if $(window).scrollTop() > ($(document).height() - $(window).height() - 10)
+        $('.pagination').show()
         $('.pagination').html('<span class="label label-darkgreen label-page-loading round border"><img src="/ajax-loader.gif" />&nbsp;&nbsp;Fetching more information</span>')
         $.getScript(url)
 
