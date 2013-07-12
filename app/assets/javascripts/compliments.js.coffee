@@ -20,7 +20,7 @@ ready = ->
         (data) -> 
           if data.count >0
             $("input.stamp-text-search").val(search_words)
-            alert "Duplicate Glorify"
+            alert "You have already glorified him(or her) on the title"
           else  
             $("input[type=hidden].stamp-id").val(ui.item.id)
             $("div#reason-field").hide()
