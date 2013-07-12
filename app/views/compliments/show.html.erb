@@ -23,8 +23,7 @@
     </div>
   </div>
 
-
-  <%= render 'agree_button' %>
+  <%= render :partial => 'agree_button', :locals => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id} %>
 
 </div>
 
