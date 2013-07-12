@@ -35,12 +35,12 @@ ready = ->
     response: (event, ui)->
       
       $stampTextField = $("input.stamp-text-search")
-      text = $stampTextField.val()
+      #text = $stampTextField.val()
       $create_stamp_fields = $("div.create-stamp-fields")
       $stampTextField.css("height", "30px")
       $stampTextField.css("font-size", "15px")
-      $stampTextField.val("")
-      $stampTextField.val(text)
+      #$stampTextField.val("")
+      #$stampTextField.val(text)
       $(".ui-autocomplete").css("max-width", $("input.stamp-text-search").css("width"))
       $("html, body").animate({ scrollTop: $(document).height() }, "slow")
 

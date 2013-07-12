@@ -3,19 +3,21 @@
   <div class="paragraph">
     <h4>StartGlory helps you to get compliments or give compliments to somebody else with fun way</h4><br><br>
 
-    <h5 class="under-line">Compliments without Startglory</h5>
+    <hr>
+    <h3>Compliments without Startglory</h3>
     <ul>
       <li>hey you are really good singer</li>
       <li>you are really good at painting</li>
       <li>you are so beautiful</li>
     </ul>
     <br>
-    <h5 class="under-line">Compliments with Startglory</h5>
-    <ul>
-      <li><%= render Stamp.new(:title => "Good singer", :default_trophy_image_id => DefaultTrophyImage.first.id) %></li>
-      <li><%= render Stamp.new(:title => "Good at painting", :default_trophy_image_id => DefaultTrophyImage.limit(2).last.id) %></li>
-      <li><%= render Stamp.new(:title => "Beautiful girl", :default_trophy_image_id => DefaultTrophyImage.limit(3).last.id) %></li>
-    </ul>
+    then... you are going to forget about all about this someday<br><br>
+    <hr>
+    <h3>Compliments with Startglory</h3>
+    <%= render Stamp.new(:title => "Good singer", :default_trophy_image_id => DefaultTrophyImage.first.id) %>
+    <%= render Stamp.new(:title => "Good at painting", :default_trophy_image_id => DefaultTrophyImage.limit(2).last.id) %>
+    <%= render Stamp.new(:title => "Beautiful girl", :default_trophy_image_id => DefaultTrophyImage.limit(3).last.id) %>
+    <div class="clear-both"></div>
 
   </div>
 
