@@ -90,8 +90,8 @@ ready = ->
         $.getScript(url)
 
   adjustDeviceSize()
-  if $.cookie('need_to_check_location') == 'true'
-    navigator.geolocation.getCurrentPosition(updateLocation)
+  #if $.cookie('need_to_check_location') == 'true'
+    #navigator.geolocation.getCurrentPosition(updateLocation)
 
 
   $(".limited-text").bind "paste", limitTextLength
