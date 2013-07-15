@@ -163,6 +163,11 @@ ul.ui-autocomplete {
 }
 #create-stamp-popup{
   text-align: center;
+  .modal-body{
+    margin: 5px;
+    padding: 5px;
+  }
+
   button{
     min-height:180px;
   }
