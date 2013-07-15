@@ -10,7 +10,7 @@ class UserStamp < ActiveRecord::Base
 
   after_create do |user_stamp|
     if UserStamp.where(:stamp_id => user_stamp.stamp_id).count == 1
-      NewsFeed.create_for_new_user_stamp user_stamp
+      NewsFeed.delay.create_for_new_user_stamp user_stamp
     end
     user_stamp.update_attribute :score, user_stamp.score + 1
   end
@@ -26,8 +26,14 @@ class UserStamp < ActiveRecord::Base
     #end
     if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
       adding_point = user_stamp.impact - user_stamp.before_impact
-      user_stamp.complimented_stamps.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
-      NewsFeed.create_for_jumping_score user_stamp
+      user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
+      NewsFeed.delay.create_for_jumping_score user_stamp
+    end
+
+    if user_stamp.changed.include?("score") && user_stamp.before_level > user_stamp.level
+      adding_point = user_stamp.impact - user_stamp.before_impact
+      user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
+      NewsFeed.delay.create_for_jumping_score user_stamp
     end
   end
 
@@ -36,6 +42,11 @@ class UserStamp < ActiveRecord::Base
     receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => stamp_id)
     sender_user_stamp = compliment.sender.user_stamps.first_or_initialize(:stamp_id => stamp_id)
     receiver_user_stamp.get_score_from sender_user_stamp
+  end
+
+  def self.redruce_score_from_deleting_compliment(compliment)
+    self.score = self.score - compliment.impact_score
+    self.save
   end
 
   def complimented_stamps
