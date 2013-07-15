@@ -31,10 +31,7 @@ class NewsFeed < ActiveRecord::Base
 
   def self.create_for_jumping_score(user_stamp)
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:score_up]
-    user_ids = user_stamp.complimented_stamps.map {|us| us.user_id }.uniq
-    user_ids.each do |user_id|
-      UserNewsFeed.create :user_id => user_id, :news_feed => news_feed
-    end
+    news_feed.notify_to user_stamp.user.followers
   end
 
   def self.create_for_gainig_rank(user_stamp)
