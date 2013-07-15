@@ -26,16 +26,15 @@ class UserStamp < ActiveRecord::Base
     #end
 
     if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
-      adding_point = user_stamp.impact - user_stamp.before_impact
-      user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
+      #adding_point = user_stamp.impact - user_stamp.before_impact
+      #user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
       NewsFeed.delay.create_for_jumping_score user_stamp
     end
-
-    if user_stamp.changed.include?("score") && user_stamp.before_level > user_stamp.level
-      adding_point = user_stamp.impact - user_stamp.before_impact
-      user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
+    #if user_stamp.changed.include?("score") && user_stamp.before_level > user_stamp.level
+      #adding_point = user_stamp.impact - user_stamp.before_impact
+      #user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
       #NewsFeed.delay.create_for_jumping_score user_stamp
-    end
+    #end
   end
 
   def self.add_up_score_from_compliment(compliment)

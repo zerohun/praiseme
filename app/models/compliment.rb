@@ -31,9 +31,10 @@ class Compliment < ActiveRecord::Base
     UserStamp.add_up_score_from_compliment compliment
   end
 
-  after_destroy do |compliment|
-    UserStamp.delay.reduce_score_from_deleting_compliment compliment
-  end
+  #after_destroy do |compliment|
+    #user_stamp = UserStamp.where(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id).first
+    #user_stamp.reduce_score_from_deleting_compliment compliment
+  #end
 
   def is_destroyable_by?(user)
     self.receiver == user || self.sender == user
