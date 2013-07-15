@@ -46,7 +46,7 @@
 <%= form_for [@compliment, @compliment.comments.new], :remote => true do |f| %>
   <%= hidden_field_tag(:last_comment_id, @comments.last.try("id")) if @comments.present? %>
   <%= f.text_area :content, :rows => 1, :placeholder => "Write a comment", :class => "round limited-text", :data => {:limit => 200} %>
-  <span class="text-length-view" data-field="comment_content"></span>
+  <br/><span class="text-length-view" data-field="comment_content"></span>
 <% end %>
 
 <div id="destroy-compliment-popup" class="modal hide fade">
