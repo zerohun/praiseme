@@ -91,9 +91,9 @@ class ComplimentsController < ApplicationController
   def destroy
 
     if @compliment.is_destroyable_by? current_user
-      receiver_user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
-      sender_user_stamp = UserStamp.first_or_initialize(:user_id => @compliment.sender_id, :stamp_id => @compliment.stamp_id)
-      receiver_user_stamp.update_attribute :score, receiver_user_stamp.score - sender_user_stamp.impact
+      #receiver_user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
+      #sender_user_stamp = UserStamp.first_or_initialize(:user_id => @compliment.sender_id, :stamp_id => @compliment.stamp_id)
+      #receiver_user_stamp.update_attribute :score, receiver_user_stamp.score - sender_user_stamp.impact
       @user_stamp = UserStamp.where(:stamp_id => @compliment.stamp_id, :user_id => @compliment.receiver_id).first
       @compliment.destroy
 
