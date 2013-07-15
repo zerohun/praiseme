@@ -31,6 +31,7 @@ class NewsFeed < ActiveRecord::Base
 
   def self.create_for_jumping_score(user_stamp)
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:score_up]
+    news_feed.notify_to user_stamp.user
     news_feed.notify_to user_stamp.user.followers
   end
 
@@ -42,6 +43,7 @@ class NewsFeed < ActiveRecord::Base
 
   def self.create_for_new_user_stamp(user_stamp)
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:create]
+    news_feed.notify_to user_stamp.user
     news_feed.notify_to user_stamp.user.followers
   end
 
@@ -62,7 +64,7 @@ class NewsFeed < ActiveRecord::Base
       if self.action_type == :score_up
         user = self.notifiable.user
         stamp = self.notifiable.stamp
-        return " #{user.username}'s #{stamp.title} level up to #{self.notifiable.level}"
+        return " #{user.username}'s '#{stamp.title}' level is #{self.notifiable.level} now!"
       elsif self.action_type == :rank_up
         user_stamp = self.notifiable
         stamp = self.notifiable.stamp
