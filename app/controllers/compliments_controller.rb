@@ -51,10 +51,7 @@ class ComplimentsController < ApplicationController
   # POST /compliments.json
   def create
     @compliment = Compliment.new(compliment_params)
-    stamp_object = Stamp.find_by_title(params[:stamp_text])
-    if(@compliment.stamp_id == nil && stamp_object != nil)
-      @compliment.stamp_id = stamp_object.id
-    end
+    @compliment.stamp = Stamp.find_by_title(params[:stamp_text]) if @compliment.stamp_id.blank?
     respond_to do |format|
       @compliment.sender = current_user
       if @compliment.save
@@ -66,8 +63,6 @@ class ComplimentsController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @compliment.errors, status: :unprocessable_entity }
-        
-
       end
     end
   end

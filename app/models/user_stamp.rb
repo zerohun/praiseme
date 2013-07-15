@@ -1,5 +1,6 @@
 class UserStamp < ActiveRecord::Base
-  LEVEL_CURVE = 1.2
+  LEVEL_CURVE = 1.5
+  LEVEL_DIFFICULTY = 7.0
 
   default_scope {includes(:user, :stamp)}
 
@@ -12,7 +13,6 @@ class UserStamp < ActiveRecord::Base
     if UserStamp.where(:stamp_id => user_stamp.stamp_id).count == 1
       NewsFeed.delay.create_for_new_user_stamp user_stamp
     end
-    user_stamp.update_attribute :score, user_stamp.score + 1
   end
 
   before_save do |user_stamp|
@@ -39,7 +39,7 @@ class UserStamp < ActiveRecord::Base
   def self.add_up_score_from_compliment(compliment)
     stamp_id = compliment.stamp_id
     receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => stamp_id)
-    sender_user_stamp = compliment.sender.user_stamps.first_or_initialize(:stamp_id => stamp_id)
+    sender_user_stamp = compliment.sender.user_stamps.find_or_initialize_by(:stamp_id => stamp_id)
     receiver_user_stamp.get_score_from sender_user_stamp
   end
 
@@ -65,7 +65,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def score_for_next_level
-    ((self.level + 1) ** LEVEL_CURVE).floor * 7
+    ((self.level + 1) ** LEVEL_CURVE).floor * LEVEL_DIFFICULTY.to_i
   end
 
   def percentage_for_next_level
@@ -82,10 +82,10 @@ class UserStamp < ActiveRecord::Base
   end
 
   def level
-    ((score.to_f / 7.0)  ** (1.0/LEVEL_CURVE)).round(0)
+    ((score.to_f / LEVEL_DIFFICULTY)  ** (1.0/LEVEL_CURVE)).round(0)
   end
 
   def before_level
-    ((self.changed_attributes["score"].to_f / 10.0)  ** (1.0/LEVEL_CURVE)).round(0)
+    ((self.changed_attributes["score"].to_f / LEVEL_DIFFICULTY)  ** (1.0/LEVEL_CURVE)).round(0)
   end
 end
