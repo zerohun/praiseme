@@ -25,11 +25,7 @@ class ComplimentsController < ApplicationController
   def new
     if params[:compliment][:stamp_id].present?
       @params  = params[:compliment]
-<<<<<<< HEAD
-      if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count >= 0
-=======
       if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count > 0
->>>>>>> b98d154892c6d922c559ec0a3c3a1a103748e0ac
         redirect_to news_feeds_path
       end 
     end
