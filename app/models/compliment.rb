@@ -18,7 +18,7 @@ class Compliment < ActiveRecord::Base
   validates_length_of :description, :maximum => 400
 
   after_create do |compliment|
-    NewsFeed.create_for_compliment compliment
+    NewsFeed.delay.create_for_compliment compliment
     UserStamp.add_up_score_from_compliment compliment
   end
 
