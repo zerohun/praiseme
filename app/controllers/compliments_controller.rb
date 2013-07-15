@@ -5,7 +5,7 @@ class ComplimentsController < ApplicationController
   # GET /compliments
   # GET /compliments.on
   def index
-    duplicate_stamp_count = Compliment.where(:sender_id => current_user, :receiver_id => params[:receiver_id], :id => params[:stamp_id]).count
+    duplicate_stamp_count = Compliment.where(:sender_id => current_user, :receiver_id => params[:receiver_id], :stamp_id => params[:stamp_id]).count
     render :json => {:count => duplicate_stamp_count } 
   end
 
