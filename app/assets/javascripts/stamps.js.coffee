@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  $('#search').autocomplete
-    source: "/stamp_suggestions"
+#$ ->
+#  $('#search').autocomplete
+#    source: "/stamp_suggestions"
 
