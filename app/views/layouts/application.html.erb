@@ -88,6 +88,13 @@
         <div class="nav-collapse collapse">
 
           <ul class="nav">
+            <li class="hidden-phone hidden-tablet">
+              <%= link_to user_profile_path(current_user) do %>
+                <%= image_tag current_user.image_url, :style => "width:25px" %>
+                My page
+              <% end %>
+            </li>
+
             <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
               <%= link_to news_feeds_path do %>
                 <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>

@@ -78,6 +78,11 @@
 
           <ul class="nav">
 
+            <li class="hidden-phone hidden-tablet">
+              <%= link_to "/users/auth/facebook", :class => "btn-nav-facebook-login" do %>
+                Sign in with <i class="icon-facebook-sign"></i>acebook
+              <% end %>
+            </li>
             <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'people' %>">
             <%= link_to people_path do %>
               <i class=icon-user></i>
