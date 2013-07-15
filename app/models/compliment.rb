@@ -20,9 +20,9 @@ class Compliment < ActiveRecord::Base
   before_save do |compliment|
     user_stamp = UserStamp.where(:user_id => compliment.sender_id, :stamp_id => compliment.stamp_id).first
     if user_stamp.present?
-      compliment.impact_score = user_stamp.impact_score
+      compliment.impact_score = user_stamp.impact
     else
-      compliment.impact_score = 10
+      compliment.impact_score = 1
     end
   end
 
@@ -32,7 +32,7 @@ class Compliment < ActiveRecord::Base
   end
 
   after_destroy do |compliment|
-    UserStamp.delay.redruce_score_from_deleting_compliment compliment
+    UserStamp.delay.reduce_score_from_deleting_compliment compliment
   end
 
   def is_destroyable_by?(user)

@@ -1,5 +1,5 @@
 class UserStamp < ActiveRecord::Base
-  LEVEL_CURVE = 1.5
+  LEVEL_CURVE = 1.2
 
   default_scope {includes(:user, :stamp)}
 
@@ -24,6 +24,7 @@ class UserStamp < ActiveRecord::Base
       #user_stamp.previous_rank = user_stamp.rank
       #user_stamp.rank = new_rank
     #end
+
     if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
       adding_point = user_stamp.impact - user_stamp.before_impact
       user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
@@ -33,7 +34,7 @@ class UserStamp < ActiveRecord::Base
     if user_stamp.changed.include?("score") && user_stamp.before_level > user_stamp.level
       adding_point = user_stamp.impact - user_stamp.before_impact
       user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
-      NewsFeed.delay.create_for_jumping_score user_stamp
+      #NewsFeed.delay.create_for_jumping_score user_stamp
     end
   end
 
@@ -44,7 +45,7 @@ class UserStamp < ActiveRecord::Base
     receiver_user_stamp.get_score_from sender_user_stamp
   end
 
-  def self.redruce_score_from_deleting_compliment(compliment)
+  def reduce_score_from_deleting_compliment(compliment)
     self.score = self.score - compliment.impact_score
     self.save
   end
@@ -66,7 +67,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def score_for_next_level
-    ((self.level + 1) ** LEVEL_CURVE).floor * 10
+    ((self.level + 1) ** LEVEL_CURVE).floor * 7
   end
 
   def percentage_for_next_level
@@ -83,7 +84,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def level
-    ((score.to_f / 10.0)  ** (1.0/LEVEL_CURVE)).round(0)
+    ((score.to_f / 7.0)  ** (1.0/LEVEL_CURVE)).round(0)
   end
 
   def before_level

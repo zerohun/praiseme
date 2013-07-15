@@ -11,7 +11,9 @@
     just like this...<br><br>
 
     <h5> I think you are an</h5>
-    <%= render Stamp.new(:default_trophy_image_id => DefaultTrophyImage.first.id, :title => "Amazing person") %><br>
+    <% if DefaultTrophyImage.count > 0 %>
+      <%= render Stamp.new(:default_trophy_image_id => DefaultTrophyImage.first.id, :title => "Amazing person") %><br>
+    <% end %>
     <br>
     <p>It's better then just compliment, so we call it <span class="badge badge-success">Glorify</span></p>
   </div>
