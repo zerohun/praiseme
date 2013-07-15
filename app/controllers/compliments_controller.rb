@@ -23,17 +23,12 @@ class ComplimentsController < ApplicationController
 
   # GET /compliments/new
   def new
-
-
     if params[:compliment][:stamp_id].present?
       @params  = params[:compliment]
-        binding.pry
-      if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count >= 0
+      if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count > 0
         redirect_to news_feeds_path
       end 
-
     end
-
      count_of_today_compliment = current_user.sent_compliments.where("created_at >= ?", Date.today.beginning_of_day).count
       if(count_of_today_compliment >= 10)
         redirect_to news_feeds_path, :flash => {:compliment =>"Over the Today's Compliment"}

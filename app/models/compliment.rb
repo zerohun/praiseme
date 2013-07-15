@@ -17,9 +17,22 @@ class Compliment < ActiveRecord::Base
 
   validates_length_of :description, :maximum => 400
 
+  before_save do |compliment|
+    user_stamp = UserStamp.where(:user_id => compliment.sender_id, :stamp_id => compliment.stamp_id).first
+    if user_stamp.present?
+      compliment.impact_score = user_stamp.impact_score
+    else
+      compliment.impact_score = 10
+    end
+  end
+
   after_create do |compliment|
     NewsFeed.delay.create_for_compliment compliment
     UserStamp.add_up_score_from_compliment compliment
+  end
+
+  after_destroy do |compliment|
+    UserStamp.delay.redruce_score_from_deleting_compliment compliment
   end
 
   def is_destroyable_by?(user)
