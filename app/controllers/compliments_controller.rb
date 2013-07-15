@@ -27,7 +27,6 @@ class ComplimentsController < ApplicationController
 
     if params[:compliment][:stamp_id].present?
       @params  = params[:compliment]
-        binding.pry
       if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count >= 0
         redirect_to news_feeds_path
       end 

@@ -124,8 +124,11 @@ ready = ->
    
   $("#new_comment > #comment_content").keydown (e)->
     if e.keyCode == 13
-      $("#new_comment").submit()
-      $(this).val("")
+      str =  $("#comment_content").val().replace /^\s+|\s+$/g, ""
+      if str.length > 0
+        $("#new_comment").submit()
+      e.preventDefault()
+      $("#comment_content").val("")
 
   if $('#comment-pagination .pagination a[rel=next]').length > 0
     $(".btn-more-comments").show()
