@@ -1,6 +1,6 @@
 class UserStamp < ActiveRecord::Base
-  LEVEL_CURVE = 1.5
-  LEVEL_DIFFICULTY = 7.0
+  LEVEL_CURVE = 1.2
+  LEVEL_DIFFICULTY = 5.0
 
   default_scope {includes(:user, :stamp)}
 
@@ -65,7 +65,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def score_for_next_level
-    ((self.level + 1) ** LEVEL_CURVE).floor * LEVEL_DIFFICULTY.to_i
+    (((self.level + 1) ** LEVEL_CURVE) * LEVEL_DIFFICULTY).floor
   end
 
   def percentage_for_next_level
@@ -82,7 +82,7 @@ class UserStamp < ActiveRecord::Base
   end
 
   def level
-    ((score.to_f / LEVEL_DIFFICULTY)  ** (1.0/LEVEL_CURVE)).round(0)
+    ((score.to_f / LEVEL_DIFFICULTY)  ** (1.0/LEVEL_CURVE)).floor
   end
 
   def before_level

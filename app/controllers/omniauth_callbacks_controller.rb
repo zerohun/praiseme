@@ -17,6 +17,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.save
         sns_connection.update_attribute :user_id, user.id
         sign_in user
+        MailWorker.perform_async(user.id)
         user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
         if cookies[:last_page_url].present?
           last_page_url = cookies[:last_page_url]
