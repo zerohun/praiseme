@@ -84,7 +84,7 @@ Praiseme::Application.configure do
     domain: "startglory.com",
     authentication: :login,
     enable_starttls_auto: true,
-    user_name: "startglory@gmail.com",
+    user_name: "startglory",
     password: "1324513245choi"
   }
 
