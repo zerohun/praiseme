@@ -10,8 +10,8 @@
   <tbody>
   <% @comments.each do |comment| %>
     <tr>
-      <td><%= comment.target_id %></td>
-      <td><%= User.find(comment.user_id).username %></td>
+      <td><%= comment.target.stamp.title %></td>
+      <td><%= comment.user.username %></td>
       <td><%= comment.target_type %></td>
       <td><%= comment.content %></td>
       <td>
