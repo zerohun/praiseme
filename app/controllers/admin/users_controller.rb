@@ -3,7 +3,11 @@ class Admin::UsersController < Admin::ApplicationController
   before_filter :is_admin_login
 
   def index
-    @users = User.page(params[:page]).per(20)  
+    @users = User.all
+    if params[:q].present?
+      @users = @users.where("username like '%#{params[:q]}%' or last_name like '%#{params[:q]}%' or first_name like '%#{params[:q]}%'")
+    end
+    @users = @users.page(params[:page]).per(20)  
   end
 
   def show
