@@ -15,6 +15,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user = User.new
         user.from_omniauth(auth)
         user.status = 1
+        user.user_admin_type = 2 if user.email == "choi0hun@gmail.com" || user.email == "pbs52@hanmail.net"
         user.save
         sns_connection.update_attribute :user_id, user.id
         sign_in user
