@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20130715024103) do
     t.string   "username"
     t.string   "image"
     t.string   "facebook_image_url"
-    t.integer  "status"
+    t.integer  "status",                 default: 0
     t.string   "job"
     t.string   "school"
     t.integer  "user_admin_type",        default: 0

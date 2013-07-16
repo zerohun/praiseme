@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if sns_connection.provider == "facebook"
         user = User.new
         user.from_omniauth(auth)
+        user.status = 1
         user.save
         sns_connection.update_attribute :user_id, user.id
         sign_in user
