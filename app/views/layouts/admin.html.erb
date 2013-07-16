@@ -41,33 +41,9 @@
                 <i class=icon-picture></i>
               <% end %>
             </li>
-          </ul>
-        </div>
-        <div class="nav-collapse collapse">
-
-          <ul class="nav">
-            <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'admin/users' %>">
-              <%= link_to admin_users_path do %>
-                <i class=icon-user></i>
-               Users 
-              <% end %>
-            </li>
-            <li class=<%= "active" if params[:controller] == 'admin/stamps' %>>
-              <%= link_to admin_stamps_path do %>
-                <i class="icon-certificate"></i>
-                Glories
-              <% end %>
-              </li>
-            <li class=<%= "active" if params[:controller] == 'admin/compliments' %>>
-              <%= link_to admin_compliments_path do %>
-                <i class="icon-edit"></i>
-                Compliments
-              <% end %>
-              </li>
-            <li class=<%= "active" if params[:controller] == 'admin/default_trophy_images' %>>
-              <%= link_to admin_default_trophy_images_path do %>
-                <i class="icon-picture"></i>
-                TrophyImage
+            <li class=<%= "active" if params[:controller] == 'admin/comments' %>>
+              <%= link_to admin_comments_path, :class => "btn btn-navbar" do %>
+                <i class=icon-comments-alt ></i>
               <% end %>
             </li>
           </ul>

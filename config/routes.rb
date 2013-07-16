@@ -38,10 +38,12 @@ Praiseme::Application.routes.draw do
   root :to => "news_feeds#index"
   
   namespace :admin do
+    root :to => "users#index"
     resources :default_trophy_images
     resources :users 
     resources :compliments 
     resources :stamps 
+    resources :comments
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
