@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
   def index
     @users = User.all
     if params[:q].present?
-      @users = @users.where("username like '%#{params[:q]}%' or last_name like '%#{params[:q]}%' or first_name like '%#{params[:q]}%'")
+      @users = @users.where("users.username like '%#{params[:q]}%' or users.last_name like '%#{params[:q]}%' or users.first_name like '%#{params[:q]}%'")
     end
     @users = @users.page(params[:page]).per(20)  
   end
