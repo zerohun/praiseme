@@ -134,6 +134,7 @@ class User < ActiveRecord::Base
           if friend_ids.include?(friend_sns_connection.user_id) == false
             self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
           end
+          Following.create :follower => self, :followee => sns_connection.user
         else
           friend_info = self.facebook.get_object friend["id"]
           if friend_info["gender"] == "male"
@@ -146,8 +147,9 @@ class User < ActiveRecord::Base
           invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
           sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
           sns_connection.save(:validate => false)
+          Following.create :follower => self, :followee => invited_user
         end
-        Following.create :follower => self, :followee => invited_user
+
       end
       UserMailer.complete_inviting_friends(self).deliver!
     end
