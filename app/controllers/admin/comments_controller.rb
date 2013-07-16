@@ -4,7 +4,10 @@ class Admin::CommentsController < Admin::ApplicationController
   before_filter :is_admin_login
  
   def index
-    @comments = Comment.page(params[:page]).per(20)
+    @comments = Comment.all
+    if params[:q].present?
+    end
+    @comments = @comments.page(params[:page]).per(20)
   end
 
   def show

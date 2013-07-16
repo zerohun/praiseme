@@ -3,7 +3,10 @@ class Admin::ComplimentsController < Admin::ApplicationController
   before_filter :is_admin_login
 
   def index
-    @compliments = Compliment.order('created_at desc').page(params[:page]).per(20)
+    @compliments =  Compliment.all
+    if params[:q].present?
+    end
+    @compliments = @compliments.order('created_at desc').page(params[:page]).per(20)
   end
 
   def show

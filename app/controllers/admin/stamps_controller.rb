@@ -4,8 +4,13 @@ class Admin::StampsController < Admin::ApplicationController
 
   def index
 
+    @stamps = Stamp.all
 
-    @stamps = Stamp.order('created_at desc').page(params[:page]).per(20)
+    if params[:q].present?
+      @stamps = @stamps.where("title like '%#{params[:q]}%'")
+    end
+
+    @stamps = @stamps.order('created_at desc').page(params[:page]).per(20)
     
   end
 
