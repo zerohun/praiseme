@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
           if friend_ids.include?(friend_sns_connection.user_id) == false
             self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
           end
-          Following.create :follower => self, :followee => sns_connection.user
+          Following.create :follower => self, :followee => friend_sns_connection.user
         else
           friend_info = self.facebook.get_object friend["id"]
           if friend_info["gender"] == "male"
