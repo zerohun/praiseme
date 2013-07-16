@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   attr_accessor :sns_connected
 
   after_create do |user|
-    NewsFeed.delay.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
+    NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
   end
 
   def friends
