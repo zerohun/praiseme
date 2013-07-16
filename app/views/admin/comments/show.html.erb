@@ -1,0 +1,10 @@
+<p>
+  <strong>Name:</strong>
+  <%= @comment.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_comment_path(@, @comment) %> |
+  <%= link_to "Destroy", [:admin, @comment], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_comments_path %>
+</p>
