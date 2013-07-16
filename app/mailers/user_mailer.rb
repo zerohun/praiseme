@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
          subject: "Welcome to Startglory"
 
   end
+
+  def complete_inviting_friends(user)
+    mail to: user.email,
+         subject: "We just brought all of your facebook friends"
+  end
 end

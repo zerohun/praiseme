@@ -87,6 +87,12 @@ Praiseme::Application.configure do
     user_name: "startglory",
     password: "1324513245choi"
   }
+  config.middleware.use ExceptionNotifier,
+                        :email_prefix => "[Exception] ",
+                        :sender_address => %{"Exception Notifier" <startglory@gmail.com>},
+                        :exception_recipients => %w{choi0hun@gmail.com, ggogun@gmail.com}
+  
+
 
 
   # Disable automatic flushing of the log to improve performance.

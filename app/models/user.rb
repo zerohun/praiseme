@@ -44,10 +44,6 @@ class User < ActiveRecord::Base
   
   attr_accessor :sns_connected
 
-  after_create do |user|
-    NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
-  end
-
   def friends
     user_ids = User.joins("INNER JOIN friendships ON users.id = friendships.has_invited_id or users.id = friendships.is_invited_by_id").
                     where("(friendships.has_invited_id = ? or friendships.is_invited_by_id = ?) and users.id != ? ", self.id, self.id, self.id).
@@ -153,7 +149,7 @@ class User < ActiveRecord::Base
         end
         Following.create :follower => self, :followee => invited_user
       end
-      NewsFeed.create_for_new_user self
+      UserMailer.complete_inviting_friends(self).deliver!
     end
   end
 

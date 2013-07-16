@@ -15,7 +15,7 @@ class NewsFeed < ActiveRecord::Base
   def self.create_for_new_user(user)
     news_feed = NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
     news_feed.notify_to user
-    news_feed.notify_to user.friends
+    NotifierForNewUsersFollowersWorker.perform_async news_feed.id, user.id
   end
 
   def self.create_for_compliment(compliment)

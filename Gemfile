@@ -26,6 +26,7 @@ gem 'dalli', '~> 2.6.3'
 gem 'simple_form'
 gem 'twitter'
 gem "letter_opener", :group => :development
+gem 'exception_notification', "~> 2.6.1"
 #gem 'wordnet-defaultdb'
 #gem 'stanford-core-nlp', :git => "git@github.com:zerohun/stanford-core-nlp.git"
 #gem 'open-nlp'
