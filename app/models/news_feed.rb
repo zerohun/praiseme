@@ -24,8 +24,10 @@ class NewsFeed < ActiveRecord::Base
     receiver = news_feed.notifiable.receiver
     news_feed.notify_to sender
     news_feed.notify_to receiver
-    news_feed.notify_to sender.followers.where.not(:id => receiver.id)
-    news_feed.notify_to receiver.followers.where.not(:id => sender.id)
+    senders_followers = sender.followers.where.not(:id => receiver.id)
+    senders_follower_ids = senders_followers.pluck(:id)
+    news_feed.notify_to senders_followers
+    news_feed.notify_to receiver.followers.where.not(:id => sender.id).where.not(:id => senders_follower_ids)
     news_feed
   end
 
