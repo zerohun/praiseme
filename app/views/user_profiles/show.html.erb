@@ -60,9 +60,10 @@
   </div>
 </div>
 
-
+<% if @user.email == "pbs52@hanmail.net" || @user.email == "choi0hun@gmail.com"  %>
 <div id="personal_feed">
 
   <%= render :partial => 'personal_feed', :locals => {:feed => @personal_feed } %>
 </div>
 <%= paginate @personal_feed %>
+<% end %>
