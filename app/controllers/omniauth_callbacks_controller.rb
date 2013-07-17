@@ -8,6 +8,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sns_connection.save
       user.from_omniauth(auth)
       user.save if user.changed
+      user = user.reload
+      user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
       user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
       sign_in_and_redirect user, notice: "Signed in!"
     else
