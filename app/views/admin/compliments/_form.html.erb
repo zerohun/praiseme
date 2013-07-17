@@ -1,17 +1,16 @@
 <%= form_for [:admin, @compliment], :html => { :class => "form-horizontal" } do |f| %>
 
-  <%= render "shared/error_messages", :target => @compliment %>
 
   <div class="control-group">
-    <label class="control-label">attribute.name</label>
+    <label class="control-label">StampID</label>
     <div class="controls">
-      <label><%= f.text_field :name %></label>
+      <label><%= f.text_field :stamp_id %></label>
     </div>
   </div>
 
 
   <div class="form-actions">
     <%= f.submit (@compliment.new_record?? 'Create' : 'Update' ), :class => "btn btn-primary" %>
-    <%= link_to "cancel", admin_compliments_path, :class = "btn" %>
+    <%= link_to "cancel", admin_compliments_path, :class => "btn" %>
   </div>
 <% end %>

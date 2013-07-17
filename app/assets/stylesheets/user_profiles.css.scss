@@ -144,3 +144,88 @@ div.user-profile{
     display: inline-block;
   }
 }
+
+
+#personal_feed{
+  h5{
+    text-align: center;
+  }
+  a{
+    text-decoration: none;
+    .sender-box{
+      background-color: #e4faf5;
+    }
+    .receiver-box{ 
+      background-color: #f8f4b0;
+    }
+    article{
+      margin: 10px;
+      padding: 10px;
+
+
+      .user-stamp-level-up{
+        div{
+          display: inline-block;
+        }
+        .user{
+          width: 20%;
+          text-align: center;
+        }
+        .userstamp{
+          width: 35%;
+          text-align: center;
+        }
+        .level{
+          width: 35%;
+          text-align: center;
+          margin-left: 10px;
+          color: black;
+        }
+      }
+      .user-item{
+        text-align: center;
+      }
+
+      .compliment-item{
+        div{
+          display: inline-block;
+        }
+
+        .sender{
+          width: 25%;
+          text-align: center;
+        }
+        .receiver{
+          width: 25%;
+          text-align: center;
+        }
+
+        .stamp{
+          width: 45%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotateZ(0deg);
+  }
+  to { -moz-transform: rotateZ(-360deg);}
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotateZ(0deg);
+  }
+  to { -webkit-transform: rotateZ(-360deg);}
+}
+

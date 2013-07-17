@@ -59,3 +59,10 @@
     <%= link_to "Followers(#{@user.followers.count})", user_profile_followings_path(@user, :type => "followers"), :class => "btn" %>
   </div>
 </div>
+
+
+<div id="personal_feed">
+
+  <%= render :partial => 'personal_feed', :locals => {:feed => @personal_feed } %>
+</div>
+<%= paginate @personal_feed %>

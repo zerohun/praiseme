@@ -1,0 +1,9 @@
+<% feed.each do |f|  %>
+
+  sender : <%= User.find(f.sender_id).username %>
+  receiver : <%= User.find(f.receiver_id).username %>
+  stamp : <%= Stamp.find(f.stamp_id).title %>
+  content : <%= Compliment.find(f.id).description %>
+
+<% end %>    
+

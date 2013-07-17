@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Praiseme::Application.routes.draw do
+  get "personal_news_feed/index"
   get "about" => "about#index"
   get "privacy_policy" => "about#privacy_policy"
   get "term_of_service" => "about#term_of_service"

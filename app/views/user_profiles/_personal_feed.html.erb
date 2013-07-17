@@ -1,0 +1,25 @@
+<% feed.each do |f|  %>
+
+  <%= link_to compliment_path(f.id) do %>
+    <% if f.sender_id == params[:id].to_i %>
+     <article class="round shadow sender-box">
+    <% else %>
+     <article class="round shadow receiver-box">
+    <% end %>
+      <% compliment = f %>
+      <div class="compliment-item">
+        <div class="sender">
+          <%= image_tag compliment.sender.image_url, :class => "img-circle img-small" %>
+        </div>
+        <div class="stamp">
+          <%= render compliment.stamp %>
+        </div>
+        <div class="receiver">
+          <%= image_tag compliment.receiver.image_url, :class => "img-circle img-small" %>
+        </div>
+      </div>
+      <h5><%= compliment.description %></h5>
+    </article>
+ <% end %>
+<% end %>    
+
