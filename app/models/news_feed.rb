@@ -83,7 +83,7 @@ class NewsFeed < ActiveRecord::Base
     if users.class == User
       one_user = users
       one_user.user_news_feeds.create :news_feed => self
-    elsif users.class == ActiveRecord::Relation::ActiveRecord_Relation_User
+    elsif users.class == ActiveRecord::Relation::ActiveRecord_Relation_User || users.class == ActiveRecord::Associations::CollectionProxy::ActiveRecord_Associations_CollectionProxy_User
       users.find_each do |user|
         user.user_news_feeds.create :news_feed => self
       end
