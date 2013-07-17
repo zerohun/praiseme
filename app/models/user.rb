@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
   end
 
   def invites_friends_automatically
+    # very sensitive part! be careful!!!
     sns_connection = self.sns_connections.where(:provider => "facebook").first
     if sns_connection.has_invited_friends == false
       sns_connection.update_attribute :has_invited_friends, true
@@ -145,14 +146,16 @@ class User < ActiveRecord::Base
             else
               gender = nil
             end
-            invited_user = self.has_invited.create :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
-            sns_connection = invited_user.sns_connections.new :uid => friend["id"], :provider => "facebook"
-            sns_connection.save(:validate => false)
+            invited_user = User.find_or_create_by :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
+            Friendship.create :is_invited_by_id => self.id, :has_invited_id => invited_user.id
+            sns_connection = invited_user.sns_connections.find_or_initialize_by :uid => friend["id"], :provider => "facebook"
+            sns_connection.save(:validate => false) if sns_connection.new_record?
             Following.create :follower => self, :followee => invited_user
           end
-        rescue
+        rescue Exception => e
+          puts e.message  
+          puts e.backtrace.inspect  
         end
-
       end
       UserMailer.complete_inviting_friends(self).deliver!
     end
