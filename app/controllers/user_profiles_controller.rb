@@ -12,7 +12,7 @@ class UserProfilesController < ApplicationController
     @og_url = "http://#{request.host}/user_profiles/#{@user.id}"
     
     @personal_feed = Compliment.where("sender_id = ? or receiver_id = ?",@user.id,@user.id)
-    @personal_feed = @personal_feed.order('created_at desc').page(params[:page]).per(2)
+    @personal_feed = @personal_feed.order('created_at desc').page(params[:page]).per(5)
     
     render :layout => "before_login" if current_user.blank?
   end
