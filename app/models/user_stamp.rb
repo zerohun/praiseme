@@ -7,6 +7,7 @@ class UserStamp < ActiveRecord::Base
   belongs_to :stamp
   belongs_to :user
 
+  has_one :news_feed, :as => :notifiable, :dependent => :destroy
   #has_many :compliments
 
   after_create do |user_stamp|
