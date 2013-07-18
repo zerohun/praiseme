@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
             if friend_ids.include?(friend_sns_connection.user_id) == false
               self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
             end
-            Following.create :follower => self, :followee => friend_sns_connection.user
+            Following.find_or_create_by :follower => self, :followee => friend_sns_connection.user
           else
             friend_info = self.facebook.get_object friend["id"]
             if friend_info["gender"] == "male"
@@ -147,10 +147,10 @@ class User < ActiveRecord::Base
               gender = nil
             end
             invited_user = User.find_or_create_by :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
-            Friendship.create :is_invited_by_id => self.id, :has_invited_id => invited_user.id
+            Friendship.find_or_create_by :is_invited_by_id => self.id, :has_invited_id => invited_user.id
             sns_connection = invited_user.sns_connections.find_or_initialize_by :uid => friend["id"], :provider => "facebook"
             sns_connection.save(:validate => false) if sns_connection.new_record?
-            Following.create :follower => self, :followee => invited_user
+            Following.find_or_create_by :follower => self, :followee => invited_user
           end
         rescue Exception => e
           puts e.message  
