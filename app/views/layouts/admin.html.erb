@@ -48,7 +48,50 @@
             </li>
           </ul>
         </div>
-      </div>
+        <div class="nav-collapse collapse">
+          
+          <ul class="nav">
+
+            <li class="<%= "active" if params[:controller] == "admin/users" %>">
+              <%= link_to admin_users_path do %>
+                <i class=icon-user> </i>
+                User
+              <% end %>
+            </li>
+
+            <li class="<%= "active" if params[:controller] == "admin/stamps" %>">
+              <%= link_to admin_stamps_path do %>
+                <i class=icon-certificate></i>
+                Stamp
+              <% end %>
+            </li>
+
+            <li class="<%= "active" if params[:controller] == "admin/compliments" %>">
+              <%= link_to admin_compliments_path do %>
+                <i class=icon-edit> </i>
+               Compliment 
+              <% end %>
+            </li>
+
+            <li class="<%= "active" if params[:controller] == "admin/default_trophy_images" %>">
+              <%= link_to admin_default_trophy_images_path do %>
+                <i class=icon-picture> </i>
+                Trophy 
+              <% end %>
+            </li>
+            
+            <li class="<%= "active" if params[:controller] == "admin/comments" %>">
+              <%= link_to admin_users_path do %>
+                <i class=icon-comments-alt> </i>
+                Comment
+              <% end %>
+            </li>
+
+
+
+          </ul>
+       </div>  
+    </div>
     </div>
 
   <div id='content-container admin-container'>
