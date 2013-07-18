@@ -12,4 +12,8 @@
       <%= link_to "x", [comment.target, comment], :method => :delete, :confirm => "Do you really want to delete this comment?", :class => "btn btn-mini no-loading round`" %>
     </div>
   <% end %>
+
+  
+  <%= render :partial => 'layouts/time_view' , :locals => {:compare_time => comment.created_at, :type => "comment"} %>
+
 </div>

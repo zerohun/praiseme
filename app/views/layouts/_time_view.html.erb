@@ -1,0 +1,11 @@
+<% now_time = Time.now %>
+<% times = distance_of_time_in_words(now_time, compare_time) %>
+<% if type == "news_feed"  %>
+  <div class = "posting_time"><span class="text_time round"><%= times %> ago</span></div> 
+<% elsif type == "compliment" %>
+  <div class="compliment_time"><%= times %> ago </div>
+<% elsif type == "comment" %>
+  <div class="comment_time"><%= times %> ago</div>
+<% else %>
+  <div class="text_time round"><%= times %> ago</div>
+<% end %>

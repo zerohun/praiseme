@@ -33,6 +33,8 @@
   <% end %>
   <%= image_tag @compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile pull-left" %>
   <span class="text round pull-left"><%= @compliment.description %></span>
+  
+  <%= render :partial => 'layouts/time_view', :locals => {:compare_time => @compliment.created_at, :type => "compliment"} %> 
   <div class="clear-both"></div>
 </div>
 

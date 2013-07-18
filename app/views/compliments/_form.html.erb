@@ -1,7 +1,6 @@
 <div id="compliment-form", class="round border">
   <%= form_for(@compliment) do |f| %>
     <% if @compliment.errors.any? %>
-      <% binding.pry %>
       <div id="error_explanation">
         <h2><%= pluralize(@compliment.errors.count, "error") %> prohibited this compliment from being saved:</h2>
         <ul>

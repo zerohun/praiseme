@@ -5,7 +5,10 @@
      <article class="round shadow sender-box">
     <% else %>
      <article class="round shadow receiver-box">
-    <% end %>
+     <% end %>
+
+     <%= render :partial => 'layouts/time_view', :locals => {:compare_time => f.created_at, :type => "news_feed"} %>
+
       <% compliment = f %>
       <div class="compliment-item">
         <div class="sender">

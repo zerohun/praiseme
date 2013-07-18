@@ -4,9 +4,9 @@
   <% link_path = news_feed.notifiable %>
 <% end %>
 
-
 <%= link_to link_path do %>
   <article class="round shadow">
+    <%= render :partial => 'layouts/time_view', :locals => {:compare_time => news_feed.created_at, :type => "news_feed"} %>
     <%= render_news_feed news_feed %>
   </article>
 <% end %>
