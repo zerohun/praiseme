@@ -19,6 +19,21 @@
       <% end %>
         
     </div>
+  
+
+    <div class="controls">
+      <br/><br/>
+      or
+      <br/><br/>
+      <div style="border:1px solid #ffffff;padding:15px;">
+        Upload Custom Image : <%= f.file_field :image %> 
+      <span>
+        <%= f.check_box :remove_image %>
+        <strong>delete custom image</strong>
+      </span>
+    </div>
+      <br/><br/>
+    </div>
   </div>
 
 
