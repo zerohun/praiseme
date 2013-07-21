@@ -56,9 +56,9 @@ class ComplimentsController < ApplicationController
       @compliment.sender = current_user
       if @compliment.save
         if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1 
-          current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", 
+          current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
                                                 :profile => @compliment.object_url(request.host),
-                                                :message => @compliment.message,
+                                                :message => @compliment.description,
                                                 :tag => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
                                                 "fb:explicitly_shared" => true
         end
