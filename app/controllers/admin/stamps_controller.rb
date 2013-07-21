@@ -37,6 +37,9 @@ class Admin::StampsController < Admin::ApplicationController
 
   def update
     @stamp = Stamp.find(params[:id])
+    if(params[:del].present? && params[:del] == "1")
+      
+    end
     if @stamp.update_attributes(stamp_params)
       redirect_to admin_stamps_path, :notice  => "Successfully updated stamp."
     else
@@ -51,6 +54,6 @@ class Admin::StampsController < Admin::ApplicationController
   end
   private
   def stamp_params
-    params.require(:stamp).permit(:title, :description, :default_trophy_image_id)
+    params.require(:stamp).permit(:title, :description, :default_trophy_image_id, :image, :remove_image)
   end
 end

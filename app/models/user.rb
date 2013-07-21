@@ -189,5 +189,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def user_point
+    UserStamp.where(:user_id => self[:id]).sum("score") 
+  end
 
 end

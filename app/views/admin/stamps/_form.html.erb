@@ -19,6 +19,24 @@
       <% end %>
         
     </div>
+  
+
+    <div class="controls">
+      <br/><br/>
+      or
+      <br/><br/>
+      <div style="border:1px solid #ffffff;padding:15px;">
+        <%= f.file_field :image %> 
+      <% if @stamp.image.present? %>
+        <div class="stamp-item" style="background-image: url('<%= @stamp.image %>')"></div>
+      <% end %>
+      <span>
+        <%= f.check_box :remove_image %>
+        <strong>delete custom image</strong>
+      </span>
+    </div>
+      <br/><br/>
+    </div>
   </div>
 
 

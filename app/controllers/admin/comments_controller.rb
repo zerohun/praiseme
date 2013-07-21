@@ -7,6 +7,8 @@ class Admin::CommentsController < Admin::ApplicationController
     @comments = Comment.all
     if params[:q].present?
     end
+
+    @comments = @comments.order("created_at desc")
     @comments = @comments.page(params[:page]).per(20)
   end
 
