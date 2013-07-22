@@ -138,15 +138,15 @@ class User < ActiveRecord::Base
             end
             Following.find_or_create_by :follower => self, :followee => friend_sns_connection.user
           else
-            friend_info = self.facebook.get_object friend["id"]
-            if friend_info["gender"] == "male"
-              gender = 0
-            elsif friend_info["gender"] == "female"
-              gender = 1
-            else
-              gender = nil
-            end
-            invited_user = User.find_or_create_by :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :gender => gender, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
+            #friend_info = self.facebook.get_object friend["id"]
+            #if friend_info["gender"] == "male"
+              #gender = 0
+            #elsif friend_info["gender"] == "female"
+              #gender = 1
+            #else
+              #gender = nil
+            #end
+            invited_user = User.find_or_create_by :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending], :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
             Friendship.find_or_create_by :is_invited_by_id => self.id, :has_invited_id => invited_user.id
             sns_connection = invited_user.sns_connections.find_or_initialize_by :uid => friend["id"], :provider => "facebook"
             sns_connection.save(:validate => false) if sns_connection.new_record?
