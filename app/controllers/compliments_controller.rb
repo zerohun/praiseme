@@ -60,9 +60,11 @@ class ComplimentsController < ApplicationController
             current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
                                                   :profile => @compliment.object_url(request.host),
                                                   :message => @compliment.description,
-                                                  :tag => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
+                                                  :tags => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
                                                   "fb:explicitly_shared" => true
           rescue Exception
+            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
+                                                  :profile => @compliment.object_url(request.host)
           end
         end
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
