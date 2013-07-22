@@ -1,0 +1,14 @@
+<% comment = news_feed.notifiable %>
+<% comment = news_feed.notifiable %>
+<div class="comment-item">
+  <div class="sender">
+    <%= image_tag comment.user.image_url, :class => "img-circle img-small" %>
+  </div>
+  <div class="blank">
+  </div>
+  <div class="receiver">
+  <%= image_tag comment.target.receiver.image_url, :class => "img-circle img-small" %>
+  </div>
+</div>
+
+<h5><%= news_feed.to_s %></h5>
