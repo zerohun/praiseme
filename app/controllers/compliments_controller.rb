@@ -55,12 +55,15 @@ class ComplimentsController < ApplicationController
     respond_to do |format|
       @compliment.sender = current_user
       if @compliment.save
-        if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1 
-          current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
-                                                :profile => @compliment.object_url(request.host),
-                                                :message => @compliment.description,
-                                                :tag => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
-                                                "fb:explicitly_shared" => true
+        if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1
+          begin
+            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
+                                                  :profile => @compliment.object_url(request.host),
+                                                  :message => @compliment.description,
+                                                  :tag => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
+                                                  "fb:explicitly_shared" => true
+          rescue Exception
+          end
         end
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @compliment }
