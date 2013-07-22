@@ -28,7 +28,7 @@
 </div>
 
 <div id="compliment-text" class="round border">
-  <% if current_user.present? && @compliment.is_destroyable_by?(current_user) %>
+  <% if current_user.present? && @compliment.is_destroyable_by?(current_user) && @compliment.news_feed.present?  %>
      <%= link_to_function "x", "$('#destroy-compliment-popup').modal();", :class => "btn btn-mini pull-right no-loading btn-compliment-delete" %>
   <% end %>
   <%= image_tag @compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile pull-left" %>
