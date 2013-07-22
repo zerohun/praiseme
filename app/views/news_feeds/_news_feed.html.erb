@@ -1,5 +1,7 @@
 <% if news_feed.notifiable.class == User %>
   <% link_path = user_profile_path(news_feed.notifiable) %>
+<% elsif news_feed.notifiable.class == Comment %>
+  <% link_path = compliment_path(news_feed.notifiable.target_id) %>
 <% else %>
   <% link_path = news_feed.notifiable %>
 <% end %>

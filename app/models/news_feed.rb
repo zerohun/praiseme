@@ -49,6 +49,12 @@ class NewsFeed < ActiveRecord::Base
     news_feed.notify_to user_stamp.user.followers
   end
 
+  def self.create_for_new_comment(comment)
+    news_feed = NewsFeed.create :notifiable => comment, :action => NewsFeed::ACTION_TYPE[:create]
+    news_feed.notify_to comment.user
+    news_feed.notify_to comment.user.followers
+  end
+  
   def action_type
     ACTION_TYPE.key(self.action)
   end
@@ -77,6 +83,11 @@ class NewsFeed < ActiveRecord::Base
         return "#{user.username} got #{stamp.title} for first time!!"
       end
     end
+    
+    if self.notifiable_type == "Comment" && self.action_type == :create
+      return "#{self.notifiable.user.username} commented on #{self.notifiable.target.receiver.username}'s \"#{self.notifiable.target.stamp.title}\" glory  "
+    end
+
   end
 
   def notify_to(users)
