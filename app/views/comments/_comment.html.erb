@@ -7,7 +7,7 @@
   <div class="content">
     <%= comment.content %>
   </div>
-  <% if current_user.present? && comment.is_destroyable_by?(current_user) %>
+  <% if current_user.present? && comment.is_destroyable_by?(current_user) && comment.news_feed.present? %>
     <div class="delete-button">
       <%= link_to "x", [comment.target, comment], :method => :delete, :confirm => "Do you really want to delete this comment?", :class => "btn btn-mini no-loading round`" %>
     </div>
