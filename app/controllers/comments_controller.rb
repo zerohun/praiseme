@@ -9,6 +9,10 @@ class CommentsController < ApplicationController
     end
     @comment.user = current_user
     if @comment.save
+      begin 
+        current_user.facebook.put_connections "me", "#{$fb_namespace}:comment", :profile => @comment.target.object_url(request.host)
+      rescue Exception
+      end
     else
       render :js => "alert('Writing comment is failed. please try again later')"
     end
