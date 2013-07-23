@@ -3,6 +3,8 @@ class NewsFeed < ActiveRecord::Base
   default_scope {includes(:notifiable).order("id desc")}
 
   has_many :user_news_feeds, :dependent => :destroy
+  has_many :my_user_news_feeds, :dependent => :destroy
+
   belongs_to :notifiable, :polymorphic => true
   ACTION_TYPE = {
     :create => 1,
@@ -16,6 +18,7 @@ class NewsFeed < ActiveRecord::Base
     news_feed = NewsFeed.create :notifiable => user, :action => NewsFeed::ACTION_TYPE[:create]
     news_feed.notify_to user
     NotifierForNewUsersFollowersWorker.perform_async news_feed.id, user.id
+    MyUserNewsFeed.delay.create_new_my_user_feed news_feed
   end
 
   def self.create_for_compliment(compliment)
@@ -28,6 +31,9 @@ class NewsFeed < ActiveRecord::Base
     senders_follower_ids = senders_followers.pluck(:id)
     news_feed.notify_to senders_followers
     news_feed.notify_to receiver.followers.where.not(:id => sender.id).where.not(:id => senders_follower_ids)
+   
+    MyUserNewsFeed.delay.create_new_my_compliment_feed news_feed
+
     news_feed
   end
 
@@ -35,11 +41,13 @@ class NewsFeed < ActiveRecord::Base
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:score_up]
     news_feed.notify_to user_stamp.user
     news_feed.notify_to user_stamp.user.followers
+    MyUserNewsFeed.delay.create_new_my_jump_score_feed news_feed
   end
 
   def self.create_for_gainig_rank(user_stamp)
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:rank_up]
     news_feed.notify_to user_stamp.user
+    MyUserNewsFeed.delay.create_new_my_rank_feed news_feed
   end
 
 
@@ -47,12 +55,14 @@ class NewsFeed < ActiveRecord::Base
     news_feed = NewsFeed.create :notifiable => user_stamp, :action => NewsFeed::ACTION_TYPE[:create]
     news_feed.notify_to user_stamp.user
     news_feed.notify_to user_stamp.user.followers
+    MyUserNewsFeed.delay.create_new_my_stamp_feed news_feed
   end
 
   def self.create_for_new_comment(comment)
     news_feed = NewsFeed.create :notifiable => comment, :action => NewsFeed::ACTION_TYPE[:create]
     news_feed.notify_to comment.user
     news_feed.notify_to comment.user.followers
+    MyUserNewsFeed.delay.create_new_my_comment_feed news_feed
   end
   
   def action_type

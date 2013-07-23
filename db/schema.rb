@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130715024103) do
+ActiveRecord::Schema.define(version: 20130722065518) do
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 20130715024103) do
 
   add_index "friendships", ["has_invited_id"], name: "index_friendships_on_has_invited_id", using: :btree
   add_index "friendships", ["is_invited_by_id"], name: "index_friendships_on_is_invited_by_id", using: :btree
+
+  create_table "my_user_news_feeds", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "news_feed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "my_user_news_feeds", ["news_feed_id"], name: "index_my_user_news_feeds_on_news_feed_id", using: :btree
+  add_index "my_user_news_feeds", ["user_id"], name: "index_my_user_news_feeds_on_user_id", using: :btree
 
   create_table "name_suggestions", force: true do |t|
     t.string   "name"

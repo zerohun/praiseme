@@ -25,6 +25,7 @@ class UserStamp < ActiveRecord::Base
       #user_stamp.previous_rank = user_stamp.rank
       #user_stamp.rank = new_rank
     #end
+      #user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
     if user_stamp.changed.include?("score") && user_stamp.before_level < user_stamp.level
       #adding_point = user_stamp.impact - user_stamp.before_impact
       #user_stamp.complimented_stamps.delay.update_all("user_stamps.score = user_stamps.score + #{adding_point}")
