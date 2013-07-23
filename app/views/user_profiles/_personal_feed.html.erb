@@ -1,5 +1,9 @@
 <% feed.each do |f|  %>
 
+
+  <%= render :partial => 'news_feeds/news_feed', :locals => {:news_feed => f.news_feed} %>
+
+  <% if false %>
   <%= link_to compliment_path(f.id) do %>
     <% if f.sender_id == params[:id].to_i %>
      <article class="round shadow sender-box">
@@ -23,6 +27,7 @@
       </div>
       <h5><%= compliment.description %></h5>
     </article>
- <% end %>
+  <% end %>
+   <% end %>
 <% end %>    
 

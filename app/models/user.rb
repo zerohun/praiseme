@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :sns_connections, :dependent => :destroy
   
   has_many :user_news_feeds
+  has_many :my_user_news_feeds
   has_many :news_feeds, :as => :notifiable,  :through => :user_news_feeds
+  
 
   has_many :followings, :foreign_key => :follower_id, :dependent => :destroy
   has_many :followees, :through => :followings, :foreign_key => :followee_id

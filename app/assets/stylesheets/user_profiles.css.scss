@@ -161,7 +161,7 @@ div.user-profile{
     article{
       margin: 10px;
       padding: 10px;
-
+      background-color:#E4FAF5;
 
       .user-stamp-level-up{
         div{
@@ -205,6 +205,26 @@ div.user-profile{
           text-align: center;
         }
       }
+      .comment-item{
+        div{
+          display: inline-block;
+        }
+
+        .sender{
+          width: 25%;
+          text-align: center;
+        }
+        .receiver{
+          width: 25%;
+          text-align: center;
+        }
+
+        .blank{
+          width: 45%;
+          text-align: center;
+        }
+      }
+
     }
   }
 

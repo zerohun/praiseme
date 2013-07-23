@@ -5,6 +5,7 @@ class Compliment < ActiveRecord::Base
   has_many :comments, :as => :target, :dependent => :destroy
 
   has_one :news_feed, :as => :notifiable, :dependent => :destroy
+ 
 
   belongs_to :sender , :foreign_key => :sender_id, :class_name => "User"
   belongs_to :receiver, :foreign_key => :receiver_id, :class_name => "User"
