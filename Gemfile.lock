@@ -88,6 +88,9 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     geocoder (1.1.8)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     hashie (2.0.5)
     highline (1.6.19)
     hike (1.2.3)
@@ -277,6 +280,7 @@ DEPENDENCIES
   exception_notification (~> 2.6.1)
   font-awesome-sass-rails
   geocoder
+  gon
   hirb
   jbuilder (~> 1.0.1)
   jquery-rails

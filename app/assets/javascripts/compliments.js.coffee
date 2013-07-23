@@ -2,8 +2,29 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 window.data = {}
-ready = ->
 
+tagOn = ->
+  $("#tag-button-box").hide()
+  $("#tagged-label").show()
+
+tagOff = ->
+  $("#tag-button-box").show()
+  $("#tagged-label").hide()
+
+ready = ->
+  receiver_username = $("#data-bucket").data("receiver_username")
+  $reasonField = $(".reason-field")
+  $reasonField.highlightTextarea {words: [receiver_username]}
+  if $("#compliment-form").hasClass("not-fixed") == true
+    $("div#reason-field").hide()
+
+  $(".tagging-user").click (event)->
+    receiver_username = $("#data-bucket").data("receiver_username")
+    $reasonField.val $reasonField.val() + receiver_username
+    $reasonField.highlightTextarea('highlight')
+    tagOn()
+    $reasonField.focus()
+    event.preventDefault()
 
 
   $("input.stamp-text-search").click ->
@@ -59,6 +80,16 @@ ready = ->
     change: (event, ui)->
       $textfield = $("input.stamp-text-search")
 
+
+  $(".reason-field").keyup (event)->
+    receiver_username = $("#data-bucket").data("receiver_username")
+    if $(this).val().search(receiver_username) == -1
+      tagOff()
+    else
+      tagOn()
+
+
+
   $("input.stamp-text-search").keydown (event)->
     $(this).css("height", "60px")
     $(this).css("font-size", "30px")
@@ -67,7 +98,6 @@ ready = ->
       $("div.create-stamp-fields").addClass("hidden")
     if event.which== 13
       event.preventDefault()
-
 
   $("input.stamp-text-search").click ->
     $("html, body").animate({ scrollTop: $(document).height() }, "slow")

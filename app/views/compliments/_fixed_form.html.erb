@@ -1,4 +1,5 @@
-<div id="compliment-form", class="round border">
+<span id="data-bucket" data-receiver_username="<%= @compliment.receiver.username %>"></span>
+<div id="compliment-form", class="round border fixed">
   <%= form_for(@compliment) do |f| %>
     <% if @compliment.errors.any? %>
       <div id="error_explanation">
@@ -37,6 +38,8 @@
       <span class="text-length-view" data-field="compliment_description"></span>
     </div>
     <div class="actions text-center">
+      <span id="tag-button-box"><%= link_to "Tag #{@compliment.receiver.username}", "#", :class => "tagging-user btn no-loading" %></span>
+      <span id="tagged-label" class="label label-info"><%= @compliment.receiver.username %> is tagged</span>
       <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
     </div>
   <% end %>

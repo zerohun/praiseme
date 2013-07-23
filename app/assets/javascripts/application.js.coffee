@@ -17,6 +17,7 @@
 #= require turbolinks
 #= require jquery.cookie
 #= require jquery.arctext
+#= require jquery.highlighttextarea
 #= require_directory .
 
 

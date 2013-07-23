@@ -23,6 +23,7 @@ class ComplimentsController < ApplicationController
 
   # GET /compliments/new
   def new
+    gon.receiver_username = User.find(params[:compliment][:receiver_id]).username
     if params[:compliment][:stamp_id].present?
       @params  = params[:compliment]
       if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count > 0
@@ -33,7 +34,6 @@ class ComplimentsController < ApplicationController
       if(count_of_today_compliment >= 10)
         redirect_to news_feeds_path, :flash => {:compliment =>"Over the Today's Compliment"}
       end
-
 
     params.require(:compliment).permit!
     @compliment = Compliment.new(params[:compliment])
@@ -56,15 +56,17 @@ class ComplimentsController < ApplicationController
       @compliment.sender = current_user
       if @compliment.save
         if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1
+          og_params_hash = {:profile => @compliment.object_url(request.host), "fb:explicitly_shared" => true}
+          if @compliment[:description].present?
+            receiver_uid = @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid
+            if @compliment[:description].include? @compliment.receiver.username
+              og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
+            end
+          end
           begin
-            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
-                                                  :profile => @compliment.object_url(request.host),
-                                                  :message => @compliment.description,
-                                                  :tags => @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid,
-                                                  "fb:explicitly_shared" => true
+            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", og_params_hash
           rescue Exception
-            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify",
-                                                  :profile => @compliment.object_url(request.host)
+            current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
           end
         end
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
