@@ -23,7 +23,6 @@ class ComplimentsController < ApplicationController
 
   # GET /compliments/new
   def new
-    gon.receiver_username = User.find(params[:compliment][:receiver_id]).username
     if params[:compliment][:stamp_id].present?
       @params  = params[:compliment]
       if @params[:receiver_id] ==  current_user.id || Compliment.where(:stamp_id => @params[:stamp_id], :sender_id => current_user.id , :receiver_id => @params[:receiver_id]).count > 0
