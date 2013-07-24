@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
 
   before_destroy do |comment|
     begin 
-      comment.user.facebook.delete_object self.action_instance.instance_id if self.action_instance.present?
+      comment.user.facebook.delete_object(comment.action_instance.instance_id) if comment.action_instance.present?
     rescue Exception
     end
   end

@@ -35,7 +35,7 @@ class Compliment < ActiveRecord::Base
 
   before_destroy do |compliment|
     begin 
-      compliment.sender.facebook.delete_object self.action_instance.instance_id if self.action_instance.present?
+      compliment.sender.facebook.delete_object(compliment.action_instance.instance_id) if compliment.action_instance.present?
     rescue Exception
     end
   end
