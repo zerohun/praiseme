@@ -1,3 +1,4 @@
+
 <div class="user-profile round border">
     
   <div class="profile-row">
@@ -35,25 +36,16 @@
     <% end %>
   </div>
 
-  <ul id="stamps">
-    <% @user.user_stamps.limit(6).each do |user_stamp| %>
-      <li class="stamp">
-        <%= link_to render(user_stamp.stamp), user_stamp %>
-        <br>
-        <div class="info">
-          Level <%= user_stamp.level %>
-          <div class="progress">
-            <div class="bar" style="width: <%= user_stamp.percentage_for_next_level %>%;"></div>
-          </div>
-        </div>
-      </li>
-    <% end %>
+
+  <ul id="stamps" data-page=1 data-user_id=<%=params[:id]%>>
+
+    <%= render :partial => 'user_stamp', :locals => {:stamps => @user_stamps } %>
+
   </ul>
 
-  <% if @user.user_stamps.count > 6 %>
-    <%= link_to "more", "", :class => "btn btn-more" %>
-  <% end %>
-
+  <% if !@user_stamps.last_page? %>
+  <div class="btn btn-more"> more </div>
+<% end %>
   <div class="bottom-button-group">
     <%= link_to "Following(#{@user.followings.count})", user_profile_followings_path(@user, :type => "followees"), :class => "btn" %>
     <%= link_to "Followers(#{@user.followers.count})", user_profile_followings_path(@user, :type => "followers"), :class => "btn" %>

@@ -18,6 +18,7 @@ Praiseme::Application.routes.draw do
     get :update, :on => :collection
     resources :followings, :only => :index
   end
+  get "stamp_list" => "user_profiles#stamp_list"
 
   resources :followings, :only => [:create, :destroy]
 
