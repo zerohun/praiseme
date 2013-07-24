@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722065518) do
+ActiveRecord::Schema.define(version: 20130723100141) do
+
+  create_table "action_instances", force: true do |t|
+    t.string   "instance_id"
+    t.string   "content_type"
+    t.integer  "content_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "action_instances", ["content_id"], name: "index_action_instances_on_content_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "target_id"

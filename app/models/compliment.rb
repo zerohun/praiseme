@@ -5,6 +5,7 @@ class Compliment < ActiveRecord::Base
   has_many :comments, :as => :target, :dependent => :destroy
 
   has_one :news_feed, :as => :notifiable, :dependent => :destroy
+  has_one :action_instance, :as => :content, :dependent => :destroy
  
 
   belongs_to :sender , :foreign_key => :sender_id, :class_name => "User"
@@ -30,6 +31,13 @@ class Compliment < ActiveRecord::Base
   after_create do |compliment|
     NewsFeed.delay.create_for_compliment compliment
     UserStamp.add_up_score_from_compliment compliment
+  end
+
+  before_destroy do |compliment|
+    begin 
+      compliment.sender.facebook.delete_object self.action_instance.instance_id if self.action_instance.present?
+    rescue Exception
+    end
   end
 
   after_destroy do |compliment|

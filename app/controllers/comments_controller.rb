@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       begin 
-        current_user.facebook.put_connections "me", "#{$fb_namespace}:comment", :profile => @comment.target.object_url(request.host)
+        res = current_user.facebook.put_connections "me", "#{$fb_namespace}:comment", :profile => @comment.target.object_url(request.host)
+        @comment.create_action_instance :instance_id => res["id"]
       rescue Exception
       end
     else
