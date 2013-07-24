@@ -6,31 +6,41 @@ class StampsController < ApplicationController
   # GET /stamps
   # GET /stamps.json
   def index
-    @stamps = Stamp.where("")
+    #@stamps = Stamp.where("")
+    #if params[:term].present?
+      #keywords = params[:term].split(' ')
+      #query_by_keywords = keywords.map { |keyword|
+        #"(search_keywords.text like '%#{keyword}%')"
+      #}.join(" or ")
+      #@stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
+                        #where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
+                        #group("stamps.id").
+                        #reorder("
+                                #case 
+                                  #when stamps.title = '#{params[:term].to_s}' then 50
+                                  #when stamps.title like '%#{params[:term].to_s}%' then 20
+                                  #else 
+                                    #search_keywords.priority
+                                #end desc
+                                #")
+                        #binding.pry
+    #end
+
+    @stamps = Stamp.all
+
     if params[:term].present?
-      keywords = params[:term].split(' ')
-      query_by_keywords = keywords.map { |keyword|
-        "(search_keywords.text like '%#{keyword}%')"
-      }.join(" or ")
-      @stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
-                        where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
-                        group("stamps.id").
-                        reorder("
-                                case 
-                                  when stamps.title = '#{params[:term].to_s}' then 50
-                                  when stamps.title like '%#{params[:term].to_s}%' then 20
-                                  else 
-                                    search_keywords.priority
-                                end desc
-                                ")
+      @stamps = @stamps.where("title like '%#{params[:term]}%'")
     end
 
-    @mine_stamp_list = UserStamp.where(:user_id =>5).pluck(:stamp_id)
-    if(@mine_stamp_list.empty?) 
-      @stamps = @stamps.order("created_at desc")
-    else
-      @stamps = @stamps.order("case when id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc, created_at desc")
-    end
+    if current_user.present?
+      @mine_stamp_list = UserStamp.where(:user_id =>current_user.id).pluck(:stamp_id)
+      if(@mine_stamp_list.empty?) 
+        @stamps = @stamps.order("created_at desc")
+      else
+        @stamps = @stamps.order("case when stamps.id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc, created_at desc")
+      end
+    end 
+
     @stamps = @stamps.page(params[:page]).per(15)
     respond_to do |format|
       format.html {}
