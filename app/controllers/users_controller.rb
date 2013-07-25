@@ -17,4 +17,14 @@ class UsersController < Devise::RegistrationsController
   def show
     super
   end
+
+  def update
+    current_user.update_attributes(user_params)
+    redirect_to user_profile_path(current_user)
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:introduce)
+  end
 end
