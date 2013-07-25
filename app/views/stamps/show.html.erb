@@ -3,7 +3,12 @@
   <%= render @stamp %>
   <h5><%= @stamp.user_stamps.count %> people have this glory</h5>
 </div>
+
+<% if current_user.present? && current_user.user_stamps.where(:stamp_id => params[:id]) %>
+  <%= render :partial => 'stamp_user', :locals => {:user => current_user, :is_mine => true} %>
+<% end %>
+
 <div id='friends'>
-  <%= render @users %>
+  <%= render :partial => 'stamp_user', :locals => {:users => @users, :is_mine => false} %>
 </div>
 <%= paginate @users %>

@@ -53,6 +53,10 @@ class StampsController < ApplicationController
   # GET /stamps/1.json
   def show
     @users = @stamp.users
+    
+    if current_user.present?
+      @users = @stamp.users.where.not(:id => current_user.id)
+    end
     @users = @users.reorder("user_stamps.score desc")
     @users = @users.page(params[:page]).per(20)
   end
