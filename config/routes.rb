@@ -5,6 +5,9 @@ Praiseme::Application.routes.draw do
   get "about" => "about#index"
   get "privacy_policy" => "about#privacy_policy"
   get "term_of_service" => "about#term_of_service"
+
+  post "create_ask_opinion" => "facebook_posts#create_ask_opinion"
+
   resources :stamp_suggestions
 
   get "comments/create"

@@ -1,6 +1,4 @@
 <% if flash[:compliment] %>
-
-
   <div id="toast">
     Compliment Limit is 10 a day. 
   </div>
@@ -16,7 +14,38 @@ $('#toast').fadeIn();
   </script>
 
 <% end %>
+<div id="recommendations">
+  <% User.order("RAND()").first(3).each do |user| %>
+
+    <%= link_to new_compliment_path("compliment[receiver_id]" => user.id) do %>
+      <div class="recommendation round shadow">
+        <%= image_tag user.image_url, :class => "img img-circle img-micro" %>
+        What do you think of <%= user.username %>?
+      </div>
+    <% end %>
+
+  <% end %>
+</div>
+<div id="ask-opinions">
+  <%= link_to "Ask to your friends what do they think of you", "#", :id => "opinion-button", :class => "btn btn-success no-loading" %>
+</div>
 <div id="news_feeds">
   <%= render @news_feeds %>
 </div>
 <%= paginate @news_feeds %>
+
+<div id="ask-opinion-popup" class="modal hide fade">
+  <div class="modal-header">
+    <h3>Do you want to ask to your friends about how they think of you?</h3>
+  </div>
+  <div class="modal-body">
+    It'll post on your facebook timeline<br>
+    ex) <br>
+    <%= image_tag "/opinion_example.png" %>
+    <br>
+    <div class="actions">
+      <%= link_to "Yes", "#", :id => "yes-button", :class => "btn btn-success no-loading", :data => {:dismiss => "modal"}, "area-hidden" => true %>
+      <%= link_to "No", "#", :data => {:dismiss => "modal"}, :class => "no-loading btn", "area-hidden" => true %>
+    </div>
+  </div>
+</div>

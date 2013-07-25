@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#ask-opinion-popup{
+  text-align: center;
+  .actions{
+    text-align: center;
+  }
+}
+
+#recommendations{
+  .recommendation{
+    background-color: #e4faf5;
+    margin: 10px;
+    padding: 5px;
+  }
+}
+#ask-opinions{
+  text-align: center;
+}
+
 #news_feeds{
   h5{
     text-align: center;
