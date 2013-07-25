@@ -15,8 +15,12 @@ ready = ->
   receiver_username = $("#data-bucket").data("receiver_username")
   $reasonField = $(".reason-field")
   $reasonField.highlightTextarea {words: [receiver_username]}
+
   if $("#compliment-form").hasClass("not-fixed") == true
     $("div#reason-field").hide()
+  
+  if $("#compliment-form").hasClass("fixed") == true
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow")
 
   $(".tagging-user").click (event)->
     receiver_username = $("#data-bucket").data("receiver_username")

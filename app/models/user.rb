@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   geocoder_init Hash.new
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable
+         :recoverable, :rememberable, :trackable, :token_authenticatable
 
   has_many :sns_connections, :dependent => :destroy
   
@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :is_invited_by, :through => :is_invited_by_friendships, :foreign_key => :is_invited_by_id
 
   default_scope -> {joins(:sns_connections).select("users.*, sns_connections.uid, sns_connections.oauth_token")}
+
+  before_save :ensure_authentication_token
 
   mount_uploader :image, ImageFileUploader
 
@@ -97,6 +99,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def from_graph(me)
+    self.email = me["email"]
+    self.first_name = me["first_name"]
+    self.last_name = me["last_name"]
+    self.username = me["name"]
+    if me["gender"] == "male"
+      self.gender = 0
+    else
+      self.gender = 1
+    end
+  end
 
   def from_omniauth(auth)
     self.email = auth.info.email
@@ -107,8 +120,6 @@ class User < ActiveRecord::Base
     else
       self.gender = 1
     end
-
-
     #require 'open-uri'
 
     #res = open(auth.info.image)
@@ -193,6 +204,36 @@ class User < ActiveRecord::Base
 
   def user_point
     UserStamp.where(:user_id => self[:id]).sum("score") 
+  end
+
+
+  def convert_coming_from_joined
+    user = self
+    NewsFeed.create_for_new_user(user)
+    begin 
+      user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
+    rescue Exception
+    end
+    user.status = 1
+  end
+
+  def save_and_prepare_for_new_user
+    user = self
+
+    user.user_admin_type = 2 if user.email == "choi0hun@gmail.com" || user.email == "pbs52@hanmail.net"
+    user.status = 1
+    user.save
+    user.reload
+    sns_connection = user.sns_connections.where(:provider => "facebook").first
+    user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
+
+    begin 
+      user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
+    rescue Exception
+    end
+
+    NewsFeed.create_for_new_user(user)
+    MailWorker.perform_async(user.id)
   end
 
 end

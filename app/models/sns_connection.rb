@@ -38,6 +38,15 @@ class SnsConnection < ActiveRecord::Base
       end
     end
   end
+
+  def self.from_graph(me, oauth_token)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |sns_connection|
+      sns_connection.provider = "facebook"
+      sns_connection.uid = me["id"]
+      sns_connection.oauth_token = oauth_token
+    end
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |sns_connection|
       sns_connection.provider = auth.provider
@@ -49,5 +58,46 @@ class SnsConnection < ActiveRecord::Base
       end
       sns_connection.save if sns_connection.attributes.present?
     end
+  end
+
+
+  def self.sign_in_or_up(auth: nil, me: nil, oauth_token: nil)
+    if auth.present?
+      sns_connection = self.from_omniauth(auth)
+    end
+
+    if me.present? && oauth_token.present?
+      sns_connection = self.from_graph(me, oauth_token)
+    end
+
+
+    user = sns_connection.user
+    if sns_connection.persisted? && user.present?
+      sns_connection.save
+      if auth.present?
+        user.from_omniauth(auth)
+      end
+      if me.present?
+        user.from_graph(me)
+      end
+      if user.status == 1
+        user.save if user.changed.present?
+      else
+        user.save_and_prepare_for_new_user
+      end
+    else
+      user = User.new
+      if auth.present?
+        user.from_omniauth(auth)
+      end
+      if me.present?
+        user.from_graph(me)
+      end
+
+      sns_connection.update_attribute :user_id, user.id
+      user.sns_connections << sns_connection
+      user.save_and_prepare_for_new_user
+    end
+    return sns_connection
   end
 end
