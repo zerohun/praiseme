@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 
-$ ->
+ready = ->
   $('.btn-more').click ->
     $('.btn-more').remove()
     page =  parseInt($('#stamps').data('page'), 10)+1
@@ -14,4 +14,6 @@ $ ->
       page: page
       (data) -> 
         $('#stamps').append(data)
-    
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
