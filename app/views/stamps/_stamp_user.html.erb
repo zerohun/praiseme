@@ -6,7 +6,7 @@
       <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
     </div>
     <div class="name">
-      <%= user.username %><br/> (<%= user.user_stamps.where(:stamp_id => @stamp.id).first.score %> Points)
+      <%= user.username %><br/> 
     </div>
   <% end %>
   <div class="button-group pull-right">
