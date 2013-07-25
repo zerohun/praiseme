@@ -26,18 +26,17 @@ class StampsController < ApplicationController
                         #binding.pry
     #end
 
-    @stamps = Stamp.all
-
+    @stamps = Stamp.joins("left outer join user_stamps on user_stamps.stamp_id = stamps.id").group("stamps.id").select("stamps.*, count(user_stamps.id) as user_stamps_count")
     if params[:term].present?
-      @stamps = @stamps.where("title like '%#{params[:term]}%'")
+      @stamps = @stamps.where("stamps.title like '%#{params[:term]}%'")
     end
 
     if current_user.present?
       @mine_stamp_list = UserStamp.where(:user_id =>current_user.id).pluck(:stamp_id)
       if(@mine_stamp_list.empty?) 
-        @stamps = @stamps.order("created_at desc")
+        @stamps = @stamps.order("user_stamps_count desc, created_at desc")
       else
-        @stamps = @stamps.order("case when stamps.id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc, created_at desc")
+        @stamps = @stamps.order("case when stamps.id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc,user_stamps_count desc, created_at desc")
       end
     end 
 

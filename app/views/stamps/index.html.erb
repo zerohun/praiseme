@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<% if @stamps.count == 0 %>
+<% if @stamps.blank? %>
   <%= render 'search/no_data' %>
 <% elsif %>
   <div id="stamp-index">
