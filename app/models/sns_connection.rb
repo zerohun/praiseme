@@ -40,7 +40,7 @@ class SnsConnection < ActiveRecord::Base
   end
 
   def self.from_graph(me, oauth_token)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |sns_connection|
+    where(:provider => "facebook", :uid => me["id"]).first_or_initialize.tap do |sns_connection|
       sns_connection.provider = "facebook"
       sns_connection.uid = me["id"]
       sns_connection.oauth_token = oauth_token
