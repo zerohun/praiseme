@@ -4,3 +4,4 @@ $(".pagination").hide()
 $(".pagination").remove()
 <% end %>
 $(".pagination").replaceWith("<%= j (paginate(@personal_feed)) %>")
+

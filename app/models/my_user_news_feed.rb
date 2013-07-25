@@ -25,8 +25,10 @@ class MyUserNewsFeed < ActiveRecord::Base
   end
   
   def self.create_new_my_comment_feed(news_feed)
-    MyUserNewsFeed.create(:user_id => news_feed.notifiable.target.sender_id, :news_feed_id => news_feed.id)
-    MyUserNewsFeed.create(:user_id => news_feed.notifiable.target.receiver_id, :news_feed_id => news_feed.id)
-    MyUserNewsFeed.create(:user_id => news_feed.notifiable.user.id , :news_feed_id => news_feed.id)
+    noti_user = [news_feed.notifiable.target.sender_id, news_feed.notifiable.target.receiver_id, news_feed.notifiable.user.id].uniq
+  
+    noti_user.each do |user_id|
+      MyUserNewsFeed.create(:user_id => user_id, :news_feed_id => news_feed.id)
+    end
   end
 end

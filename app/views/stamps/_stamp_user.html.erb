@@ -1,0 +1,38 @@
+<% if is_mine == true %>
+
+<div class="mine_stamp round shadow">
+  <%= link_to user_profile_path(user) do %>
+    <div class="image">
+      <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
+    </div>
+    <div class="name">
+      <%= user.username %><br/> (<%= user.user_stamps.where(:stamp_id => @stamp.id).first.score %> Points)
+    </div>
+  <% end %>
+  <div class="button-group pull-right">
+    <%= render :partial => '/followings/following_button', :locals => {:user => user} %>
+    <%= link_to "Glorify!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
+  </div>
+
+</div>
+
+
+<% else %>
+<% users.each do |user| %>
+<div class="stamp_people round shadow">
+  <%= link_to user_profile_path(user) do %>
+    <div class="image">
+      <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
+    </div>
+    <div class="name">
+      <%= user.username %><br /> (<%= user.user_stamps.where(:stamp_id => @stamp.id).first.score %> Points)
+    </div>
+  <% end %>
+  <div class="button-group pull-right">
+    <%= render :partial => '/followings/following_button', :locals => {:user => user} %>
+    <%= link_to "Glorify!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
+  </div>
+
+</div>
+<% end %>
+<% end %>
