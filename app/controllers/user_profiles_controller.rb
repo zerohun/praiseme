@@ -30,7 +30,7 @@ class UserProfilesController < ApplicationController
   end
 
   def stamp_list
-    @user_stamps = User.find(params[:id]).user_stamps.order('created_atcreated_at desc').page(params[:page]).per(6)
+    @user_stamps = User.find(params[:id]).user_stamps.order('score desc,created_at desc').page(params[:page]).per(6)
     render :layout => false
   end
 
