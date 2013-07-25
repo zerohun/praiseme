@@ -31,7 +31,7 @@
   <% if current_user.present? && @compliment.is_destroyable_by?(current_user) && @compliment.news_feed.present?  %>
      <%= link_to_function "x", "$('#destroy-compliment-popup').modal();", :class => "btn btn-mini pull-right no-loading btn-compliment-delete" %>
   <% end %>
-  <%= image_tag @compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile pull-left" %>
+ <%= link_to image_tag(@compliment.sender.image_url, :class => "img img-small img-circle image-shadow img-profile pull-left"), user_profile_path(@compliment.sender) %>
   <span class="text round pull-left"><%= @compliment.description %></span>
   
   <%= render :partial => 'layouts/time_view', :locals => {:compare_time => @compliment.created_at, :type => "compliment"} %> 
