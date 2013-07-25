@@ -15,7 +15,7 @@ $('#toast').fadeIn();
 
 <% end %>
 <div id="recommendations">
-  <% User.order("RAND()").first(3).each do |user| %>
+  <% current_user.friends.order("RAND()").first(3).each do |user| %>
 
     <%= link_to new_compliment_path("compliment[receiver_id]" => user.id) do %>
       <div class="recommendation round shadow">
