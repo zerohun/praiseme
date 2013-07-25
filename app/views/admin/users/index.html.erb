@@ -1,6 +1,13 @@
 <%= form_tag admin_users_path, :method => :get, :class => "form-search" do %>
-  <%= text_field_tag :q, "", :class => "input-medium search-query" %>
-  <%= submit_tag "Search", :class => "btn btn-primary" %>
+  <div class="search_field">
+  <label class="text_search">
+    <%= text_field_tag :q, "", :class => "input-medium search-query" %>
+  </label><br/>
+  <label class="active_user_search">
+    <%= check_box_tag :active, "1", params[:active].present? %> Active User
+  </label></br>
+    <%= submit_tag "Search", :class => "btn btn-primary" %>
+  </div>
 <% end %>
 <div class="clearfix"></div>
 

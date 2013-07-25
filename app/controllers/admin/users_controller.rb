@@ -7,6 +7,10 @@ class Admin::UsersController < Admin::ApplicationController
     if params[:q].present?
       @users = @users.where("users.username like '%#{params[:q]}%' or users.last_name like '%#{params[:q]}%' or users.first_name like '%#{params[:q]}%'")
     end
+    if params[:active].present?
+      @users = @users.where(:status => 1)
+    end
+
     @users = @users.order("total desc, users.id asc")
     @users = @users.page(params[:page]).per(20)  
   end
