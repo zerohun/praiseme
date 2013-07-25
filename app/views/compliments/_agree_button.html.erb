@@ -1,7 +1,9 @@
 <% if current_user == nil ||(receiver_id !=  current_user.id && Compliment.where(:stamp_id => stamp_id, :sender_id => current_user.id , :receiver_id => receiver_id).count == 0 ) %>
 <div class="row-fluid">
   <div class="span12">
-      <%= link_to "I agree", new_compliment_path(:compliment => {:stamp_id => stamp_id, :receiver_id => receiver_id}), :class => "btn btn-success" %>
+    <%= link_to new_compliment_path(:compliment => {:stamp_id => stamp_id, :receiver_id => receiver_id}), :class => "btn btn-success" do %>
+      <i class="icon-thumbs-up"></i> I agree
+    <% end %>
     </div>
 </div>
 <% end %>
