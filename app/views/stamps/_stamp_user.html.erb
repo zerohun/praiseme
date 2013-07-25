@@ -9,7 +9,11 @@
           <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
         </div>
         <div class="name">
-        <%= user.username %><br />(<%= UserStamp.where(:stamp_id => stamp_id , :user_id => user.id).first.score  %> Points)
+          <%= user.username %>
+          <br />
+          <% if UserStamp.find_by(:stamp_id => stamp_id, :user_id => user.id).present?%>
+            (<%= UserStamp.find_by(:stamp_id => stamp_id, :user_id => user.id).score  %> Points)
+          <% end %>
         </div>
       <% end %>
     <% if is_mine == false %>
