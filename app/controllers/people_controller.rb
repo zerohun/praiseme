@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   def index
     if current_user.present?
       if params[:q].present?
-        @friends = User.where("users.username like ? or concat(users.first_name, users.last_name) like ?", "%#{params[:q]}%", "%#{params[:q]}%")
+        @friends = current_user.friends.where("users.username like ? or concat(users.first_name, users.last_name) like ?", "%#{params[:q]}%", "%#{params[:q]}%")
       #  @friends = User.search(params[:q], 
       #                        :sql => {:joins => :sns_connections, :select => "users.*, sns_connections.uid as uid" },
       #                         :page => params[:page],
