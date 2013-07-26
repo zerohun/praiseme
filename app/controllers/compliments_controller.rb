@@ -19,6 +19,7 @@ class ComplimentsController < ApplicationController
     @og_title = user.username
     @og_image = user.image_url
     @og_url = "http://#{request.host}/compliments/#{@compliment.id}"
+    @og_description = "Click if you agree!"
   end
 
   # GET /compliments/new
