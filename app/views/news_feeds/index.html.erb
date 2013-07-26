@@ -14,6 +14,13 @@ $('#toast').fadeIn();
   </script>
 
 <% end %>
+<div id="recommendations">
+  <h4>We are bringing your friends from facebook....</h4>
+  <%= image_tag "/ajax-loader.gif" %>
+</div>
+<div id="ask-opinions">
+  <%= link_to "Ask to your friends what do they think of you", "#", :id => "opinion-button", :class => "btn btn-success no-loading" %>
+</div>
 <div id="news_feeds">
   <%= render @news_feeds %>
 </div>

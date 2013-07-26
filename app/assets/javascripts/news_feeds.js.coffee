@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
+  window.refresh_count = 0
+
   $("#opinion-button").click (event)->
     $("#ask-opinion-popup").modal()
     event.preventDefault()
@@ -10,11 +12,12 @@ ready = ->
     $.post "/create_ask_opinion"
     event.preventDefault()
 
-  if $("#recommendations").length > 0 && $(".recommendation").length == 0
+  if $("#recommendations").length > 0 && $(".recommendation").length == 0 && window.refresh_count < 10
     window.interval_obj = window.setInterval ->
       $.get "/people/recommendations", {dataType: "script"}
+      window.refresh_count = window.refresh_count + 1
       ,
-        3000
+        5000
 
 
 $(document).ready(ready)
