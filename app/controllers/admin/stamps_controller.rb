@@ -4,13 +4,13 @@ class Admin::StampsController < Admin::ApplicationController
 
   def index
 
-    @stamps = Stamp.all
+    @stamps =Stamp.joins("left outer join user_stamps on user_stamps.stamp_id = stamps.id").group("user_stamps.stamp_id").select("stamps.*, count(user_stamps.stamp_id) as count").order("count desc")
 
     if params[:q].present?
-      @stamps = @stamps.where("title like '%#{params[:q]}%'")
+      @stamps = @stamps.where("stamps.title like '%#{params[:q]}%'")
     end
 
-    @stamps = @stamps.order('created_at desc').page(params[:page]).per(20)
+    @stamps = @stamps.order('count desc,created_at desc').page(params[:page]).per(20)
     
   end
 
