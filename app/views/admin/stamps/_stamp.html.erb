@@ -3,8 +3,8 @@
       <tr>
         <th>Title</th>
         <th>Desc</th>
-        <th>Count</th>
         <th>Trophy_Image </th>
+        <th>Count</th>
         <th></th>
       </tr>
     </thead>
@@ -13,8 +13,8 @@
           <tr>
             <td><%=stamp.title%></td>
             <td><%=stamp.description%></td>
-            <td><%=stamp.used_count %></td>
             <td><%= render :partial => "stamp_image", :locals => {:stamp =>  stamp, :size => "small"} %></td>
+            <td><%=stamp.user_stamps.count %></td>
           <td>
             <div class="btn-group">
               <%= link_to "수정", [:edit, :admin, stamp], :class => "btn" %>

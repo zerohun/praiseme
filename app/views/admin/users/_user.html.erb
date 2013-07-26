@@ -11,8 +11,15 @@
     <tbody>
       <% @users.each do |user| %>
           <tr>
-          <td><%= user.username %></td>
-          <td><%= user.email %></td>
+          <td>
+            <%= link_to "http://www.facebook.com/#{user.uid}", :target => '_blank' do %>
+              <%= image_tag "http://www2.myacpa.org/images/stories/Facebook-icon.png", :style => "width:30px;height:30px" %>
+            <% end %>
+            <%= link_to user.username, user_profile_path(user) %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
           <td> 
             <% if user.is_blocked == true %>
               O
