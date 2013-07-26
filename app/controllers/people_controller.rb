@@ -19,4 +19,8 @@ class PeopleController < ApplicationController
     end
     @friends = @friends.page(params[:page]).per(15)
   end
+
+  def recommendations
+    @friends = current_user.friends.order("RAND()").first(3)
+  end
 end

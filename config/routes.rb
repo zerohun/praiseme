@@ -15,7 +15,9 @@ Praiseme::Application.routes.draw do
   
   post "locations/update"
   resources :mypage, :only => :index
-  resources :people, :only => :index
+  resources :people, :only => [:index] do
+    get :recommendations, :on => :collection
+  end
   resources :user_profiles, :only => [:index, :show] do
     get :edit, :on => :collection
     get :update, :on => :collection

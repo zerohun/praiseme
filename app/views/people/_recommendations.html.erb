@@ -1,0 +1,8 @@
+<% friends.each do |user| %>
+  <%= link_to new_compliment_path("compliment[receiver_id]" => user.id) do %>
+    <div class="recommendation round shadow">
+      <%= image_tag user.image_url, :class => "img img-circle img-micro" %>
+      What do you think of <%= user.username %>?
+    </div>
+  <% end %>
+<% end %>

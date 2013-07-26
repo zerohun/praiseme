@@ -10,6 +10,11 @@ ready = ->
     $.post "/create_ask_opinion"
     event.preventDefault()
 
+  window.interval_obj = window.setInterval ->
+    $.get "/people/recommendations", {dataType: "script"}
+    ,
+      3000
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
