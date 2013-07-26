@@ -12,11 +12,12 @@ ready = ->
     $.post "/create_ask_opinion"
     event.preventDefault()
 
-  if $("#recommendations").length > 0 && $(".recommendation").length == 0 && window.refresh_count < 10
+  if $("#recommendations").length > 0 
     window.interval_obj = window.setInterval(->
-      $.get "/people/recommendations", {dataType: "script"}
-      window.refresh_count = window.refresh_count + 1
-    ,5000)
+      if $(".recommendation").length == 0 && window.refresh_count < 30
+        $.get "/people/recommendations", {dataType: "script"}
+        window.refresh_count = window.refresh_count + 1
+    ,3000)
   else
     window.clearInterval(window.interval_obj);
 
