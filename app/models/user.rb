@@ -227,10 +227,10 @@ class User < ActiveRecord::Base
     sns_connection = user.sns_connections.where(:provider => "facebook").first
     user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
 
-    begin 
-      user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
-    rescue Exception
-    end
+    #begin 
+      #user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
+    #rescue Exception
+    #end
 
     NewsFeed.create_for_new_user(user)
     MailWorker.perform_async(user.id)
