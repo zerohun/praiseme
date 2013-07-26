@@ -21,6 +21,9 @@ class PeopleController < ApplicationController
   end
 
   def recommendations
-    @friends = current_user.friends.order("RAND()").first(3)
+    begin
+      @friends = current_user.friends.order("RAND()").first(3)
+    rescue Exception
+    end
   end
 end
