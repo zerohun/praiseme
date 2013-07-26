@@ -10,7 +10,7 @@ ready = ->
     $.post "/create_ask_opinion"
     event.preventDefault()
 
-  if $("#recommendations").length > 0
+  if $("#recommendations").length > 0 && $(".recommendation").length == 0
     window.interval_obj = window.setInterval ->
       $.get "/people/recommendations", {dataType: "script"}
       ,
