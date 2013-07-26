@@ -13,13 +13,16 @@ ready = ->
     event.preventDefault()
 
   if $("#recommendations").length > 0 && $(".recommendation").length == 0 && window.refresh_count < 10
-    window.interval_obj = window.setInterval ->
+    window.interval_obj = window.setInterval(->
       $.get "/people/recommendations", {dataType: "script"}
       window.refresh_count = window.refresh_count + 1
-      ,
-        5000
+    ,5000)
+  else
+    window.clearInterval(window.interval_obj);
 
 
+
+window.interval_obj = null
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
