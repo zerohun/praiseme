@@ -7,10 +7,23 @@
   <% stamp_image_url = "/assets/trophy.png" %>
   <br>
 <% end %>
-<div class=stamp-inline-wrapper>
-  <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
-    <div class="stamp-title circle">
-      <%= stamp.title %>
+
+<% if params[:action] == "show" && (params[:controller] == "user_stamps" || params[:controller] == "compliments") %>
+  <%= link_to stamp_path(stamp) do %>
+    <div class=stamp-inline-wrapper>
+      <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
+        <div class="stamp-title circle">
+          <%= stamp.title %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class=stamp-inline-wrapper>
+    <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
+      <div class="stamp-title circle">
+        <%= stamp.title %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
