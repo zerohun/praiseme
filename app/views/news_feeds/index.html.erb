@@ -15,8 +15,12 @@ $('#toast').fadeIn();
 
 <% end %>
 <div id="recommendations">
-  <h4>We are bringing your friends from facebook....</h4>
-  <%= image_tag "/ajax-loader.gif" %>
+  <% if current_user.friends.present? %>
+    <%= render :partial => "/people/recommendations", :locals => {:friends => current_user.friends.sample(3)} %>
+  <% else %>
+    <h4>We are bringing your friends from facebook....</h4>
+    <%= image_tag "/ajax-loader.gif" %>
+  <% end %>
 </div>
 <div id="news_feeds">
   <%= render @news_feeds %>
