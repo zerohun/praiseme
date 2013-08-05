@@ -1,19 +1,43 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//= require bootstrap_and_overrides
+@import "compass";
+@import 'font-awesome';
 
-#session-page{
-  color: #e4faf5;
+body#session{
+  vertical-align: middle;
+  background-color: #004b3a;
+}
+
+#title{
+  padding-top: 30px;
+  color:white;
   text-align: center;
-  .login{
-    width: 100%;
-    background-color: #e4faf5;
-  }
-  .article{
-    background-color: #e4faf5;
-    color: black;
-    text-align: center;
-    padding: 15px;
-    margin: 10px;
+  h1{
+    font-size: 65px;
   }
 }
+
+#wrapper{
+  #center-circle{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    top: 5%;
+    text-align: center;
+
+    background-color: rgb(180,227,145); // Old browsers
+    @include filter-gradient(#b4e391, #004b3a, horizontal); // IE6-9 fallback on horizontal gradient
+    @include background-image(radial-gradient(center, ellipse cover, rgba(180,227,145,1) 0%,rgba(255,255,255,1) 4%,rgba(255,255,255,1) 4%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 31%,#004b3a 58%,#004b3a 100%));
+  }
+}
+.btn-sign{
+    position: relative;
+    width: 30%;
+    height: 40px;
+    top: 40%;
+}
+
+

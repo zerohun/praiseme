@@ -1,21 +1,24 @@
-<div id="session-page">
-  <h2>StartGlory</h2>
-  <br>
-  <div class="article round">
-    <%= render "devise/shared/links" %>
-  </div>
-  <br>
-  <h3>What is it?</h3>
-  <div class="article round">
-    StartGlory web(or app) service to compliment somebody or get compliments in fun way<br>
-    just like this...<br><br>
-
-    <h5> I think you are an</h5>
-    <% if DefaultTrophyImage.count > 0 %>
-      <%= render Stamp.new(:default_trophy_image_id => DefaultTrophyImage.first.id, :title => "Amazing person") %><br>
-    <% end %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StartGlory</title>
+  <%= stylesheet_link_tag "sessions", media: "all"%>
+  <%= javascript_include_tag "sessions" %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body id="session">
+  <div id="title">
+    <h1>Startglory</h1>
     <br>
-    <p>It's better then just compliment, so we call it <span class="badge badge-success">Glorify</span></p>
+    <p>
+      <%= User.count %> people are wating your compliment
+    </p>
   </div>
-</div>
-
+  <div id="wrapper">
+    <div id="center-circle">
+      <%= link_to "Sign in with Facebook", "/users/auth/facebook", :class => "btn btn-success btn-sign" %>
+    </div>
+  </div>
+</body>
+</html>

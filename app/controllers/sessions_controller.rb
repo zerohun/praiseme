@@ -1,3 +1,3 @@
 class SessionsController < Devise::SessionsController
-  layout 'before_login'
+  layout false
 end
