@@ -24,6 +24,7 @@ body#session{
 
 #wrapper{
   #center-circle{
+    z-index: -1;
     width: 300px;
     height: 300px;
     margin: auto;
@@ -47,4 +48,5 @@ body#session{
 #policy{
   color: #999;
   text-align: center;
+  z-index: 1;
 }
