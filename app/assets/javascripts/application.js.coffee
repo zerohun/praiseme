@@ -21,6 +21,8 @@
 #= require_directory .
 
 
+
+
 @startLoading = ->
   $(".ajax-loader").show()
   $("#screen-container").css("opacity", 0.1)
