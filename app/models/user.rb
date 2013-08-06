@@ -113,6 +113,9 @@ class User < ActiveRecord::Base
 
   def from_omniauth(auth)
     self.email = auth.info.email
+    if self.email.blank?
+      self.email = "#{auth.uid}@facebook.com"
+    end
     self.first_name = auth.info.first_name
     self.last_name = auth.info.last_name
     if auth.extra.raw_info.gender == "male"
