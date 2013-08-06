@@ -5,6 +5,10 @@
   </label><br/>
   <label class="active_user_search">
     <%= check_box_tag :active, "1", params[:active].present? %> Active User
+    <% if params[:active].present? %>
+      ( total : <%= User.where(:status => 1).count %> )
+    <% end %>
+
   </label></br>
     <%= submit_tag "Search", :class => "btn btn-primary" %>
   </div>
