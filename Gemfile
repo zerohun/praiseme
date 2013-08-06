@@ -42,6 +42,7 @@ gem "nifty-generators", :git => "git@github.com:zerohun/nifty-generators.git"
 gem 'mocha', :git => "git@github.com:freerange/mocha.git", :require => false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
+gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
