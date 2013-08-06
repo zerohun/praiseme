@@ -64,14 +64,14 @@ class ComplimentsController < ApplicationController
             end
           end
           begin
-            res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", og_params_hash
+            @res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", og_params_hash
           rescue Exception
             begin
-              res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
+              @res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
             rescue Exception
             end
           end
-          @compliment.create_action_instance :instance_id => res["id"]
+          @compliment.create_action_instance :instance_id => @res["id"] if @res.present?
         end
         format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @compliment }
