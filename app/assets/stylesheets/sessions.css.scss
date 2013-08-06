@@ -24,13 +24,13 @@ body#session{
 
 #wrapper{
   #center-circle{
-    z-index: -1;
     width: 300px;
     height: 300px;
     margin: auto;
     position: relative;
     top: 5%;
     text-align: center;
+    
 
     background-color: rgb(180,227,145); // Old browsers
     @include filter-gradient(#b4e391, #004b3a, horizontal); // IE6-9 fallback on horizontal gradient
@@ -48,5 +48,4 @@ body#session{
 #policy{
   color: #999;
   text-align: center;
-  z-index: 1;
 }
