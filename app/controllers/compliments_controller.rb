@@ -66,7 +66,10 @@ class ComplimentsController < ApplicationController
           begin
             res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", og_params_hash
           rescue Exception
-            res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
+            begin
+              res = current_user.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => @compliment.object_url(request.host)
+            rescue Exception
+            end
           end
           @compliment.create_action_instance :instance_id => res["id"]
         end
