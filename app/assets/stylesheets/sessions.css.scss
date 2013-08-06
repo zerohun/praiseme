@@ -17,6 +17,9 @@ body#session{
   h1{
     font-size: 65px;
   }
+  b{
+    font-size: 20px;
+  }
 }
 
 #wrapper{
@@ -41,3 +44,7 @@ body#session{
 }
 
 
+#policy{
+  color: #999;
+  text-align: center;
+}
