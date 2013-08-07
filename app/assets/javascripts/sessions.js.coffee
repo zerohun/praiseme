@@ -10,7 +10,6 @@ ready = ->
   $("#wrapper").css("height", "#{$(window).height()}px" )
 
   $('#google_test').click ->
-    
     ga('send', 'event', 'button', 'click', 'test-buttons')
 
 $(document).ready(ready)
