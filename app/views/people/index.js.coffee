@@ -1,4 +1,4 @@
-$("#friends").append("<%= j render(@friends) %>")
+$("#friends").append("<%= j render(:partial => 'people/people_list', :locals => {:users => @friends}) %>")
 $(".pagination").hide()
 <% if @friends.last_page? %>
 $(".pagination").remove()

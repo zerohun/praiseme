@@ -1,0 +1,15 @@
+<% users.each do |user| %>
+  <div class="friend round shadow">
+    <%= link_to user_profile_path(user) do %>
+      <div class="image">
+        <%= image_tag user.image_url, :class => "img-small img-circle image-shadow" %>
+      </div>
+      <div class="name">
+        <%= user.username %>
+      </div>
+    <% end %>
+    <div class="button-group pull-right">
+      <%= link_to "Glorify!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
+    </div>
+  </div>
+<% end %>
