@@ -85,13 +85,6 @@ ActiveRecord::Schema.define(version: 20130724095259) do
   add_index "my_user_news_feeds", ["news_feed_id"], name: "index_my_user_news_feeds_on_news_feed_id", using: :btree
   add_index "my_user_news_feeds", ["user_id"], name: "index_my_user_news_feeds_on_user_id", using: :btree
 
-  create_table "name_suggestions", force: true do |t|
-    t.string   "name"
-    t.integer  "popularity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "news_feeds", force: true do |t|
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
