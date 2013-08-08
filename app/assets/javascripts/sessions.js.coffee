@@ -15,5 +15,8 @@ ready = ->
   $('#intro_btn').click ->
     ga 'send', 'event', 'button', 'click', 'main_about'
 
+  $('.btn_sign').click ->
+    ga 'send', 'event', 'button', 'click', 'main_sign_in'
+
 $(document).ready(ready)
 
