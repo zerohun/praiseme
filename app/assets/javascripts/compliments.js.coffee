@@ -171,6 +171,10 @@ ready = ->
     $(".btn-more-comments").show()
   else
     $(".btn-more-comments").hide()
+  
+  $(".agree-btn").click ->
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button'
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button_agree_button'
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

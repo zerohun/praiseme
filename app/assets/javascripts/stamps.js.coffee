@@ -5,4 +5,11 @@
 #$ ->
 #  $('#search').autocomplete
 #    source: "/stamp_suggestions"
+ready = ->
+  $(".btn-bravo").click ->
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button'
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button_stamp_page'
+    
 
+$(document).ready(ready)
+$(document).on('page:load', ready)
