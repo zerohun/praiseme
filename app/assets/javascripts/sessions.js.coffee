@@ -10,10 +10,10 @@ ready = ->
   $("#wrapper").css("height", "#{$(window).height()}px" )
 
   $('#policy_btn').click ->
-    ga('send', 'event', 'button', 'click', 'main_policy')
+    ga 'send', 'event', 'button', 'click', 'main_policy'
   
   $('#intro_btn').click ->
-    ga('send', 'event', 'button', 'click', 'main_about')
+    ga 'send', 'event', 'button', 'click', 'main_about'
 
 $(document).ready(ready)
 
