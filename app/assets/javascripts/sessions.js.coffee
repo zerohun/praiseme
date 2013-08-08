@@ -11,6 +11,7 @@ ready = ->
 
   $('#google_test').click ->
     ga('send', 'event', 'button', 'click', 'test-buttons')
+    a =1
 
 $(document).ready(ready)
 
