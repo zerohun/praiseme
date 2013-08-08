@@ -19,7 +19,10 @@ ready = ->
         window.refresh_count = window.refresh_count + 1
     ,3000)
   else
-    window.clearInterval(window.interval_obj);
+    window.clearInterval(window.interval_obj)
+
+  $(".recommendation").clcik ->
+    ga 'send', 'event', 'news_feed', 'click', 'recommend'
 
 
 
