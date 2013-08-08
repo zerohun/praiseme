@@ -21,7 +21,7 @@ ready = ->
   else
     window.clearInterval(window.interval_obj)
 
-  $(".recommendation").clcik ->
+  $(".recommendation").click ->
     ga 'send', 'event', 'news_feed', 'click', 'recommend'
 
 
