@@ -15,9 +15,6 @@ ready = ->
       (data) -> 
         $('#stamps').append(data)
 
-  $(".btn-bravo").click ->
-    ga 'send', 'event', 'glorify', 'click', 'glorify_button'
-    ga 'send', 'event', 'glorify', 'click', 'glorify_button_profile_page'
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -141,6 +141,17 @@ ready = ->
   $(".brand").click ->
     ga 'send', 'event', 'nav-bar', 'click', 'brand_menu'
 
+  $(".btn-bravo").click ->
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button'
+    controller_tag = $("meta[name=controller]").attr("content")
+    if controller_tag == "people" 
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_people_page'
+    else if controller_tag == "user_profiles"
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_profile_page'
+    else if controller_tag == "stamps"
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_stamp_page'
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 $(window).bind "unload", ->
