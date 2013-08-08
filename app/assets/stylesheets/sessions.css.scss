@@ -54,6 +54,31 @@ body#session{
 }
 
 
+#what-you-can-do{
+
+  #presentation{
+//    display: none;
+    padding: 10px;
+    background-color: #019875;
+    #slider{
+      dd{
+        text-align: center;
+        padding: 10px;
+        .balloon{
+          padding: 20px;
+          color: darkgreen;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  #button-bar{
+    text-align: center;
+  }
+}
+
+
+
 #policy{
   text-align: center;
   color: #999;

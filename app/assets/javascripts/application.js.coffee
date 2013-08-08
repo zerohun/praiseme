@@ -18,10 +18,9 @@
 #= require jquery.cookie
 #= require jquery.arctext
 #= require jquery.highlighttextarea
+#= require jquery.easing.1.3
+#= require jquery.evoslider.lite-1.1.0.min
 #= require_directory .
-
-
-
 
 @startLoading = ->
   $(".ajax-loader").show()

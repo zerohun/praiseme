@@ -8,6 +8,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body id="session">
+  <div id="what-you-can-do">
+    <div id="presentation">
+      <div id="slider" class="evoslider default">
+        <dl>
+        
+          <dt>slide one</dt>
+          <dd>
+            <%= image_tag User.first.image_url(width: 100, height: 100), :class => "img img-circle" %>
+            <div class="round balloon">
+              Startglory is simple Facebook app<br>
+              to compliment your friends in fun way<br>
+              Let me just show you<br>
+            </div>
+          </dd>
+      
+          <dt>slide two</dt>
+          <dd>
+             slide two content        
+          </dd>
+      
+          <dt>slide three</dt>
+          <dd>	        
+             slide three content     
+          </dd>
+      
+          <dt>slide four</dt>
+          <dd>        
+             slide four content       
+          </dd> 
+          
+          <dt>slide five</dt>
+          <dd>
+             slide five content	      
+          </dd>
+            
+        </dl>
+        
+      </div>
+    </div>
+
+    <div id="button-bar">
+      <%= link_to "#", :id => "btn-what-you-can-do", :class => "btn btn-inverse" do  %>
+        What the hack is this?
+      <% end %>
+    </div>
+  </div>
   <div id="title">
     <h1>Startglory</h1>
     <br>
