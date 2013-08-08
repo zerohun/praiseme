@@ -9,7 +9,7 @@
       </div>
     <% end %>
     <div class="button-group pull-right">
-      <%= link_to "Glorify!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
+      <%= render :partial => 'compliments/glorify', :locals => {:user_id => user.id }%>
     </div>
   </div>
 <% end %>

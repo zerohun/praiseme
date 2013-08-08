@@ -143,12 +143,12 @@ ready = ->
 
   $(".btn-bravo").click ->
     ga 'send', 'event', 'glorify', 'click', 'glorify_button'
-    controller_tag = $("meta[name=controller]").attr("content")
+    controller_tag = $(".btn-bravo").data("page")
     if controller_tag == "people" 
       ga 'send', 'event', 'glorify', 'click', 'glorify_button_people_page'
-    else if controller_tag == "user_profiles"
+    else if controller_tag == "userprofile"
       ga 'send', 'event', 'glorify', 'click', 'glorify_button_profile_page'
-    else if controller_tag == "stamps"
+    else if controller_tag == "stamp"
       ga 'send', 'event', 'glorify', 'click', 'glorify_button_stamp_page'
 
 

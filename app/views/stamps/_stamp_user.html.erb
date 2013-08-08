@@ -19,7 +19,7 @@
     <% if is_mine == false %>
       <div class="button-group pull-right">
         <%= render :partial => '/followings/following_button', :locals => {:user => user} %>
-        <%= link_to "Glorify!", new_compliment_path(:compliment => {:receiver_id => user.id}), :class => "btn btn-success btn-bravo" %>
+       <%= render :partial => 'compliments/glorify', :locals => {:user_id => user.id }%>
       </div>
     <% end %>
   </div>
