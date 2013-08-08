@@ -123,6 +123,24 @@ ready = ->
 
 
 
+  $(".mypage-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'mypage_menu'
+
+  $(".news-feed-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'news_feed_menu'
+
+  $(".people-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'people_menu'
+
+  $(".stamp-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'stamp_menu'
+
+  $(".about-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'about_menu'
+
+  $(".brand").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'brand_menu'
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 $(window).bind "unload", ->
