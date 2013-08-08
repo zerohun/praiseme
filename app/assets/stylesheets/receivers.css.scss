@@ -1,0 +1,21 @@
+// Place all the styles related to the receivers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#receivers{
+  #search-form{
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .receiver{
+    background-color: #e4faf5; 
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    max-width: 500px;
+
+  }
+}

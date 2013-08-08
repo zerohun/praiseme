@@ -68,7 +68,22 @@ body {
     height:150px;
   }
 }
-
+.btn-custom {
+  background-color: hsl(109, 100%, 71%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2ffef", endColorstr="#86ff6b");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f2ffef), to(#86ff6b));
+  background-image: -moz-linear-gradient(top, #f2ffef, #86ff6b);
+  background-image: -ms-linear-gradient(top, #f2ffef, #86ff6b);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2ffef), color-stop(100%, #86ff6b));
+  background-image: -webkit-linear-gradient(top, #f2ffef, #86ff6b);
+  background-image: -o-linear-gradient(top, #f2ffef, #86ff6b);
+  background-image: linear-gradient(#f2ffef, #86ff6b);
+  border-color: #86ff6b #86ff6b hsl(109, 100%, 64.5%);
+  color: #004b3a !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.42);
+  -webkit-font-smoothing: antialiased;
+}
 // Glyphicons
 //@import "twitter/bootstrap/sprites.less";
 
