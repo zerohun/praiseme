@@ -9,9 +9,11 @@
 ready = ->
   $("#wrapper").css("height", "#{$(window).height()}px" )
 
-  $('#google_test').click ->
-    ga('send', 'event', 'button', 'click', 'test-buttons')
-    a =1
+  $('#policy_btn').click ->
+    ga('send', 'event', 'button', 'click', 'main_policy')
+  
+  $('#intro_btn').click ->
+    ga('send', 'event', 'button', 'click', 'main_about')
 
 $(document).ready(ready)
 
