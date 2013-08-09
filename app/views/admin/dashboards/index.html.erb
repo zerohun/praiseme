@@ -1,11 +1,18 @@
 <div id="dash-body">
   <div id="dash-menu">
     <ul class="nav nav-pills nav-stacked">
+      Summary 
+      <li class="active"><%= link_to 'All Summary', '#', :remote => true %> </li>
+
+    </ul>
+    <hr />
+
+    <ul class="nav nav-pills nav-stacked">
       User 
       <li><%= link_to 'All User', '#', :remote => true %> </li>
       <li><%= link_to 'Active User', '#', :remote => true %> </li>
       <li><%= link_to 'NonActive User', '#' %> </li>
-      <li class="active"><%= link_to 'New User', '#' %> </li>
+      <li><%= link_to 'New User', '#' %> </li>
     </ul>
     <hr />
     <ul class="nav nav-pills nav-stacked">
@@ -27,13 +34,12 @@
   </div>
   
   <div id="dash-content" >
-    <% @compliment.each do |com| %>
-      <%= com.sender.username %>
-      <%= com.receiver.username %>
-      <%= com.description %>
-      <br />
-    <%end %>
-    new Compli : <%= @new_compliment.count %><br/>
-    new USer : <%= @new_user.count %>
+
+    new Compliment : <%= @new_compliment.count %> / <%= Compliment.count %><br/>
+    new User : <%= @new_user.count %> / <%= User.count %><br/>
+    new Stamp : <%= @new_stamp.count %> / <%= Stamp.count %><br />
+    new UserStamp : <%= @new_user_stamp.count %> / <%= UserStamp.count %><br />
+    new Comment : <%= @new_comment.count %> / <%= Comment.count %>
+
   </div>
 </div>

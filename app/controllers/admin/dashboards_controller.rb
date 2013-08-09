@@ -5,6 +5,9 @@ class Admin::DashboardsController < Admin::ApplicationController
     @compliment = Compliment.where('extract(month from created_at) = ?' , now_month)
     @new_compliment = Compliment.where("updated_at >= ? and updated_At < ?",Date.yesterday.to_time, Date.today.to_time)
     @new_user = User.where("users.updated_at >= ? and users.updated_At < ?",Date.yesterday.to_time, Date.today.to_time)
+    @new_stamp = Stamp.where("updated_at >= ? and updated_At < ?",Date.yesterday.to_time, Date.today.to_time)
+    @new_user_stamp = UserStamp.where("updated_at >= ? and updated_At < ?",Date.yesterday.to_time, Date.today.to_time)
+    @new_comment = Comment.where("updated_at >= ? and updated_At < ?",Date.yesterday.to_time, Date.today.to_time)
 
 
   end
