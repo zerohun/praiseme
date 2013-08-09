@@ -10,6 +10,15 @@
 </head>
 <body>
 
+<script src="https://apis.google.com/js/client.js?onload=loadLib"</script>
+<script>
+function loadLib() {
+    // Handle all the authorization work.
+      // Read Hello Analytics Tutorial for details.
+        gapi.client.load('analytics', 'v3', makeApiCall);
+}
+</script>
+
   <div id="screen-container">
     <div id="title-menu-bar" class="navbar navbar-fixed-top">
       <div class="navbar-inner">

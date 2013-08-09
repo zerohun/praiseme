@@ -163,6 +163,7 @@ ready = ->
     if e.keyCode == 13
       str =  $("#comment_content").val().replace /^\s+|\s+$/g, ""
       if str.length > 0
+        ga 'send', 'event', 'comment', 'reply', 'reply compliment'
         $("#new_comment").submit()
       e.preventDefault()
       $("#comment_content").val("")
@@ -175,6 +176,24 @@ ready = ->
   $(".agree-btn").click ->
     ga 'send', 'event', 'glorify', 'click', 'glorify_button'
     ga 'send', 'event', 'glorify', 'click', 'glorify_button_agree_button'
+
+  $(".create-stamp-button").click ->
+    ga 'send', 'event', 'glorify', 'click', 'create_stamp'
+
+  $(".default-trophy-image-select-button").click ->
+    ga 'send', 'event', 'glorify', 'click', 'create_stamp_image'
+
+  $(".tagging-user").click ->
+    ga 'send', 'event', 'glorify', 'tagging', 'tag_friend'
+
+  $(".create-compliment").click ->
+    ga 'send', 'event', 'glorify', 'glorifying', 'end up glorifying'
+    if $('input[name="post_to_facebook"]').is(':checked')
+      ga 'send', 'event', 'glorify', 'publish_facebook', 'publish_news_feed'
+    else
+      ga 'send', 'event', 'glorify', 'publish_facebook', 'not_publish_news_feed'
+  
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

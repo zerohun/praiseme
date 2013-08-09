@@ -54,7 +54,7 @@
     <div class="actions hidden text-center">
       <span id="tag-button-box"><%= link_to "Tag #{@compliment.receiver.username}", "#", :class => "tagging-user btn no-loading" %></span>
       <span id="tagged-label" class="label label-info"><%= @compliment.receiver.username %> is tagged</span>
-      <%= f.submit "OK", :class => "btn btn-primary btn-large" %>
+      <%= f.submit "OK", :class => "btn btn-primary btn-large create-compliment" %>
     </div>
   <% end %>
 </div>
