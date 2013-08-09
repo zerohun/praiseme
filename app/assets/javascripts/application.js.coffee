@@ -18,10 +18,8 @@
 #= require jquery.cookie
 #= require jquery.arctext
 #= require jquery.highlighttextarea
+#= require idangerous.swiper-2.0.min
 #= require_directory .
-
-
-
 
 @startLoading = ->
   $(".ajax-loader").show()

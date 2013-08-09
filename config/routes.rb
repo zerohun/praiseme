@@ -14,6 +14,7 @@ Praiseme::Application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
   
   post "locations/update"
+  resources :receivers, :only => :index
   resources :mypage, :only => :index
   resources :people, :only => [:index] do
     get :recommendations, :on => :collection

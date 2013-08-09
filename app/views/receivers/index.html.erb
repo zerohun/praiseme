@@ -1,0 +1,14 @@
+<div id="receivers">
+  <div id="title-bar">
+    <h3>Who do you want to glorify?</h3>
+  </div>
+  <br>
+  <div id="search-form">
+    <%= form_tag receivers_path, :method => :get, :class => "form-search" do %>
+      <%= text_field_tag :q, "", :class => "input-medium search-query", :id => "search" %>
+      <%= submit_tag "Search", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+  <%= render :partial => "/receivers/receivers", :locals => {:receivers => @receivers} %>
+</div>
+<%= paginate @receivers %>

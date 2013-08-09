@@ -54,6 +54,24 @@ body#session{
 }
 
 
+#what-you-can-do{
+  display: none;
+
+  #presentation{
+    display: none;
+    padding: 10px;
+    background-color: #019875;
+    .swiper-container, .swiper-slide {
+      height: 350px;
+    }
+  }
+  #button-bar{
+    text-align: center;
+  }
+}
+
+
+
 #policy{
   text-align: center;
   color: #999;

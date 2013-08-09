@@ -8,6 +8,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body id="session">
+  <div id="what-you-can-do">
+    <div id="presentation">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--First Slide-->
+            <div class="swiper-slide"> 
+              1
+              <!-- Any HTML content of the first slide goes here -->
+            </div>
+            
+            <!--Second Slide-->
+            <div class="swiper-slide">
+              2
+              <!-- Any HTML content of the second slide goes here -->
+            </div>
+            
+            <!--Third Slide-->
+            <div class="swiper-slide"> 
+              3
+              <!-- Any HTML content of the third slide goes here -->
+            </div>
+            <!--Etc..-->
+        </div>
+      </div>      
+
+      <%= link_to "prev", "#", :id => "prev-slide", :class => "btn" %>
+      <%= link_to "next", "#", :id => "next-slide", :class => "btn" %>
+    </div>
+
+    <div id="button-bar">
+      <%= link_to "#", :id => "btn-what-you-can-do", :class => "btn btn-inverse" do  %>
+        What the hack is this?
+      <% end %>
+    </div>
+  </div>
   <div id="title">
     <h1>Startglory</h1>
     <br>
