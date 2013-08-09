@@ -121,6 +121,35 @@ ready = ->
 
 
 
+  $(".mypage-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'mypage_menu'
+
+  $(".news-feed-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'news_feed_menu'
+
+  $(".people-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'people_menu'
+
+  $(".stamp-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'stamp_menu'
+
+  $(".about-menu").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'about_menu'
+
+  $(".brand").click ->
+    ga 'send', 'event', 'nav-bar', 'click', 'brand_menu'
+
+  $(".btn-bravo").click ->
+    ga 'send', 'event', 'glorify', 'click', 'glorify_button'
+    controller_tag = $(".btn-bravo").data("page")
+    if controller_tag == "people" 
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_people_page'
+    else if controller_tag == "user_profiles"
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_profile_page'
+    else if controller_tag == "stamps"
+      ga 'send', 'event', 'glorify', 'click', 'glorify_button_stamp_page'
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
 $(window).bind "unload", ->

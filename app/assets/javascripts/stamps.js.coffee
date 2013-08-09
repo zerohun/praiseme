@@ -5,4 +5,3 @@
 #$ ->
 #  $('#search').autocomplete
 #    source: "/stamp_suggestions"
-

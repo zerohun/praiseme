@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="latitude" content="">
   <meta name="longitude" content="">
+  <meta name="controller" content="<%= params[:controller] %>">
 
   <meta property="fb:app_id" content="<%= $fb_app_id %>" /> 
   <meta property="og:title" content="<%= @og_title || 'StartGlory' %>" />
@@ -58,13 +59,13 @@
           <ul class="nav pull-right">
 
             <li class="<%= "active" if params[:controller] == "mypage" %>">
-              <%= link_to user_profile_path(current_user), :class => "btn btn-navbar" do %>
+              <%= link_to user_profile_path(current_user), :class => "btn btn-navbar mypage-menu" do %>
                 <%= image_tag current_user.image_url, :style => "width:25px" %>
               <% end %>
             </li>
 
             <li class=<%= "active" if params[:controller] == 'news_feeds' %>>
-              <%= link_to news_feeds_path, :class => "btn btn-navbar" do %>
+              <%= link_to news_feeds_path, :class => "btn btn-navbar news-feed-menu" do %>
                 <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>
                   <div class="orange-red new-icon">N</div>
                 <% end %>
@@ -74,7 +75,7 @@
             </li>
 
             <li class=<%= "active" if params[:controller] == 'people' %>>
-              <%= link_to people_path, :class => "btn btn-navbar" do %>
+              <%= link_to people_path, :class => "btn btn-navbar people-menu" do %>
                 <i class=icon-user></i>
               <% end %>
             </li>
@@ -89,14 +90,14 @@
 
           <ul class="nav">
             <li class="hidden-phone hidden-tablet">
-              <%= link_to user_profile_path(current_user) do %>
+            <%= link_to user_profile_path(current_user), :class => "mypage-menu" do %>
                 <%= image_tag current_user.image_url, :style => "width:25px" %>
                 My page
               <% end %>
             </li>
 
             <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'news_feeds' %>">
-              <%= link_to news_feeds_path do %>
+            <%= link_to news_feeds_path, :class => "news-feed-menu" do %>
                 <% if cookies[:last_news_feed_id].present? && current_user.news_feeds.present? && current_user.news_feeds.last.id > cookies[:last_news_feed_id].to_i %>
                   <div class="orange-red new-icon">N</div>
                 <% end %>
@@ -105,19 +106,19 @@
               <% end %>
             </li>
             <li class="hidden-phone hidden-tablet <%= "active" if params[:controller] == 'people' %>">
-              <%= link_to people_path do %>
+            <%= link_to people_path, :class => "people-menu" do %>
                 <i class=icon-user></i>
                 People
               <% end %>
             </li>
             <li class=<%= "active" if params[:controller] == 'stamps' %>>
-              <%= link_to stamps_path do %>
+            <%= link_to stamps_path, :class => "stamp-menu" do %>
                 <i class="icon-trophy"></i>
                 Glories
               <% end %>
               </li>
               <li>
-                <%= link_to about_path do %>
+              <%= link_to about_path, :class=>"about-menu" do %>
                   <i class="icon-info-sign"></i>
                   About
                 <% end %>
