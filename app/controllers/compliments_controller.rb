@@ -56,6 +56,7 @@ class ComplimentsController < ApplicationController
       @compliment.sender = current_user
       if @compliment.save
         if params[:post_to_facebook].present? && params[:post_to_facebook].to_i == 1
+          @compliment.update_attributes(:is_post => 1)
           og_params_hash = {:profile => @compliment.object_url(request.host), "fb:explicitly_shared" => true}
           if @compliment[:description].present?
             receiver_uid = @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid
