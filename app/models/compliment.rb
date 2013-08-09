@@ -64,8 +64,22 @@ class Compliment < ActiveRecord::Base
     end
   end
 
-
   def object_url(host)
     "http://#{host}/compliments/#{self.id}"
+  end
+
+  def post_og(og_params_hash)
+    begin
+      res = self.sender.facebook.put_connections "me", "#{$fb_namespace}:glorify", og_params_hash
+    rescue Exception => e
+      begin
+        res = self.sender.facebook.put_connections "me", "#{$fb_namespace}:glorify", :profile => og_params_hash["profile"]
+      rescue Exception => e
+        res = nil
+      end
+    end
+
+    self.create_action_instance :instance_id => res["id"] if res.present?
+    return res
   end
 end
