@@ -55,21 +55,14 @@ body#session{
 
 
 #what-you-can-do{
+  display: none;
 
   #presentation{
-//    display: none;
+    display: none;
     padding: 10px;
     background-color: #019875;
-    #slider{
-      dd{
-        text-align: center;
-        padding: 10px;
-        .balloon{
-          padding: 20px;
-          color: darkgreen;
-          font-size: 15px;
-        }
-      }
+    .swiper-container, .swiper-slide {
+      height: 350px;
     }
   }
   #button-bar{

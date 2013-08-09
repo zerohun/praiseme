@@ -10,42 +10,31 @@
 <body id="session">
   <div id="what-you-can-do">
     <div id="presentation">
-      <div id="slider" class="evoslider default">
-        <dl>
-        
-          <dt>slide one</dt>
-          <dd>
-            <%= image_tag User.first.image_url(width: 100, height: 100), :class => "img img-circle" %>
-            <div class="round balloon">
-              Startglory is simple Facebook app<br>
-              to compliment your friends in fun way<br>
-              Let me just show you<br>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--First Slide-->
+            <div class="swiper-slide"> 
+              1
+              <!-- Any HTML content of the first slide goes here -->
             </div>
-          </dd>
-      
-          <dt>slide two</dt>
-          <dd>
-             slide two content        
-          </dd>
-      
-          <dt>slide three</dt>
-          <dd>	        
-             slide three content     
-          </dd>
-      
-          <dt>slide four</dt>
-          <dd>        
-             slide four content       
-          </dd> 
-          
-          <dt>slide five</dt>
-          <dd>
-             slide five content	      
-          </dd>
             
-        </dl>
-        
-      </div>
+            <!--Second Slide-->
+            <div class="swiper-slide">
+              2
+              <!-- Any HTML content of the second slide goes here -->
+            </div>
+            
+            <!--Third Slide-->
+            <div class="swiper-slide"> 
+              3
+              <!-- Any HTML content of the third slide goes here -->
+            </div>
+            <!--Etc..-->
+        </div>
+      </div>      
+
+      <%= link_to "prev", "#", :id => "prev-slide", :class => "btn" %>
+      <%= link_to "next", "#", :id => "next-slide", :class => "btn" %>
     </div>
 
     <div id="button-bar">
