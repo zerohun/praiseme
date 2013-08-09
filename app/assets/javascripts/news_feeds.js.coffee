@@ -24,6 +24,8 @@ ready = ->
   $(".recommendation").click ->
     ga 'send', 'event', 'news_feed', 'click', 'recommend'
 
+  $('#glorify-button-bar a').click ->
+    ga 'send', 'event', 'news_feed', 'click', 'main_glorify'
 
 
 window.interval_obj = null
