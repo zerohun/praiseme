@@ -186,7 +186,6 @@ ready = ->
     ga 'send', 'event', 'glorify', 'tagging', 'tag_friend'
 
   $(".create-compliment").click ->
-    alert 'thanx your Compliment!'
     ga 'send', 'event', 'glorify', 'glorifying', 'end up glorifying'
     if $('input[name="post_to_facebook"]').is(':checked')
       ga 'send', 'event', 'glorify', 'publish_facebook', 'publish_news_feed'
