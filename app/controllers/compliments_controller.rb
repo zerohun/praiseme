@@ -61,7 +61,7 @@ class ComplimentsController < ApplicationController
           if @compliment[:description].present?
             receiver_uid = @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid
             if @compliment[:description].include? @compliment.receiver.username
-              og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
+              og_params_hash.merge!({:message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
             else
               og_params_hash.merge!({:message => @compliment[:description]})
             end
