@@ -2,7 +2,7 @@
   <% receivers.each do |user| %>
     <%= link_to new_compliment_path("compliment[receiver_id]" => user.id) do %>
       <div class="receiver round shadow">
-        <%= image_tag user.image_url(width: 70, height: 70), :class => "img img-circle" %>
+        <%= image_tag user.image_url(width: 50, height: 50), :class => "img img-circle" %>
         &nbsp;
         &nbsp;
         <%= user.username %>
