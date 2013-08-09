@@ -163,6 +163,7 @@ ready = ->
     if e.keyCode == 13
       str =  $("#comment_content").val().replace /^\s+|\s+$/g, ""
       if str.length > 0
+        ga 'send', 'event', 'comment', 'reply', 'reply compliment'
         $("#new_comment").submit()
       e.preventDefault()
       $("#comment_content").val("")
