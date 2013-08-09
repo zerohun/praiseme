@@ -39,7 +39,7 @@ body#session{
     position: relative;
     top: 5%;
     text-align: center;
-
+    
 
     background-color: rgb(180,227,145); // Old browsers
     @include filter-gradient(#b4e391, #004b3a, horizontal); // IE6-9 fallback on horizontal gradient
@@ -51,7 +51,6 @@ body#session{
     width: 30%;
     height: 40px;
     top: 40%;
-    z-index: 1000px;
 }
 
 
@@ -86,8 +85,5 @@ body#session{
   text-align: center;
   color: #999;
   margin-left: 3px;
-  a{
-    z-index: 100;
-  }
 }
 
