@@ -63,7 +63,7 @@ class ComplimentsController < ApplicationController
             if @compliment[:description].include? @compliment.receiver.username
               og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
             else
-              og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description]})
+              og_params_hash.merge!({:message => @compliment[:description]})
             end
           end
           permissions = current_user.facebook.get_connections("me", "permissions").first
