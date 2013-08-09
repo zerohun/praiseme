@@ -64,17 +64,18 @@ class ComplimentsController < ApplicationController
               og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
             end
           end
-
           permissions = current_user.facebook.get_connections("me", "permissions").first
           if permissions["publish_actions"].blank? || permissions["publish_actions"] != 1
             @oauth = Koala::Facebook::OAuth.new($fb_app_id, $fb_app_secret, "http://#{request.host}#{":#{request.port}" if request.port != 80}#{compliment_callback_path}")
             format.html { redirect_to @oauth.url_for_oauth_code(:permissions => "publish_actions", :state => {:og_params_hash => og_params_hash, :compliment_id => @compliment.id}.to_json)}
           else
             @res = @compliment.post_og(og_params_hash)
-
             format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
             format.json { render action: 'show', status: :created, location: @compliment }
           end
+        else
+          format.html { redirect_to @compliment, notice: 'Compliment was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @compliment }
         end
       else
         format.html { render action: 'new' }
