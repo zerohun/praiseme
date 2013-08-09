@@ -57,6 +57,7 @@ Praiseme::Application.routes.draw do
     resources :compliments 
     resources :stamps 
     resources :comments
+    resources :dashboards
   end
 
   namespace :api do
