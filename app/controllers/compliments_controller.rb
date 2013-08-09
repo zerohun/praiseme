@@ -62,6 +62,8 @@ class ComplimentsController < ApplicationController
             receiver_uid = @compliment.receiver.sns_connections.where(:provider => "facebook").first.uid
             if @compliment[:description].include? @compliment.receiver.username
               og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description].gsub(@compliment.receiver.username, "@[#{receiver_uid}]")})
+            else
+              og_params_hash.merge!({:tags => receiver_uid.to_s, :message => @compliment[:description]})
             end
           end
           permissions = current_user.facebook.get_connections("me", "permissions").first
