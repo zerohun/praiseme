@@ -27,6 +27,11 @@ function loadLib() {
             StartGlory
           <% end %>
           <ul class="nav pull-right">
+            <li class="<%= "active" if params[:controller] == "admin/dashboards" %>">
+              <%= link_to admin_dashboards_path, :class => "btn btn-navbar" do %>
+                <i class="icon-signal"></i> 
+              <% end %>
+            </li>
 
             <li class="<%= "active" if params[:controller] == "admin/users" %>">
               <%= link_to admin_users_path, :class => "btn btn-navbar" do %>
@@ -60,6 +65,13 @@ function loadLib() {
         <div class="nav-collapse collapse">
           
           <ul class="nav">
+
+            <li class="<%= "active" if params[:controller] == "admin/dashboards" %>">
+              <%= link_to admin_dashboards_path do %>
+                <i class="icon-signal"></i> 
+                DashBoard
+              <% end %>
+            </li>
 
             <li class="<%= "active" if params[:controller] == "admin/users" %>">
               <%= link_to admin_users_path do %>
