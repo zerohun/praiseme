@@ -6,6 +6,10 @@ Praiseme::Application.routes.draw do
   get "privacy_policy" => "about#privacy_policy"
   get "term_of_service" => "about#term_of_service"
 
+  get "compliment_callback" => "koala_callbacks#compliment"
+  post "compliment_callback" => "koala_callbacks#compliment"
+
+
   post "create_ask_opinion" => "facebook_posts#create_ask_opinion"
 
   resources :stamp_suggestions
@@ -34,6 +38,7 @@ Praiseme::Application.routes.draw do
 
   resources :user_stamps
   resources :compliments do
+    get :new_permission, :on => :collection
     resources :comments, :only => [:create, :destroy]
   end
   resources :stamps

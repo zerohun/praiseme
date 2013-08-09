@@ -217,10 +217,10 @@ Devise.setup do |config|
   # up on your models and hooks.
   #
   if Rails.env == "production"
-    config.omniauth :facebook, '615443998467652', '4fd19964390f6907662191d57d5da7f9',:scope => 'email, user_photos, friends_photos, publish_actions, share_item'
+    config.omniauth :facebook, '615443998467652', '4fd19964390f6907662191d57d5da7f9',:scope => 'email, user_photos, friends_photos'
     #config.omniauth :twitter, 'BZIGfFnELQyqTVL2jkgvvw', 'PsfPsKtrtp4VhH1UtbLw5x4dT7pEmzWRExfDkWittIs',:scope => 'read, write'
   else
-    config.omniauth :facebook, '437202949687541', '2b38344b2ef84a3a7149c2f4925e65ec',:scope => 'email, user_photos, friends_photos, publish_actions, share_item'
+    config.omniauth :facebook, '437202949687541', '2b38344b2ef84a3a7149c2f4925e65ec',:scope => 'email, user_photos, friends_photos'
     #config.omniauth :twitter, '4dCL629qdi46XXhmNTG9g', '96DSYNOi5lEUTUVndHSxX2EspNdpSahfGq9yWjSiU',:scope => 'read, write'
   end
 
