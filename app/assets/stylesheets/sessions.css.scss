@@ -55,14 +55,22 @@ body#session{
 
 
 #what-you-can-do{
-  display: none;
 
   #presentation{
     display: none;
     padding: 10px;
-    background-color: #019875;
+    background-color: #e4faf5;
     .swiper-container, .swiper-slide {
       height: 350px;
+      .page{
+        .slide-image{
+          text-align: center;
+        }
+        margin: 20px;
+        text-align: left;
+        max-width: 800px;
+        font-size: 15px;
+      }
     }
   }
   #button-bar{

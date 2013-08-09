@@ -14,8 +14,22 @@
         <div class="swiper-wrapper">
             <!--First Slide-->
             <div class="swiper-slide"> 
-              1
-              <!-- Any HTML content of the first slide goes here -->
+              <div class="page">
+                <div class="row-fluid">
+                 <div class="span3 slide-image">
+                    <%= image_tag User.first.image_url(width: 80, height: 80), :class => "img-circle" %>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="span9">
+                    &nbsp;Hello my name is Younghun<br>
+                    I'm one of creator of startglory<br>
+                    Startglory is Facebook app to compliment your friends<br><br>
+                    <h4>Let me just show you how it work</h4>
+                    <h5>Click next button or Swipe -> </h5>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <!--Second Slide-->
@@ -56,6 +70,8 @@
     <div id="center-circle">
       <%= link_to "Sign in with Facebook", "/users/auth/facebook", :class => "btn btn-success btn-sign" %>
     </div>
+    <br>
+    <br>
     <br>
     <br>
     <div id="policy">
