@@ -35,11 +35,26 @@
   
   <div id="dash-content" >
 
-    new Compliment : <%= @new_compliment.count %> / <%= Compliment.count %><br/>
-    new User : <%= @new_user.count %> / <%= User.count %><br/>
-    new Stamp : <%= @new_stamp.count %> / <%= Stamp.count %><br />
-    new UserStamp : <%= @new_user_stamp.count %> / <%= UserStamp.count %><br />
-    new Comment : <%= @new_comment.count %> / <%= Comment.count %>
-
+    <table class ="table table-hover ">
+      <tr>
+        <td></td>
+        <% (1..6).reverse_each do |i| %>
+          <% if i == 0 %>
+            <td class="dash-table-title"> Today </td>
+          <% elsif i == 1 %>
+            <td class="dash-table-title"> YesteDay</td>
+          <% else %>
+              <td class="dash-table-title"><%=i%> Day ago </td>
+          <% end %>
+            <% end %>
+            <td> Total </td>
+      </tr>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new Compliment', :data => @new_compliment} %>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new User', :data => @new_user} %>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new Stamp', :data => @new_stamp} %>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new UserStamp', :data => @new_user_stamp} %>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new Comment', :data => @new_comment} %>
+     
+  </table>
   </div>
 </div>
