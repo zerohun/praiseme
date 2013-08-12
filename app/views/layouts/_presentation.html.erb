@@ -25,17 +25,19 @@
         <div class="swiper-slide"> 
           <%= image_tag "/presentation/slide_facebook.jpg" %>
         </div>
-        <div class="swiper-slide"> 
-          <br>
-          <br>
-          <br>
-          <h2>Lets get started</h2>
-          <br>
-          <br>
-          <%= link_to "/users/auth/facebook", :class => "btn btn-primary" do %>
-            Sign in with<br><i class="icon-facebook"></i>acebook
-          <% end %>
-        </div>
+        <% if current_user.blank? %>
+          <div class="swiper-slide"> 
+            <br>
+            <br>
+            <br>
+            <h2>Lets get started</h2>
+            <br>
+            <br>
+            <%= link_to "/users/auth/facebook", :class => "btn btn-primary" do %>
+              Sign in with<br><i class="icon-facebook"></i>acebook
+            <% end %>
+          </div>
+        <% end %>
     </div>
   </div>      
 
