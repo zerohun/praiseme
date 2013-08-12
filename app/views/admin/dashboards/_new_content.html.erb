@@ -1,7 +1,7 @@
 <tr>   
   <td><%=title %></td>
   <% total_count = 0 %>
-  <% (0..5).each do |i| %>
+  <% (0..5).reverse_each do |i| %>
     <td class="dash-table-content"> 
       <%= data[i].count %> 
       <% total_count += data[i].count %>
