@@ -1,12 +1,21 @@
 <tr>   
   <td><%=title %></td>
   <% total_count = 0 %>
+  <% active_user_count = 0 %>
   <% (0..5).reverse_each do |i| %>
     <td class="dash-table-content"> 
       <%= data[i].count %> 
+      <% if title == 'new User' %>
+        (<%= data[i].where(:status => 1).count %>)
+        <% active_user_count += data[i].where(:status => 1).count  %>
+      <% end %>
       <% total_count += data[i].count %>
     </td>
   <% end %>
-  <td class="table-total"><%= total_count %></td>
+  <td class="table-total"><%= total_count %>
+  <% if title == 'new User' %>
+    (<%= active_user_count %>)
+  <% end %>
+</td>
 </tr>
 

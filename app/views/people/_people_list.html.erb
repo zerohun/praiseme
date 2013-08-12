@@ -1,4 +1,9 @@
-<% users.each do |user| %>
+<% users.each do |user_info| %>
+  <% if user_info.class == User %>
+    <% user = user_info%>
+  <% else %>
+    <% user = User.find(user_info.followee) %>
+  <%end %>
   <div class="friend round shadow">
     <%= link_to user_profile_path(user) do %>
       <div class="image">

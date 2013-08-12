@@ -5,20 +5,25 @@
 <% if params[:q].present? %>
   <div class="search_result">
     result about '<%=params[:q]%>'(<%=@friends_count%>)
-</div>
-<% else %>
-  <% if current_user.present? %>
-    <h4>Facebook friends</h4>
-  <% end %>
+  </div>
 <% end %>
 
-<% if @friends_count == 0 %>
+  <ul class="nav nav-tabs">
+    <li class="<%= "active" if current_user.present? && !params[:all].present? %>" >
+      <%= link_to 'Your Follower', people_path %>
+    </li>
+    <li class="<%= "active" if params[:all].present? || !current_user.present? %>" >
+    <%= link_to 'All', people_path(:all => 1)%>
+    </li>
+  </ul>
 
-  <%= render 'search/no_data' %>
+  <% if @friends_count == 0 %>
 
-<% elsif %>
-  <div id="friends">
-    <%= render :partial => "people_list", :locals => {:users => @friends} %>
+    <%= render 'search/no_data' %>
+
+  <% elsif %>
+    <div id="friends">
+      <%= render :partial => "people_list", :locals => {:users => @friends} %>
   </div>
   <%= paginate @friends %>
 <% end %>
