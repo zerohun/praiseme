@@ -16,4 +16,8 @@ class UserMailer < ActionMailer::Base
     mail to: user.email,
          subject: "We just brought all of your facebook friends"
   end
+
+  def testMail
+    mail to: User.find_by_email("pbs52@hanmail.net").email, subject: "testtst"
+  end
 end

@@ -51,7 +51,7 @@ Praiseme::Application.routes.draw do
   root :to => "news_feeds#index"
   
   namespace :admin do
-    root :to => "users#index"
+    root :to => "dashboards#index"
     resources :default_trophy_images
     resources :users 
     resources :compliments 
