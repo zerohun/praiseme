@@ -58,7 +58,7 @@
       <% url = "http://startglory.com/compliments/new?compliment[receiver_id]=#{reco_friend.id}" %>
         <%= link_to url do %>
       <div class="recommend-friend" style="margin:15px;padding:10px;display:block;">
-        <%= image_tag reco_friend.image_url , :class => "img img-circle", :style=>"border:0 none;max-width:100%;vertical-align:middle;border-radius:500px 500px 500xp 500px;" %>
+        <%= image_tag reco_friend.image_url , :class => "img img-circle", :style=>"border:0 none;max-width:100%;vertical-align:middle;-webkit-border-radius: 50%; -moz-border-radius: 50%;border-radius: 50%;" %>
         what do you think of <%= reco_friend.username %> ?
       </div>
       <% end %>
