@@ -41,11 +41,6 @@
     .img-circle{
       border-radius:500px 500px 500px 500px;
     }
-    .recommend-friend{
-      margin:15px;
-      padding:10px;
-      display:block;
-    }
 
     a{
       text-decoration:none;
@@ -60,9 +55,10 @@
     <%= @user.username %>,  we just brought every friends from your facebook. now you can glorify your <%= @user.friends.count %> friends!!<br />
     <% (1..3).each do %>
       <% reco_friend =  @user.friends[rand(0..(@user.friends.count-1))] %>
-        <%= link_to new_compliment_path("compliment[receiver_id]" => reco_friend.id) do %>
-      <div class="recommend-friend">
-        <%= image_tag reco_friend.image_url , :class => "img img-circle" %>
+      <% url = "http://startglory.com/compliments/new?compliment[receiver_id]=#{reco_friend.id}" %>
+        <%= link_to url do %>
+      <div class="recommend-friend" style="margin:15px;padding:10px;display:block;">
+        <%= image_tag reco_friend.image_url , :class => "img img-circle", :style=>"border:0 none;max-width:100%;vertical-align:middle;border-radius:500px 500px 500xp 500px;" %>
         what do you think of <%= reco_friend.username %> ?
       </div>
       <% end %>
