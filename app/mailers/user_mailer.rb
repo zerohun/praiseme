@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def glorify_recommend(user)
-    @user = User.find_by_email("pbs52@hanmail.net")
-    mail to: @user.email, subject: "testtst"
+    @user = user
+    mail to: @user.email, subject: "end up recommend"
   end
 end
