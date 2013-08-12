@@ -43,8 +43,6 @@ limitTextLength = (event) ->
     textcontent = $(this).val()
     $(this).val textcontent.substr(0, limit - 1)
 
-
-
 updateLocation = (position)->
   latitude = position.coords.latitude
   longitude = position.coords.longitude

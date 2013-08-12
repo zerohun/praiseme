@@ -1,0 +1,44 @@
+<div id="presentation">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide1.png" %>
+        </div>
+        
+        <div class="swiper-slide">
+          <%= image_tag "/presentation/slide2.png" %>
+          <!-- Any HTML content of the second slide goes here -->
+        </div>
+        
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide3.jpg" %>
+        </div>
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide4.jpg" %>
+        </div>
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide5.jpg" %>
+        </div>
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide6.jpg" %>
+        </div>
+        <div class="swiper-slide"> 
+          <%= image_tag "/presentation/slide_facebook.jpg" %>
+        </div>
+        <div class="swiper-slide"> 
+          <br>
+          <br>
+          <br>
+          <h2>Lets get started</h2>
+          <br>
+          <br>
+          <%= link_to "/users/auth/facebook", :class => "btn btn-primary" do %>
+            Sign in with<br><i class="icon-facebook"></i>acebook
+          <% end %>
+        </div>
+    </div>
+  </div>      
+
+  <%= link_to "PREV", "#", :id => "prev-slide", :class => "btn no-loading" %>
+  <%= link_to "NEXT", "#", :id => "next-slide", :class => "btn no-loading" %>(or swipe <i class="icon-arrow-left"></i>)
+</div>

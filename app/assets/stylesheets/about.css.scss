@@ -3,6 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #about{
+  #presentation{
+    text-align: center;
+    padding: 10px;
+    background-color: #e4faf5;
+    .swiper-container, .swiper-slide {
+      height: 350px;
+    }
+  }
+
   color: #e4faf5;
   .paragraph{
     background-color: #e4faf5;
