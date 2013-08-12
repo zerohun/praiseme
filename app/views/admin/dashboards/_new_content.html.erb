@@ -1,22 +1,12 @@
 <tr>   
   <td><%=title %></td>
+  <% total_count = 0 %>
   <% (0..5).each do |i| %>
     <td class="dash-table-content"> 
       <%= data[i].count %> 
+      <% total_count += data[i].count %>
     </td>
   <% end %>
-  <% case title %>
-    <% when "new Compliment" %>
-      <td class="table-total"><%= Compliment.count %></td>
-    <% when "new User" %>
-      <td class="table-total"><%= User.count %></td>
-    <% when "new Stamp" %>
-      <td class="table-total"><%= Stamp.count %></td>
-    <% when "new UserStamp" %>
-      <td class="table-total"><%= UserStamp.count %></td>
-    <% when "new Comment" %>
-      <td class="table-total"><%= Comment.count %></td>
-    <% else %>
-  <% end %>
+  <td class="table-total"><%= total_count %></td>
 </tr>
 
