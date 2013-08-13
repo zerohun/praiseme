@@ -19,8 +19,9 @@ class PeopleController < ApplicationController
       end
       @friends_count = @friends.count
     else
-     # @friends_count = User.count
-      #@friends = User.joins("left outer join user_stamps on users.id = user_stamps.user_id").group("users.id").select("users.*, sum(user_stamps.score) as total_score").reorder("total_score desc")
+      
+      @friends_count = User.count
+      @friends = User.joins("left outer join user_stamps on users.id = user_stamps.user_id").group("users.id").select("users.*, sum(user_stamps.score) as total_score").reorder("total_score desc")
     end
     @friends = @friends.page(params[:page]).per(15)
   end
