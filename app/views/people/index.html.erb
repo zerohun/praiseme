@@ -9,10 +9,12 @@
   </div>
 <% end %>
 
-  <ul class="nav nav-tabs">
+<ul class="nav nav-tabs">
+  <% if current_user.present? %>
     <li class="<%= "active" if current_user.present? && !params[:all].present? %>" >
       <%= link_to 'Your Follower', people_path %>
-    </li>
+      </li>
+    <% end %>
     <li class="<%= "active" if params[:all].present? || !current_user.present? %>" >
     <%= link_to 'All', people_path(:all => 1)%>
     </li>
