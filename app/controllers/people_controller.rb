@@ -2,11 +2,7 @@ class PeopleController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     if current_user.present?
-      if current_user.email == 'pbs52@hanmail.net' || current_user.email == 'choi0hun@gmail.com'
-        @friends = Following.where(:follower_id => current_user.id)
-      else
-        @friends = current_user.friends
-      end
+        @friends = current_user.followees
      if params[:all].present?
        @friends = User.where.not(:id => current_user.id)
      end
@@ -21,7 +17,7 @@ class PeopleController < ApplicationController
       else
         #@friends = @friends.reorder("status desc")
       end
-     # @friends_count = @friends.count
+      @friends_count = @friends.count
     else
      # @friends_count = User.count
       #@friends = User.joins("left outer join user_stamps on users.id = user_stamps.user_id").group("users.id").select("users.*, sum(user_stamps.score) as total_score").reorder("total_score desc")

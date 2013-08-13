@@ -1,6 +1,7 @@
 <%= form_tag people_path, :method => :get, :class => "form-search" do %>
   <%= text_field_tag :q, "", :class => "input-medium search-query", :id => "search" %>
   <%= submit_tag "Search", :class => "btn btn-primary" %>
+  <%= check_box_tag :all, "1", params[:all].present?,:style => 'visibility: hidden'  %> 
 <% end %>
 <% if params[:q].present? %>
   <div class="search_result">
