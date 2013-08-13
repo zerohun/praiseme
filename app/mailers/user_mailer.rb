@@ -19,6 +19,13 @@ class UserMailer < ActionMailer::Base
 
   def glorify_recommend(user)
     @user = user
-    mail to: @user.email, subject: "end up recommend"
+    mail to: @user.email, subject: "what do you think of your friends?"
   end
+  
+  def user_friend_joined(joined_user, friend)
+    @user = friend
+    @joined_user = joined_user
+    mail to: @user.email, subject: "Your Friend comming StartGlory!!"
+  end
+
 end
