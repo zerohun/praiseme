@@ -7,7 +7,7 @@ class Admin::DashboardsController < Admin::ApplicationController
     if params[:new_user].present?
       pre_day = (Date.today - 0.days).to_time 
       more_pre_day = (Date.today - 6.days).to_time 
-      @new_user=User.where("users.updated_at >= ? and users.updated_at < ?",more_pre_day,pre_day)
+      @new_user=User.where("users.updated_at >= ? and users.updated_at < ? and status = 1",more_pre_day,pre_day)
       @new_user = @new_user.order('updated_at desc')
       
     
