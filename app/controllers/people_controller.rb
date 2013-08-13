@@ -2,8 +2,11 @@ class PeopleController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     if current_user.present?
-      #@friends = Following.where(:follower_id => current_user.id)
-      @friends = current_user.friends
+      if current_user.email == 'pbs52@hanmail.net' || current_user.email == 'choi0hun@gmail.com'
+        @friends = Following.where(:follower_id => current_user.id)
+      else
+        @friends = current_user.friends
+      end
      if params[:all].present?
        @friends = User.where.not(:id => current_user.id)
      end

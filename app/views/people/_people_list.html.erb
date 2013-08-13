@@ -2,7 +2,7 @@
   <% if user_info.class == User %>
     <% user = user_info%>
   <% else %>
-    <% user = User.find(user_info.followee) if user_info.followee.present? %>
+    <% user = User.find(user_info.followee_id) if user_info.followee_id.present? %>
   <%end %>
   <div class="friend round shadow">
     <%= link_to user_profile_path(user) do %>
