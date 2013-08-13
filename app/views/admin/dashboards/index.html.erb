@@ -1,3 +1,6 @@
+<% if params[:new_user].present? %>
+  <%= render :partial => 'new_user', :locals => { :user => @new_user }%>
+<% else %>
 <div id="dash-body">
   <div id="dash-menu">
     <ul class="nav nav-pills nav-stacked">
@@ -58,3 +61,4 @@
   </table>
   </div>
 </div>
+<% end %>
