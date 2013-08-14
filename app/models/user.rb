@@ -227,15 +227,19 @@ class User < ActiveRecord::Base
 
     user.user_admin_type = 2 if user.email == "choi0hun@gmail.com" || user.email == "pbs52@hanmail.net"
     user.status = 1
+    user.joined_at = Time.now
     user.save
     user.reload
     sns_connection = user.sns_connections.where(:provider => "facebook").first
     user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
     
  # needs chang UI (remove comments after change ui)
-    #user.friends.where(:status => 1).each do |friend|
-    #  UserMailer.user_friend_joined(user, friend).deliver!
-    #end
+    if Rails.env.development?
+      user.friends.where(:status => 1).each do |friend|
+        UserMailer.user_friend_joined(user, friend).deliver!
+      end
+    end
+
  # comment End  
     
     #begin 
