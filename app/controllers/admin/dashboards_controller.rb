@@ -30,7 +30,7 @@ class Admin::DashboardsController < Admin::ApplicationController
         end
 
         @new_compliment.push(Compliment.where("updated_at >= ? and updated_at < ?",more_pre_day,pre_day).count)
-        @new_user.push(User.where("users.updated_at >= ? and users.updated_at < ?",more_pre_day,pre_day).count)
+        @new_user.push(User.where("users.created_at >= ? and users.created_at < ?",more_pre_day,pre_day).count)
         @new_active_user.push(User.where("users.joined_at >= ? and users.joined_at < ? and users.status = 1",more_pre_day,pre_day).count)
         @new_stamp.push(Stamp.where("updated_at >= ? and updated_at < ?",more_pre_day, pre_day).count)
         @new_user_stamp.push(UserStamp.where("updated_at >= ? and updated_at < ?",more_pre_day, pre_day).count)
