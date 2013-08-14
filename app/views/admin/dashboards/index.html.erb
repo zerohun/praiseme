@@ -53,7 +53,7 @@
             <td> Total </td>
       </tr>
       <%= render :partial => 'new_content', :locals=>{:title => 'new Compliment', :data => @new_compliment} %>
-      <%= render :partial => 'new_content', :locals=>{:title => 'new User', :data => @new_user} %>
+      <%= render :partial => 'new_content', :locals=>{:title => 'new User', :data => @new_user, :active => @new_active_user} %>
       <%= render :partial => 'new_content', :locals=>{:title => 'new Stamp', :data => @new_stamp} %>
       <%= render :partial => 'new_content', :locals=>{:title => 'new UserStamp', :data => @new_user_stamp} %>
       <%= render :partial => 'new_content', :locals=>{:title => 'new Comment', :data => @new_comment} %>
