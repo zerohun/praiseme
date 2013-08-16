@@ -5,6 +5,7 @@ Praiseme::Application.routes.draw do
   get "about" => "about#index"
   get "privacy_policy" => "about#privacy_policy"
   get "term_of_service" => "about#term_of_service"
+  get "invite_test" => "about#invite_test"
 
   get "compliment_callback" => "koala_callbacks#compliment"
   post "compliment_callback" => "koala_callbacks#compliment"
