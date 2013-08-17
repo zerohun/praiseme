@@ -16,4 +16,16 @@ class UserMailer < ActionMailer::Base
     mail to: user.email,
          subject: "We just brought all of your facebook friends"
   end
+
+  def glorify_recommend(user)
+    @user = user
+    mail to: @user.email, subject: "what do you think of your friends?"
+  end
+  
+  def user_friend_joined(joined_user, friend)
+    @user = friend
+    @joined_user = joined_user
+    mail to: @user.email, subject: "Your Friend comming StartGlory!!"
+  end
+
 end

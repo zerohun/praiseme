@@ -153,6 +153,7 @@ class User < ActiveRecord::Base
               self.has_invited_ids = (friend_ids + [friend_sns_connection.user_id]).uniq
             end
             Following.find_or_create_by :follower => self, :followee => friend_sns_connection.user
+
           else
             #friend_info = self.facebook.get_object friend["id"]
             #if friend_info["gender"] == "male"
@@ -210,26 +211,37 @@ class User < ActiveRecord::Base
   end
 
 
-  def convert_coming_from_joined
-    user = self
-    NewsFeed.create_for_new_user(user)
-    begin 
-      user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
-    rescue Exception
-    end
-    user.status = 1
-  end
+ # def convert_coming_from_joined
+ #   user = self
+ #   NewsFeed.create_for_new_user(user)
+ #   begin 
+ #     user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
+ #   rescue Exception
+ #   end
+ #   user.status = 1
+ #
+ # end
 
   def save_and_prepare_for_new_user
     user = self
 
     user.user_admin_type = 2 if user.email == "choi0hun@gmail.com" || user.email == "pbs52@hanmail.net"
     user.status = 1
+    user.joined_at = Time.now
     user.save
     user.reload
     sns_connection = user.sns_connections.where(:provider => "facebook").first
     user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
+    
+ # needs chang UI (remove comments after change ui)
+    if Rails.env.development?
+      user.friends.where(:status => 1).each do |friend|
+        UserMailer.user_friend_joined(user, friend).deliver!
+      end
+    end
 
+ # comment End  
+    
     #begin 
       #user.facebook.put_wall_post("Joined Startglory", :link => "http://startglory.com", :picture => "http://startglory.com/startglorylogo_square_9090.jpg", :name => "Startglory", :caption => "Startglory", :description => "Get compliments from your friends")
     #rescue Exception
