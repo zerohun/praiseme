@@ -3,7 +3,7 @@ class Admin::DefaultTrophyImagesController < Admin::ApplicationController
 
   # GET /admin/default_trophy_images
   def index
-    @default_trophy_images = DefaultTrophyImage.where("")
+    @default_trophy_images = DefaultTrophyImage.where("").page(params[:page]).per(20)
   end
 
   # GET /admin/default_trophy_images/1
