@@ -38,7 +38,7 @@ class ComplimentsController < ApplicationController
     params.require(:compliment).permit!
     @compliment = Compliment.new(params[:compliment])
     @stamps = []
-    DefaultTrophyImage.limit(4).each do |default_trophy_image|
+    DefaultTrophyImage.all.each do |default_trophy_image|
       @stamps << Stamp.new(:title => "", :default_trophy_image_id => default_trophy_image.id)
     end
   end
