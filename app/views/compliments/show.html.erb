@@ -19,12 +19,13 @@
 
   <div class="row-fluid">
     <div class="span12 stamp-image">
-      <%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %>
+      <%= link_to UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first, :class => "btn" do %>
+        <%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %>
+      <% end %>
     </div>
   </div>
-  <%= link_to UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first, :class => "btn" do %>
-    <i class="icon-th-list"></i> List
-  <% end %>
+
+
 
   <%= render :partial => 'agree_button', :locals => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id} %>
 

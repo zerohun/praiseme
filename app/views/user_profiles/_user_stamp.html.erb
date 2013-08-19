@@ -1,13 +1,6 @@
 <% stamps.each do |s|  %>
   <li class="stamp">
-    <%= link_to render(s.stamp), s %>
-    <br>
-    <div class="info">
-     Level <%= s.level %>
-      <div class="progress">
-        <div class="bar" style="width: <%= s.percentage_for_next_level %>%;"></div>
-     </div>
-    </div>
+    <%= link_to render(s.stamp), s, :class => "btn"  %>
   </li>
 <% end %>    
 <%= paginate stamps %>

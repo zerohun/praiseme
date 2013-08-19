@@ -38,9 +38,7 @@
 
 
   <ul id="stamps" data-page=1 data-user_id=<%=params[:id]%>>
-
     <%= render :partial => 'user_stamp', :locals => {:stamps => @user_stamps } %>
-
   </ul>
 
   <% if !@user_stamps.last_page? %>

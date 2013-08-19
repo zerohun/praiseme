@@ -8,22 +8,10 @@
   <br>
 <% end %>
 
-<% if params[:action] == "show" && (params[:controller] == "user_stamps" || params[:controller] == "compliments") %>
-  <%= link_to stamp_path(stamp) do %>
-    <div class=stamp-inline-wrapper>
-      <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
-        <div class="stamp-title circle">
-          <%= stamp.title %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class=stamp-inline-wrapper>
-    <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
-      <div class="stamp-title circle">
-        <%= stamp.title %>
-      </div>
+<div class=stamp-inline-wrapper>
+  <div class="stamp-item" style="background-image: url('<%= stamp_image_url %>')">
+    <div class="stamp-title circle">
+      <%= stamp.title %>
     </div>
   </div>
-<% end %>
+</div>
