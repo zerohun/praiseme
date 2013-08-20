@@ -45,3 +45,5 @@ $('#toast').fadeIn();
     </div>
   </div>
 </div>
+
+<% cookies[:last_news_feed_id] = @news_feeds.first.id if @news_feeds.present? %>

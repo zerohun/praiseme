@@ -14,8 +14,10 @@
 
   <div class="row-fluid">
     <div class="span12 stamp-image">
-      <%= link_to UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first, :class => "btn" do %>
+      <%= link_to @user_stamp, :class => "btn" do %>
         <%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %>
+        <br>
+        Level <%= @user_stamp.level %>
       <% end %>
     </div>
   </div>

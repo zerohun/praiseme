@@ -13,6 +13,7 @@ class ComplimentsController < ApplicationController
   # GET /compliments/1.json
   def show
     @compliment = Compliment.find(params[:id])
+    @user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
     @comments = @compliment.comments.reorder("id desc").page(params[:page]).per(5)
     @og_type = "profile"
     user = @compliment.receiver

@@ -7,7 +7,7 @@
 <% end %>
 
 <%= link_to link_path do %>
-  <article class="round shadow">
+  <article class="round shadow <%= "new-article" if cookies[:last_news_feed_id].present? && news_feed.id > cookies[:last_news_feed_id].to_i %>">
     <%= render :partial => 'layouts/time_view', :locals => {:compare_time => news_feed.created_at, :type => "news_feed"} %>
     <%= render_news_feed news_feed %>
   </article>
