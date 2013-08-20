@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820094538) do
+ActiveRecord::Schema.define(version: 20130820101637) do
 
   create_table "action_instances", force: true do |t|
     t.string   "instance_id"
@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(version: 20130820094538) do
     t.string   "authentication_token"
     t.datetime "joined_at"
     t.date     "last_visited_on"
+    t.string   "local"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
