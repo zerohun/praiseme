@@ -15,7 +15,7 @@ class Compliment < ActiveRecord::Base
 
   #validate :shoundnt_compliment_himself
   validates_presence_of :sender_id, :stamp_id, :receiver_id 
-  validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
+  #validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
 
   validates_length_of :description, :maximum => 400
 

@@ -40,23 +40,32 @@ ready = ->
     source: "/stamp_suggestions",
     select: (event, ui)->
       search_words =  $("input.stamp-text-search").val()
-      con_url = "/compliments?stamp_id=#{ui.item.id}&receiver_id=#{$("#compliment_receiver_id").val()}"
-      $.get con_url,
-        (data) -> 
-          if data.count > 0
-            $("input.stamp-text-search").val(search_words)
-            alert "You have already glorified him(or her) on the title"
-          else  
-            $("input[type=hidden].stamp-id").val(ui.item.id)
-            $("div#reason-field").hide()
-            $("div#reason-field").removeClass("hidden")
-            $("div.actions").removeClass("hidden")
-            $("div#reason-field").fadeIn()
-            $("div#reason-field").find("textarea").focus()
-            $("html, body").animate({ scrollTop: $("#reason-title").offset().top}, "slow")
-            
-            $("div.create-stamp-fields").addClass("hidden")
 
+
+      $("input[type=hidden].stamp-id").val(ui.item.id)
+      $("div#reason-field").hide()
+      $("div#reason-field").removeClass("hidden")
+      $("div.actions").removeClass("hidden")
+      $("div#reason-field").fadeIn()
+      $("div#reason-field").find("textarea").focus()
+      $("html, body").animate({ scrollTop: $("#reason-title").offset().top}, "slow")
+      $("div.create-stamp-fields").addClass("hidden")
+      #con_url = "/compliments?stamp_id=#{ui.item.id}&receiver_id=#{$("#compliment_receiver_id").val()}"
+      #$.get con_url,
+
+        #(data) -> 
+          #if data.count > 0
+            #$("input.stamp-text-search").val(search_words)
+            #alert "You have already glorified him(or her) on the title"
+          #else  
+            #$("input[type=hidden].stamp-id").val(ui.item.id)
+            #$("div#reason-field").hide()
+            #$("div#reason-field").removeClass("hidden")
+            #$("div.actions").removeClass("hidden")
+            #$("div#reason-field").fadeIn()
+            #$("div#reason-field").find("textarea").focus()
+            #$("html, body").animate({ scrollTop: $("#reason-title").offset().top}, "slow")
+            #$("div.create-stamp-fields").addClass("hidden")
     ,
     response: (event, ui)->
       
