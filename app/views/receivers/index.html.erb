@@ -9,6 +9,14 @@
       <%= submit_tag "Search", :class => "btn btn-primary" %>
     <% end %>
   </div>
+  <%= link_to new_compliment_path("compliment[receiver_id]" => current_user.id) do %>
+    <div class="receiver round shadow">
+      <%= image_tag current_user.image_url(width: 50, height: 50), :class => "img img-circle" %>
+      &nbsp;
+      &nbsp;
+      Yourself
+    </div>
+  <% end %>
   <%= render :partial => "/receivers/receivers", :locals => {:receivers => @receivers} %>
 </div>
 <%= paginate @receivers %>

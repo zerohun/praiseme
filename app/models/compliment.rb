@@ -13,7 +13,7 @@ class Compliment < ActiveRecord::Base
   belongs_to :stamp
   #belongs_to :user_stamp
 
-  validate :shoundnt_compliment_himself
+  #validate :shoundnt_compliment_himself
   validates_presence_of :sender_id, :stamp_id, :receiver_id 
   validates_uniqueness_of :sender_id, :scope => [:receiver_id, :stamp_id]
 
