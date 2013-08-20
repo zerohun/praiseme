@@ -1,4 +1,4 @@
-<%= render :partial => 'user_profiles/user_stamp', :locals => {:stamps => @user_stamps } %>
+<%= render :partial => 'user_profiles/user_stamp', :locals => {:user_stamps => @user_stamps } %>
 <% if @user_stamps.last_page? == false %>
   <div class="btn btn-more"> more </div>
 <%end %>
