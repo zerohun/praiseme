@@ -1,6 +1,10 @@
-<% stamps.each do |s|  %>
+<% user_stamps.each do |s|  %>
   <li class="stamp">
-    <%= link_to render(s.stamp), s, :class => "btn"  %>
+  <%= link_to s, :class => "btn" do %>
+    <%= render(s.stamp) %>
+    <br>
+    Level <%= s.level %>
+  <% end %>
   </li>
 <% end %>    
-<%= paginate stamps %>
+<%= paginate user_stamps %>
