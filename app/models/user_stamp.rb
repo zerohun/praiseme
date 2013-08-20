@@ -1,6 +1,7 @@
 class UserStamp < ActiveRecord::Base
   LEVEL_CURVE = 1.2
   LEVEL_DIFFICULTY = 5.0
+  INITIAL_SCORE = 10
 
   default_scope {includes(:user, :stamp)}
 
@@ -38,17 +39,15 @@ class UserStamp < ActiveRecord::Base
     #end
   end
 
-  def self.add_up_score_from_compliment(compliment)
-    stamp_id = compliment.stamp_id
-    receiver_user_stamp = compliment.receiver.user_stamps.find_or_create_by(:stamp_id => stamp_id)
-    sender_user_stamp = compliment.sender.user_stamps.find_or_initialize_by(:stamp_id => stamp_id)
-    receiver_user_stamp.get_score_from sender_user_stamp
-  end
-
-  def reduce_score_from_deleting_compliment(compliment)
-    self.score = self.score - compliment.impact_score
+  def refresh_score
+    self.score = INITIAL_SCORE + self.compliments.sum(:impact_score)
     self.save
   end
+
+  #def reduce_score_from_deleting_compliment(compliment)
+    #self.score = self.score - compliment.impact_score
+    #self.save
+  #end
 
   def complimented_stamps
     compliments = Compliment.where :sender_id => self.user_id, :stamp_id => self.stamp_id
@@ -74,10 +73,10 @@ class UserStamp < ActiveRecord::Base
     (self.score.to_f / score_for_next_level.to_f * 100).round(0)
   end
 
-  def get_score_from(user_stamp)
-    self.score = self.score + user_stamp.impact
-    self.save
-  end
+  #def get_score_from(user_stamp)
+    #self.score = self.score + user_stamp.impact
+    #self.save
+  #end
 
   def compliments
     Compliment.where(:receiver_id => self.user_id, :stamp_id => self.stamp_id)

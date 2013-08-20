@@ -20,17 +20,24 @@ class Compliment < ActiveRecord::Base
   validates_length_of :description, :maximum => 400
 
   before_save do |compliment|
-    user_stamp = UserStamp.where(:user_id => compliment.sender_id, :stamp_id => compliment.stamp_id).first
-    if user_stamp.present?
-      compliment.impact_score = user_stamp.impact
+    user_stamp = UserStamp.find_or_initialize_by(:user_id => compliment.sender_id, :stamp_id => compliment.stamp_id)
+
+    duplicated_compliment = Compliment.where(:stamp_id => compliment.stamp_id, :sender_id => compliment.sender_id, :receiver_id => compliment.receiver_id).where("compliments.impact_score > 0").last
+    if duplicated_compliment.present? && duplicated_compliment.impact_score == user_stamp.impact
+      compliment.impact_score = 0
     else
       compliment.impact_score = 1
     end
+
   end
 
   after_create do |compliment|
     NewsFeed.delay.create_for_compliment compliment
-    UserStamp.add_up_score_from_compliment compliment
+    user_stamp = UserStamp.where(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id).first
+    if user_stamp.blank?
+      user_stamp = UserStamp.create(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id)
+    end
+    user_stamp.refresh_score
   end
 
   before_destroy do |compliment|
@@ -42,7 +49,7 @@ class Compliment < ActiveRecord::Base
 
   after_destroy do |compliment|
     user_stamp = UserStamp.where(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id).first
-    user_stamp.reduce_score_from_deleting_compliment compliment
+    user_stamp.refresh_score
   end
 
   def is_destroyable_by?(user)
