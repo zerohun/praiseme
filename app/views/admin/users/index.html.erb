@@ -8,8 +8,18 @@
     <% if params[:active].present? %>
       ( total : <%= User.where(:status => 1).count %> )
     <% end %>
+  </label>
+    <br>
+    <label calss="radio-button">
+      <%= radio_button_tag "gender", "male", params[:gender] == "male" %>Male
+    </label>
+    <label calss="radio-button">
+      <%= radio_button_tag "gender", "female", params[:gender] == "female" %>Female
+    </label>
+    <br>
+    Locale:
+    <%= select_tag "local", options_from_collection_for_select(User.group("users.local").select("users.local"), "local", "local") %>
 
-  </label></br>
     <%= submit_tag "Search", :class => "btn btn-primary" %>
   </div>
 <% end %>

@@ -10,6 +10,12 @@ class Admin::UsersController < Admin::ApplicationController
     if params[:active].present?
       @users = @users.where(:status => 1)
     end
+    if params[:gender].present?
+      @users = @users.where(:gender => params[:gender])
+    end
+    if params[:local].present?
+      @users = @users.where(:local => params[:local])
+    end
 
     @users = @users.order("total desc, users.id asc")
     @users = @users.page(params[:page]).per(20)  
