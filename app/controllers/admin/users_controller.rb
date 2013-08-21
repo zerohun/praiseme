@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::ApplicationController
   before_filter :is_admin_login
 
   def index
-    @users = User.joins("left outer join user_stamps on users.id = user_stamps.user_id").group("users.id").select("users.id, users.username, users.email, users.is_blocked, sum(user_stamps.score) as total")
+    @users = User.joins("left outer join user_stamps on users.id = user_stamps.user_id").group("users.id").select("users.*, sum(user_stamps.score) as total")
     if params[:q].present?
       @users = @users.where("users.username like '%#{params[:q]}%' or users.last_name like '%#{params[:q]}%' or users.first_name like '%#{params[:q]}%'")
     end
@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::ApplicationController
       @users = @users.where(:status => 1)
     end
     if params[:gender].present?
-      @users = @users.where("users.gender = ?", params[:gender])
+      @users = @users.where(:gender => params[:gender])
     end
     if params[:local].present?
       @users = @users.where(:local => params[:local])

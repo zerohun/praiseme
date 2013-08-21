@@ -11,10 +11,10 @@
   </label>
     <br>
     <label calss="radio-button">
-      <%= radio_button_tag "gender", "male", params[:gender] == "male" %>Male
+      <%= radio_button_tag "gender", 0, params[:gender] == "0" %>Male
     </label>
     <label calss="radio-button">
-      <%= radio_button_tag "gender", "female", params[:gender] == "female" %>Female
+      <%= radio_button_tag "gender", 1,  params[:gender] == "1" %>Female
     </label>
     <br>
     Locale:
