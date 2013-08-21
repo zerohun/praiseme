@@ -11,7 +11,6 @@
   </div>
   <br>
 
-
   <div class="row-fluid">
     <div class="span12 stamp-image">
       <%= link_to @user_stamp, :class => "btn" do %>
@@ -21,7 +20,6 @@
       <% end %>
     </div>
   </div>
-  <%= render :partial => 'agree_button', :locals => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id} %>
 
 </div>
 
@@ -40,6 +38,7 @@
   
   <%= render :partial => 'layouts/time_view', :locals => {:compare_time => @compliment.created_at, :type => "compliment"} %> 
   <div class="clear-both"></div>
+  <%= render :partial => 'agree_button', :locals => {:stamp_id => @compliment.stamp_id, :receiver_id => @compliment.receiver_id} %>
 </div>
 
 <%= link_to_function "More Comments", "$.getScript($('#comment-pagination .pagination a[rel=next]').attr('href'))", :class => "btn btn-success btn-more-comments no-loading" %>
