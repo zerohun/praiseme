@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::ApplicationController
       @users = @users.where(:status => 1)
     end
     if params[:gender].present?
-      @users = @users.where(:gender => params[:gender])
+      @users = @users.where("users.gender = ?", params[:gender])
     end
     if params[:local].present?
       @users = @users.where(:local => params[:local])
