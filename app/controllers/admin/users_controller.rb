@@ -17,7 +17,9 @@ class Admin::UsersController < Admin::ApplicationController
       @users = @users.where(:local => params[:local])
     end
 
+    @user_count = @users.count
     @users = @users.order("total desc, users.id asc")
+
     @users = @users.page(params[:page]).per(20)  
   end
 

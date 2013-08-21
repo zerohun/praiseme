@@ -17,7 +17,7 @@
       <%= link_to @user_stamp, :class => "btn" do %>
         <%= render :partial => "/stamps/stamp", :locals => {:stamp =>  @compliment.stamp, :size => "normal"} %>
         <br>
-        Level <%= @user_stamp.level %>
+        Level <%= @user_stamp.level %>(score: <%= @user_stamp.score %>)
       <% end %>
     </div>
   </div>
