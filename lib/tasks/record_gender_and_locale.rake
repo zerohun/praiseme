@@ -5,7 +5,8 @@ namespace :users do
     User.find_each do |u|
       begin
         fobj = User.first.facebook.get_object(u.uid)
-        u.gender = (fobj["gender"] ==  "male") ? 0:1
+        u.gender = 1 if fobj["gender"] == "male"
+        u.gender = 2 if fobj["gender"] == "female"
         u.local = fobj["locale"]
         u.save
         puts u.id
