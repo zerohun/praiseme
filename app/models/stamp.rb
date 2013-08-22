@@ -1,4 +1,11 @@
 class Stamp < ActiveRecord::Base
+
+  VERBS = {
+    "is" => 0,
+    "has" => 1
+  }
+
+
   validates_presence_of :title
 
   has_many :compliments, :dependent => :destroy
@@ -7,7 +14,6 @@ class Stamp < ActiveRecord::Base
   has_many :search_keywords, :as => :target
   belongs_to :default_trophy_image
   accepts_nested_attributes_for :compliments
-
 
   validates_length_of :title, :maximum => 80
 
@@ -23,6 +29,11 @@ class Stamp < ActiveRecord::Base
       suggestion.order("title asc").limit(5).pluck(:title)
   #  end
   end
+
+  def verb
+    Stamp::VERBS.key(self[:verb])
+  end
+
 
   def create_search_keywords
     simliar_keywords = SynonymsFinderClient.find_of(self.title)

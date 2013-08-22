@@ -35,9 +35,13 @@ ready = ->
     $(this).css("height", "60px")
     $(this).css("font-size", "30px")
 
+  $("#verb").change ->
+    verb = $(this).val()
+    $("input.stamp-text-search").autocomplete("option", "source", "/stamps?verb=#{verb}")
+
   $("input.stamp-text-search").autocomplete
   #source: "/stamps.json",
-    source: "/stamp_suggestions",
+    source: "/stamps",
     select: (event, ui)->
       search_words =  $("input.stamp-text-search").val()
 
@@ -81,8 +85,8 @@ ready = ->
 
       if ui.content.length == 0 || (ui.content[0].label != text && text != "")
         $create_stamp_fields.removeClass("hidden")
-        $create_stamp_fields.find("span.guide").text("Couldn't find #{text} stamp do you want to")
-        $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} glory symbol")
+        $create_stamp_fields.find("span.guide").text("Couldn't find #{text} badge do you want to")
+        $create_stamp_fields.find("a.create-stamp-button").text("Create #{text} badge?")
         $create_stamp_button = $("a.create-stamp-button")
         $("html, body").animate({ scrollTop: $("#stamp_text").offset().top}, "slow")
       else
@@ -122,7 +126,26 @@ ready = ->
     $popup.find(".stamp-title").text stamp_title_text 
     $("div.create-stamp-fields").addClass("hidden")
     $(".text-length-view").addClass("hidden")
-    $popup.modal()
+
+    url = "/stamps.json"
+    verb = $("#verb").val()
+    $.post url, {"stamp[title]": stamp_title_text, "stamp[verb]": verb}, (data)->
+      stamp_id = data.id
+      endLoading()
+      $stamp_fields = $("div.stamp-fields")
+      $stamp_title = $(".stamp-title")
+      $stamp_fields.addClass "hidden"
+      $stamp_title.removeClass "hidden"
+      $stamp_title.text stamp_title_text
+      
+      $("input[type=hidden].stamp-id").val(stamp_id)
+      $("div#reason-field").hide()
+      $("div#reason-field").removeClass("hidden")
+      $("div.actions").removeClass("hidden")
+      $("div#reason-field").fadeIn()
+      $("div#reason-field").find("textarea").focus()
+      $(window).scrollTop($(window).height())
+    , "json"
 
     #stamp_title_text = $("input.stamp-text-search").val()
     #url = $(this).attr("href") + "?stamp%5Dtitle%5d=#{stamp_title_text}"

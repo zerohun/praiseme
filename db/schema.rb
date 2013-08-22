@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820101637) do
+ActiveRecord::Schema.define(version: 20130822022242) do
 
   create_table "action_instances", force: true do |t|
     t.string   "instance_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20130820101637) do
     t.datetime "updated_at"
     t.integer  "impact_score"
     t.integer  "is_post",      default: 0
+    t.integer  "verb",         default: 0
   end
 
   add_index "compliments", ["stamp_id"], name: "index_compliments_on_stamp_id", using: :btree
@@ -128,6 +129,7 @@ ActiveRecord::Schema.define(version: 20130820101637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "default_trophy_image_id"
+    t.integer  "verb",                    default: 0
   end
 
   add_index "stamps", ["default_trophy_image_id"], name: "index_stamps_on_default_trophy_image_id", using: :btree

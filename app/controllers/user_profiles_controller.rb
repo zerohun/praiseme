@@ -12,7 +12,7 @@ class UserProfilesController < ApplicationController
     @og_title = @user.username
     @og_image = @user.image_url
     @og_url = "http://#{request.host}/user_profiles/#{@user.id}"
-   @user_stamps = @user.user_stamps.order('score desc, created_at desc').page(params[:page]).per(6)
+   @user_stamps = @user.user_stamps.order('user_stamps.score desc, user_stamps.created_at desc').page(params[:page]).per(6)
    # @personal_feed = Compliment.where("sender_id = ? or receiver_id = ?",@user.id,@user.id)
    @personal_feed = MyUserNewsFeed.where(:user_id => params[:id])
    @personal_feed = @personal_feed.order('created_at desc').page(params[:page]).per(5)
@@ -30,7 +30,10 @@ class UserProfilesController < ApplicationController
   end
 
   def stamp_list
-    @user_stamps = User.find(params[:id]).user_stamps.order('score desc,created_at desc').page(params[:page]).per(6)
+    @user_stamps = User.find(params[:id]).user_stamps.order('user_stamps.score desc,user_stamps.created_at desc').page(params[:page]).per(6)
+    if params[:verb].present?
+      @user_stamps = @user_stamps.joins(:stamp).where("stamps.verb = ?", params[:verb])
+    end
     render :layout => false
   end
 

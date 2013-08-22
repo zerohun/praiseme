@@ -65,7 +65,7 @@ class Compliment < ActiveRecord::Base
 
   def description
     if self[:description].blank?
-      "I think #{self.receiver.username} is '#{self.stamp.title}'"
+      "I think #{self.receiver.username} #{self.stamp.verb} '#{self.stamp.title}'"
     else
       super
     end

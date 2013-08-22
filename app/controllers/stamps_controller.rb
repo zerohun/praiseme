@@ -6,39 +6,41 @@ class StampsController < ApplicationController
   # GET /stamps
   # GET /stamps.json
   def index
-    #@stamps = Stamp.where("")
-    #if params[:term].present?
-      #keywords = params[:term].split(' ')
-      #query_by_keywords = keywords.map { |keyword|
-        #"(search_keywords.text like '%#{keyword}%')"
-      #}.join(" or ")
-      #@stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
-                        #where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
-                        #group("stamps.id").
-                        #reorder("
-                                #case 
-                                  #when stamps.title = '#{params[:term].to_s}' then 50
-                                  #when stamps.title like '%#{params[:term].to_s}%' then 20
-                                  #else 
-                                    #search_keywords.priority
-                                #end desc
-                                #")
-                        #binding.pry
-    #end
-
-    @stamps = Stamp.joins("left outer join user_stamps on user_stamps.stamp_id = stamps.id").group("stamps.id").select("stamps.*, count(user_stamps.id) as user_stamps_count")
+    @stamps = Stamp.where("")
+    params[:verb] = 0 if params[:verb].blank?
     if params[:term].present?
-      @stamps = @stamps.where("stamps.title like '%#{params[:term]}%'")
+      keywords = params[:term].split(' ')
+      query_by_keywords = keywords.map { |keyword|
+        "(search_keywords.text like '%#{keyword}%')"
+      }.join(" or ")
+      @stamps = @stamps.joins("left outer join search_keywords on search_keywords.target_id = stamps.id and search_keywords.target_type = 'Stamp'").
+                        where("(stamps.title like ?) or (search_keywords.text like ?) or #{query_by_keywords}", "%#{params[:term]}%", "%#{params[:term]}%").
+                        where(:verb => params[:verb]).
+                        group("stamps.id").
+                        reorder("
+                                case 
+                                  when stamps.title = '#{params[:term].to_s}' then 50
+                                  when stamps.title like '%#{params[:term].to_s}%' then 20
+                                  else 
+                                    search_keywords.priority
+                                end desc
+                                ")
     end
 
-    if current_user.present?
-      @mine_stamp_list = UserStamp.where(:user_id =>current_user.id).pluck(:stamp_id)
-      if(@mine_stamp_list.empty?) 
-        @stamps = @stamps.order("user_stamps_count desc, created_at desc")
-      else
-        @stamps = @stamps.order("case when stamps.id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc,user_stamps_count desc, created_at desc")
-      end
-    end 
+
+    #@stamps = Stamp.joins("left outer join user_stamps on user_stamps.stamp_id = stamps.id").group("stamps.id").select("stamps.*, count(user_stamps.id) as user_stamps_count")
+    #if params[:term].present?
+      #@stamps = @stamps.where("stamps.title like '%#{params[:term]}%'")
+    #end
+
+    #if current_user.present?
+      #@mine_stamp_list = UserStamp.where(:user_id =>current_user.id).pluck(:stamp_id)
+      #if(@mine_stamp_list.empty?) 
+        #@stamps = @stamps.order("user_stamps_count desc, created_at desc")
+      #else
+        #@stamps = @stamps.order("case when stamps.id in (#{@mine_stamp_list.join(',')})  then 50 else 10 end desc,user_stamps_count desc, created_at desc")
+      #end
+    #end 
 
     @stamps = @stamps.page(params[:page]).per(15)
     respond_to do |format|
@@ -73,6 +75,7 @@ class StampsController < ApplicationController
   # POST /stamps.json
   def create
     @stamp = Stamp.new(stamp_params)
+    @stamp.default_trophy_image_id = DefaultTrophyImage.first.id
     respond_to do |format|
       if @stamp.save
         format.html { redirect_to @stamp, notice: 'Stamp was successfully created.' }
@@ -116,6 +119,6 @@ class StampsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stamp_params
-      params.require(:stamp).permit(:title, :default_trophy_image_id, :description, :used_count, :is_blocked, :compliments_attributes => [:receiver_id, :sender_id, :description])
+      params.require(:stamp).permit(:title, :verb, :default_trophy_image_id, :description, :used_count, :is_blocked, :compliments_attributes => [:receiver_id, :sender_id, :description])
     end
 end

@@ -37,13 +37,32 @@
   </div>
 
 
-  <ul id="stamps" data-page=1 data-user_id=<%=params[:id]%>>
-    <%= render :partial => 'user_stamp', :locals => {:user_stamps => @user_stamps } %>
+  <ul class="nav nav-pills nav-tabs">
+    <li class="active">
+      <%= link_to "is", "#is", :data => {:toggle =>"tab"}, :class => "no-loading" %>
+    </li>
+    <li>
+      <%= link_to "has", "#has", :data => {:toggle =>"tab"}, :class => "no-loading" %>
+    </li>
   </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="is">
+      <ul id="stamps" data-page=1 data-user_id=<%=params[:id]%>>
+        <%= render :partial => 'user_stamp', :locals => {:user_stamps => @user_stamps.joins(:stamp).where("stamps.verb = 0")} %>
+      </ul>
 
-  <% if !@user_stamps.last_page? %>
-  <div class="btn btn-more"> more </div>
-<% end %>
+      <% if !@user_stamps.last_page? %>
+        <div class="btn btn-more" data-verb="0"> more </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="has">
+        <ul id="stamps" data-page=1 data-user_id=<%=params[:id]%>>
+          <%= render :partial => 'user_stamp', :locals => {:user_stamps => @user_stamps.joins(:stamp).where("stamps.verb = 1") } %>
+        </ul>
+        <div class="btn btn-more" data-verb="1"> more </div>
+    </div>
+  </div>
+
   <div class="bottom-button-group">
     <%= link_to "Following(#{@user.followings.count})", user_profile_followings_path(@user, :type => "followees"), :class => "btn" %>
     <%= link_to "Followers(#{@user.followers.count})", user_profile_followings_path(@user, :type => "followers"), :class => "btn" %>
