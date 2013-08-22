@@ -8,6 +8,7 @@
 
   <% @is_user_stamps.each do |user_stamp| %>
     <%= link_to user_stamp do %>
+      <%= render user_stamp.stamp %>
       <h4><%= user_stamp.compliments.group("compliments.sender_id").count.count %> people think you are <%= user_stamp.stamp.title %></h4>
     <% end %>
   <% end %>
@@ -15,6 +16,7 @@
   <br>
   <% @has_user_stamps.each do |user_stamp| %>
     <%= link_to user_stamp do %>
+      <%= render user_stamp.stamp %>
       <h4><%= user_stamp.compliments.group("compliments.sender_id").count.count %> people think you have <%= user_stamp.stamp.title %></h4>
     <% end %>
   <% end %>
