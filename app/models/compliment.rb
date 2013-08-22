@@ -26,7 +26,7 @@ class Compliment < ActiveRecord::Base
     if duplicated_compliment.present? && duplicated_compliment.impact_score == user_stamp.impact
       compliment.impact_score = 0
     else
-      compliment.impact_score = 1
+      compliment.impact_score = user_stamp.impact
     end
 
   end
