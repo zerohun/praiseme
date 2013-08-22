@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "startglory@startglory.com"
+  default from: "startglory@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -26,6 +26,23 @@ class UserMailer < ActionMailer::Base
     @user = friend
     @joined_user = joined_user
     mail to: @user.email, subject: "Your Friend comming StartGlory!!"
+  end
+
+
+  def compliment_mail(user, compliment)
+    @user = user
+    if compliment.receiver_id = user.id
+      @receiver_name = "you"
+
+      if compliment.stamp.verb == "is"
+        @verb = "are" 
+      elsif compliment.stamp.verb == "has"
+        @verb = "have"
+      end
+    else
+      @receiver_name = user.username
+    end
+    mail to:@user.email, subject: "#{@compliment.sender.username} thinks #{} #{}"
   end
 
 end

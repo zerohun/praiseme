@@ -1,0 +1,22 @@
+<div id="dashboard" class="round">
+  <h4>Your total score: <%= Compliment.where("compliments.receiver_id = ?", current_user.id).sum(:impact_score) %></h4>
+  <br>
+
+  <h4>You have complimented <%= Compliment.where("compliments.sender_id = ?", current_user.id).group("compliments.receiver_id").count.count %> people</h4>
+  <h4>You got complimented by <%= Compliment.where("compliments.receiver_id = ?", current_user.id).group("compliments.sender_id").count.count %> people</h4>
+  <br>
+
+  <% @is_user_stamps.each do |user_stamp| %>
+    <%= link_to user_stamp do %>
+      <h4><%= user_stamp.compliments.group("compliments.sender_id").count.count %> people think you are <%= user_stamp.stamp.title %></h4>
+    <% end %>
+  <% end %>
+  <%= link_to "more", "", :class => "btn" %>
+  <br>
+  <% @has_user_stamps.each do |user_stamp| %>
+    <%= link_to user_stamp do %>
+      <h4><%= user_stamp.compliments.group("compliments.sender_id").count.count %> people think you have <%= user_stamp.stamp.title %></h4>
+    <% end %>
+  <% end %>
+  <%= link_to "more", "", :class => "btn" %>
+</div>

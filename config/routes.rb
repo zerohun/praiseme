@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Praiseme::Application.routes.draw do
+  get "dashboard/index"
   get "personal_news_feed/index"
   get "about" => "about#index"
   get "privacy_policy" => "about#privacy_policy"
@@ -36,6 +37,7 @@ Praiseme::Application.routes.draw do
   resources :news_feeds, :only => [:index] do
     get :get_score, :on => :member
   end
+  resources :dashboard
 
   resources :user_stamps
   resources :compliments do
