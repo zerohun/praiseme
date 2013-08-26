@@ -98,7 +98,7 @@ class Compliment < ActiveRecord::Base
   def users_to_be_notified
     sender = self.sender
     notify_receivers = []
-    notify_receivers << sender
+    #notify_receivers << sender
     receiver = self.receiver 
     notify_receivers << receiver if self.receiver.user_type == :joined
     user_ids = (notify_receivers + sender.followers.to_a + receiver.followers.to_a).uniq
