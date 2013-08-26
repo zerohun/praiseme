@@ -90,9 +90,9 @@ class User < ActiveRecord::Base
 
 
   def gender
-    if self[:gender] == 0
+    if self[:gender] == 1
       return 'male'
-    elsif self[:gender] == 1
+    elsif self[:gender] == 2
       return 'female'
     else
       return nil
@@ -167,7 +167,8 @@ class User < ActiveRecord::Base
             if invited_user.facebook_username.blank? || invited_user.gender.blank?
               friend_facebook = self.facebook.get_object(friend["id"])
               invited_user.facebook_username = friend_facebook["username"]
-              invited_user.gender = friend_facebook["gender"]
+              invited_user.gender = 1 if friend_facebook["gender"] == "male"
+              invited_user.gender = 2 if friend_facebook["gender"] == "female"
               invited_user.local = friend_facebook["locale"]
               invited_user.save
             end
