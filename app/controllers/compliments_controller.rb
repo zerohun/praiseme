@@ -15,6 +15,7 @@ class ComplimentsController < ApplicationController
     @compliment = Compliment.find(params[:id])
     @user_stamp = UserStamp.where(:user_id => @compliment.receiver_id, :stamp_id => @compliment.stamp_id).first
     @comments = @compliment.comments.reorder("id desc").page(params[:page]).per(5)
+    @keyword = "#{@user_stamp.stamp.title}, #{@compliment.sender.username}, #{@compliment.receiver.username}"
     @og_type = "profile"
     user = @compliment.receiver
     @og_title = user.username

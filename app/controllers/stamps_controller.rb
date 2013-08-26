@@ -60,6 +60,7 @@ class StampsController < ApplicationController
     end
     @users = @users.reorder("user_stamps.score desc")
     @users = @users.page(params[:page]).per(20)
+    @keyword = @stamp.users.unscoped.limit(20).pluck("users.username").join(',') + ", #{@stamp.title}"
   end
 
   # GET /stamps/new
