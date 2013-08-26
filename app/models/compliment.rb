@@ -101,7 +101,7 @@ class Compliment < ActiveRecord::Base
     #notify_receivers << sender
     receiver = self.receiver 
     notify_receivers << receiver if self.receiver.user_type == :joined
-    user_ids = (notify_receivers + sender.followers.to_a + receiver.followers.to_a).uniq
+    user_ids = (notify_receivers + sender.followers.to_a + receiver.followers.to_a).uniq - [sender]
     User.where(:id => user_ids)
   end
 end

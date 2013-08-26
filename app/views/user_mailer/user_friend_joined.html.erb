@@ -2,49 +2,18 @@
 <html>
 <head>
   <title>startglory</title>
+  <%= render "mail_style" %>
 </head>
 <body style="background-color:#004b3a">
-
-<div style="background-color:#e4faf5; -webkit-border-radius:10px; -moz-border-radius:10px ;border-radius:10px; margin:10px; padding: 20px; text-align: center">
-  <h2>Your Friend <%=@joined_user.username %> Comming StartGlory</h2>
-    <p class="font-size: 18px">
-    <%= @user.username %>, your friend <%= link_to @joined_user.username, "http://www.startglory.com/user_profiles/#{@joined_user.id}", :target => 'blank', :style => "text-decoration:none;"%> comming StartGlory!!  <br />
-    Glorifying Your Friend~!
-      <% url = "http://startglory.com/compliments/new?compliment[receiver_id]=#{@joined_user.id}" %>
-      <%= link_to url, :style => "text-decoration:none;" do %>
-          <div class="recommend-friend" style="margin:15px;padding:10px;display:block;background-color:#04FAF5;
-          -webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;max-width:60%;margin-left:20%;text-align:left;">
-        <%= image_tag @joined_user.image_url , :class => "img img-circle", :style=>"width:120px;height:120px;border:0 none;max-width:100%;vertical-align:middle;-webkit-border-radius: 50%; -moz-border-radius: 50%;border-radius: 50%;" %>
-        what do you think of <%= @joined_user.username %> ?
-      </div>
-  <% end %>
-  </p>
-  or 
-  <a class="start-button" 
-    style="-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
-      -webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
-      box-shadow:inset 0px 1px 0px 0px #caefab;
-      background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
-      background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
-      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
-      background-color:#77d42a;
-      -moz-border-radius:6px;
-      -webkit-border-radius:6px;
-      border-radius:6px;
-      border:1px solid #268a16;
-      display:inline-block;
-      color:#306108;
-      font-family:arial;
-      font-size:15px;
-      font-weight:bold;
-      padding:6px 24px;
-      text-decoration:none;
-      text-shadow:1px 1px 0px #aade7c;"
-      href="http://startglory.com"
-      onMouseOver="this.style.background='-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100%) repeat scroll 0 0 #5CB811'"
-      onMouseOut="this.style.background='-moz-linear-gradient(center top , #77D42A 5%, #5CB811 100%) repeat scroll 0 0 #77D42A'"
-      
-      >Glorify Another Friends</a>
-  </div>
+  <div class="content-bg">
+  <%= link_to 
+  <%= image_tag @joined_user.image_url(width: 100, height: 100), :class => "round shadow" %>
+  <h2><%= @subject %></h2>
+  <br>
+  <br>
+  <%= link_to  "Glorify #{@joined_user.username}", new_compliment_url("compliment[receiver_id]" => @joined_user.id), :class => "btn-glorify" %>
+  <br>
+  <br>
+  <%= link_to  "Visit StartGlory", "http://startglory.com" %>
 </body>
 

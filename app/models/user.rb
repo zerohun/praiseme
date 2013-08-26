@@ -234,11 +234,6 @@ class User < ActiveRecord::Base
     user.delay.invites_friends_automatically if sns_connection.has_invited_friends == false
     
  # needs chang UI (remove comments after change ui)
-    if Rails.env.development?
-      user.friends.where(:status => 1).each do |friend|
-        UserMailer.user_friend_joined(user, friend).deliver!
-      end
-    end
 
  # comment End  
     

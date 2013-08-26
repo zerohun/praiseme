@@ -5,8 +5,11 @@ class NotifierWorker
   end
 
   def new_user(params)
-    user = User.find(params["user_id"])
-    UserMailer.welcome_mail(user).deliver!
+    joined_user = User.find(params["user_id"])
+    UserMailer.welcome_mail(joined_user).deliver!
+    joined_user.followers.each do |friend|
+      UserMailer.user_friend_joined(joined_user, friend).deliver!
+    end
   end
 
 

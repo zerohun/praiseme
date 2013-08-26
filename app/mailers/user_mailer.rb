@@ -25,7 +25,8 @@ class UserMailer < ActionMailer::Base
   def user_friend_joined(joined_user, friend)
     @user = friend
     @joined_user = joined_user
-    mail to: @user.email, subject: "Your Friend comming StartGlory!!"
+    @subject = "#{@joined_user.username} has joined StartGlory" 
+    mail to: @user.email, subject: @subject
   end
 
   def compliment_mail(user, compliment)
