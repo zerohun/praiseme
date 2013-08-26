@@ -164,6 +164,14 @@ class User < ActiveRecord::Base
               #gender = nil
             #end
             invited_user = User.find_or_create_by :username => friend["name"], :email => "#{friend["id"]}@facebook.com", :status => User::USER_TYPE[:pending]#, :first_name => friend_info["first_name"], :last_name => friend_info["last_name"]
+            if invited_user.facebook_username.blank? || invited_user.gender.blank?
+              friend_facebook = self.facebook.get_object(friend["id"])
+              invited_user.facebook_username = friend_facebook["username"]
+              invited_user.gender = friend_facebook["gender"]
+              invited_user.local = friend_facebook["locale"]
+              invited_user.save
+            end
+
             Friendship.find_or_create_by :is_invited_by_id => self.id, :has_invited_id => invited_user.id
             sns_connection = invited_user.sns_connections.find_or_initialize_by :uid => friend["id"], :provider => "facebook"
             sns_connection.save(:validate => false) if sns_connection.new_record?

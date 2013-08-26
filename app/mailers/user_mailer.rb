@@ -48,4 +48,16 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: @subject
   end
 
+  def compliment_facebook_message(user, compliment)
+    @user = user
+    @compliment = compliment
+    if compliment.stamp.verb == "is"
+      @verb = "are"
+    elsif compliment.stamp.verb == "has"
+      @verb = "have"
+    end
+    @subject = "#{@compliment.sender.username} think you  #{@verb} #{@compliment.stamp.title}"
+    mail to: "#{@user.username}facebook.com", from: compliment.sender.email, subject: @subject
+  end
+
 end
