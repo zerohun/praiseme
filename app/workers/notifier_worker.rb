@@ -19,7 +19,7 @@ class NotifierWorker
     news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
     users_to_be_notified.each do |user|
       user.user_news_feeds.create :news_feed => news_feed
-      UserMailer.compliment_mail(user, compliment).deliver!
+      UserMailer.compliment_mail(user, compliment).deliver! if user != compliment.sender
     end
   end
 
