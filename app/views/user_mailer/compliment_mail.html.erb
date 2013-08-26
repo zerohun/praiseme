@@ -54,7 +54,7 @@
     <br>
     <% if @receiver_name == "you" %>
       <h4>What do you think of <%= @sender_name %>?</h4>
-      <%= link_to "Glorify #{@sender_name}", new_compliment_url("compliment[receiver_id]" => @compliment.sender_id), :class => "btn-glorify" %>
+      <%= link_to "Glorify #{@sender_name}", new_compliment_url("compliment[receiver_id]" => @compliment.sender_id), :class => "btn-groify" %>
     <% end %>
     <br>
     <br>
