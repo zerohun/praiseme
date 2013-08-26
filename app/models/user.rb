@@ -248,7 +248,7 @@ class User < ActiveRecord::Base
     #end
 
     NewsFeed.create_for_new_user(user)
-    MailWorker.perform_async(user.id)
+    NotifierWorker.perform_async "new_user", {"user_id" => user.id}
   end
 
 end

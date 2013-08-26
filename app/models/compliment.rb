@@ -32,12 +32,17 @@ class Compliment < ActiveRecord::Base
   end
 
   after_create do |compliment|
-    NewsFeed.delay.create_for_compliment compliment
+    #NewsFeed.delay.create_for_compliment compliment
+
     user_stamp = UserStamp.where(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id).first
     if user_stamp.blank?
       user_stamp = UserStamp.create(:stamp_id => compliment.stamp_id, :user_id => compliment.receiver_id)
     end
     user_stamp.refresh_score
+  end
+
+  after_commit do |compliment|
+    NotifierWorker.perform_async("new_compliment", {"compliment_id" => compliment.id})
   end
 
   before_destroy do |compliment|
@@ -88,5 +93,15 @@ class Compliment < ActiveRecord::Base
 
     self.create_action_instance :instance_id => res["id"] if res.present?
     return res
+  end
+
+  def users_to_be_notified
+    sender = self.sender
+    notify_receivers = []
+    notify_receivers << sender
+    receiver = self.receiver 
+    notify_receivers << receiver if self.receiver.user_type == :joined
+    user_ids = (notify_receivers + sender.followers.to_a + receiver.followers.to_a).uniq
+    User.where(:id => user_ids)
   end
 end

@@ -22,7 +22,7 @@ class NewsFeed < ActiveRecord::Base
   end
 
   def self.create_for_compliment(compliment)
-    news_feed = NewsFeed.create :notifiable => compliment, :action => NewsFeed::ACTION_TYPE[:create]
+    news_feed = newsfeed.create :notifiable => compliment, :action => newsfeed::action_type[:create]
     sender = news_feed.notifiable.sender
     receiver = news_feed.notifiable.receiver
     news_feed.notify_to sender

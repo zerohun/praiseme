@@ -28,21 +28,23 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: "Your Friend comming StartGlory!!"
   end
 
-
   def compliment_mail(user, compliment)
     @user = user
-    if compliment.receiver_id = user.id
+    @compliment = compliment
+    @sender_name = compliment.sender.username
+    if compliment.receiver_id == @user.id
       @receiver_name = "you"
-
       if compliment.stamp.verb == "is"
         @verb = "are" 
       elsif compliment.stamp.verb == "has"
         @verb = "have"
       end
     else
-      @receiver_name = user.username
+      @verb = "is"
+      @receiver_name = @compliment.receiver.username
     end
-    mail to:@user.email, subject: "#{@compliment.sender.username} thinks #{} #{}"
+    @subject = "#{@compliment.sender.username} thinks #{@receiver_name} #{@verb} #{@compliment.stamp.title}"
+    mail to: @user.email, subject: @subject
   end
 
 end
