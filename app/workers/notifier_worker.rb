@@ -22,5 +22,10 @@ class NotifierWorker
       UserMailer.compliment_mail(user, compliment).deliver!
     end
   end
+
+  def new_compliment_facebook_message(params)
+    compliment = Compliment.find(params["compliment_id"])
+    UserMailer.compliment_facebook_message(compliment).deliver!
+  end
 end
 

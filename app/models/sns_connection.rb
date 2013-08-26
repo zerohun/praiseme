@@ -70,7 +70,6 @@ class SnsConnection < ActiveRecord::Base
       sns_connection = self.from_graph(me, oauth_token)
     end
 
-
     user = sns_connection.user
     if sns_connection.persisted? && user.present?
       sns_connection.save

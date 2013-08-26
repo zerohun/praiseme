@@ -38,6 +38,9 @@
       <span class="text-length-view" data-field="compliment_description"></span>
     </div>
     <div class="actions text-center">
+      <% if @compliment.receiver.facebook_username.present? %>
+        <label class="check_box"><%= f.check_box :notify_by_facebook_message %>Notify to <%= @compliment.receiver.username %> by Facebook message</label><br>
+      <% end %>
       <span id="tag-button-box"><%= link_to "Tag #{@compliment.receiver.username}", "#", :class => "tagging-user btn no-loading" %></span>
       <span id="tagged-label" class="label label-info"><%= @compliment.receiver.username %> is tagged</span>
       <%= f.submit "OK", :class => "btn btn-primary btn-large create-compliment" %>

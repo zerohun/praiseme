@@ -118,10 +118,12 @@ class User < ActiveRecord::Base
     end
     self.first_name = auth.info.first_name
     self.last_name = auth.info.last_name
+    self.facebook_username = auth.info.nickname if auth.info.nickname.present?
+    self.local = auth.info.locale
     if auth.extra.raw_info.gender == "male"
-      self.gender = 0
-    else
       self.gender = 1
+    elsif auth.extra.raw_info.gender == "female"
+      self.gender = 2
     end
     #require 'open-uri'
 

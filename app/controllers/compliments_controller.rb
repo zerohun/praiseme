@@ -39,6 +39,7 @@ class ComplimentsController < ApplicationController
 
     params.require(:compliment).permit!
     @compliment = Compliment.new(params[:compliment])
+    @compliment.notify_by_facebook_message = true if @compliment.receiver.facebook_username.present?
     @stamps = []
     DefaultTrophyImage.all.each do |default_trophy_image|
       @stamps << Stamp.new(:title => "", :default_trophy_image_id => default_trophy_image.id)
@@ -133,6 +134,6 @@ class ComplimentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compliment_params
-      params.require(:compliment).permit(:receiver_id, :stamp_id, :description)
+      params.require(:compliment).permit(:receiver_id, :stamp_id, :description, :notify_by_facebook_message)
     end
 end

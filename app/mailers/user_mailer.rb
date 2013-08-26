@@ -48,9 +48,9 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: @subject
   end
 
-  def compliment_facebook_message(user, compliment)
-    @user = user
+  def compliment_facebook_message(compliment)
     @compliment = compliment
+    @user = compliment.receiver
     if compliment.stamp.verb == "is"
       @verb = "are"
     elsif compliment.stamp.verb == "has"

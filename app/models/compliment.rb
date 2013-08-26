@@ -43,6 +43,9 @@ class Compliment < ActiveRecord::Base
 
   after_commit do |compliment|
     NotifierWorker.perform_async("new_compliment", {"compliment_id" => compliment.id})
+    if compliment.notify_by_facebook_message == true
+      NotifierWorker.perform_async("new_compliment_facebook_message", {"compliment_id" => compliment.id})
+    end
   end
 
   before_destroy do |compliment|
