@@ -43,7 +43,11 @@
 
 
 
-  <meta name="keywords" content="<%= @keyword || "start, glory, glorify" %>">
+  <% if @keyword.present? %>
+    <meta name="keywords" content="<%= @keyword + ", start, glory, glorify, startglory, compliment" %>">
+  <% else %>
+    <meta name="keywords" content="<%= "start, glory, glorify, startglory, compliment" %>">
+  <% end %>
   <meta name="description" content="<%= @description || "Get compliments from your friends" %>">
   
 </head>
