@@ -143,10 +143,12 @@ class User < ActiveRecord::Base
   def invites_friends_automatically
     # very sensitive part! be careful!!!
     sns_connection = self.sns_connections.where(:provider => "facebook").first
+    uids = []
     if sns_connection.has_invited_friends == false
       sns_connection.update_attribute :has_invited_friends, true
       facebook_friends = self.facebook.get_connections("me", "friends")
       facebook_friends.each do |friend|
+        uids << friend["id"]
         begin
           friend_sns_connection = SnsConnection.where(:uid => friend["id"], :provider => "facebook").first
           if friend_sns_connection.present?
@@ -180,11 +182,26 @@ class User < ActiveRecord::Base
             sns_connection.save(:validate => false) if sns_connection.new_record?
             Following.find_or_create_by :follower => self, :followee => invited_user
           end
+
+
         rescue Exception => e
           puts e.message  
           puts e.backtrace.inspect  
         end
       end
+
+      score_hash = {}
+      score_hash = score_hash + FacebookDataHelper.get_score_hash(self.facebook, "posts")
+      score_hash = score_hash + FacebookDataHelper.get_score_hash(self.facebook, "posts", {:like_score => 2, :comment_score => 3, :total_page_num => 5})
+      score_hash = score_hash + FacebookDataHelper.get_score_hash_from_friend_list(self.facebook, 20)
+
+
+      score_hash.each_pair do |k,v|
+        if uids.include?(k)
+          self.followings.joins(:followee => :sns_connections).readonly(false).find_by("sns_connections.uid = ?", k).update_attribute :rank, v
+        end
+      end
+
       UserMailer.complete_inviting_friends(self).deliver!
     end
   end

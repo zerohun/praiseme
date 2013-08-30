@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     if current_user.present?
-        @friends = current_user.followees
+        @friends = current_user.followings.joins(:followee).reorder("followings.rank desc")
      if params[:all].present?
        @friends = User.where.not(:id => current_user.id)
      end

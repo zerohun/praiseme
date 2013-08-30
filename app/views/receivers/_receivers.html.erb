@@ -1,11 +1,11 @@
 <% if receivers.present? %>
-  <% receivers.each do |user| %>
-    <%= link_to new_compliment_path("compliment[receiver_id]" => user.id) do %>
+  <% receivers.each do |receiver| %>
+    <%= link_to new_compliment_path("compliment[receiver_id]" => receiver.followee.id) do %>
       <div class="receiver round shadow">
-        <%= image_tag user.image_url(width: 50, height: 50), :class => "img img-circle" %>
+        <%= image_tag receiver.followee.image_url(width: 50, height: 50), :class => "img img-circle" %>
         &nbsp;
         &nbsp;
-        <%= user.username %>
+        <%= receiver.followee.username %>
       </div>
     <% end %>
   <% end %>

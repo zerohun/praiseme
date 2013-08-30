@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826093432) do
+ActiveRecord::Schema.define(version: 20130829093754) do
 
   create_table "action_instances", force: true do |t|
     t.string   "instance_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20130826093432) do
     t.integer  "followee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rank"
   end
 
   add_index "followings", ["followee_id"], name: "index_followings_on_followee_id", using: :btree

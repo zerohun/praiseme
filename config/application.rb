@@ -36,6 +36,20 @@ end
 
 Hirb.enable
 
+class Hash
+  def +(other_hash)
+    res = self.clone
+    other_hash.keys.each do |key|
+      if res.keys.include?(key)
+        res[key] = res[key] + other_hash[key]
+      else
+        res[key] = other_hash[key]
+      end
+    end
+    return res
+  end
+end
+
 #module SimilarKeywordHelper
   #def self.refine_keywords(original_text, keywords)
     #uniq_keywords = keywords.uniq
