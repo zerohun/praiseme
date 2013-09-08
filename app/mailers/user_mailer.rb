@@ -57,7 +57,7 @@ class UserMailer < ActionMailer::Base
       @verb = "have"
     end
     @subject = "#{@compliment.sender.username} think you  #{@verb} #{@compliment.stamp.title}"
-    mail to: "#{@user.username}facebook.com", from: compliment.sender.email, subject: @subject
+    mail to: "#{@user.username}@facebook.com", from: compliment.sender.email, subject: @subject
   end
 
 end
