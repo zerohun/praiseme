@@ -21,14 +21,7 @@ class Compliment < ActiveRecord::Base
 
   before_save do |compliment|
     user_stamp = UserStamp.find_or_initialize_by(:user_id => compliment.sender_id, :stamp_id => compliment.stamp_id)
-
-    duplicated_compliment = Compliment.where(:stamp_id => compliment.stamp_id, :sender_id => compliment.sender_id, :receiver_id => compliment.receiver_id).where("compliments.impact_score > 0").last
-    if duplicated_compliment.present? && (duplicated_compliment.impact_score == user_stamp.impact)
-      compliment.impact_score = 0
-    else
-      compliment.impact_score = user_stamp.impact
-    end
-
+    compliment.impact_score = user_stamp.impact
   end
 
   after_create do |compliment|
