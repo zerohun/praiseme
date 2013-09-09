@@ -62,7 +62,7 @@ class UserMailer < ActionMailer::Base
 
 
   def best_glorifier(receiver)
-    @ranked_compliment_groups = Compliment.group("compliments.receiver_id").select("compliments.*, count('compliments.id') as compliments_count").reorder("compliments_count desc")
+    @ranked_compliment_groups = Compliment.group("compliments.sender_id").select("compliments.*, count('compliments.id') as compliments_count").reorder("compliments_count desc")
     @subject = "Best glorifier of this week"
     @receiver = receiver
     mail to: receiver.email, subject: @subject
