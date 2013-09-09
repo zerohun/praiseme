@@ -14,6 +14,10 @@ $('#toast').fadeIn();
   </script>
 
 <% end %>
+<div class="dashboard">
+  <h3>You have glorified <%= Compliment.where(:sender_id =>  current_user.id).count %> people</h3>
+  <h3>You have been glorified by <%= Compliment.where(:receiver_id =>  current_user.id).count %> people</h3>
+</div>
 <div id="glorify-button-bar", class="round">
   <%= link_to "Glorify!", receivers_path, :class => "btn btn-success" %>
 </div>
