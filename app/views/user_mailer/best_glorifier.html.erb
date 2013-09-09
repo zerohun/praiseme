@@ -8,6 +8,7 @@
 
   <body style="background-color:#004b3a">
   <div style="background-color:#e4faf5; -webkit-border-radius:10px; -moz-border-radius:10px ;border-radius:10px; margin:10px; padding: 20px; text-align: center;">
+    <h3><%= @subject %></h3>
     <% @ranked_compliment_groups.limit(30).each_with_index do |compliment, index| %>
       <%= link_to user_profile_url(compliment.sender) do %>
         <%= image_tag compliment.sender.image_url(width: 100, height: 100), :class => "round shadow" %>
