@@ -6,8 +6,9 @@
 </head>
 <body style="background-color:#004b3a">
   <div class="content-bg">
-  <%= link_to 
-  <%= image_tag @joined_user.image_url(width: 100, height: 100), :class => "round shadow" %>
+  <%= link_to user_profile_url(@joined_user) do %>
+    <%= image_tag @joined_user.image_url(width: 100, height: 100), :class => "round shadow" %>
+  <% end %>
   <h2><%= @subject %></h2>
   <br>
   <br>
