@@ -6,7 +6,7 @@ set :rails_env, "production"
 set :branch, "origin/master"
 set :deploy_to, "/home/pi/praiseme"
 set :user, "pi"
-set :password, "13245Choi"
+set :password, ""
 set :whenever_command, "bundle exec whenever"
 
 require "whenever/capistrano"

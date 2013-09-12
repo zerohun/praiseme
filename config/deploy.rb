@@ -12,7 +12,7 @@ set :rails_env, "production"
 set :branch, "origin/master"
 set :deploy_to, "/root/praiseme"
 set :user, "root"
-set :password, "1324513245Choi"
+set :password, ""
 
 
 server "96.126.103.89", :app, :web, :db, :primary => true
@@ -32,7 +32,7 @@ namespace :deploy do
 
   task :migrate do
     run "cd #{deploy_to}; bundle exec rake db:migrate"
-  end
+  endp
 
   task :bundle do
     run "cd #{deploy_to}; bundle install"
